@@ -1,42 +1,50 @@
-import React from "react";
-import "./App.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Books from "./pages/Books";
-import NoMatch from "./pages/NoMatch";
-import SavedBooks from "./pages/SavedBooks";
-import Nav from "./components/Nav/";
+import React, {Component} from 'react';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import Home from "./pages/Home";
 import ProtegeDash from "./pages/ProtegeDash";
-
-// class App extends Component {
-  // state = {
-  //   books: [],
-  //   title: "",
-  //   author: "",
-  //   image: "",
-  //   description: "",
-  //   link: "",
-  // }
+import MentorDash from "./pages/MentorDash";
+import ManagerDash from "./pages/ManagerDash";
 
 
-  // render() {
+class App extends Component {
 
-function App () {
-    console.log("New App loaded");
+  constructor() {
+    super()
+    this.state = {
+      user: "",
+    }
+  }
+
+  componentDidMount() {
+    console.log("Component Mounted Home")
+  }
+
+
+  render() {
     return (
       <Router>
         <div>
-          <Nav />
           <Switch>
-            <Route exact path="/" component={Books} />
-            <Route exact path="/search" component={Books} />
-            <Route exact path="/saved" component={SavedBooks} />
-            <Route exact path="/protege" component={ProtegeDash} />
-            <Route component={NoMatch} />
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="/protege">
+              <ProtegeDash />
+            </Route>
+            <Route exact path="/mentor">
+              <MentorDash />
+            </Route>
+            <Route exact path="/manager">
+              <ManagerDash />
+            </Route>
           </Switch>
         </div>
       </Router>
-    );
+    )
   }
 
+
+  
+}
 
 export default App;
