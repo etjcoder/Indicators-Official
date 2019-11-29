@@ -17,6 +17,7 @@ import ProtegeCallBtnContainer from "../components/ProtegeCallBtnContainer"
 // import DataAdvancedProtege from "../components/DataAdvancedProtege"
 import AppointmentItem from "../components/AppointmentItem"
 import AppointmentCreator from "../components/AppointmentCreator"
+import DialDataSide from "../components/DialDataSide"
 import API from "../utils/API";
 
 
@@ -26,25 +27,29 @@ class ProtegeDash extends Component {
     state = {
         user: "",
         appointments: [],
-        userData: ""
+        userData: "",
+        dialData: "",
+        numContacts: 0,
+        numScheduled: 0
     }
 
     componentDidMount = () => {
         console.log("Loaded Protege Page")
         this.gatherAppointments()
         // console.log("User Data: " + this.props.user.uid)
-        setTimeout( () => { this.getUserData() }, 500)
+        setTimeout(() => { this.getUserData() }, 1200)
     }
 
     getUserData = () => {
         console.log(this.props.user.uid)
         var userID = this.props.user.uid
         API.getUserData(userID)
-            .then(res => 
+            .then(res =>
                 this.setState({
-                    userData: res.data[0]
+                    userData: res.data[0],
+                    dialData: res.data[0].dials
                 })
-                )
+            )
     }
 
     gatherAppointments = () => {
@@ -69,7 +74,7 @@ class ProtegeDash extends Component {
                         // Initially can list all buttons on a big ass dashboard
                     */}
                     <div className="col-lg-8">
-                        <ProtegeCallBtnContainer user={this.state.userData}/>
+                        <ProtegeCallBtnContainer rerender={this.getUserData} user={this.state.userData} />
                     </div>
 
                     {/* Daily Results 4/12 Right
@@ -81,6 +86,9 @@ class ProtegeDash extends Component {
                         Todos:
                         Notes:
                     */}
+                    <div className="col-lg-4">
+                        <DialDataSide dialData={this.state.dialData} />
+                    </div>
                     {/* Mid Section narrow height 12/12
                         Reminder / Todo Input 
                     */}
@@ -122,7 +130,7 @@ class ProtegeDash extends Component {
 
                     </div> */}
                     <div className="col-lg-4">
-                        <AppointmentCreator username={this.state.user} rerender={this.gatherAppointments}/>
+                        <AppointmentCreator username={this.state.user} rerender={this.gatherAppointments} />
                     </div>
                 </div>
             </div>

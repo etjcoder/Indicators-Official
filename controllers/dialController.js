@@ -13,7 +13,10 @@ module.exports = {
         console.log("Creating Dials...")
         db.Dial
             .create(req.body)
-            .then(dbDial => res.json(dbDial))
+            .then(function(dbDial){ 
+                res.json(dbDial)
+                return db.Protege.findByIdAndUpdate({ _id: req.params.id }, { $push: { dials: dbDial._id } }, {new: true})
+            })
             .catch(err => res.status(422).json(err))
     }
 }

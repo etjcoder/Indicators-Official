@@ -15,11 +15,12 @@ class ProtegeCallBtnContainer extends Component {
         apptsource: "",
         apptnotes: "",
         appttype: "",
+        userdials: []
     }
 
     componentDidMount() {
         console.log("Loaded Protege Page")
-        
+
     }
 
     handleInputChange = event => {
@@ -77,9 +78,9 @@ class ProtegeCallBtnContainer extends Component {
             notes: this.state.apptnotes,
             date: this.state.apptdate,
             type: this.state.appttype
-        }).then(res => 
+        }).then(res =>
             cogoToast.info("Logged Appt!")
-            ).catch(err => console.log(err))
+        ).catch(err => console.log(err))
 
     }
 
@@ -99,14 +100,14 @@ class ProtegeCallBtnContainer extends Component {
         }
 
         var dialData = {
-            dialer: this.state.username,
+            dialer: this.props.user._id,
             type: typeOfDial,
             level: levelOfDial,
             contact: true
         }
 
-        API.logCall({
-            dialer: this.state.username,
+        API.logCall(this.props.user._id, {
+            dialer: this.props.user._id,
             type: typeOfDial,
             level: levelOfDial,
             contact: true
@@ -138,6 +139,7 @@ class ProtegeCallBtnContainer extends Component {
             default:
                 console.log("Error with cogoToast")
         }
+        this.props.rerender();
     }
 
 
@@ -156,15 +158,15 @@ class ProtegeCallBtnContainer extends Component {
         }
 
         var dialData = {
-            dialer: this.state.username,
+            dialer: this.props.user._id,
             type: typeOfDial,
             level: levelOfDial,
             contact: true,
             scheduled: true
         }
 
-        API.logCall({
-            dialer: this.state.username,
+        API.logCall(this.props.user._id, {
+            dialer: this.props.user._id,
             type: typeOfDial,
             level: levelOfDial,
             contact: true,
@@ -202,6 +204,8 @@ class ProtegeCallBtnContainer extends Component {
             appttype: typeOfDial,
             modalIsOpen: true
         })
+
+        this.props.rerender()
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -219,20 +223,20 @@ class ProtegeCallBtnContainer extends Component {
         }
 
         var dialData = {
-            dialer: this.state.username,
+            dialer: this.props.user._id,
             type: typeOfDial,
             level: levelOfDial
         }
+        console.log(dialData)
 
-        API.logCall({
-            dialer: this.state.username,
+        API.logCall(this.props.user._id, {
+            dialer: this.props.user._id,
             type: typeOfDial,
             level: levelOfDial
         }).then(res =>
             cogoToast.info("Logged call!")
         ).catch(err => console.log())
 
-        console.log(dialData)
 
         switch (dialData.type) {
             case "CPD":
@@ -256,6 +260,7 @@ class ProtegeCallBtnContainer extends Component {
             default:
                 console.log("Error with cogoToast")
         }
+        this.props.rerender()
     }
 
     findDials = () => {
@@ -269,9 +274,9 @@ class ProtegeCallBtnContainer extends Component {
 
     render() {
         return (
-            <div>
+            <div className="row">
                 {/* <Nav /> */}
-                <div className="card" style={{ height: '500px' }}>
+                <div className="card col" style={{ height: '500px' }}>
                     <ul className="nav nav-tabs" id="myTab" role="tablist">
                         <li className="nav-item">
                             <a className="nav-link active" id="prospect-tab" data-toggle="tab" href="#prospect" role="tab" aria-controls="prospect" aria-selected="true">Prospect</a>
@@ -294,7 +299,7 @@ class ProtegeCallBtnContainer extends Component {
                                 <div className="col-md-6">
                                     <h3><u>Cash-Flow Prospect:</u></h3>
                                     <button onClick={() => this.handleMissedCallSubmit("CPD")} value="CPD" className="btn btn-primary">Unanswered</button>
-                                    <button onClick={() => this.handleContactCallSubmit("CPD")} value="CPD" className="btn btn-primary">Answered, No appointment</button>            
+                                    <button onClick={() => this.handleContactCallSubmit("CPD")} value="CPD" className="btn btn-primary">Answered, No appointment</button>
                                     <button onClick={() => this.handleScheduledApptSubmit("CPD")} value="CPD" className="btn btn-primary">Scheduled Appointment</button>
                                 </div>
                                 <hr />
@@ -302,9 +307,9 @@ class ProtegeCallBtnContainer extends Component {
                                 <div className="col-md-6">
                                     <h3><u>Business Prospect:</u></h3>
                                     <button onClick={() => this.handleMissedCallSubmit("BPD")} value="BPD" className="btn btn-primary">Unanswered</button>
-                     
+
                                     <button onClick={() => this.handleContactCallSubmit("BPD")} value="CPD" className="btn btn-primary">Answered, No appointment</button>
-                             
+
                                     <button onClick={() => this.handleScheduledApptSubmit("BPD")} value="CPD" className="btn btn-primary">Scheduled Appointment</button>
                                 </div>
                             </div>
@@ -358,6 +363,7 @@ class ProtegeCallBtnContainer extends Component {
 
 
                         </div>
+
                     </div>
 
 
@@ -374,39 +380,40 @@ class ProtegeCallBtnContainer extends Component {
 
 
                 </div>
+                
 
                 {/* <div className="col-lg-12"> */}
 
-                    {/* <div className="card-header"> */}
-                        {/* <h2>Appointments</h2>
+                {/* <div className="card-header"> */}
+                {/* <h2>Appointments</h2>
                         <hr /> */}
-                    {/* </div> */}
-                    {/* <div className="card-body"> */}
+                {/* </div> */}
+                {/* <div className="card-body"> */}
 
-                        <div className="form-group" id="appt-holder ">
-                            <Modal isOpen={this.state.modalIsOpen} onAfterOpen={this.afterOpenModal} onRequestClose={this.closeModal} style={this.customStyles} contentLabel="Your Request Viewer">
-                                {/* <div className="card"> */}
-                                    <h3>Appointment Logger</h3>
-                                    <form className="form-group">
-                                        <label for="apptname-input">Appointment Name:</label>
-                                        <input id="apptname-input" className="form-control" value={this.state.apptname} onChange={this.handleInputChange} name="apptname" type="text" placeholder="Give your appointment a name!" />
-                                       
-                                        <label for="date-input">Date of Appointment:</label>
-                                       <input id="date-input" className="form-control" value={this.state.apptdate} onChange={this.handleInputChange} name="apptdate" type="date" placeholder="Enter date for your appointment" />
-                                       
-                                       <label for="source-input">Lead Source:</label>
-                                        <input id="source-input" className="form-control" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource" type="text" placeholder="Source of Lead" />
-                                        
-                                        <label for="note-input">Appointment Notes:</label>
-                                        <input id="note-input" className="form-control" value={this.state.apptnotes} onChange={this.handleInputChange} name="apptnotes" type="text" placeholder="Enter any notes..." />
-                                        <br />
-                                        <button id="appt-input-btn" className="btn-success form-control" onClick={this.handleApptSubmit}>Submit Appointment</button>
-                                  </form>
-                                {/* </div> */}
-                            </Modal>
-                        </div>
+                <div className="form-group" id="appt-holder ">
+                    <Modal isOpen={this.state.modalIsOpen} onAfterOpen={this.afterOpenModal} onRequestClose={this.closeModal} style={this.customStyles} contentLabel="Your Request Viewer">
+                        {/* <div className="card"> */}
+                        <h3>Appointment Logger</h3>
+                        <form className="form-group">
+                            <label for="apptname-input">Appointment Name:</label>
+                            <input id="apptname-input" className="form-control" value={this.state.apptname} onChange={this.handleInputChange} name="apptname" type="text" placeholder="Give your appointment a name!" />
 
-                    {/* </div> */}
+                            <label for="date-input">Date of Appointment:</label>
+                            <input id="date-input" className="form-control" value={this.state.apptdate} onChange={this.handleInputChange} name="apptdate" type="date" placeholder="Enter date for your appointment" />
+
+                            <label for="source-input">Lead Source:</label>
+                            <input id="source-input" className="form-control" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource" type="text" placeholder="Source of Lead" />
+
+                            <label for="note-input">Appointment Notes:</label>
+                            <input id="note-input" className="form-control" value={this.state.apptnotes} onChange={this.handleInputChange} name="apptnotes" type="text" placeholder="Enter any notes..." />
+                            <br />
+                            <button id="appt-input-btn" className="btn-success form-control" onClick={this.handleApptSubmit}>Submit Appointment</button>
+                        </form>
+                        {/* </div> */}
+                    </Modal>
+                </div>
+
+                {/* </div> */}
 
                 {/* </div> */}
 

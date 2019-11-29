@@ -36,7 +36,7 @@ var ProtegeSchema = new Schema({
     },
     dials: [{
         type: Schema.Types.ObjectId,
-        ref: "Dials"
+        ref: "Dial"
     }],
     appointments: [{
         type: Schema.Types.ObjectId,

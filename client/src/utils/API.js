@@ -8,8 +8,8 @@ export default {
     getDials: function() {
         return axios.get("/api/dials/session")
     },
-    logCall: function(data) {
-        return axios.post("/api/dials/session", data)
+    logCall: function(id, data) {
+        return axios.post("/api/dials/session/" + id, data)
     },
     saveAppointment: function(data) {
         return axios.post("/api/appointments/schedule", data)
