@@ -15,33 +15,62 @@ import ProtegeCallBtnContainer from "../components/ProtegeCallBtnContainer"
 // import ToDoInput from "../components/ToDoInput"
 // import DataBasicProtege from "../components/DataBasicProtege"
 // import DataAdvancedProtege from "../components/DataAdvancedProtege"
+import AppointmentItem from "../components/AppointmentItem"
+import AppointmentCreator from "../components/AppointmentCreator"
+import API from "../utils/API";
 
 
 
 class ProtegeDash extends Component {
 
     state = {
-        user: ""
+        user: "",
+        appointments: [],
+        userData: ""
     }
 
-    componentDidMount() {
+    componentDidMount = () => {
         console.log("Loaded Protege Page")
+        this.gatherAppointments()
+        // console.log("User Data: " + this.props.user.uid)
+        setTimeout( () => { this.getUserData() }, 500)
     }
+
+    getUserData = () => {
+        console.log(this.props.user.uid)
+        var userID = this.props.user.uid
+        API.getUserData(userID)
+            .then(res => 
+                this.setState({
+                    userData: res.data[0]
+                })
+                )
+    }
+
+    gatherAppointments = () => {
+        API.getAppointments()
+            .then(res =>
+                this.setState({
+                    appointments: res.data
+                }))
+    };
 
     render() {
         return (
-            <div>
-                <div className="jumbotron" style={{ height: '500px' }}>
+            <div className="container">
+                <div className="jumbotron" style={{}}>
                     {/* ProtegeHeader */}
-                    <h1>You're on the Protege Dashboard!</h1>
-    
+                    <h1>Welcome {this.state.userData.firstName} {this.state.userData.lastName}!</h1>
+                </div>
+                <div className="row">
                     {/* Main Section 8/12 Left
                         --Has Tabbed Card
                         --Each Tab indicated a different button 
                         // Initially can list all buttons on a big ass dashboard
                     */}
-                    <ProtegeCallBtnContainer />
-                    
+                    <div className="col-lg-8">
+                        <ProtegeCallBtnContainer user={this.state.userData}/>
+                    </div>
 
                     {/* Daily Results 4/12 Right
                         /// Top - Half ///
@@ -66,6 +95,35 @@ class ProtegeDash extends Component {
                                 Web of Appointment Types
                     
                     */}
+                </div>
+                <div className="row">
+                    <div className="col-lg-8">
+                        <div className="card" style={{ textAlign: "center" }}>
+                            <h4>Your Appointments:</h4>
+                            {this.state.appointments.map(appt => (
+                                <AppointmentItem
+                                    key={appt._id}
+                                    id={appt._id}
+                                    apptname={appt.apptname}
+                                    type={appt.type}
+                                    held={appt.held}
+                                    sold={appt.sold}
+                                    dialer={appt.dialer}
+                                    source={appt.source}
+                                    date={appt.date}
+                                    notes={appt.notes}
+                                    username={this.state.user}
+                                    rerender={this.gatherAppointments}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                    {/* <div className="col-lg-1">
+
+                    </div> */}
+                    <div className="col-lg-4">
+                        <AppointmentCreator username={this.state.user} rerender={this.gatherAppointments}/>
+                    </div>
                 </div>
             </div>
         )

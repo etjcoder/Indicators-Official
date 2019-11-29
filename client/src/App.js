@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import ProtegeDash from "./pages/ProtegeDash";
 import MentorDash from "./pages/MentorDash";
 import ManagerDash from "./pages/ManagerDash";
-
+import fire from "./config/Fire";
 
 class App extends Component {
 
@@ -16,7 +16,21 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log("Component Mounted Home")
+    console.log("Component Mounted Home");
+    this.authListener();
+  }
+
+  authListener() {
+    fire.auth().onAuthStateChanged((user) => {
+      console.log(user);
+      if (user) {
+        this.setState({
+          user: user
+        })
+      } else {
+
+      }
+    });
   }
 
 
@@ -29,13 +43,13 @@ class App extends Component {
               <Home />
             </Route>
             <Route exact path="/protege">
-              <ProtegeDash />
+              <ProtegeDash user={this.state.user}/>
             </Route>
             <Route exact path="/mentor">
-              <MentorDash />
+              <MentorDash user={this.state.user} />
             </Route>
             <Route exact path="/manager">
-              <ManagerDash />
+              <ManagerDash user={this.state.user} />
             </Route>
           </Switch>
         </div>

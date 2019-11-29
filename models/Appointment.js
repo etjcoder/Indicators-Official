@@ -7,14 +7,14 @@ var AppointmentSchema = new Schema({
         type: String,
         required: false
     },
-    name: {
+    apptname: {
         type: String,
         required: true
     },
     held: {
         type: Boolean,
         required: true,
-        default: true
+        default: false
     },
     sold: {
         type: Boolean,
@@ -30,12 +30,12 @@ var AppointmentSchema = new Schema({
         required: true
     },
     date: {
-        type: Date,
+        type: String,
         required: true
     },
     notes: {
         type: String,
-        required: true
+        required: false
     }
 }, {
     timestamps: {

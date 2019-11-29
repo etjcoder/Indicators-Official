@@ -24,6 +24,16 @@ var ProtegeSchema = new Schema({
         required: false,
         default: ""
     },
+    mentor: {
+        type: String,
+        required: false,
+        default: ""
+    },
+    manager: {
+        type: String,
+        required: true,
+        default: "Joe Naselli"
+    },
     dials: [{
         type: Schema.Types.ObjectId,
         ref: "Dials"

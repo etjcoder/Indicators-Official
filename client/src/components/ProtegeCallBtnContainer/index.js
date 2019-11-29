@@ -14,11 +14,12 @@ class ProtegeCallBtnContainer extends Component {
         apptdate: "",
         apptsource: "",
         apptnotes: "",
-        appttype: ""
+        appttype: "",
     }
 
     componentDidMount() {
         console.log("Loaded Protege Page")
+        
     }
 
     handleInputChange = event => {
@@ -55,7 +56,7 @@ class ProtegeCallBtnContainer extends Component {
         event.preventDefault()
 
         var ApptData = {
-            name: this.state.apptname,
+            apptname: this.state.apptname,
             dialer: this.state.username,
             source: this.state.apptsource,
             notes: this.state.apptnotes,
@@ -68,6 +69,18 @@ class ProtegeCallBtnContainer extends Component {
         this.setState({
             modalIsOpen: false
         })
+
+        API.saveAppointment({
+            apptname: this.state.apptname,
+            dialer: this.state.username,
+            source: this.state.apptsource,
+            notes: this.state.apptnotes,
+            date: this.state.apptdate,
+            type: this.state.appttype
+        }).then(res => 
+            cogoToast.info("Logged Appt!")
+            ).catch(err => console.log(err))
+
     }
 
 
@@ -270,7 +283,7 @@ class ProtegeCallBtnContainer extends Component {
                             <a className="nav-link" id="natural-tab" data-toggle="tab" href="#natural" role="tab" aria-controls="natural" aria-selected="false">Natural</a>
                         </li>
                     </ul>
-                    <div className="tab-content" id="myTabContent" style={{ textAlign: "center", marginTop: '200px' }}>
+                    <div className="tab-content" id="myTabContent" style={{ textAlign: "center", padding: '50px' }}>
 
                         {/* Eventually we'll want to make it so that the "Source" is triggered as a drop-down and the user can make their own Source to reference later */}
                         <div className="tab-pane fade show active" id="prospect" role="tabpanel" aria-labelledby="prospect-tab">
@@ -281,7 +294,7 @@ class ProtegeCallBtnContainer extends Component {
                                 <div className="col-md-6">
                                     <h3><u>Cash-Flow Prospect:</u></h3>
                                     <button onClick={() => this.handleMissedCallSubmit("CPD")} value="CPD" className="btn btn-primary">Unanswered</button>
-                                    <button onClick={() => this.handleContactCallSubmit("CPD")} value="CPD" className="btn btn-primary">Answered, No appointment</button>
+                                    <button onClick={() => this.handleContactCallSubmit("CPD")} value="CPD" className="btn btn-primary">Answered, No appointment</button>            
                                     <button onClick={() => this.handleScheduledApptSubmit("CPD")} value="CPD" className="btn btn-primary">Scheduled Appointment</button>
                                 </div>
                                 <hr />
@@ -289,7 +302,9 @@ class ProtegeCallBtnContainer extends Component {
                                 <div className="col-md-6">
                                     <h3><u>Business Prospect:</u></h3>
                                     <button onClick={() => this.handleMissedCallSubmit("BPD")} value="BPD" className="btn btn-primary">Unanswered</button>
+                     
                                     <button onClick={() => this.handleContactCallSubmit("BPD")} value="CPD" className="btn btn-primary">Answered, No appointment</button>
+                             
                                     <button onClick={() => this.handleScheduledApptSubmit("BPD")} value="CPD" className="btn btn-primary">Scheduled Appointment</button>
                                 </div>
                             </div>
