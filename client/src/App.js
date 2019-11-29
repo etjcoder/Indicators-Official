@@ -16,13 +16,13 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log("Component Mounted Home");
+    // console.log("Component Mounted Home");
     this.authListener();
   }
 
   authListener() {
     fire.auth().onAuthStateChanged((user) => {
-      console.log(user);
+      // console.log(user);
       if (user) {
         this.setState({
           user: user

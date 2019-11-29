@@ -8,4 +8,10 @@ router.route("/session")
 router.route("/session/:id")
     .post(dialController.createDial)
 
+router.route("/contacts/:id")
+    .get(dialController.findContacts)
+
+router.route("/appt/:id")
+    .post(dialController.createAppointment)
+
 module.exports = router;

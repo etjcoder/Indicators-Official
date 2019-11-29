@@ -11,11 +11,11 @@ export default {
     logCall: function(id, data) {
         return axios.post("/api/dials/session/" + id, data)
     },
-    saveAppointment: function(data) {
-        return axios.post("/api/appointments/schedule", data)
+    saveAppointment: function(id, data) {
+        return axios.post("/api/dials/appt/" + id, data)
     },
-    getAppointments: function() {
-        return axios.get("/api/appointments/schedule")
+    getAppointments: function(id) {
+        return axios.get("/api/appointments/find/" + id)
     },
     updateAppointment: function(id, data) {
         return axios.put("/api/appointments/edit/" + id, data)
@@ -28,6 +28,9 @@ export default {
     },
     getUserData: function(id) {
         return axios.get("/api/supervisor/user/" + id)
+    },
+    getContacts: function(id) {
+        return axios.get("/api/dials/contacts/" + id)
     },
     randomBooks: function() {
         return axios.get(BASEURL + "Apple" + APIKEY);

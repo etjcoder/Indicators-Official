@@ -16,8 +16,8 @@ class AppointmentItem extends Component {
     }
 
     componentDidMount() {
-        console.log("Loaded Appt Item")
-        console.log(this.props)
+        // console.log("Loaded Appt Item")
+        // console.log(this.props)
         this.setState({
             apptname: this.props.apptname,
             apptsource: this.props.source,
@@ -68,7 +68,7 @@ class AppointmentItem extends Component {
             id: this.props.id
         }
 
-        console.log(ApptData)
+        // console.log(ApptData)
 
         this.setState({
             editModalIsOpen: false

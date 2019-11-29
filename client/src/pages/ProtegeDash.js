@@ -29,12 +29,12 @@ class ProtegeDash extends Component {
         appointments: [],
         userData: "",
         dialData: "",
-        numContacts: 0,
+        contactData: "",
         numScheduled: 0
     }
 
     componentDidMount = () => {
-        console.log("Loaded Protege Page")
+        // console.log("Loaded Protege Page")
         this.gatherAppointments()
         // console.log("User Data: " + this.props.user.uid)
         setTimeout(() => { this.getUserData() }, 1200)
@@ -48,16 +48,34 @@ class ProtegeDash extends Component {
                 this.setState({
                     userData: res.data[0],
                     dialData: res.data[0].dials
-                })
+                }), this.getContactData(), this.gatherAppointments()
             )
     }
 
+    getContactData = () => {
+        setTimeout(() => {
+            console.log("Searching for contacts using: " + this.state.userData._id)
+            API.getContacts(this.state.userData._id)
+                .then(res => {
+                    console.log(res.data.length)
+                    this.setState({
+                        contactData: res.data
+                    })
+                })
+        }, 1000)
+
+    }
+
+
     gatherAppointments = () => {
-        API.getAppointments()
-            .then(res =>
-                this.setState({
-                    appointments: res.data
-                }))
+        setTimeout(() => {
+            console.log("Gathering appointemnts using ID: " + this.state.userData._id)
+            API.getAppointments(this.state.userData._id)
+                .then(res =>
+                    this.setState({
+                        appointments: res.data
+                    }))
+        }, 1000)
     };
 
     render() {
@@ -74,7 +92,11 @@ class ProtegeDash extends Component {
                         // Initially can list all buttons on a big ass dashboard
                     */}
                     <div className="col-lg-8">
-                        <ProtegeCallBtnContainer rerender={this.getUserData} user={this.state.userData} />
+                        <ProtegeCallBtnContainer 
+                            rerender={this.getUserData} 
+                            user={this.state.userData} 
+                            userID={this.state.userData._id} 
+                            />
                     </div>
 
                     {/* Daily Results 4/12 Right
@@ -87,7 +109,12 @@ class ProtegeDash extends Component {
                         Notes:
                     */}
                     <div className="col-lg-4">
-                        <DialDataSide dialData={this.state.dialData} />
+                        <DialDataSide 
+                            userID={this.state.userData._id} 
+                            contactData={this.state.contactData} 
+                            dialData={this.state.dialData} 
+                            apptData={this.state.appointments} 
+                            />
                     </div>
                     {/* Mid Section narrow height 12/12
                         Reminder / Todo Input 
@@ -130,7 +157,11 @@ class ProtegeDash extends Component {
 
                     </div> */}
                     <div className="col-lg-4">
-                        <AppointmentCreator username={this.state.user} rerender={this.gatherAppointments} />
+                        <AppointmentCreator 
+                            userID={this.state.userData._id} 
+                            username={this.state.user} 
+                            rerender={this.gatherAppointments} 
+                            />
                     </div>
                 </div>
             </div>

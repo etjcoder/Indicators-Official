@@ -15,6 +15,13 @@ module.exports = {
             .then(dbAppt => res.json(dbAppt))
             .catch(err => res.status(422).json(err))
     },
+    findUserAppts: function(req, res) {
+        console.log("Finding appointments...")
+        db.Appointments
+            .find({dialer: req.params.id})
+            .then(dbAppt => res.json(dbAppt))
+            .catch(err => res.json(422).json(err))
+    },
     updateAppt: function(req, res) {
         db.Appointments
             .findOneAndUpdate({ _id: req.params.id}, req.body)

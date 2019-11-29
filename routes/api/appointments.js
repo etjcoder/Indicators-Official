@@ -5,6 +5,9 @@ router.route("/schedule")
     .post(apptController.createAppt)
     .get(apptController.findAppts)
 
+router.route("/find/:id")
+    .get(apptController.findUserAppts)
+
 router.route("/edit/:id")
     .put(apptController.updateAppt)
     .delete(apptController.deleteAppt)

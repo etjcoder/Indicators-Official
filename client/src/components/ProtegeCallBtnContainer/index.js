@@ -19,7 +19,7 @@ class ProtegeCallBtnContainer extends Component {
     }
 
     componentDidMount() {
-        console.log("Loaded Protege Page")
+        // console.log("Loaded Protege Page")
 
     }
 
@@ -58,7 +58,7 @@ class ProtegeCallBtnContainer extends Component {
 
         var ApptData = {
             apptname: this.state.apptname,
-            dialer: this.state.username,
+            dialer: this.props.userID,
             source: this.state.apptsource,
             notes: this.state.apptnotes,
             date: this.state.apptdate,
@@ -71,9 +71,9 @@ class ProtegeCallBtnContainer extends Component {
             modalIsOpen: false
         })
 
-        API.saveAppointment({
+        API.saveAppointment(this.props.userID, {
             apptname: this.state.apptname,
-            dialer: this.state.username,
+            dialer: this.props.userID,
             source: this.state.apptsource,
             notes: this.state.apptnotes,
             date: this.state.apptdate,
@@ -82,6 +82,7 @@ class ProtegeCallBtnContainer extends Component {
             cogoToast.info("Logged Appt!")
         ).catch(err => console.log(err))
 
+        this.props.rerender()
     }
 
 

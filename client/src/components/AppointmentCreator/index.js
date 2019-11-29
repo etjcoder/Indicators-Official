@@ -57,13 +57,14 @@ class AppointmentCreator extends Component {
 
     handleApptSubmit = event => {
         event.preventDefault()
+        console.log("Submitting appointment under user ID: " + this.props.userID)
 
         var ApptData = {
             apptname: this.state.apptname,
             source: this.state.apptsource,
             notes: this.state.apptnotes,
             date: this.state.apptdate,
-            dialer: this.props.username,
+            dialer: this.props.userID,
             type: this.state.type,
         }
 
@@ -71,12 +72,12 @@ class AppointmentCreator extends Component {
 
 
 
-        API.saveAppointment({
+        API.saveAppointment(this.props.userID, {
             apptname: this.state.apptname,
             source: this.state.apptsource,
             notes: this.state.apptnotes,
             date: this.state.apptdate,
-            dialer: this.props.username,
+            dialer: this.props.userID,
             type: this.state.type
         }).then(res =>
             cogoToast.info("Saved Appt!")
