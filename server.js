@@ -24,9 +24,6 @@ app.use(routes);
 // Define any API routes before this runs
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/indicators")
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
-// });
 
 
 
