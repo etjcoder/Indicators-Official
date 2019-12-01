@@ -26,5 +26,17 @@ module.exports = {
             .create(req.body)
             .then(dbMentor => res.json(dbMentor))
             .catch(err => res.status(422).json(err))
+    },
+    findProtege: function(req, res) {
+        db.Protege
+            .find({ uid: req.params.id})
+            .then(dbProtege => res.json(dbProtege))
+            .catch(err => res.status(422).json(err))
+    },
+    findMentor: function(req, res) {
+        db.Mentor
+            .find({ uid: req.params.id})
+            .then(dbMentor => res.json(dbMentor))
+            .catch(err => res.status(422).json(err))
     }
 }

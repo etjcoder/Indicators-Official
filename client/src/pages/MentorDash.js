@@ -19,7 +19,10 @@ class MentorDash extends Component {
 
     componentDidMount() {
         console.log("Loaded Mentor Page")
+        console.log(this.props.user)
     }
+
+    
 
     render() {
         return (

@@ -3,7 +3,7 @@ import fire from "../../config/Fire";
 import API from "../../utils/API";
 import cogoToast from "cogo-toast";
 
-class CreateProtegeForm extends Component {
+class BasicLogin extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -21,15 +21,44 @@ class CreateProtegeForm extends Component {
 
     login = e => {
         e.preventDefault();
-        fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(() => {
-            cogoToast.success("Successful login!");
-            document.location.href = '/protege'
+        fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((res) => {
+            cogoToast.success("Successful login with " + res);
+            console.log(res.user.uid)
+            this.checkCredentials(res.user.uid)
+
         }).catch((error) => {
             console.log(error)
         })
     }
 
-    
+    checkCredentials = (uid) => {
+
+        var protege = false;
+        var mentor = false;
+        var manager = false;
+        API.getProtege(uid)
+            .then(res => {
+                console.log(res)
+                if (res.data.length > 0) {
+                    console.log("This is a protege login")
+                    protege = true
+                    document.location.href = '/protege'
+                } else {
+                    API.getMentor(uid)
+                        .then(res => {
+                            if (res.data.length > 0) {
+                                console.log("This is a mentor login")
+                                mentor = true
+                                document.location.href = '/mentor'
+                            }
+                        }).catch(err =>
+                            console.log("Type of user not found"))
+                }
+            }).catch(err =>
+                console.log("This is not a protege login"))
+
+    };
+
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -52,7 +81,7 @@ class CreateProtegeForm extends Component {
                     <input value={this.state.password} onChange={this.handleInputChange} type="password" name="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
                     {/* <button type="submit" onClick={this.login} className="btn">Login</button> */}
 
-                
+
                     <button onClick={this.login} className="btn btn-outline-info">Log in</button>
                     {/* <button onClick={this.logOut} style={{ marginTop: '5px', marginLeft: '25px' }} className="btn btn-danger">Logout</button> */}
                 </form>
@@ -64,4 +93,4 @@ class CreateProtegeForm extends Component {
 
 }
 
-export default CreateProtegeForm;
+export default BasicLogin;

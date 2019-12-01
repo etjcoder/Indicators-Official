@@ -11,7 +11,7 @@ class CreateMentorForm extends Component {
             password: '',
             designation: '',
             mentor: '',
-            proteges: '',
+            proteges: [],
             firstName: "",
             lastName: "",
             manager: ""
@@ -39,7 +39,7 @@ class CreateMentorForm extends Component {
                     uid: data.user.uid,
                     firstName: this.state.firstName,
                     lastName: this.state.lastName,
-                    protege: this.state.protege,
+                    proteges: this.state.proteges,
                     manager: this.state.manager
                 })
             }).catch(err => console.log(err))
@@ -51,6 +51,23 @@ class CreateMentorForm extends Component {
             [name]: value
         });
     };
+
+    handleArrayChange = event => {
+        console.log(event.target.name)
+        console.log(event.target.value)
+        this.setState({
+            proteges: [event.target.value]
+        })
+    }
+
+    handleArrayAddition = event => {
+        console.log(event.target.name)
+        console.log(event.target.value)
+        this.setState({
+            proteges: [...this.state.proteges, event.target.value]
+        })
+
+    }
 
 
     render() {
@@ -71,8 +88,8 @@ class CreateMentorForm extends Component {
                     <br />
                     <input value={this.state.lastName} onChange={this.handleInputChange} type="text" name="lastName" className="form-control" placeholder="Last name" />
                     <br />
-                    <input value={this.state.protege} onChange={this.handleInputChange} type="text" name="protege" className="form-control" placeholder="Protege" />
-                    {this.props.proteges ? <select id="protegeDropMenu" value={this.state.protege} onChange={this.handleInputChange} name="protege">
+                    <input value={this.state.protege} onChange={this.handleInputChange} type="text" name="proteges" className="form-control" placeholder="Protege" />
+                    {this.props.proteges ? <select id="protegeDropMenu" value={this.state.protege} onChange={this.handleArrayChange} name="protege">
                         {this.props.proteges.map(protege => (
                             <option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>
                         ))}    

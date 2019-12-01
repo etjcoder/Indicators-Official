@@ -32,6 +32,12 @@ export default {
     getUserData: function(id) {
         return axios.get("/api/supervisor/user/" + id)
     },
+    getProtege: function(id) {
+        return axios.get("/api/supervisor/protege/" + id)
+    },
+    getMentor: function(id) {
+        return axios.get("/api/supervisor/mentor/" + id)
+    },
     getProteges: function() {
         return axios.get("/api/supervisor/protege")
     },
