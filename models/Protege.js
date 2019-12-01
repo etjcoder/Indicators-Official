@@ -49,7 +49,20 @@ var ProtegeSchema = new Schema({
     sales: [{
         type: Schema.Types.ObjectId,
         ref: "Sales"
-    }]
+    }],
+    almaMater: {
+        type: String,
+        required: false
+    },
+    homeTown: {
+        type: String,
+        required: false
+    },
+    experiencedAdvisor: {
+        type: Boolean,
+        required: true,
+        default: false
+    }
 },
     {
         timestamps: {

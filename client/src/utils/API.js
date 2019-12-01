@@ -29,6 +29,9 @@ export default {
     getUserData: function(id) {
         return axios.get("/api/supervisor/user/" + id)
     },
+    getProteges: function() {
+        return axios.get("/api/supervisor/protege")
+    },
     getContacts: function(id) {
         return axios.get("/api/dials/contacts/" + id)
     },

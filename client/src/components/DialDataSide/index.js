@@ -19,7 +19,6 @@ class DialDataSide extends Component {
         // }, 1300)
         // this.getContacts()
 
-
     }
 
 
@@ -36,7 +35,7 @@ class DialDataSide extends Component {
     // }
 
     getNumContacts = () => {
-       var localNumContacts = 0
+        var localNumContacts = 0
         for (var i = 0; i < this.props.dialData.length; i++) {
             if (this.props.dialData[i].contact === true) {
                 localNumContacts++
@@ -45,8 +44,9 @@ class DialDataSide extends Component {
 
         console.log(localNumContacts)
         this.updateContacts(localNumContacts)
-       
     }
+
+
 
     updateContacts = num => {
         this.setState({
@@ -62,9 +62,35 @@ class DialDataSide extends Component {
             <div className="card">
                 <h4 style={{ textAlign: 'center' }}><u>Weekly Stats:</u></h4>
                 <ul>Dials:{this.props.dialData.length}</ul>
+                    <li>Cashflow Prospect Dials: {this.props.CPDials}</li>
+                    <li>Business Prospect Dials: {this.props.BPDials}</li>
+                    <li>Cashflow Client Dials: {this.props.CCDials}</li>
+                    <li>Business Client Dials: {this.props.BCDials}</li>
+                    <li>Cashflow Natural Mkt Dials: {this.props.CNDials}</li>
+                    <li>Business Natural Mkt Dials: {this.props.BNDials}</li>
+                <br />
                 <ul>Contacts: {this.props.contactData.length} </ul>
+                    <li>Cashflow Prospect Contacts: {this.props.CPContacts}</li>
+                    <li>Business Prospect Contacts: {this.props.BPContacts}</li>
+                    <li>Cashflow Client Contacts: {this.props.CCContacts}</li>
+                    <li>Business Client Contacts: {this.props.BCContacts}</li>
+                    <li>Cashflow Natural Mkt Contacts: {this.props.CNContacts}</li>
+                    <li>Business Natural Mkt Contacts: {this.props.BNContacts}</li>
+                <br />
                 <ul>Scheduled: {this.props.apptData.length}</ul>
+                    <li>Cashflow Prospect Appts: {this.props.CPAppts}</li>
+                    <li>Business Prospect Appts: {this.props.BPAppts}</li>
+                    <li>Cashflow Client Appts: {this.props.CCAppts}</li>
+                    <li>Business Client Appts: {this.props.BCAppts}</li>
+                    <li>Cashflow Natural Mkt Appts: {this.props.CNAppts}</li>
+                    <li>Business Natural Mkt Appts: {this.props.BNAppts}</li>
+                <hr />
+                <h5 style={{ textAlign: 'cetner' }}><u>Broken down by Area</u></h5>
+                <ul>
+
+                </ul>
             </div>
+
         )
     }
 

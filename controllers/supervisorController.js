@@ -13,6 +13,13 @@ module.exports = {
             .populate("dials")
             .then(dbProtege => res.json(dbProtege))
             .catch(err => res.status(422).json(err))
+    },
+    findProteges: function(req, res) {
+        db.Protege
+            .find()
+            .populate("dials")
+            .then(dbProtege => res.json(dbProtege))
+            .catch(err => res.status(422).json(err))
     }
 
 }

@@ -3,17 +3,30 @@ import "./Home.css";
 import Nav from "../components/Nav";
 // import LoginForm from "../components/CreateProtegeForm"
 import CreateProtegeForm from "../components/CreateProtegeForm";
+import CreateMentorForm from "../components/CreateMentorForm";
+import API from "../utils/API";
 
 
 class ManagerDash extends Component {
 
     state = {
-        user: ""
+        user: "",
+        proteges: ""
     }
 
-    componentDidMount() {
+    componentDidMount = () => {
         console.log("Loaded Manager Page")
+        this.gatherProteges()
     }
+
+    gatherProteges =  () => {
+        API.getProteges()
+            .then( (res) => {
+                this.setState({
+                    proteges: res.data
+                })
+            })
+    } 
 
     render() {
         return (
@@ -26,6 +39,10 @@ class ManagerDash extends Component {
                     <div className="col-lg-6">
                         Add / Update Existing Proteges
                         <CreateProtegeForm />
+                    </div>
+                    <div className="col-lg-6">
+                        Add New Mentor
+                        <CreateMentorForm proteges={this.state.proteges} />
                     </div>
                 </div>
             </div>

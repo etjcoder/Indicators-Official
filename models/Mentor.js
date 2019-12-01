@@ -24,9 +24,9 @@ var MentorSchema = new Schema({
         required: false,
         default: ""
     },
-    dials: [{
+    proteges: [{
         type: Schema.Types.ObjectId,
-        ref: "Dials"
+        ref: "Protege"
     }],
     appointments: [{
         type: Schema.Types.ObjectId,
@@ -35,20 +35,7 @@ var MentorSchema = new Schema({
     sales: [{
         type: Schema.Types.ObjectId,
         ref: "Sales"
-    }],
-    almaMater: {
-        type: String,
-        required: false
-    },
-    homeTown: {
-        type: String,
-        required: false
-    },
-    previousAdvisor: {
-        type: Boolean,
-        required: true,
-        default: false
-    }
+    }]
 },
     {
         timestamps: {

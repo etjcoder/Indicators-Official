@@ -3,6 +3,7 @@ const supervisorController = require("../../controllers/supervisorController");
 
 router.route("/protege")
     .post(supervisorController.createProtege)
+    .get(supervisorController.findProteges)
 
 router.route("/user/:id")
     .get(supervisorController.findUser)
