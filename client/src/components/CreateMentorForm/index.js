@@ -11,7 +11,7 @@ class CreateMentorForm extends Component {
             password: '',
             designation: '',
             mentor: '',
-            proteges: [],
+            proteges: '',
             firstName: "",
             lastName: "",
             manager: ""
@@ -72,10 +72,15 @@ class CreateMentorForm extends Component {
                     <input value={this.state.lastName} onChange={this.handleInputChange} type="text" name="lastName" className="form-control" placeholder="Last name" />
                     <br />
                     <input value={this.state.protege} onChange={this.handleInputChange} type="text" name="protege" className="form-control" placeholder="Protege" />
+                    {this.props.proteges ? <select id="protegeDropMenu" value={this.state.protege} onChange={this.handleInputChange} name="protege">
+                        {this.props.proteges.map(protege => (
+                            <option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>
+                        ))}    
+                    </select> : null }
                     <br />
                     <input value={this.state.manager} onChange={this.handleInputChange} type="text" name="manager" className="form-control" placeholder="Manager" />
 
-                    <button onClick={this.signup} className="btn btn-outline-info">Create User</button>
+                    <button onClick={this.signup} className="btn btn-outline-info">Create Mentor</button>
                     {/* <button onClick={this.logOut} style={{ marginTop: '5px', marginLeft: '25px' }} className="btn btn-danger">Logout</button> */}
                 </form>
             </div>

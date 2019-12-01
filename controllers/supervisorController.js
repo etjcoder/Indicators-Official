@@ -20,6 +20,11 @@ module.exports = {
             .populate("dials")
             .then(dbProtege => res.json(dbProtege))
             .catch(err => res.status(422).json(err))
+    },
+    createMentor: function(req, res) {
+        db.Mentor
+            .create(req.body)
+            .then(dbMentor => res.json(dbMentor))
+            .catch(err => res.status(422).json(err))
     }
-
 }
