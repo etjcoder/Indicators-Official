@@ -34,6 +34,11 @@ var ProtegeSchema = new Schema({
         required: true,
         default: "Joe Naselli"
     },
+    sources : {
+        type: [String],
+        required: false,
+        unique: false
+    },
     dials: [{
         type: Schema.Types.ObjectId,
         ref: "Dial"

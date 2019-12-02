@@ -33,13 +33,19 @@ class MentorDash extends Component {
         CCContacts: 0,
         BCContacts: 0,
         CNContacts: 0,
-        BNContacts: 0,
+        BNContacts: 0, 
         CPAppts: 0,
         BPAppts: 0,
         CCAppts: 0,
         BCAppts: 0,
         CNAppts: 0,
         BNAppts: 0,
+        CSDials: 0,
+        BSDials: 0,
+        CSContacts: 0,
+        BSContacts: 0,
+        CSAppts: 0,
+        BSAppts: 0,
         protegeSelected: ""
     }
 

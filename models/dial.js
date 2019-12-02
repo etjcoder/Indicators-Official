@@ -29,7 +29,7 @@ var DialSchema = new Schema({
     },
     source: {
         type: String,
-        required: false,
+        required: true,
         default: "none"
     }
 })

@@ -38,6 +38,9 @@ export default {
     getProtege: function(id) {
         return axios.get("/api/supervisor/protege/" + id)
     },
+    saveSourceToProtege: function(id, data) {
+        return axios.post("/api/protege/sources/" + id, data)
+    },
     getMentor: function(id) {
         return axios.get("/api/supervisor/mentor/" + id)
     },

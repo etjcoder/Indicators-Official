@@ -19,6 +19,7 @@ import AppointmentItem from "../components/AppointmentItem"
 import AppointmentCreator from "../components/AppointmentCreator"
 import DialDataSide from "../components/DialDataSide"
 import API from "../utils/API";
+import SourceCreator from "../components/SourceCreator"
 
 
 
@@ -48,7 +49,13 @@ class ProtegeDash extends Component {
         CCAppts: 0,
         BCAppts: 0,
         CNAppts: 0,
-        BNAppts: 0
+        BNAppts: 0,
+        CSDials: 0,
+        BSDials: 0,
+        CSContacts: 0,
+        BSContacts: 0,
+        CSAppts: 0,
+        BSAppts: 0
     }
 
     componentDidMount = () => {
@@ -66,9 +73,9 @@ class ProtegeDash extends Component {
                 this.setState({
                     userData: res.data[0],
                     dialData: res.data[0].dials
-                }), this.getContactData(), 
+                }), this.getContactData(),
                 this.gatherAppointments(),
-                setTimeout( () => {this.parseDials()}, 500)
+                setTimeout(() => { this.parseDials() }, 500)
             )
     }
 
@@ -81,7 +88,7 @@ class ProtegeDash extends Component {
                     this.setState({
                         contactData: res.data
                     }),
-                    setTimeout( () => {this.parseContacts()},500)
+                    setTimeout(() => { this.parseContacts() }, 500)
                 )
         }, 1000)
 
@@ -95,8 +102,8 @@ class ProtegeDash extends Component {
                 .then(res =>
                     this.setState({
                         appointments: res.data
-                    }), 
-                    setTimeout( () => { this.parseAppointments() }, 500)
+                    }),
+                    setTimeout(() => { this.parseAppointments() }, 500)
                 )
         }, 1000)
     };
@@ -109,6 +116,8 @@ class ProtegeDash extends Component {
         var BCA = 0;
         var CNA = 0;
         var BNA = 0;
+        var CSA = 0;
+        var BSA = 0;
         for (var i = 0; i < this.state.appointments.length; i++) {
             console.log(this.state.appointments[i])
             switch (this.state.appointments[i].type) {
@@ -130,28 +139,38 @@ class ProtegeDash extends Component {
                 case "BND":
                     BNA++
                     break;
+                case "CSD":
+                    CSA++
+                    break;
+                case "BSD":
+                    BSA++
+                    break;
                 default:
                     break;
             }
         }
-            this.setState({
-                CPAppts: CPA,
-                BPAppts: BPA,
-                CCAppts: CCA,
-                BCAppts: BCA,
-                CNAppts: CNA,
-                BNAppts: BNA
-            })
+        this.setState({
+            CPAppts: CPA,
+            BPAppts: BPA,
+            CCAppts: CCA,
+            BCAppts: BCA,
+            CNAppts: CNA,
+            BNAppts: BNA,
+            CSAppts: CSA,
+            BSAppts: BSA
+        })
     }
 
     parseDials = () => {
-        console.log("Parsing Dials: " + this.state.dialData) 
+        console.log("Parsing Dials: " + this.state.dialData)
         var CPD = 0;
         var BPD = 0;
         var CCD = 0;
         var BCD = 0;
         var CND = 0;
         var BND = 0;
+        var CSD = 0;
+        var BSD = 0;
         for (var i = 0; i < this.state.dialData.length; i++) {
             // console.log(this.state.dialData[i])
             switch (this.state.dialData[i].type) {
@@ -173,18 +192,26 @@ class ProtegeDash extends Component {
                 case "BND":
                     BND++
                     break;
-                default: 
+                case "CSD":
+                    CSD++
+                    break;
+                case "BSD":
+                    BSD++
+                    break;
+                default:
                     break;
             }
         }
-            this.setState({
-                CPDials: CPD,
-                BPDials: BPD,
-                CCDials: CCD,
-                BCDials: BCD,
-                CNDials: CND,
-                BNDials: BND
-            })
+        this.setState({
+            CPDials: CPD,
+            BPDials: BPD,
+            CCDials: CCD,
+            BCDials: BCD,
+            CNDials: CND,
+            BNDials: BND,
+            CSDials: CSD,
+            BSDials: BSD
+        })
     }
 
     parseContacts = () => {
@@ -195,7 +222,9 @@ class ProtegeDash extends Component {
         var BCC = 0;
         var CNC = 0;
         var BNC = 0;
-        for (var i = 0; i < this.state.contactData.length; i++){
+        var CSC = 0;
+        var BSC = 0;
+        for (var i = 0; i < this.state.contactData.length; i++) {
             switch (this.state.contactData[i].type) {
                 case "CPD":
                     CPC++
@@ -215,7 +244,13 @@ class ProtegeDash extends Component {
                 case "BND":
                     BNC++
                     break;
-                default: 
+                case "CSD":
+                    CSC++
+                    break;
+                case "BSD":
+                    BSC++
+                    break;
+                default:
                     break;
             }
         }
@@ -225,7 +260,9 @@ class ProtegeDash extends Component {
             CCContacts: CCC,
             BCContacts: BCC,
             CNContacts: CNC,
-            BNContacts: BNC
+            BNContacts: BNC,
+            CSContacts: CSC,
+            BSContacts: BSC
         })
     }
 
@@ -260,30 +297,43 @@ class ProtegeDash extends Component {
                         Notes:
                     */}
                     <div className="col-lg-4">
-                        <DialDataSide
-                            userID={this.state.userData._id}
-                            contactData={this.state.contactData}
-                            dialData={this.state.dialData}
-                            apptData={this.state.appointments}
-                            CPAppts={this.state.CPAppts}
-                            BPAppts={this.state.BPAppts}
-                            CCAppts={this.state.CCAppts}
-                            BCAppts={this.state.BCAppts}
-                            CNAppts={this.state.CNAppts}
-                            BNAppts={this.state.BNAppts}
-                            CPDials={this.state.CPDials}
-                            BPDials={this.state.BPDials}
-                            CCDials={this.state.CCDials}
-                            BCDials={this.state.BCDials}
-                            CNDials={this.state.CNDials}
-                            BNDials={this.state.BNDials}
-                            CPContacts={this.state.CPContacts}
-                            BPContacts={this.state.BPContacts}
-                            CCContacts={this.state.CCContacts}
-                            BCContacts={this.state.BCContacts}
-                            CNContacts={this.stateCNContacts}
-                            BNContacts={this.state.BNContacts}
-                        />
+                        <div className="row">
+                            <div className="col-12">
+                                <DialDataSide
+                                    userID={this.state.userData._id}
+                                    contactData={this.state.contactData}
+                                    dialData={this.state.dialData}
+                                    apptData={this.state.appointments}
+                                    CPAppts={this.state.CPAppts}
+                                    BPAppts={this.state.BPAppts}
+                                    CCAppts={this.state.CCAppts}
+                                    BCAppts={this.state.BCAppts}
+                                    CNAppts={this.state.CNAppts}
+                                    BNAppts={this.state.BNAppts}
+                                    CPDials={this.state.CPDials}
+                                    BPDials={this.state.BPDials}
+                                    CCDials={this.state.CCDials}
+                                    BCDials={this.state.BCDials}
+                                    CNDials={this.state.CNDials}
+                                    BNDials={this.state.BNDials}
+                                    CPContacts={this.state.CPContacts}
+                                    BPContacts={this.state.BPContacts}
+                                    CCContacts={this.state.CCContacts}
+                                    BCContacts={this.state.BCContacts}
+                                    CNContacts={this.stateCNContacts}
+                                    BNContacts={this.state.BNContacts}
+                                    CSDials={this.state.CSDials}
+                                    BSDials={this.state.BSDials}
+                                    CSContacts={this.state.CSContacts}
+                                    BSContacts={this.state.BSContacts}
+                                    CSAppts={this.state.CSAppts}
+                                    BSAppts={this.state.BSAppts}
+                                />
+                            </div>
+                            <div className="col-12">
+                                <SourceCreator userData={this.state.userData}/>
+                            </div>
+                        </div>
                     </div>
                     {/* Mid Section narrow height 12/12
                         Reminder / Todo Input 

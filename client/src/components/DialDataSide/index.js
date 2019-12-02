@@ -68,6 +68,8 @@ class DialDataSide extends Component {
                     <li>Business Client Dials: {this.props.BCDials}</li>
                     <li>Cashflow Natural Mkt Dials: {this.props.CNDials}</li>
                     <li>Business Natural Mkt Dials: {this.props.BNDials}</li>
+                    <li>Cashflow Suspect Dials: {this.props.CSDials}</li>
+                    <li>Business Suspect Dials: {this.props.BSDials}</li>
                 <br />
                 <ul>Contacts: {this.props.contactData.length} </ul>
                     <li>Cashflow Prospect Contacts: {this.props.CPContacts}</li>
@@ -76,6 +78,8 @@ class DialDataSide extends Component {
                     <li>Business Client Contacts: {this.props.BCContacts}</li>
                     <li>Cashflow Natural Mkt Contacts: {this.props.CNContacts}</li>
                     <li>Business Natural Mkt Contacts: {this.props.BNContacts}</li>
+                    <li>Cashflow Suspect Contacts: {this.props.CSContacts}</li>
+                    <li>Business Suspect Contacts: {this.props.BSContacts}</li>
                 <br />
                 <ul>Scheduled: {this.props.apptData.length}</ul>
                     <li>Cashflow Prospect Appts: {this.props.CPAppts}</li>
@@ -84,7 +88,10 @@ class DialDataSide extends Component {
                     <li>Business Client Appts: {this.props.BCAppts}</li>
                     <li>Cashflow Natural Mkt Appts: {this.props.CNAppts}</li>
                     <li>Business Natural Mkt Appts: {this.props.BNAppts}</li>
+                    <li>Cashflow Suspect Appts: {this.props.CSappts}</li>
+                    <li>Business Suspect Appts: {this.props.BSAppts}</li>
                 <hr />
+                
                 <h5 style={{ textAlign: 'cetner' }}><u>Broken down by Area</u></h5>
                 <ul>
 
