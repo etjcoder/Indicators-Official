@@ -32,11 +32,26 @@ export default {
     getUserData: function(id) {
         return axios.get("/api/supervisor/user/" + id)
     },
+    getUserDataById(id) {
+        return axios.get("/api/supervisor/userdata/" + id)
+    },
     getProtege: function(id) {
         return axios.get("/api/supervisor/protege/" + id)
     },
     getMentor: function(id) {
         return axios.get("/api/supervisor/mentor/" + id)
+    },
+    getMentorById: function(id) {
+        return axios.get("/api/supervisor/mentor/find/" + id)
+    },
+    addProtegeToMentor: function(id, data) {
+        return axios.put("/api/supervisor/mentor/find/" + id, data)
+    },
+    removeProtegeFromMentor: function(id, data) {
+        return axios.delete("/api/supervisor/mentor/find/" + id, data)
+    },
+    getMentors: function() {
+        return axios.get("/api/supervisor/mentor/")
     },
     getProteges: function() {
         return axios.get("/api/supervisor/protege")
