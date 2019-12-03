@@ -280,11 +280,26 @@ class ProtegeDash extends Component {
                         // Initially can list all buttons on a big ass dashboard
                     */}
                     <div className="col-lg-8">
-                        <ProtegeCallBtnContainer
-                            rerender={this.getUserData}
-                            user={this.state.userData}
-                            userID={this.state.userData._id}
-                        />
+                        <div className="row">
+                            <div className="col-12">
+                                <form>
+                                    {this.state.leadSources ? <select id="sourceDropMenu" value={this.state.leadSource} onChange={this.handleSourceChange} name="leadSource">
+                                        {this.state.leadSources.map(source => (
+                                            <option value={source}>{source}</option>
+                                        ))}
+                                    </select> : null}
+                                </form>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-12">
+                                <ProtegeCallBtnContainer
+                                    rerender={this.getUserData}
+                                    user={this.state.userData}
+                                    userID={this.state.userData._id}
+                                />
+                            </div>
+                        </div>
                     </div>
 
                     {/* Daily Results 4/12 Right
@@ -331,7 +346,7 @@ class ProtegeDash extends Component {
                                 />
                             </div>
                             <div className="col-12">
-                                <SourceCreator userData={this.state.userData}/>
+                                <SourceCreator userData={this.state.userData} />
                             </div>
                         </div>
                     </div>
