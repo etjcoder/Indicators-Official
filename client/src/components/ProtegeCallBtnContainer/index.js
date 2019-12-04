@@ -97,7 +97,8 @@ class ProtegeCallBtnContainer extends Component {
         if (typeOfDial === "CPD" ||
             typeOfDial === "CCD" ||
             typeOfDial === "CND" ||
-            typeOfDial === "CSD") {
+            typeOfDial === "CSD" ||
+            typeOfDial === "CRD" ) {
             levelOfDial = "cashflow"
         } else {
             levelOfDial = "business"
@@ -147,6 +148,13 @@ class ProtegeCallBtnContainer extends Component {
                 break;
             case "BSD":
                 cogoToast.success("+1 Suspect Contact")
+                break;
+            case "CRD":
+                cogoToast.success("+1 Referral Contact")
+                break;
+            case "BRD":
+                cogoToast.success("+1 Referral Contact")
+                break;
             default:
                 console.log("Error with cogoToast")
         }
@@ -163,7 +171,8 @@ class ProtegeCallBtnContainer extends Component {
         if (typeOfDial === "CPD" ||
             typeOfDial === "CCD" ||
             typeOfDial === "CND" ||
-            typeOfDial === "CSD") {
+            typeOfDial === "CSD" ||
+            typeOfDial === "CRD" ) {
             levelOfDial = "cashflow"
         } else {
             levelOfDial = "business"
@@ -215,6 +224,13 @@ class ProtegeCallBtnContainer extends Component {
                 break;
             case "BSD":
                 cogoToast.success("+1 Business Scheduled")
+                break;
+            case "CRD":
+                cogoToast.success("+1 Referral Scheduled")
+                break;
+            case "BRD":
+                cogoToast.success("+1 Referral Scheduled")
+                break;
             default:
                 console.log("Error with cogoToast")
         }
@@ -238,7 +254,8 @@ class ProtegeCallBtnContainer extends Component {
         if (typeOfDial === "CPD" ||
             typeOfDial === "CCD" ||
             typeOfDial === "CND" ||
-            typeOfDial === "CSD") {
+            typeOfDial === "CSD" ||
+            typeOfDial === "CRD" ) {
             levelOfDial = "cashflow"
         } else {
             levelOfDial = "business"
@@ -286,6 +303,13 @@ class ProtegeCallBtnContainer extends Component {
                 break;
             case "BSD":
                 cogoToast.success("+1 Suspect Dial")
+                break;
+            case "CRD":
+                cogoToast.success("+1 Referral Dial")
+                break;
+            case "BRD":
+                cogoToast.success("+1 Referral Dial")
+                break;
             default:
                 console.log("Error with cogoToast")
         }
@@ -318,6 +342,9 @@ class ProtegeCallBtnContainer extends Component {
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" id="suspect-tab" data-toggle="tab" href="#suspect" role="tab" aria-controles="suspect" aria-selected="false">Suspect</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" id="suspect-tab" data-toggle="tab" href="#referral" role="tab" aria-controles="referral" aria-selected="false">Referral</a>
                         </li>
                     </ul>
                     <div className="tab-content" id="myTabContent" style={{ textAlign: "center", padding: '50px' }}>
@@ -404,6 +431,25 @@ class ProtegeCallBtnContainer extends Component {
                             </div>
                         </div>
 
+
+                        <div className="tab-pane fade" id="referral" role="tabpanel" aria-labelledby="referral-tab">
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <h3><u>Cash-Flow Referral:</u></h3>
+                                    <button onClick={() => this.handleMissedCallSubmit("CRD")} value="CRD" className="btn btn-primary">Unanswered</button>
+                                    <button onClick={() => this.handleContactCallSubmit("CRD")} value="CRD" className="btn btn-primary">Answered, No appointment</button>
+                                    <button onClick={() => this.handleScheduledApptSubmit("CRD")} value="CRD" className="btn btn-primary">Scheduled Appointment</button>
+                                </div>
+                                <hr />
+                                <br />
+                                <div className="col-md-6">
+                                    <h3><u>Business Referral:</u></h3>
+                                    <button onClick={() => this.handleMissedCallSubmit("BRD")} value="BRD" className="btn btn-primary">Unanswered</button>
+                                    <button onClick={() => this.handleContactCallSubmit("BRD")} value="BRD" className="btn btn-primary">Answered, No appointment</button>
+                                    <button onClick={() => this.handleScheduledApptSubmit("BRD")} value="BRD" className="btn btn-primary">Scheduled Appointment</button>
+                                </div>
+                            </div>
+                        </div>
 
 
 

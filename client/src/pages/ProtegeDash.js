@@ -59,6 +59,12 @@ class ProtegeDash extends Component {
         BSContacts: 0,
         CSAppts: 0,
         BSAppts: 0,
+        CRDials: 0,
+        CRContacts: 0,
+        CRAppts: 0,
+        BRDials: 0,
+        BRContacts: 0,
+        BRAppts: 0,
         leadSource: "none",
         targetMarket: "none"
     }
@@ -109,6 +115,7 @@ class ProtegeDash extends Component {
             console.log("Searching for contacts using: " + this.state.userData._id)
             API.getContacts(this.state.userData._id)
                 .then(res =>
+                    // console.log("Contacts: " )
                     // console.log(res.data.length)
                     this.setState({
                         contactData: res.data
@@ -143,6 +150,8 @@ class ProtegeDash extends Component {
         var BNA = 0;
         var CSA = 0;
         var BSA = 0;
+        var CRA = 0;
+        var BRA = 0;
         for (var i = 0; i < this.state.appointments.length; i++) {
             console.log(this.state.appointments[i])
             switch (this.state.appointments[i].type) {
@@ -170,6 +179,12 @@ class ProtegeDash extends Component {
                 case "BSD":
                     BSA++
                     break;
+                case "CRD":
+                    CRA++
+                    break;
+                case "BRD":
+                    BRA++
+                    break;
                 default:
                     break;
             }
@@ -182,12 +197,14 @@ class ProtegeDash extends Component {
             CNAppts: CNA,
             BNAppts: BNA,
             CSAppts: CSA,
-            BSAppts: BSA
+            BSAppts: BSA,
+            CRAppts: CRA,
+            BRAppts: BRA
         })
     }
 
     parseDials = () => {
-        console.log("Parsing Dials: " + this.state.dialData)
+        // console.log("Parsing Dials: " + this.state.dialData)
         var CPD = 0;
         var BPD = 0;
         var CCD = 0;
@@ -196,6 +213,8 @@ class ProtegeDash extends Component {
         var BND = 0;
         var CSD = 0;
         var BSD = 0;
+        var CRD = 0;
+        var BRD = 0;
         for (var i = 0; i < this.state.dialData.length; i++) {
             // console.log(this.state.dialData[i])
             switch (this.state.dialData[i].type) {
@@ -223,6 +242,12 @@ class ProtegeDash extends Component {
                 case "BSD":
                     BSD++
                     break;
+                case "CRD":
+                    CRD++
+                    break;
+                case "BRD":
+                    BRD++
+                    break;
                 default:
                     break;
             }
@@ -235,7 +260,9 @@ class ProtegeDash extends Component {
             CNDials: CND,
             BNDials: BND,
             CSDials: CSD,
-            BSDials: BSD
+            BSDials: BSD,
+            CRDials: CRD,
+            BRDials: BRD
         })
     }
 
@@ -249,6 +276,10 @@ class ProtegeDash extends Component {
         var BNC = 0;
         var CSC = 0;
         var BSC = 0;
+        var CSC = 0;
+        var BSC = 0;
+        var CRC = 0;
+        var BRC = 0;
         for (var i = 0; i < this.state.contactData.length; i++) {
             switch (this.state.contactData[i].type) {
                 case "CPD":
@@ -275,6 +306,12 @@ class ProtegeDash extends Component {
                 case "BSD":
                     BSC++
                     break;
+                case "CRD":
+                    CRC++
+                    break;
+                case "BRD":
+                    BRC++
+                    break;
                 default:
                     break;
             }
@@ -287,7 +324,9 @@ class ProtegeDash extends Component {
             CNContacts: CNC,
             BNContacts: BNC,
             CSContacts: CSC,
-            BSContacts: BSC
+            BSContacts: BSC,
+            CRContacts: CRC,
+            BRContacts: BRC
         })
     }
 
@@ -376,6 +415,12 @@ class ProtegeDash extends Component {
                                 BSContacts={this.state.BSContacts}
                                 CSAppts={this.state.CSAppts}
                                 BSAppts={this.state.BSAppts}
+                                CRDials={this.state.CRDials}
+                                BRDials={this.state.BRDials}
+                                CRContacts={this.state.CRContacts}
+                                BRContacts={this.state.BRContacts}
+                                CRAppts={this.state.CRAppts}
+                                BRAppts={this.state.BRAppts}
                             />
                         </div>
                         <div className="col-12">
@@ -432,7 +477,7 @@ class ProtegeDash extends Component {
                             username={this.state.user}
                             rerender={this.gatherAppointments}
                             userData={this.state.userData}
-                            
+
                         />
                     </div>
                 </div>
