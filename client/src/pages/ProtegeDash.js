@@ -20,6 +20,9 @@ import AppointmentCreator from "../components/AppointmentCreator"
 import DialDataSide from "../components/DialDataSide"
 import API from "../utils/API";
 import SourceCreator from "../components/SourceCreator"
+import SourceSelector from "../components/SourceSelector"
+import TargetMarketSelector from "../components/TargetMarketSelector"
+import TargetMarketCreator from "../components/TargetMarketCreator"
 
 
 
@@ -55,7 +58,9 @@ class ProtegeDash extends Component {
         CSContacts: 0,
         BSContacts: 0,
         CSAppts: 0,
-        BSAppts: 0
+        BSAppts: 0,
+        leadSource: "none",
+        targetMarket: "none"
     }
 
     componentDidMount = () => {
@@ -63,6 +68,26 @@ class ProtegeDash extends Component {
         // this.gatherAppointments()
         // console.log("User Data: " + this.props.user.uid)
         setTimeout(() => { this.getUserData() }, 1200)
+    }
+
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+    };
+
+
+    setParentState = (data) => {
+        this.setState({
+            leadSource: data
+        })
+    }
+
+    setParentStateTargetMkt = (data) => {
+        this.setState({
+            targetMarket: data
+        })
     }
 
     getUserData = () => {
@@ -266,6 +291,8 @@ class ProtegeDash extends Component {
         })
     }
 
+
+
     render() {
         return (
             <div className="container">
@@ -279,30 +306,36 @@ class ProtegeDash extends Component {
                         --Each Tab indicated a different button 
                         // Initially can list all buttons on a big ass dashboard
                     */}
-                    <div className="col-lg-8">
-                        <div className="row">
+                    {/* <div className="col-lg-8"> */}
+                    {/* <div className="row">
                             <div className="col-12">
                                 <form>
-                                    {this.state.leadSources ? <select id="sourceDropMenu" value={this.state.leadSource} onChange={this.handleSourceChange} name="leadSource">
-                                        {this.state.leadSources.map(source => (
+                                    {this.state.userData.sources ? <select id="sourceDropMenu" value={this.state.leadSource} onChange={this.handleInputChange} name="leadSource">
+                                            <option value={"none"}>No Lead Source Selected</option>
+                                        {this.state.userData.sources.map(source => (
                                             <option value={source}>{source}</option>
                                         ))}
                                     </select> : null}
                                 </form>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-12">
-                                <ProtegeCallBtnContainer
-                                    rerender={this.getUserData}
-                                    user={this.state.userData}
-                                    userID={this.state.userData._id}
-                                />
-                            </div>
-                        </div>
-                    </div>
+                            </div> */}
+                    <SourceSelector userData={this.state.userData} setParentState={this.setParentState} />
+                    <TargetMarketSelector userData={this.state.userData} setParentState={this.setParentStateTargetMkt} />
+                </div>
 
-                    {/* Daily Results 4/12 Right
+                <div className="row">
+                    <div className="col-12">
+                        <ProtegeCallBtnContainer
+                            rerender={this.getUserData}
+                            user={this.state.userData}
+                            userID={this.state.userData._id}
+                            source={this.state.leadSource}
+                            targetMarket={this.state.targetMarket}
+                        />
+                    </div>
+                </div>
+
+
+                {/* Daily Results 4/12 Right
                         /// Top - Half ///
                         Dials: 
                         Contacts:
@@ -311,49 +344,50 @@ class ProtegeDash extends Component {
                         Todos:
                         Notes:
                     */}
-                    <div className="col-lg-4">
-                        <div className="row">
-                            <div className="col-12">
-                                <DialDataSide
-                                    userID={this.state.userData._id}
-                                    contactData={this.state.contactData}
-                                    dialData={this.state.dialData}
-                                    apptData={this.state.appointments}
-                                    CPAppts={this.state.CPAppts}
-                                    BPAppts={this.state.BPAppts}
-                                    CCAppts={this.state.CCAppts}
-                                    BCAppts={this.state.BCAppts}
-                                    CNAppts={this.state.CNAppts}
-                                    BNAppts={this.state.BNAppts}
-                                    CPDials={this.state.CPDials}
-                                    BPDials={this.state.BPDials}
-                                    CCDials={this.state.CCDials}
-                                    BCDials={this.state.BCDials}
-                                    CNDials={this.state.CNDials}
-                                    BNDials={this.state.BNDials}
-                                    CPContacts={this.state.CPContacts}
-                                    BPContacts={this.state.BPContacts}
-                                    CCContacts={this.state.CCContacts}
-                                    BCContacts={this.state.BCContacts}
-                                    CNContacts={this.stateCNContacts}
-                                    BNContacts={this.state.BNContacts}
-                                    CSDials={this.state.CSDials}
-                                    BSDials={this.state.BSDials}
-                                    CSContacts={this.state.CSContacts}
-                                    BSContacts={this.state.BSContacts}
-                                    CSAppts={this.state.CSAppts}
-                                    BSAppts={this.state.BSAppts}
-                                />
-                            </div>
-                            <div className="col-12">
-                                <SourceCreator userData={this.state.userData} />
-                            </div>
+                <div className="col-lg-4">
+                    <div className="row">
+                        <div className="col-12">
+                            <DialDataSide
+                                userID={this.state.userData._id}
+                                contactData={this.state.contactData}
+                                dialData={this.state.dialData}
+                                apptData={this.state.appointments}
+                                CPAppts={this.state.CPAppts}
+                                BPAppts={this.state.BPAppts}
+                                CCAppts={this.state.CCAppts}
+                                BCAppts={this.state.BCAppts}
+                                CNAppts={this.state.CNAppts}
+                                BNAppts={this.state.BNAppts}
+                                CPDials={this.state.CPDials}
+                                BPDials={this.state.BPDials}
+                                CCDials={this.state.CCDials}
+                                BCDials={this.state.BCDials}
+                                CNDials={this.state.CNDials}
+                                BNDials={this.state.BNDials}
+                                CPContacts={this.state.CPContacts}
+                                BPContacts={this.state.BPContacts}
+                                CCContacts={this.state.CCContacts}
+                                BCContacts={this.state.BCContacts}
+                                CNContacts={this.stateCNContacts}
+                                BNContacts={this.state.BNContacts}
+                                CSDials={this.state.CSDials}
+                                BSDials={this.state.BSDials}
+                                CSContacts={this.state.CSContacts}
+                                BSContacts={this.state.BSContacts}
+                                CSAppts={this.state.CSAppts}
+                                BSAppts={this.state.BSAppts}
+                            />
+                        </div>
+                        <div className="col-12">
+                            <SourceCreator userData={this.state.userData} />
+                            <TargetMarketCreator userData={this.state.userData} />
                         </div>
                     </div>
-                    {/* Mid Section narrow height 12/12
+                </div>
+                {/* Mid Section narrow height 12/12
                         Reminder / Todo Input 
                     */}
-                    {/* Lower Section 12/12
+                {/* Lower Section 12/12
                         Data Dashboard Below
                             Basic Data Showing first:
                                 Contacts / Dials
@@ -364,7 +398,7 @@ class ProtegeDash extends Component {
                                 Web of Appointment Types
                     
                     */}
-                </div>
+
                 <div className="row">
                     <div className="col-lg-8">
                         <div className="card" style={{ textAlign: "center" }}>
@@ -383,6 +417,8 @@ class ProtegeDash extends Component {
                                     notes={appt.notes}
                                     username={this.state.user}
                                     rerender={this.gatherAppointments}
+                                    user={this.state.userData}
+                                    targetMarket={appt.targetMarket}
                                 />
                             ))}
                         </div>
@@ -395,10 +431,12 @@ class ProtegeDash extends Component {
                             userID={this.state.userData._id}
                             username={this.state.user}
                             rerender={this.gatherAppointments}
+                            userData={this.state.userData}
+                            
                         />
                     </div>
                 </div>
-            </div>
+            </div >
         )
     }
 }

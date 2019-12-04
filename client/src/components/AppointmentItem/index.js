@@ -12,7 +12,8 @@ class AppointmentItem extends Component {
         apptname: "",
         apptsource: "",
         apptnotes: "",
-        apptdate: ""
+        apptdate: "",
+        appttargetmkt: ""
     }
 
     componentDidMount() {
@@ -22,7 +23,8 @@ class AppointmentItem extends Component {
             apptname: this.props.apptname,
             apptsource: this.props.source,
             apptnotes: this.props.notes,
-            apptdate: this.props.date
+            apptdate: this.props.date,
+            appttargetmkt: this.props.targetMarket
         })
 
     }
@@ -65,6 +67,7 @@ class AppointmentItem extends Component {
             source: this.state.apptsource,
             notes: this.state.apptnotes,
             date: this.state.apptdate,
+            targetMarket: this.state.targetMarket,
             id: this.props.id
         }
 
@@ -78,7 +81,8 @@ class AppointmentItem extends Component {
             apptname: this.state.apptname,
             source: this.state.apptsource,
             notes: this.state.apptnotes,
-            date: this.state.apptdate
+            date: this.state.apptdate,
+            targetMarket: this.state.appttargetmkt
         }).then(res =>
             cogoToast.info("Updated Appt!")
         ).catch(err => console.log(err))
@@ -109,7 +113,7 @@ class AppointmentItem extends Component {
     render() {
         return (
             <div>
-                <div style={{height: '200px', textAlign: 'left'}}>
+                <div style={{ height: '200px', textAlign: 'left' }}>
                     <hr></hr>
                     <h4>{this.state.apptname}: <span>{this.state.apptdate}</span></h4>
                     <p>Notes: {this.state.apptnotes}</p>
@@ -121,27 +125,43 @@ class AppointmentItem extends Component {
 
 
                 <div className="form-group" id="appt-holder ">
-                            <Modal isOpen={this.state.editModalIsOpen} onAfterOpen={this.afterOpenEditModal} onRequestClose={this.closeEditModal} style={this.customStyles} contentLabel="Your Request Viewer">
-                                {/* <div className="card"> */}
-                                    <h3>Appointment Logger</h3>
-                                    <form className="form-group">
-                                        <label>Appointment Name:</label>
-                                        <input id="apptname-input" className="form-control" value={this.state.apptname} onChange={this.handleInputChange} name="apptname" type="text" placeholder="Give your appointment a name!" />
-                                       
-                                        <label>Date of Appointment:</label>
-                                       <input id="date-input" className="form-control" value={this.state.apptdate} onChange={this.handleInputChange} name="apptdate" type="date" placeholder="Enter date for your appointment" />
-                                       
-                                       <label>Lead Source:</label>
-                                        <input id="source-input" className="form-control" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource" type="text" placeholder="Source of Lead" />
-                                        
-                                        <label>Appointment Notes:</label>
-                                        <input id="note-input" className="form-control" value={this.state.apptnotes} onChange={this.handleInputChange} name="apptnotes" type="text" placeholder="Enter any notes..." />
-                                        <br />
-                                        <button id="appt-input-btn" className="btn-success form-control" onClick={this.handleApptUpdate}>Submit Appointment</button>
-                                  </form>
-                                {/* </div> */}
-                            </Modal>
-                        </div>
+                    <Modal isOpen={this.state.editModalIsOpen} onAfterOpen={this.afterOpenEditModal} onRequestClose={this.closeEditModal} style={this.customStyles} contentLabel="Your Request Viewer">
+                        {/* <div className="card"> */}
+                        <h3>Appointment Logger</h3>
+                        <form className="form-group">
+                            <label>Appointment Name:</label>
+                            <input id="apptname-input" className="form-control" value={this.state.apptname} onChange={this.handleInputChange} name="apptname" type="text" placeholder="Give your appointment a name!" />
+
+                            <label>Date of Appointment:</label>
+                            <input id="date-input" className="form-control" value={this.state.apptdate} onChange={this.handleInputChange} name="apptdate" type="date" placeholder="Enter date for your appointment" />
+
+                            <label>Lead Source:</label>
+                            {/* <input id="source-input" className="form-control" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource" type="text" placeholder="Source of Lead" /> */}
+                            {this.props.user.sources ? <select id="sourceDropMenu" defaultValue={this.props.source} value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource">
+                                {/* <option value={"none"}>No Lead Source Selected</option> */}
+                                {this.props.user.sources.map(source => (
+                                    <option value={source}>{source}</option>
+                                ))}
+                            </select> : <p>"No lead sources created yet"</p>}
+
+                            <br />
+                            <label>Target Market:</label>
+                            {/* <input id="targetmkt-input" className="form-control" value={this.state.apptTargetMkt} onChange={this.handleInputChange} name="appttargetmkt" type="text" placeholder="Target Market goes here" /> */}
+                            {this.props.user.targetMarkets ? <select id="sourceDropMenu" value={this.state.appttargetmkt} onChange={this.handleInputChange} name="appttargetmkt">
+                                {/* <option value={"none"}>No Target Market Selected</option> */}
+                                {this.props.user.targetMarkets.map(target => (
+                                    <option value={target}>{target}</option>
+                                ))}
+                            </select> : <p>"No target markets created yet"</p>}
+                            <br />
+                            <label>Appointment Notes:</label>
+                            <input id="note-input" className="form-control" value={this.state.apptnotes} onChange={this.handleInputChange} name="apptnotes" type="text" placeholder="Enter any notes..." />
+                            <br />
+                            <button id="appt-input-btn" className="btn-success form-control" onClick={this.handleApptUpdate}>Submit Appointment</button>
+                        </form>
+                        {/* </div> */}
+                    </Modal>
+                </div>
 
             </div>
         )

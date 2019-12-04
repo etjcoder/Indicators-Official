@@ -31,6 +31,11 @@ var DialSchema = new Schema({
         type: String,
         required: true,
         default: "none"
+    },
+    targetMarket: {
+        type: String,
+        required: true,
+        default: "none"
     }
 })
 

@@ -39,6 +39,11 @@ var ProtegeSchema = new Schema({
         required: false,
         unique: false
     },
+    targetMarkets: {
+        type: [String],
+        required: false,
+        unique: false
+    },
     dials: [{
         type: Schema.Types.ObjectId,
         ref: "Dial"

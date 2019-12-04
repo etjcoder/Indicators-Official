@@ -27,7 +27,8 @@ var AppointmentSchema = new Schema({
     },
     source: {
         type: String,
-        required: true
+        required: true,
+        default: "none"
     },
     date: {
         type: String,
@@ -36,6 +37,11 @@ var AppointmentSchema = new Schema({
     notes: {
         type: String,
         required: false
+    },
+    targetMarket: {
+        type: String,
+        required: true,
+        default: "none"
     }
 }, {
     timestamps: {

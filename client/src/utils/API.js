@@ -41,6 +41,9 @@ export default {
     saveSourceToProtege: function(id, data) {
         return axios.post("/api/protege/sources/" + id, data)
     },
+    saveTargetMktToProtege: function(id, data) {
+        return axios.post("/api/protege/targets/" + id, data)
+    },
     getMentor: function(id) {
         return axios.get("/api/supervisor/mentor/" + id)
     },

@@ -13,6 +13,7 @@ class ProtegeCallBtnContainer extends Component {
         apptname: "",
         apptdate: "",
         apptsource: "",
+        appttargetmkt: "",
         apptnotes: "",
         appttype: "",
         userdials: []
@@ -74,10 +75,11 @@ class ProtegeCallBtnContainer extends Component {
         API.saveAppointment(this.props.userID, {
             apptname: this.state.apptname,
             dialer: this.props.userID,
-            source: this.state.apptsource,
             notes: this.state.apptnotes,
             date: this.state.apptdate,
-            type: this.state.appttype
+            type: this.state.appttype,
+            source: this.state.apptsource,
+            targetMarket: this.state.appttargetmkt
         }).then(res =>
             cogoToast.info("Logged Appt!")
         ).catch(err => console.log(err))
@@ -112,7 +114,9 @@ class ProtegeCallBtnContainer extends Component {
             dialer: this.props.user._id,
             type: typeOfDial,
             level: levelOfDial,
-            contact: true
+            contact: true,
+            source: this.props.leadSource,
+            targetMarket: this.props.targetMarket
         }).then(res =>
             cogoToast.info("Logged call!")
         ).catch(err => console.log())
@@ -178,7 +182,9 @@ class ProtegeCallBtnContainer extends Component {
             type: typeOfDial,
             level: levelOfDial,
             contact: true,
-            scheduled: true
+            scheduled: true,
+            source: this.props.leadSource,
+            targetMarket: this.props.targetMarket
         }).then(res =>
             cogoToast.info("Logged call!")
         ).catch(err => console.log())
@@ -215,6 +221,8 @@ class ProtegeCallBtnContainer extends Component {
 
         this.setState({
             appttype: typeOfDial,
+            appttargetmkt: this.props.targetMarket,
+            apptsource: this.props.source,
             modalIsOpen: true
         })
 
@@ -246,7 +254,9 @@ class ProtegeCallBtnContainer extends Component {
         API.logCall(this.props.user._id, {
             dialer: this.props.user._id,
             type: typeOfDial,
-            level: levelOfDial
+            level: levelOfDial,
+            source: this.props.leadSource,
+            targetMarket: this.props.targetMarket
         }).then(res =>
             cogoToast.info("Logged call!")
         ).catch(err => console.log())
@@ -428,10 +438,26 @@ class ProtegeCallBtnContainer extends Component {
 
                                 <label for="date-input">Date of Appointment:</label>
                                 <input id="date-input" className="form-control" value={this.state.apptdate} onChange={this.handleInputChange} name="apptdate" type="date" placeholder="Enter date for your appointment" />
+                                <br />
+                                <label>Lead Source:</label>
+                                {/* <input id="source-input" className="form-control" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource" type="text" placeholder="Source of Lead" /> */}
+                                {this.props.user.sources ? <select id="sourceDropMenu" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource">
+                                    <option value={"none"}>No Lead Source Selected</option>
+                                    {this.props.user.sources.map(source => (
+                                        <option value={source}>{source}</option>
+                                    ))}
+                                </select> : <p>"No lead sources created yet"</p>}
 
-                                <label for="source-input">Lead Source:</label>
-                                <input id="source-input" className="form-control" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource" type="text" placeholder="Source of Lead" />
-
+                                <br />
+                                <label>Target Market:</label>
+                                {/* <input id="targetmkt-input" className="form-control" value={this.state.apptTargetMkt} onChange={this.handleInputChange} name="appttargetmkt" type="text" placeholder="Target Market goes here" /> */}
+                                {this.props.user.targetMarkets ? <select id="sourceDropMenu" value={this.state.appttargetmkt} onChange={this.handleInputChange} name="appttargetmkt">
+                                    <option value={"none"}>No Target Market Selected</option>
+                                    {this.props.user.targetMarkets.map(target => (
+                                        <option value={target}>{target}</option>
+                                    ))}
+                                </select> : <p>"No target markets created yet"</p>}
+                                <br />
                                 <label for="note-input">Appointment Notes:</label>
                                 <input id="note-input" className="form-control" value={this.state.apptnotes} onChange={this.handleInputChange} name="apptnotes" type="text" placeholder="Enter any notes..." />
                                 <br />

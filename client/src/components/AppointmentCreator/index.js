@@ -10,7 +10,8 @@ class AppointmentCreator extends Component {
         apptname: "",
         apptsource: "",
         apptnotes: "",
-        apptdate: ""
+        apptdate: "",
+        appttargetmkt: ""
     }
 
     componentDidMount() {
@@ -66,6 +67,7 @@ class AppointmentCreator extends Component {
             date: this.state.apptdate,
             dialer: this.props.userID,
             type: this.state.type,
+            targetMarket: this.state.appttargetmkt
         }
 
         console.log(ApptData)
@@ -78,12 +80,13 @@ class AppointmentCreator extends Component {
             notes: this.state.apptnotes,
             date: this.state.apptdate,
             dialer: this.props.userID,
-            type: this.state.type
+            type: this.state.type,
+            targetMarket: this.state.appttargetmkt
         }).then(res =>
             cogoToast.info("Saved Appt!")
         ).catch(err => console.log(err))
 
-        setTimeout( () => {
+        setTimeout(() => {
             // cogoToast.loading("Re-loading appointments")
             this.props.rerender()
         }, 1000)
@@ -97,7 +100,7 @@ class AppointmentCreator extends Component {
 
     render() {
         return (
-            <div className="card" style={{padding: '10%'}}>
+            <div className="card" style={{ padding: '10%' }}>
                 <h4>Create appointment:</h4>
                 <form className="form-group">
                     <label>Type of Appointment</label>
@@ -117,12 +120,30 @@ class AppointmentCreator extends Component {
                     <input id="date-input" className="form-control" value={this.state.apptdate} onChange={this.handleInputChange} name="apptdate" type="date" placeholder="Enter date for your appointment" />
 
                     <label>Lead Source:</label>
-                    <input id="source-input" className="form-control" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource" type="text" placeholder="Source of Lead" />
+                    {/* <input id="source-input" className="form-control" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource" type="text" placeholder="Source of Lead" /> */}
+                    {this.props.userData.sources ? <select id="sourceDropMenu" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource">
+                        <option value={"none"}>No Lead Source Selected</option>
+                        {this.props.userData.sources.map(source => (
+                            <option value={source}>{source}</option>
+                        ))}
+                    </select> : <p>"No lead sources created yet"</p>}
 
+
+                    <label>Target Market:</label>
+                    {/* <input id="targetmkt-input" className="form-control" value={this.state.apptTargetMkt} onChange={this.handleInputChange} name="appttargetmkt" type="text" placeholder="Target Market goes here" /> */}
+                    {this.props.userData.targetMarkets ? <select id="sourceDropMenu" value={this.state.appttargetmkt} onChange={this.handleInputChange} name="appttargetmkt">
+                        <option value={"none"}>No Target Market Selected</option>
+                        {this.props.userData.targetMarkets.map(target => (
+                            <option value={target}>{target}</option>
+                        ))}
+                    </select> : <p>"No target markets created yet"</p>}
+
+                
                     <label>Appointment Notes:</label>
                     <input id="note-input" className="form-control" value={this.state.apptnotes} onChange={this.handleInputChange} name="apptnotes" type="text" placeholder="Enter any notes..." />
                     <br />
                     <button id="appt-input-btn" className="btn-success form-control" onClick={this.handleApptSubmit}>Submit Appointment</button>
+
                 </form>
 
             </div>
