@@ -72,6 +72,8 @@ class DialDataSide extends Component {
                     <li>Business Suspect Dials: {this.props.BSDials}</li>
                     <li>Cashflow Referral Dials: {this.props.CRDials}</li>
                     <li>Business Referral Dials: {this.props.BRDials}</li>
+                    <li>Cashflow Target Mkt Dials: {this.props.CTDials}</li>
+                    <li>Business Target Mkt Dials: {this.props.BTDials}</li>
                 <br />
                 <ul>Contacts: {this.props.contactData.length} </ul>
                     <li>Cashflow Prospect Contacts: {this.props.CPContacts}</li>
@@ -84,6 +86,8 @@ class DialDataSide extends Component {
                     <li>Business Suspect Contacts: {this.props.BSContacts}</li>
                     <li>Cashflow Referral Contacts: {this.props.CRContacts}</li>
                     <li>Business Referral Contacts: {this.props.BRContacts}</li>
+                    <li>Cashflow Target Mkt Contacts: {this.props.CTContacts}</li>
+                    <li>Business Target Mkt Contacts: {this.props.BTContacts}</li>
                 <br />
                 <ul>Scheduled: {this.props.apptData.length}</ul>
                     <li>Cashflow Prospect Appts: {this.props.CPAppts}</li>
@@ -96,6 +100,8 @@ class DialDataSide extends Component {
                     <li>Business Suspect Appts: {this.props.BSAppts}</li>
                     <li>Cashflow Referral Appts: {this.props.CRAppts}</li>
                     <li>Business Referral Appts: {this.props.BRAppts}</li>
+                    <li>Cashflow Target Mkt Appts: {this.props.CTAppts}</li>
+                    <li>Business Target Mkt Appts: {this.props.BTAppts}</li>
                 <hr />
                 
                 <h5 style={{ textAlign: 'center' }}><u>Broken down by Area</u></h5>

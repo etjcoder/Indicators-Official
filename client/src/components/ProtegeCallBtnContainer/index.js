@@ -98,7 +98,7 @@ class ProtegeCallBtnContainer extends Component {
             typeOfDial === "CCD" ||
             typeOfDial === "CND" ||
             typeOfDial === "CSD" ||
-            typeOfDial === "CRD" ) {
+            typeOfDial === "CRD") {
             levelOfDial = "cashflow"
         } else {
             levelOfDial = "business"
@@ -155,6 +155,12 @@ class ProtegeCallBtnContainer extends Component {
             case "BRD":
                 cogoToast.success("+1 Referral Contact")
                 break;
+            case "CTD":
+                cogoToast.success("+1 Target Mkt Contact")
+                break;
+            case "BTD":
+                cogoToast.success("+1 Target Mkt Contact")
+                break;
             default:
                 console.log("Error with cogoToast")
         }
@@ -172,7 +178,8 @@ class ProtegeCallBtnContainer extends Component {
             typeOfDial === "CCD" ||
             typeOfDial === "CND" ||
             typeOfDial === "CSD" ||
-            typeOfDial === "CRD" ) {
+            typeOfDial === "CRD" ||
+            typeOfDial === "CTD" ) {
             levelOfDial = "cashflow"
         } else {
             levelOfDial = "business"
@@ -231,6 +238,11 @@ class ProtegeCallBtnContainer extends Component {
             case "BRD":
                 cogoToast.success("+1 Referral Scheduled")
                 break;
+            case "CTD":
+                cogoToast.success("+1 Target Mkt Scheduled")
+                break;
+            case "BTD":
+                cogoToast.success("+1 Target Mkt Scheduled")
             default:
                 console.log("Error with cogoToast")
         }
@@ -255,7 +267,8 @@ class ProtegeCallBtnContainer extends Component {
             typeOfDial === "CCD" ||
             typeOfDial === "CND" ||
             typeOfDial === "CSD" ||
-            typeOfDial === "CRD" ) {
+            typeOfDial === "CRD" ||
+            typeOfDial === "CTD" ) {
             levelOfDial = "cashflow"
         } else {
             levelOfDial = "business"
@@ -310,6 +323,12 @@ class ProtegeCallBtnContainer extends Component {
             case "BRD":
                 cogoToast.success("+1 Referral Dial")
                 break;
+            case "CTD":
+                cogoToast.success("+1 Target Mkt Dial")
+                break;
+            case "BTD":
+                cogoToast.success("+1 Target Mkt Dial")
+                break;
             default:
                 console.log("Error with cogoToast")
         }
@@ -341,10 +360,14 @@ class ProtegeCallBtnContainer extends Component {
                             <a className="nav-link" id="natural-tab" data-toggle="tab" href="#natural" role="tab" aria-controls="natural" aria-selected="false">Natural</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" id="suspect-tab" data-toggle="tab" href="#suspect" role="tab" aria-controles="suspect" aria-selected="false">Suspect</a>
+                            <a className="nav-link" id="suspect-tab" data-toggle="tab" href="#suspect" role="tab" aria-controls="suspect" aria-selected="false">Suspect</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" id="suspect-tab" data-toggle="tab" href="#referral" role="tab" aria-controles="referral" aria-selected="false">Referral</a>
+                            <a className="nav-link" id="referral-tab" data-toggle="tab" href="#referral" role="tab" aria-controls="referral" aria-selected="false">Referral</a>
+                        </li>
+
+                        <li className="nav-item">
+                            <a className="nav-link" id="target-mkt-tab" data-toggle="tab" href="#target-mkt" role="tab" aria-controls="target-mkt" aria-selected="false">Target Market</a>
                         </li>
                     </ul>
                     <div className="tab-content" id="myTabContent" style={{ textAlign: "center", padding: '50px' }}>
@@ -447,6 +470,25 @@ class ProtegeCallBtnContainer extends Component {
                                     <button onClick={() => this.handleMissedCallSubmit("BRD")} value="BRD" className="btn btn-primary">Unanswered</button>
                                     <button onClick={() => this.handleContactCallSubmit("BRD")} value="BRD" className="btn btn-primary">Answered, No appointment</button>
                                     <button onClick={() => this.handleScheduledApptSubmit("BRD")} value="BRD" className="btn btn-primary">Scheduled Appointment</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="tab-pane fade" id="target-mkt" role="tabpanel" aria-labelledby="target-mkt-tab">
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <h3><u>Cash-Flow Target Mkt:</u></h3>
+                                    <button onClick={() => this.handleMissedCallSubmit("CTD")} value="CTD" className="btn btn-primary">Unanswered</button>
+                                    <button onClick={() => this.handleContactCallSubmit("CTD")} value="CTD" className="btn btn-primary">Answered, No appointment</button>
+                                    <button onClick={() => this.handleScheduledApptSubmit("CTD")} value="CTD" className="btn btn-primary">Scheduled Appointment</button>
+                                </div>
+                                <hr />
+                                <br />
+                                <div className="col-md-6">
+                                    <h3><u>Business Target Mkt:</u></h3>
+                                    <button onClick={() => this.handleMissedCallSubmit("BTD")} value="BTD" className="btn btn-primary">Unanswered</button>
+                                    <button onClick={() => this.handleContactCallSubmit("BTD")} value="BTD" className="btn btn-primary">Answered, No appointment</button>
+                                    <button onClick={() => this.handleScheduledApptSubmit("BTD")} value="BTD" className="btn btn-primary">Scheduled Appointment</button>
                                 </div>
                             </div>
                         </div>

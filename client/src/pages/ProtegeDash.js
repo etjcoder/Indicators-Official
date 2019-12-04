@@ -65,6 +65,12 @@ class ProtegeDash extends Component {
         BRDials: 0,
         BRContacts: 0,
         BRAppts: 0,
+        CTDials: 0,
+        CTContacts: 0,
+        CTAppts: 0,
+        BTDials: 0,
+        BTContacts: 0,
+        BTAppts: 0,
         leadSource: "none",
         targetMarket: "none"
     }
@@ -152,6 +158,8 @@ class ProtegeDash extends Component {
         var BSA = 0;
         var CRA = 0;
         var BRA = 0;
+        var CTA = 0;
+        var BTA = 0;
         for (var i = 0; i < this.state.appointments.length; i++) {
             console.log(this.state.appointments[i])
             switch (this.state.appointments[i].type) {
@@ -185,6 +193,12 @@ class ProtegeDash extends Component {
                 case "BRD":
                     BRA++
                     break;
+                case "CTD":
+                    CTA++
+                    break;
+                case "BTD":
+                    BTA++
+                    break;
                 default:
                     break;
             }
@@ -199,7 +213,9 @@ class ProtegeDash extends Component {
             CSAppts: CSA,
             BSAppts: BSA,
             CRAppts: CRA,
-            BRAppts: BRA
+            BRAppts: BRA,
+            CTAppts: CTA,
+            BTAppts: BTA
         })
     }
 
@@ -215,6 +231,8 @@ class ProtegeDash extends Component {
         var BSD = 0;
         var CRD = 0;
         var BRD = 0;
+        var CTD = 0;
+        var BTD = 0;
         for (var i = 0; i < this.state.dialData.length; i++) {
             // console.log(this.state.dialData[i])
             switch (this.state.dialData[i].type) {
@@ -248,6 +266,12 @@ class ProtegeDash extends Component {
                 case "BRD":
                     BRD++
                     break;
+                case "CTD":
+                    CTD++
+                    break;
+                case "BTD":
+                    BTD++
+                    break;
                 default:
                     break;
             }
@@ -262,7 +286,9 @@ class ProtegeDash extends Component {
             CSDials: CSD,
             BSDials: BSD,
             CRDials: CRD,
-            BRDials: BRD
+            BRDials: BRD,
+            CTDials: CTD,
+            BTDials: BTD
         })
     }
 
@@ -280,6 +306,8 @@ class ProtegeDash extends Component {
         var BSC = 0;
         var CRC = 0;
         var BRC = 0;
+        var CTC = 0;
+        var BTC = 0;
         for (var i = 0; i < this.state.contactData.length; i++) {
             switch (this.state.contactData[i].type) {
                 case "CPD":
@@ -312,6 +340,12 @@ class ProtegeDash extends Component {
                 case "BRD":
                     BRC++
                     break;
+                case "CTD":
+                    CTC++
+                    break;
+                case "BTD":
+                    BTC++
+                    break;
                 default:
                     break;
             }
@@ -326,7 +360,9 @@ class ProtegeDash extends Component {
             CSContacts: CSC,
             BSContacts: BSC,
             CRContacts: CRC,
-            BRContacts: BRC
+            BRContacts: BRC,
+            CTContacts: CTC,
+            BTContacts: BTC
         })
     }
 
@@ -421,6 +457,12 @@ class ProtegeDash extends Component {
                                 BRContacts={this.state.BRContacts}
                                 CRAppts={this.state.CRAppts}
                                 BRAppts={this.state.BRAppts}
+                                CTDials={this.state.CTDials}
+                                BTDials={this.state.BTDials}
+                                CTContacts={this.state.CTContacts}
+                                BTContacts={this.state.BTContacts}
+                                CTAppts={this.state.CTAppts}
+                                BTAppts={this.state.BTAppts}
                             />
                         </div>
                         <div className="col-12">
