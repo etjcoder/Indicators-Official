@@ -31,7 +31,8 @@ class MainDataViewer extends Component {
             sourceDialData: "",
             sourceContactData: "",
             sourceApptData: "",
-            showSourcePerformance: false
+            showSourcePerformance: false,
+            showSelectedTargetPerformance: false
         }
     }
 
@@ -106,7 +107,8 @@ class MainDataViewer extends Component {
                 showSuspectPerformance: false,
                 showReferralPerformance: false,
                 showTargetPerformance: false,
-                showSourcePerformance: false
+                showSourcePerformance: false,
+                showSelectedTargetPerformance: false
             })
         }
     }
@@ -133,7 +135,8 @@ class MainDataViewer extends Component {
                 showSuspectPerformance: false,
                 showReferralPerformance: false,
                 showTargetPerformance: false,
-                showSourcePerformance: false
+                showSourcePerformance: false,
+                showSelectedTargetPerformance: false
             })
         }
     }
@@ -160,7 +163,8 @@ class MainDataViewer extends Component {
                 showSuspectPerformance: false,
                 showReferralPerformance: false,
                 showTargetPerformance: false,
-                showSourcePerformance: false
+                showSourcePerformance: false,
+                showSelectedTargetPerformance: false
             })
         }
     }
@@ -188,7 +192,8 @@ class MainDataViewer extends Component {
                 showReferralPerformance: false,
                 showTargetPerformance: false,
                 showSourcePerformance: false,
-                showSourcePerformance: false
+                showSourcePerformance: false,
+                showSelectedTargetPerformance: false
             })
         }
     }
@@ -215,7 +220,8 @@ class MainDataViewer extends Component {
                 showSuspectPerformance: false,
                 showReferralPerformance: false,
                 showTargetPerformance: false,
-                showSourcePerformance: false
+                showSourcePerformance: false,
+                showSelectedTargetPerformance: false
             })
         }
     }
@@ -242,7 +248,8 @@ class MainDataViewer extends Component {
                 showSuspectPerformance: false,
                 showReferralPerformance: false,
                 showTargetPerformance: false,
-                showSourcePerformance: false
+                showSourcePerformance: false,
+                showSelectedTargetPerformance: false
             })
         }
     }
@@ -269,7 +276,8 @@ class MainDataViewer extends Component {
                 showSuspectPerformance: false,
                 showReferralPerformance: false,
                 showTargetPerformance: false,
-                showSourcePerformance: false
+                showSourcePerformance: false,
+                showSelectedTargetPerformance: false
             })
         }
     }
@@ -296,7 +304,8 @@ class MainDataViewer extends Component {
                 showSuspectPerformance: false,
                 showReferralPerformance: false,
                 showTargetPerformance: false,
-                showSourcePerformance: false
+                showSourcePerformance: false,
+                showSelectedTargetPerformance: false
             })
         }
     }
@@ -323,7 +332,8 @@ class MainDataViewer extends Component {
                 showSuspectPerformance: false,
                 showReferralPerformance: false,
                 showTargetPerformance: false,
-                showSourcePerformance: false
+                showSourcePerformance: false,
+                showSelectedTargetPerformance: false
             })
         }
     }
@@ -350,7 +360,8 @@ class MainDataViewer extends Component {
                 showSuspectPerformance: false,
                 showReferralPerformance: false,
                 showTargetPerformance: false,
-                showSourcePerformance: false
+                showSourcePerformance: false,
+                showSelectedTargetPerformance: false
             })
         }
     }
@@ -377,7 +388,8 @@ class MainDataViewer extends Component {
                 showSuspectPerformance: false,
                 showReferralPerformance: false,
                 showTargetPerformance: false,
-                showSourcePerformance: false
+                showSourcePerformance: false,
+                showSelectedTargetPerformance: false
             })
         }
     }
@@ -404,7 +416,8 @@ class MainDataViewer extends Component {
                 showSuspectPerformance: false,
                 showReferralPerformance: false,
                 showTargetPerformance: false,
-                showSourcePerformance: false
+                showSourcePerformance: false,
+                showSelectedTargetPerformance: false
             })
         }
     }
@@ -431,7 +444,8 @@ class MainDataViewer extends Component {
                 showSuspectPerformance: true,
                 showReferralPerformance: false,
                 showTargetPerformance: false,
-                showSourcePerformance: false
+                showSourcePerformance: false,
+                showSelectedTargetPerformance: false
             })
         }
     }
@@ -458,7 +472,8 @@ class MainDataViewer extends Component {
                 showSuspectPerformance: false,
                 showReferralPerformance: true,
                 showTargetPerformance: false,
-                showSourcePerformance: false
+                showSourcePerformance: false,
+                showSelectedTargetPerformance: false
             })
         }
     }
@@ -485,7 +500,8 @@ class MainDataViewer extends Component {
                 showSuspectPerformance: false,
                 showReferralPerformance: false,
                 showTargetPerformance: true,
-                showSourcePerformance: false
+                showSourcePerformance: false,
+                showSelectedTargetPerformance: false
             })
         }
     }
@@ -512,7 +528,36 @@ class MainDataViewer extends Component {
                 showSuspectPerformance: false,
                 showReferralPerformance: false,
                 showTargetPerformance: false,
-                showSourcePerformance: true
+                showSourcePerformance: true,
+                showSelectedTargetPerformance: false
+            })
+        }
+    }
+
+    viewSelectedTargetPerformance = () => {
+        if (this.state.showSelectedTargetPerformance === true) {
+            this.setState({
+                showSelectedTargetPerformance: false
+            })
+        } else {
+            this.setState({
+                showDialChart: false,
+                showContactChart: false,
+                showApptChart: false,
+                showCashflowDials: false,
+                showCashflowContacts: false,
+                showCashflowAppts: false,
+                showBusinessDials: false,
+                showBusinessContacts: false,
+                showBusinessAppts: false,
+                showProspectPerformance: false,
+                showClientPerformance: false,
+                showNaturalPerformance: false,
+                showSuspectPerformance: false,
+                showReferralPerformance: false,
+                showTargetPerformance: false,
+                showSourcePerformance: false,
+                showSelectedTargetPerformance: true
             })
         }
     }
@@ -831,7 +876,313 @@ class MainDataViewer extends Component {
     gatherTargetData = (event) => {
         event.preventDefault()
         console.log("Gathering data on source: " + this.state.targetMarket)
+        // var parsedDials = []
+        var parsedTargetData = {
+            parsedDials: [],
+            parsedContacts: [],
+            parsedAppts: []
+        }
+        for (var i = 0; i < this.props.dialData.length; i++) {
+            if (this.props.dialData[i].targetMarket === this.state.targetMarket) {
+                parsedTargetData.parsedDials.push(this.props.dialData[i])
+            }
+        }
+
+        for (var i = 0; i < this.props.contactData.length; i++) {
+            if (this.props.contactData[i].targetMarket === this.state.targetMarket) {
+                parsedTargetData.parsedContacts.push(this.props.contactData[i])
+            }
+        }
+
+        for (var i = 0; i < this.props.apptData.length; i++) {
+            if (this.props.apptData[i].targetMarket === this.state.targetMarket) {
+                parsedTargetData.parsedAppts.push(this.props.apptData[i])
+            }
+        }
+
+        setTimeout(() => {
+
+            this.setState({
+                targetDialData: parsedTargetData.parsedDials,
+                targetContactData: parsedTargetData.parsedContacts,
+                targetApptData: parsedTargetData.parsedAppts
+            })
+            setTimeout(() => {
+                this.parseTargetAppts()
+                this.parseTargetContacts()
+                this.parseTargetDials()
+
+                setTimeout(() => { this.viewSelectedTargetPerformance() }, 500)
+            }, 500)
+
+        }, 500)
+
     }
+
+    parseTargetDials = () => {
+        console.log("Parsing: " + this.state.targetDialData)
+        var CPD = 0;
+        var BPD = 0;
+        var CCD = 0;
+        var BCD = 0;
+        var CND = 0;
+        var BND = 0;
+        var CSD = 0;
+        var BSD = 0;
+        var CRD = 0;
+        var BRD = 0;
+        var CTD = 0;
+        var BTD = 0;
+        var TDials = 0;
+        for (var i = 0; i < this.state.targetDialData.length; i++) {
+            // console.log(this.state.dialData[i])
+            switch (this.state.targetDialData[i].type) {
+                case "CPD":
+                    CPD++
+                    TDials++
+                    break;
+                case "BPD":
+                    BPD++
+                    TDials++
+                    break;
+                case "CCD":
+                    CCD++
+                    TDials++
+                    break;
+                case "BCD":
+                    BCD++
+                    TDials++
+                    break;
+                case "CND":
+                    CND++
+                    TDials++
+                    break;
+                case "BND":
+                    BND++
+                    TDials++
+                    break;
+                case "CSD":
+                    CSD++
+                    TDials++
+                    break;
+                case "BSD":
+                    BSD++
+                    TDials++
+                    break;
+                case "CRD":
+                    CRD++
+                    TDials++
+                    break;
+                case "BRD":
+                    BRD++
+                    TDials++
+                    break;
+                case "CTD":
+                    CTD++
+                    TDials++
+                    break;
+                case "BTD":
+                    BTD++
+                    TDials++
+                    break;
+                default:
+                    TDials++
+                    break;
+            }
+        }
+        this.setState({
+            TCPDials: CPD,
+            TBPDials: BPD,
+            TCCDials: CCD,
+            TBCDials: BCD,
+            TCNDials: CND,
+            TBNDials: BND,
+            TCSDials: CSD,
+            TBSDials: BSD,
+            TCRDials: CRD,
+            TBRDials: BRD,
+            TCTDials: CTD,
+            TBTDials: BTD,
+            TargetDials: TDials
+        })
+    }
+
+    parseTargetContacts = () => {
+        console.log("Parsing: " + this.state.targetContactData)
+        var CPC = 0;
+        var BPC = 0;
+        var CCC = 0;
+        var BCC = 0;
+        var CNC = 0;
+        var BNC = 0;
+        var CSC = 0;
+        var BSC = 0;
+        var CRC = 0;
+        var BRC = 0;
+        var CTC = 0;
+        var BTC = 0;
+        var TContacts = 0;
+        for (var i = 0; i < this.state.targetContactData.length; i++) {
+            switch (this.state.targetContactData[i].type) {
+                case "CPD":
+                    CPC++
+                    TContacts++
+                    break;
+                case "BPD":
+                    BPC++
+                    TContacts++
+                    break;
+                case "CCD":
+                    CCC++
+                    TContacts++
+                    break;
+                case "BCD":
+                    BCC++
+                    TContacts++
+                    break;
+                case "CND":
+                    CNC++
+                    TContacts++
+                    break;
+                case "BND":
+                    BNC++
+                    TContacts++
+                    break;
+                case "CSD":
+                    CSC++
+                    TContacts++
+                    break;
+                case "BSD":
+                    BSC++
+                    TContacts++
+                    break;
+                case "CRD":
+                    CRC++
+                    TContacts++
+                    break;
+                case "BRD":
+                    BRC++
+                    TContacts++
+                    break;
+                case "CTD":
+                    TContacts++
+                    CTC++
+                    break;
+                case "BTD":
+                    TContacts++
+                    BTC++
+                    break;
+                default:
+                    TContacts++
+                    break;
+            }
+        }
+        this.setState({
+            TCPContacts: CPC,
+            TBPContacts: BPC,
+            TCCContacts: CCC,
+            TBCContacts: BCC,
+            TCNContacts: CNC,
+            TBNContacts: BNC,
+            TCSContacts: CSC,
+            TBSContacts: BSC,
+            TCRContacts: CRC,
+            TBRContacts: BRC,
+            TCTContacts: CTC,
+            TBTContacts: BTC,
+            TargetContacts: TContacts
+        })
+    }
+
+
+    parseTargetAppts = () => {
+        console.log("Parsing: " + this.state.targetApptData)
+        var CPA = 0;
+        var BPA = 0;
+        var CCA = 0;
+        var BCA = 0;
+        var CNA = 0;
+        var BNA = 0;
+        var CSA = 0;
+        var BSA = 0;
+        var CRA = 0;
+        var BRA = 0;
+        var CTA = 0;
+        var BTA = 0;
+        var TAppts = 0;
+        for (var i = 0; i < this.state.targetApptData.length; i++) {
+            console.log(this.state.targetApptData[i])
+            switch (this.state.targetApptData[i].type) {
+                case "CPD":
+                    CPA++
+                    TAppts++
+                    break;
+                case "BPD":
+                    BPA++
+                    TAppts++
+                    break;
+                case "CCD":
+                    CCA++
+                    TAppts++
+                    break;
+                case "BCD":
+                    BCA++
+                    TAppts++
+                    break;
+                case "CND":
+                    CNA++
+                    TAppts++
+                    break;
+                case "BND":
+                    BNA++
+                    TAppts++
+                    break;
+                case "CSD":
+                    CSA++
+                    TAppts++
+                    break;
+                case "BSD":
+                    BSA++
+                    TAppts++
+                    break;
+                case "CRD":
+                    CRA++
+                    TAppts++
+                    break;
+                case "BRD":
+                    BRA++
+                    TAppts++
+                    break;
+                case "CTD":
+                    CTA++
+                    TAppts++
+                    break;
+                case "BTD":
+                    BTA++
+                    TAppts++
+                    break;
+                default:
+                    TAppts++
+                    break;
+            }
+        }
+        this.setState({
+            TCPAppts: CPA,
+            TBPAppts: BPA,
+            TCCAppts: CCA,
+            TBCAppts: BCA,
+            TCNAppts: CNA,
+            TBNAppts: BNA,
+            TCSAppts: CSA,
+            TBSAppts: BSA,
+            TCRAppts: CRA,
+            TBRAppts: BRA,
+            TCTAppts: CTA,
+            TBTAppts: BTA,
+            TargetAppts: TAppts
+        })
+    }
+
 
     render() {
         return (
@@ -1433,7 +1784,7 @@ class MainDataViewer extends Component {
                                 <h6>Contact Ratio: {Math.round((this.props.CPContacts + this.props.BPContacts) / (this.props.CPDials + this.props.BPDials) * 100)}%</h6>
                                 <Pie data={{
                                     labels: [
-                                        "Prospect Dials",
+                                        "Prospect Dials without contacts",
                                         "Prospect Contacts",
                                     ],
                                     datasets: [{
@@ -1455,7 +1806,7 @@ class MainDataViewer extends Component {
                                 <h6>Appointment per Contact Ratio: {Math.round((this.props.CPAppts + this.props.BPAppts) / (this.props.CPContacts + this.props.BPContacts) * 100)}%</h6>
                                 <Pie data={{
                                     labels: [
-                                        "Prospect Contacts",
+                                        "Prospect Contacts without appointments",
                                         "Prospect Appointments",
                                     ],
                                     datasets: [{
@@ -1477,7 +1828,7 @@ class MainDataViewer extends Component {
                                 <h6>Appointment per Dial Ratio: {Math.round((this.props.CPAppts + this.props.BPAppts) / (this.props.CPDials + this.props.BPDials) * 100)}%</h6>
                                 <Pie data={{
                                     labels: [
-                                        "Prospect Dials",
+                                        "Prospect Dials without appointments",
                                         "Prospect Appointments",
                                     ],
                                     datasets: [{
@@ -1515,7 +1866,7 @@ class MainDataViewer extends Component {
                                 <h6>Contact Ratio: {Math.round((this.props.CCContacts + this.props.BCContacts) / (this.props.CCDials + this.props.BCDials) * 100)}%</h6>
                                 <Pie data={{
                                     labels: [
-                                        "Client Dials",
+                                        "Client Dials without contacts",
                                         "Client Contacts",
                                     ],
                                     datasets: [{
@@ -1537,7 +1888,7 @@ class MainDataViewer extends Component {
                                 <h6>Appointment per Contact Ratio: {Math.round((this.props.CCAppts + this.props.BCAppts) / (this.props.CCContacts + this.props.BCContacts) * 100)}%</h6>
                                 <Pie data={{
                                     labels: [
-                                        "Client Contacts",
+                                        "Client Contacts without appointment",
                                         "Client Appointments",
                                     ],
                                     datasets: [{
@@ -1559,7 +1910,7 @@ class MainDataViewer extends Component {
                                 <h6>Appointment per Dial Ratio: {Math.round((this.props.CCAppts + this.props.BCAppts) / (this.props.CCDials + this.props.BCDials) * 100)}%</h6>
                                 <Pie data={{
                                     labels: [
-                                        "Client Dials",
+                                        "Client Dials without appointment",
                                         "Client Appointments",
                                     ],
                                     datasets: [{
@@ -1598,7 +1949,7 @@ class MainDataViewer extends Component {
                                 <h6>Contact Ratio: {Math.round((this.props.CNContacts + this.props.BNContacts) / (this.props.CNDials + this.props.BNDials) * 100)}%</h6>
                                 <Pie data={{
                                     labels: [
-                                        "Natural Market Dials",
+                                        "Natural Market Dials without contact",
                                         "Natural Market Contacts",
                                     ],
                                     datasets: [{
@@ -1620,7 +1971,7 @@ class MainDataViewer extends Component {
                                 <h6>Appointment per Contact Ratio: {Math.round((this.props.CNAppts + this.props.BNAppts) / (this.props.CNContacts + this.props.BNContacts) * 100)}%</h6>
                                 <Pie data={{
                                     labels: [
-                                        "Natural Market Contacts",
+                                        "Natural Market Contacts without appointment",
                                         "Natural Market Appointments",
                                     ],
                                     datasets: [{
@@ -1642,7 +1993,7 @@ class MainDataViewer extends Component {
                                 <h6>Appointment per Dial Ratio: {Math.round((this.props.CNAppts + this.props.BNAppts) / (this.props.CNDials + this.props.BNDials) * 100)}%</h6>
                                 <Pie data={{
                                     labels: [
-                                        "Natural Market Dials",
+                                        "Natural Market Dials without appointment",
                                         "Natuarl Market Appointments",
                                     ],
                                     datasets: [{
@@ -1680,7 +2031,7 @@ class MainDataViewer extends Component {
                                 <h6>Contact Ratio: {Math.round((this.props.CSContacts + this.props.BSContacts) / (this.props.CSDials + this.props.BSDials) * 100)}%</h6>
                                 <Pie data={{
                                     labels: [
-                                        "Suspect Dials",
+                                        "Suspect Dials without contact",
                                         "Suspect Contacts",
                                     ],
                                     datasets: [{
@@ -1702,7 +2053,7 @@ class MainDataViewer extends Component {
                                 <h6>Appointment per Contact Ratio: {Math.round((this.props.CSAppts + this.props.BSAppts) / (this.props.CSContacts + this.props.BSContacts) * 100)}%</h6>
                                 <Pie data={{
                                     labels: [
-                                        "Suspect Contacts",
+                                        "Suspect Contacts without appointment",
                                         "Suspect Appointments",
                                     ],
                                     datasets: [{
@@ -1724,7 +2075,7 @@ class MainDataViewer extends Component {
                                 <h6>Appointment per Dial Ratio: {Math.round((this.props.CSAppts + this.props.BSAppts) / (this.props.CSDials + this.props.BSDials) * 100)}%</h6>
                                 <Pie data={{
                                     labels: [
-                                        "Suspect Dials",
+                                        "Suspect Dials without appointment",
                                         "Suspect Appointments",
                                     ],
                                     datasets: [{
@@ -1762,7 +2113,7 @@ class MainDataViewer extends Component {
                                 <h6>Contact Ratio: {Math.round((this.props.CRContacts + this.props.BRContacts) / (this.props.CRDials + this.props.BRDials) * 100)}%</h6>
                                 <Pie data={{
                                     labels: [
-                                        "Referral Dials",
+                                        "Referral Dials without contact",
                                         "Referral Contacts",
                                     ],
                                     datasets: [{
@@ -1784,7 +2135,7 @@ class MainDataViewer extends Component {
                                 <h6>Appointment per Contact Ratio: {Math.round((this.props.CRAppts + this.props.BRAppts) / (this.props.CRContacts + this.props.BRContacts) * 100)}%</h6>
                                 <Pie data={{
                                     labels: [
-                                        "Referral Contacts",
+                                        "Referral Contacts without appointment",
                                         "Referral Appointments",
                                     ],
                                     datasets: [{
@@ -1806,7 +2157,7 @@ class MainDataViewer extends Component {
                                 <h6>Appointment per Dial Ratio: {Math.round((this.props.CRAppts + this.props.BRAppts) / (this.props.CRDials + this.props.BRDials) * 100)}%</h6>
                                 <Pie data={{
                                     labels: [
-                                        "Referral Dials",
+                                        "Referral Dials without appointment",
                                         "Referral Appointments",
                                     ],
                                     datasets: [{
@@ -1844,7 +2195,7 @@ class MainDataViewer extends Component {
                                 <h6>Contact Ratio: {Math.round((this.props.CTContacts + this.props.BTContacts) / (this.props.CTDials + this.props.BTDials) * 100)}%</h6>
                                 <Pie data={{
                                     labels: [
-                                        "Target Market Dials",
+                                        "Target Market Dials without contact",
                                         "Target Market Contacts",
                                     ],
                                     datasets: [{
@@ -1866,7 +2217,7 @@ class MainDataViewer extends Component {
                                 <h6>Appointment per Contact Ratio: {Math.round((this.props.CTAppts + this.props.BTAppts) / (this.props.CTContacts + this.props.BTContacts) * 100)}%</h6>
                                 <Pie data={{
                                     labels: [
-                                        "Target Market Contacts",
+                                        "Target Market Contacts without appointment",
                                         "Target Market Appointments",
                                     ],
                                     datasets: [{
@@ -1888,8 +2239,8 @@ class MainDataViewer extends Component {
                                 <h6>Appointment per Dial Ratio: {Math.round((this.props.CTAppts + this.props.BTAppts) / (this.props.CTDials + this.props.BTDials) * 100)}%</h6>
                                 <Pie data={{
                                     labels: [
-                                        "Target Market Dials",
-                                        "Target Market Appointments",
+                                        "Target Market Dials without scheduling",
+                                        "Target Market Scheduled Appointments",
                                     ],
                                     datasets: [{
                                         data: [
@@ -2043,13 +2394,168 @@ class MainDataViewer extends Component {
                                 <h6>Appointment per Dial Ratio: {Math.round((this.state.SourceAppts / this.state.SourceDials) * 100)}%</h6>
                                 <Pie data={{
                                     labels: [
-                                        `${this.state.leadSource} Lead Calls without Appointments`,
-                                        `${this.state.leadSource} Lead Calls with Appointments Scheduled`,
+                                        `${this.state.leadSource} Lead Calls without Scheduling`,
+                                        `${this.state.leadSource} Lead Calls Scheduled`,
                                     ],
                                     datasets: [{
                                         data: [
                                             this.state.SourceDials - this.state.SourceAppts,
                                             this.state.SourceAppts
+                                        ],
+                                        backgroundColor: [
+                                            "#51aef7",
+                                            "#25517b"
+                                        ]
+                                    }]
+                                }} />
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    : null}
+
+
+                     {/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+
+                {this.state.showSelectedTargetPerformance ?
+                    <div style={{ textAlign: 'center' }}>
+
+                        <div>
+                            <h3><u>Lead Type Breakdown:</u></h3>
+                            <p>Weekly Dials: {this.state.targetDialData.length}</p>
+                            {/* <Bar data={{
+                                labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
+                                datasets: [{
+                                    label: "Dials",
+                                    backgroundColor: 'rgb(255, 99, 132)',
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    data: [
+                                        this.state.SCPDials + this.state.SBPDials,
+                                        this.state.SCCDials + this.state.SBCDials,
+                                        this.state.SCNDials + this.state.SBNDials,
+                                        this.state.SCSDials + this.state.SBSDials,
+                                        this.state.SCRDials + this.state.SBRDials,
+                                        this.state.SCTDials + this.state.SBTDials],
+                                }]
+                            }} /> */}
+                            <Pie data={{
+                                labels: [
+                                    "Cashflow Prospect",
+                                    "Business Prospect",
+                                    "Cashflow Client",
+                                    "Business Client",
+                                    "Cashflow Natural Market",
+                                    "Business Natural Market",
+                                    "Cashflow Suspect",
+                                    "Business Suspect",
+                                    "Cashflow Referral",
+                                    "Business Referral",
+                                    "Cashflow Target Market",
+                                    "Business Target Market"],
+                                datasets: [{
+                                    data: [
+                                        this.state.TCPDials,
+                                        this.state.TBPDials,
+                                        this.state.TCCDials,
+                                        this.state.TBCDials,
+                                        this.state.TCNDials,
+                                        this.state.TBNDials,
+                                        this.state.TCSDials,
+                                        this.state.TBSDials,
+                                        this.state.TCRDials,
+                                        this.state.TBRDials,
+                                        this.state.TCTDials,
+                                        this.state.TBTDials
+                                    ],
+                                    backgroundColor: [
+                                        "#3ac178",
+                                        "#443959",
+                                        "#f99b17",
+                                        "#a2e505",
+                                        "#c9917f",
+                                        "#8d044b",
+                                        "#d2d93b",
+                                        "#dd4417",
+                                        "#5191d9",
+                                        "#483d28",
+                                        "#51aef7",
+                                        "#25517b"
+                                    ]
+                                }]
+                            }} /> </div>
+
+                        {/* /////////////////////////////////////////
+                        ////////////////////////////////////////////
+                        /////// SOURCE PIE CHARTS BELOW ////////////
+                        ///////////////////////////////////////////
+                        /////////////////////////////////////////// */}
+                        <h3>{this.state.targetMarket} Calls Performance:</h3>
+                        <div className="row" style={{ textAlign: 'center' }}>
+
+                            <div className="col-lg-4">
+                                <hr />
+                                <h3>Dials to Contact Ratio</h3>
+                                <h6>Total {this.state.targetMarket} Lead Dials: {this.state.TargetDials}</h6>
+                                <h6>Contact Ratio: {Math.round((this.state.TargetContacts / this.state.TargetDials) * 100)}%</h6>
+                                <Pie data={{
+                                    labels: [
+                                        `${this.state.targetMarket} Missed Calls`,
+                                        `${this.state.targetMarket} Contacts`,
+                                    ],
+                                    datasets: [{
+                                        data: [
+                                            this.state.TargetDials - this.state.TargetContacts,
+                                            this.state.TargetContacts
+                                        ],
+                                        backgroundColor: [
+                                            "#51aef7",
+                                            "#25517b"
+                                        ]
+                                    }]
+                                }} />
+                            </div>
+
+                            <div className="col-lg-4">
+                                <hr />
+                                <h3>Contacts to Appointment Ratio</h3>
+                                <h6>Total {this.state.targetMarket} Contacts: {this.state.TargetContacts}</h6>
+                                <h6>Appointment per Contact Ratio: {Math.round((this.state.TargetAppts / this.state.TargetContacts) * 100)}%</h6>
+                                <Pie data={{
+                                    labels: [
+                                        `${this.state.targetMarket} calls without Scheduling`,
+                                        `${this.state.targetMarket} calls Scheduled`,
+                                    ],
+                                    datasets: [{
+                                        data: [
+                                            this.state.TargetContacts - this.state.TargetAppts,
+                                            this.state.TargetAppts
+                                        ],
+                                        backgroundColor: [
+                                            "#51aef7",
+                                            "#25517b"
+                                        ]
+                                    }]
+                                }} />
+                            </div>
+
+                            <div className="col-lg-4">
+                                <hr />
+                                <h3>Dials to Appointment Ratio</h3>
+                                <h6>{this.state.targetMarket} Lead Dials: {this.state.targetMarket}</h6>
+                                <h6>Appointment per Dial Ratio: {Math.round((this.state.TargetAppts / this.state.TargetDials) * 100)}%</h6>
+                                <Pie data={{
+                                    labels: [
+                                        `${this.state.targetMarket} calls without Scheduling`,
+                                        `${this.state.targetMarket} calls Scheduled`,
+                                    ],
+                                    datasets: [{
+                                        data: [
+                                            this.state.TargetDials - this.state.TargetAppts,
+                                            this.state.TargetAppts
                                         ],
                                         backgroundColor: [
                                             "#51aef7",
