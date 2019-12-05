@@ -23,6 +23,7 @@ import SourceCreator from "../components/SourceCreator"
 import SourceSelector from "../components/SourceSelector"
 import TargetMarketSelector from "../components/TargetMarketSelector"
 import TargetMarketCreator from "../components/TargetMarketCreator"
+import MainDataViewer from "../components/MainDataViewer"
 
 
 
@@ -483,6 +484,53 @@ class ProtegeDash extends Component {
                                 Web of Appointment Types
                     
                     */}
+                    </div>
+                    <div className="row">
+                        <div className="col">
+                            <MainDataViewer 
+                                userID={this.state.userData._id}
+                                contactData={this.state.contactData}
+                                dialData={this.state.dialData}
+                                apptData={this.state.appointments}
+                                CPAppts={this.state.CPAppts}
+                                BPAppts={this.state.BPAppts}
+                                CCAppts={this.state.CCAppts}
+                                BCAppts={this.state.BCAppts}
+                                CNAppts={this.state.CNAppts}
+                                BNAppts={this.state.BNAppts}
+                                CPDials={this.state.CPDials}
+                                BPDials={this.state.BPDials}
+                                CCDials={this.state.CCDials}
+                                BCDials={this.state.BCDials}
+                                CNDials={this.state.CNDials}
+                                BNDials={this.state.BNDials}
+                                CPContacts={this.state.CPContacts}
+                                BPContacts={this.state.BPContacts}
+                                CCContacts={this.state.CCContacts}
+                                BCContacts={this.state.BCContacts}
+                                CNContacts={this.state.CNContacts}
+                                BNContacts={this.state.BNContacts}
+                                CSDials={this.state.CSDials}
+                                BSDials={this.state.BSDials}
+                                CSContacts={this.state.CSContacts}
+                                BSContacts={this.state.BSContacts}
+                                CSAppts={this.state.CSAppts}
+                                BSAppts={this.state.BSAppts}
+                                CRDials={this.state.CRDials}
+                                BRDials={this.state.BRDials}
+                                CRContacts={this.state.CRContacts}
+                                BRContacts={this.state.BRContacts}
+                                CRAppts={this.state.CRAppts}
+                                BRAppts={this.state.BRAppts}
+                                CTDials={this.state.CTDials}
+                                BTDials={this.state.BTDials}
+                                CTContacts={this.state.CTContacts}
+                                BTContacts={this.state.BTContacts}
+                                CTAppts={this.state.CTAppts}
+                                BTAppts={this.state.BTAppts}
+                            />
+                        </div>
+                    </div>
 
                     <div className="row">
                         <div className="col-lg-8">
@@ -522,7 +570,6 @@ class ProtegeDash extends Component {
                         </div>
                     </div>
                 </div >
-            </div>
         )
     }
 }

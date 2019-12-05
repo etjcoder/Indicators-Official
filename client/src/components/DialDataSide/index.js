@@ -11,9 +11,15 @@ class DialDataSide extends Component {
             numScheduled: 0,
             date: "",
             parsedDials: "",
-            showDialChart: true,
+            showDialChart: false,
             showContactChart: false,
-            showApptChart: false
+            showApptChart: false,
+            showCashflowDials: false,
+            showCashflowContacts: false,
+            showCashflowAppts: false,
+            showBusinessDials: false,
+            showBusinessContacts: false,
+            showBusinessAppts: false
         }
     }
 
@@ -60,36 +66,73 @@ class DialDataSide extends Component {
 
 
     viewDialChart = () => {
-        this.setState({
-            showDialChart: true,
-            showContactChart: false,
-            showApptChart: false
-        })
+        if (this.state.showDialChart === true) {
+            this.setState({
+                showDialChart: false
+            })
+        } else {
+            this.setState({
+                showDialChart: true,
+                showContactChart: false,
+                showApptChart: false,
+                showCashflowDials: false,
+                showCashflowContacts: false,
+                showCashflowAppts: false,
+                showBusinessDials: false,
+                showBusinessContacts: false,
+                showBusinessAppts: false
+            })
+        }
     }
 
     viewContactChart = () => {
-        this.setState({
-            showDialChart: false,
-            showContactChart: true,
-            showApptChart: false
-        })
+        if (this.state.showContactChart === true) {
+            this.setState({
+                showContactChart: false
+            })
+        } else {
+            this.setState({
+                showDialChart: false,
+                showContactChart: true,
+                showApptChart: false,
+                showCashflowDials: false,
+                showCashflowContacts: false,
+                showCashflowAppts: false,
+                showBusinessDials: false,
+                showBusinessContacts: false,
+                showBusinessAppts: false
+            })
+        }
     }
 
     viewApptChart = () => {
-        this.setState({
-            showDialChart: false,
-            showContactChart: false,
-            showApptChart: true
-        })
+        if (this.state.showApptChart === true) {
+            this.setState({
+                showApptChart: false
+            })
+        } else {
+            this.setState({
+                showDialChart: false,
+                showContactChart: false,
+                showApptChart: true,
+                showCashflowDials: false,
+                showCashflowContacts: false,
+                showCashflowAppts: false,
+                showBusinessDials: false,
+                showBusinessContacts: false,
+                showBusinessAppts: false
+            })
+        }
     }
 
     render() {
         return (
             <div className="card">
                 <h4 style={{ textAlign: 'center' }}><u>Weekly Stats:</u></h4>
-                <button className="btn btn-success" onClick={this.viewDialChart}>View Dials</button>
-                <button className="btn btn-success" onClick={this.viewContactChart}>View Contacts</button>
-                <button className="btn btn-success" onClick={this.viewApptChart}>View Appts</button>
+                <button style={{width: '33%', marginLeft: "auto", marginRight: 'auto'}} className="btn btn-success" onClick={this.viewDialChart}>Dials: {this.props.dialData.length}</button>
+                <button style={{width: '33%', marginLeft: 'auto', marginRight: 'auto'}} className="btn btn-success" onClick={this.viewContactChart}>Contacts: {this.props.contactData.length}</button>
+                <button style={{width: '33%', marginLeft: 'auto', marginRight: 'auto'}} className="btn btn-success" onClick={this.viewApptChart}>Appointments: {this.props.apptData.length}</button>
+                
                 {this.state.showDialChart ?
                     <div>
                         <h3><u>Dial Data:</u></h3>
