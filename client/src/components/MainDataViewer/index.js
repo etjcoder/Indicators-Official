@@ -25,7 +25,13 @@ class MainDataViewer extends Component {
             showNaturalPerformance: false,
             showSuspectPerformance: false,
             showReferralPerformance: false,
-            showTargetPerformance: false
+            showTargetPerformance: false,
+            leadSource: "",
+            targetMarket: "",
+            sourceDialData: "",
+            sourceContactData: "",
+            sourceApptData: "",
+            showSourcePerformance: false
         }
     }
 
@@ -49,6 +55,13 @@ class MainDataViewer extends Component {
     //             })
     //         })
     // }
+
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+    };
 
     getNumContacts = () => {
         var localNumContacts = 0
@@ -92,7 +105,8 @@ class MainDataViewer extends Component {
                 showNaturalPerformance: false,
                 showSuspectPerformance: false,
                 showReferralPerformance: false,
-                showTargetPerformance: false
+                showTargetPerformance: false,
+                showSourcePerformance: false
             })
         }
     }
@@ -118,7 +132,8 @@ class MainDataViewer extends Component {
                 showNaturalPerformance: false,
                 showSuspectPerformance: false,
                 showReferralPerformance: false,
-                showTargetPerformance: false
+                showTargetPerformance: false,
+                showSourcePerformance: false
             })
         }
     }
@@ -144,7 +159,8 @@ class MainDataViewer extends Component {
                 showNaturalPerformance: false,
                 showSuspectPerformance: false,
                 showReferralPerformance: false,
-                showTargetPerformance: false
+                showTargetPerformance: false,
+                showSourcePerformance: false
             })
         }
     }
@@ -170,7 +186,9 @@ class MainDataViewer extends Component {
                 showNaturalPerformance: false,
                 showSuspectPerformance: false,
                 showReferralPerformance: false,
-                showTargetPerformance: false
+                showTargetPerformance: false,
+                showSourcePerformance: false,
+                showSourcePerformance: false
             })
         }
     }
@@ -196,7 +214,8 @@ class MainDataViewer extends Component {
                 showNaturalPerformance: false,
                 showSuspectPerformance: false,
                 showReferralPerformance: false,
-                showTargetPerformance: false
+                showTargetPerformance: false,
+                showSourcePerformance: false
             })
         }
     }
@@ -222,7 +241,8 @@ class MainDataViewer extends Component {
                 showNaturalPerformance: false,
                 showSuspectPerformance: false,
                 showReferralPerformance: false,
-                showTargetPerformance: false
+                showTargetPerformance: false,
+                showSourcePerformance: false
             })
         }
     }
@@ -248,7 +268,8 @@ class MainDataViewer extends Component {
                 showNaturalPerformance: false,
                 showSuspectPerformance: false,
                 showReferralPerformance: false,
-                showTargetPerformance: false
+                showTargetPerformance: false,
+                showSourcePerformance: false
             })
         }
     }
@@ -274,7 +295,8 @@ class MainDataViewer extends Component {
                 showNaturalPerformance: false,
                 showSuspectPerformance: false,
                 showReferralPerformance: false,
-                showTargetPerformance: false
+                showTargetPerformance: false,
+                showSourcePerformance: false
             })
         }
     }
@@ -300,7 +322,8 @@ class MainDataViewer extends Component {
                 showNaturalPerformance: false,
                 showSuspectPerformance: false,
                 showReferralPerformance: false,
-                showTargetPerformance: false
+                showTargetPerformance: false,
+                showSourcePerformance: false
             })
         }
     }
@@ -326,7 +349,8 @@ class MainDataViewer extends Component {
                 showNaturalPerformance: false,
                 showSuspectPerformance: false,
                 showReferralPerformance: false,
-                showTargetPerformance: false
+                showTargetPerformance: false,
+                showSourcePerformance: false
             })
         }
     }
@@ -352,7 +376,8 @@ class MainDataViewer extends Component {
                 showNaturalPerformance: false,
                 showSuspectPerformance: false,
                 showReferralPerformance: false,
-                showTargetPerformance: false
+                showTargetPerformance: false,
+                showSourcePerformance: false
             })
         }
     }
@@ -378,7 +403,8 @@ class MainDataViewer extends Component {
                 showNaturalPerformance: true,
                 showSuspectPerformance: false,
                 showReferralPerformance: false,
-                showTargetPerformance: false
+                showTargetPerformance: false,
+                showSourcePerformance: false
             })
         }
     }
@@ -404,7 +430,8 @@ class MainDataViewer extends Component {
                 showNaturalPerformance: false,
                 showSuspectPerformance: true,
                 showReferralPerformance: false,
-                showTargetPerformance: false
+                showTargetPerformance: false,
+                showSourcePerformance: false
             })
         }
     }
@@ -430,7 +457,8 @@ class MainDataViewer extends Component {
                 showNaturalPerformance: false,
                 showSuspectPerformance: false,
                 showReferralPerformance: true,
-                showTargetPerformance: false
+                showTargetPerformance: false,
+                showSourcePerformance: false
             })
         }
     }
@@ -456,12 +484,354 @@ class MainDataViewer extends Component {
                 showNaturalPerformance: false,
                 showSuspectPerformance: false,
                 showReferralPerformance: false,
-                showTargetPerformance: true
+                showTargetPerformance: true,
+                showSourcePerformance: false
             })
         }
     }
 
+    viewSourcePerformance = () => {
+        if (this.state.showSourcePerformance === true) {
+            this.setState({
+                showSourcePerformance: false
+            })
+        } else {
+            this.setState({
+                showDialChart: false,
+                showContactChart: false,
+                showApptChart: false,
+                showCashflowDials: false,
+                showCashflowContacts: false,
+                showCashflowAppts: false,
+                showBusinessDials: false,
+                showBusinessContacts: false,
+                showBusinessAppts: false,
+                showProspectPerformance: false,
+                showClientPerformance: false,
+                showNaturalPerformance: false,
+                showSuspectPerformance: false,
+                showReferralPerformance: false,
+                showTargetPerformance: false,
+                showSourcePerformance: true
+            })
+        }
+    }
 
+    gatherSourceData = (event) => {
+        event.preventDefault()
+        console.log("Gathering data on source: " + this.state.leadSource)
+        // var parsedDials = []
+        var parsedSourceData = {
+            parsedDials: [],
+            parsedContacts: [],
+            parsedAppts: []
+        }
+        for (var i = 0; i < this.props.dialData.length; i++) {
+            if (this.props.dialData[i].source === this.state.leadSource) {
+                parsedSourceData.parsedDials.push(this.props.dialData[i])
+            }
+        }
+
+        for (var i = 0; i < this.props.contactData.length; i++) {
+            if (this.props.contactData[i].source === this.state.leadSource) {
+                parsedSourceData.parsedContacts.push(this.props.contactData[i])
+            }
+        }
+
+        for (var i = 0; i < this.props.apptData.length; i++) {
+            if (this.props.apptData[i].source === this.state.leadSource) {
+                parsedSourceData.parsedAppts.push(this.props.apptData[i])
+            }
+        }
+
+        setTimeout(() => {
+
+            this.setState({
+                sourceDialData: parsedSourceData.parsedDials,
+                sourceContactData: parsedSourceData.parsedContacts,
+                sourceApptData: parsedSourceData.parsedAppts
+            })
+            setTimeout(() => {
+                this.parseSourceAppts()
+                this.parseSourceContacts()
+                this.parseSourceDials()
+
+                setTimeout(() => { this.viewSourcePerformance() }, 500)
+            }, 500)
+
+        }, 500)
+
+    }
+
+    parseSourceDials = () => {
+        console.log("Parsing: " + this.state.sourceDialData)
+        var CPD = 0;
+        var BPD = 0;
+        var CCD = 0;
+        var BCD = 0;
+        var CND = 0;
+        var BND = 0;
+        var CSD = 0;
+        var BSD = 0;
+        var CRD = 0;
+        var BRD = 0;
+        var CTD = 0;
+        var BTD = 0;
+        var SDials = 0;
+        for (var i = 0; i < this.state.sourceDialData.length; i++) {
+            // console.log(this.state.dialData[i])
+            switch (this.state.sourceDialData[i].type) {
+                case "CPD":
+                    CPD++
+                    SDials++
+                    break;
+                case "BPD":
+                    BPD++
+                    SDials++
+                    break;
+                case "CCD":
+                    CCD++
+                    SDials++
+                    break;
+                case "BCD":
+                    BCD++
+                    SDials++
+                    break;
+                case "CND":
+                    CND++
+                    SDials++
+                    break;
+                case "BND":
+                    BND++
+                    SDials++
+                    break;
+                case "CSD":
+                    CSD++
+                    SDials++
+                    break;
+                case "BSD":
+                    BSD++
+                    SDials++
+                    break;
+                case "CRD":
+                    CRD++
+                    SDials++
+                    break;
+                case "BRD":
+                    BRD++
+                    SDials++
+                    break;
+                case "CTD":
+                    CTD++
+                    SDials++
+                    break;
+                case "BTD":
+                    BTD++
+                    SDials++
+                    break;
+                default:
+                    SDials++
+                    break;
+            }
+        }
+        this.setState({
+            SCPDials: CPD,
+            SBPDials: BPD,
+            SCCDials: CCD,
+            SBCDials: BCD,
+            SCNDials: CND,
+            SBNDials: BND,
+            SCSDials: CSD,
+            SBSDials: BSD,
+            SCRDials: CRD,
+            SBRDials: BRD,
+            SCTDials: CTD,
+            SBTDials: BTD,
+            SourceDials: SDials
+        })
+    }
+
+    parseSourceContacts = () => {
+        console.log("Parsing: " + this.state.sourceContactData)
+        var CPC = 0;
+        var BPC = 0;
+        var CCC = 0;
+        var BCC = 0;
+        var CNC = 0;
+        var BNC = 0;
+        var CSC = 0;
+        var BSC = 0;
+        var CRC = 0;
+        var BRC = 0;
+        var CTC = 0;
+        var BTC = 0;
+        var SContacts = 0;
+        for (var i = 0; i < this.state.sourceContactData.length; i++) {
+            switch (this.state.sourceContactData[i].type) {
+                case "CPD":
+                    CPC++
+                    SContacts++
+                    break;
+                case "BPD":
+                    BPC++
+                    SContacts++
+                    break;
+                case "CCD":
+                    CCC++
+                    SContacts++
+                    break;
+                case "BCD":
+                    BCC++
+                    SContacts++
+                    break;
+                case "CND":
+                    CNC++
+                    SContacts++
+                    break;
+                case "BND":
+                    BNC++
+                    SContacts++
+                    break;
+                case "CSD":
+                    CSC++
+                    SContacts++
+                    break;
+                case "BSD":
+                    BSC++
+                    SContacts++
+                    break;
+                case "CRD":
+                    CRC++
+                    SContacts++
+                    break;
+                case "BRD":
+                    BRC++
+                    SContacts++
+                    break;
+                case "CTD":
+                    SContacts++
+                    CTC++
+                    break;
+                case "BTD":
+                    SContacts++
+                    BTC++
+                    break;
+                default:
+                    SContacts++
+                    break;
+            }
+        }
+        this.setState({
+            SCPContacts: CPC,
+            SBPContacts: BPC,
+            SCCContacts: CCC,
+            SBCContacts: BCC,
+            SCNContacts: CNC,
+            SBNContacts: BNC,
+            SCSContacts: CSC,
+            SBSContacts: BSC,
+            SCRContacts: CRC,
+            SBRContacts: BRC,
+            SCTContacts: CTC,
+            SBTContacts: BTC,
+            SourceContacts: SContacts
+        })
+    }
+
+    parseSourceAppts = () => {
+        console.log("Parsing: " + this.state.sourceApptData)
+        var CPA = 0;
+        var BPA = 0;
+        var CCA = 0;
+        var BCA = 0;
+        var CNA = 0;
+        var BNA = 0;
+        var CSA = 0;
+        var BSA = 0;
+        var CRA = 0;
+        var BRA = 0;
+        var CTA = 0;
+        var BTA = 0;
+        var SAppts = 0;
+        for (var i = 0; i < this.state.sourceApptData.length; i++) {
+            console.log(this.state.sourceApptData[i])
+            switch (this.state.sourceApptData[i].type) {
+                case "CPD":
+                    CPA++
+                    SAppts++
+                    break;
+                case "BPD":
+                    BPA++
+                    SAppts++
+                    break;
+                case "CCD":
+                    CCA++
+                    SAppts++
+                    break;
+                case "BCD":
+                    BCA++
+                    SAppts++
+                    break;
+                case "CND":
+                    CNA++
+                    SAppts++
+                    break;
+                case "BND":
+                    BNA++
+                    SAppts++
+                    break;
+                case "CSD":
+                    CSA++
+                    SAppts++
+                    break;
+                case "BSD":
+                    BSA++
+                    SAppts++
+                    break;
+                case "CRD":
+                    CRA++
+                    SAppts++
+                    break;
+                case "BRD":
+                    BRA++
+                    SAppts++
+                    break;
+                case "CTD":
+                    CTA++
+                    SAppts++
+                    break;
+                case "BTD":
+                    BTA++
+                    SAppts++
+                    break;
+                default:
+                    SAppts++
+                    break;
+            }
+        }
+        this.setState({
+            SCPAppts: CPA,
+            SBPAppts: BPA,
+            SCCAppts: CCA,
+            SBCAppts: BCA,
+            SCNAppts: CNA,
+            SBNAppts: BNA,
+            SCSAppts: CSA,
+            SBSAppts: BSA,
+            SCRAppts: CRA,
+            SBRAppts: BRA,
+            SCTAppts: CTA,
+            SBTAppts: BTA,
+            SourceAppts: SAppts
+        })
+    }
+
+
+
+    gatherTargetData = (event) => {
+        event.preventDefault()
+        console.log("Gathering data on source: " + this.state.targetMarket)
+    }
 
     render() {
         return (
@@ -484,7 +854,32 @@ class MainDataViewer extends Component {
                 <button style={{ width: '33%', marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewReferralPerformance}>Referral Call Performance</button>
                 <button style={{ width: '33%', marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewTargetPerformance}>Target Market Call Performance</button>
 
+                {/* Target Market and Lead Source Selectors */}
+                <form>
+                    {this.props.userData.sources ?
+                        <div>
+                            <select id="sourceDropMenu" value={this.state.leadSource} onChange={this.handleInputChange} name="leadSource">
+                                <option value={"none"}>No Lead Source Selected</option>
+                                {this.props.userData.sources.map(source => (
+                                    <option value={source}>{source}</option>
+                                ))}
+                            </select>
+                            <button className="btn-primary btn" onClick={this.gatherSourceData}>Get Lead Source Data</button>
+                        </div>
+                        : null}
+                </form>
 
+                <form>
+                    {this.props.userData.targetMarkets ?
+                        <div>
+                            <select id="sourceDropMenu" value={this.state.targetMarket} onChange={this.handleInputChange} name="targetMarket">
+                                <option value={"none"}>No Target Market Selected</option>
+                                {this.props.userData.targetMarkets.map(target => (
+                                    <option value={target}>{target}</option>
+                                ))}
+                            </select> <button className="btn-primary btn" onClick={this.gatherTargetData}>Get Target Market Data</button>
+                        </div> : null}
+                </form>
 
 
                 {/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1433,7 +1828,7 @@ class MainDataViewer extends Component {
                     </div>
                     : null}
 
-                    {/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                {/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
@@ -1500,6 +1895,161 @@ class MainDataViewer extends Component {
                                         data: [
                                             this.props.CTDials + this.props.BTDials - this.props.CTAppts - this.props.BTAppts,
                                             this.props.CTAppts + this.props.BTAppts
+                                        ],
+                                        backgroundColor: [
+                                            "#51aef7",
+                                            "#25517b"
+                                        ]
+                                    }]
+                                }} />
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    : null}
+
+
+                {/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+
+                {this.state.showSourcePerformance ?
+                    <div style={{ textAlign: 'center' }}>
+
+                        <div>
+                            <h3><u>Lead Type Breakdown:</u></h3>
+                            <p>Weekly Dials: {this.state.sourceDialData.length}</p>
+                            {/* <Bar data={{
+                                labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
+                                datasets: [{
+                                    label: "Dials",
+                                    backgroundColor: 'rgb(255, 99, 132)',
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    data: [
+                                        this.state.SCPDials + this.state.SBPDials,
+                                        this.state.SCCDials + this.state.SBCDials,
+                                        this.state.SCNDials + this.state.SBNDials,
+                                        this.state.SCSDials + this.state.SBSDials,
+                                        this.state.SCRDials + this.state.SBRDials,
+                                        this.state.SCTDials + this.state.SBTDials],
+                                }]
+                            }} /> */}
+                            <Pie data={{
+                                labels: [
+                                    "Cashflow Prospect",
+                                    "Business Prospect",
+                                    "Cashflow Client",
+                                    "Business Client",
+                                    "Cashflow Natural Market",
+                                    "Business Natural Market",
+                                    "Cashflow Suspect",
+                                    "Business Suspect",
+                                    "Cashflow Referral",
+                                    "Business Referral",
+                                    "Cashflow Target Market",
+                                    "Business Target Market"],
+                                datasets: [{
+                                    data: [
+                                        this.state.SCPDials,
+                                        this.state.SBPDials,
+                                        this.state.SCCDials,
+                                        this.state.SBCDials,
+                                        this.state.SCNDials,
+                                        this.state.SBNDials,
+                                        this.state.SCSDials,
+                                        this.state.SBSDials,
+                                        this.state.SCRDials,
+                                        this.state.SBRDials,
+                                        this.state.SCTDials,
+                                        this.state.SBTDials
+                                    ],
+                                    backgroundColor: [
+                                        "#3ac178",
+                                        "#443959",
+                                        "#f99b17",
+                                        "#a2e505",
+                                        "#c9917f",
+                                        "#8d044b",
+                                        "#d2d93b",
+                                        "#dd4417",
+                                        "#5191d9",
+                                        "#483d28",
+                                        "#51aef7",
+                                        "#25517b"
+                                    ]
+                                }]
+                            }} /> </div>
+
+                        {/* /////////////////////////////////////////
+                        ////////////////////////////////////////////
+                        /////// SOURCE PIE CHARTS BELOW ////////////
+                        ///////////////////////////////////////////
+                        /////////////////////////////////////////// */}
+                        <h3>{this.state.leadSource} Lead Performance:</h3>
+                        <div className="row" style={{ textAlign: 'center' }}>
+
+                            <div className="col-lg-4">
+                                <hr />
+                                <h3>Dials to Contact Ratio</h3>
+                                <h6>Total {this.state.leadSource} Lead Dials: {this.state.SourceDials}</h6>
+                                <h6>Contact Ratio: {Math.round((this.state.SourceContacts / this.state.SourceDials) * 100)}%</h6>
+                                <Pie data={{
+                                    labels: [
+                                        `${this.state.leadSource} Lead Missed Calls`,
+                                        `${this.state.leadSource} Lead Contacts`,
+                                    ],
+                                    datasets: [{
+                                        data: [
+                                            this.state.SourceDials - this.state.SourceContacts,
+                                            this.state.SourceContacts
+                                        ],
+                                        backgroundColor: [
+                                            "#51aef7",
+                                            "#25517b"
+                                        ]
+                                    }]
+                                }} />
+                            </div>
+
+                            <div className="col-lg-4">
+                                <hr />
+                                <h3>Contacts to Appointment Ratio</h3>
+                                <h6>Total Target Market Contacts: {this.state.SourceContacts}</h6>
+                                <h6>Appointment per Contact Ratio: {Math.round((this.state.SourceAppts / this.state.SourceContacts) * 100)}%</h6>
+                                <Pie data={{
+                                    labels: [
+                                        `${this.state.leadSource} Lead Contacts without Scheduling`,
+                                        `${this.state.leadSource} Lead Appointments`,
+                                    ],
+                                    datasets: [{
+                                        data: [
+                                            this.state.SourceContacts - this.state.SourceAppts,
+                                            this.state.SourceAppts
+                                        ],
+                                        backgroundColor: [
+                                            "#51aef7",
+                                            "#25517b"
+                                        ]
+                                    }]
+                                }} />
+                            </div>
+
+                            <div className="col-lg-4">
+                                <hr />
+                                <h3>Dials to Appointment Ratio</h3>
+                                <h6>{this.state.leadSource} Lead Dials: {this.state.SourceDials}</h6>
+                                <h6>Appointment per Dial Ratio: {Math.round((this.state.SourceAppts / this.state.SourceDials) * 100)}%</h6>
+                                <Pie data={{
+                                    labels: [
+                                        `${this.state.leadSource} Lead Calls without Appointments`,
+                                        `${this.state.leadSource} Lead Calls with Appointments Scheduled`,
+                                    ],
+                                    datasets: [{
+                                        data: [
+                                            this.state.SourceDials - this.state.SourceAppts,
+                                            this.state.SourceAppts
                                         ],
                                         backgroundColor: [
                                             "#51aef7",
