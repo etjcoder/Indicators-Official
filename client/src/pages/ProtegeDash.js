@@ -302,8 +302,6 @@ class ProtegeDash extends Component {
         var BNC = 0;
         var CSC = 0;
         var BSC = 0;
-        var CSC = 0;
-        var BSC = 0;
         var CRC = 0;
         var BRC = 0;
         var CTC = 0;
@@ -398,7 +396,7 @@ class ProtegeDash extends Component {
                 </div>
 
                 <div className="row">
-                    <div className="col-12">
+                    <div className="col-lg-6">
                         <ProtegeCallBtnContainer
                             rerender={this.getUserData}
                             user={this.state.userData}
@@ -407,10 +405,10 @@ class ProtegeDash extends Component {
                             targetMarket={this.state.targetMarket}
                         />
                     </div>
-                </div>
+                    {/* </div> */}
 
 
-                {/* Daily Results 4/12 Right
+                    {/* Daily Results 4/12 Right
                         /// Top - Half ///
                         Dials: 
                         Contacts:
@@ -419,62 +417,62 @@ class ProtegeDash extends Component {
                         Todos:
                         Notes:
                     */}
-                <div className="col-lg-4">
-                    <div className="row">
-                        <div className="col-12">
-                            <DialDataSide
-                                userID={this.state.userData._id}
-                                contactData={this.state.contactData}
-                                dialData={this.state.dialData}
-                                apptData={this.state.appointments}
-                                CPAppts={this.state.CPAppts}
-                                BPAppts={this.state.BPAppts}
-                                CCAppts={this.state.CCAppts}
-                                BCAppts={this.state.BCAppts}
-                                CNAppts={this.state.CNAppts}
-                                BNAppts={this.state.BNAppts}
-                                CPDials={this.state.CPDials}
-                                BPDials={this.state.BPDials}
-                                CCDials={this.state.CCDials}
-                                BCDials={this.state.BCDials}
-                                CNDials={this.state.CNDials}
-                                BNDials={this.state.BNDials}
-                                CPContacts={this.state.CPContacts}
-                                BPContacts={this.state.BPContacts}
-                                CCContacts={this.state.CCContacts}
-                                BCContacts={this.state.BCContacts}
-                                CNContacts={this.stateCNContacts}
-                                BNContacts={this.state.BNContacts}
-                                CSDials={this.state.CSDials}
-                                BSDials={this.state.BSDials}
-                                CSContacts={this.state.CSContacts}
-                                BSContacts={this.state.BSContacts}
-                                CSAppts={this.state.CSAppts}
-                                BSAppts={this.state.BSAppts}
-                                CRDials={this.state.CRDials}
-                                BRDials={this.state.BRDials}
-                                CRContacts={this.state.CRContacts}
-                                BRContacts={this.state.BRContacts}
-                                CRAppts={this.state.CRAppts}
-                                BRAppts={this.state.BRAppts}
-                                CTDials={this.state.CTDials}
-                                BTDials={this.state.BTDials}
-                                CTContacts={this.state.CTContacts}
-                                BTContacts={this.state.BTContacts}
-                                CTAppts={this.state.CTAppts}
-                                BTAppts={this.state.BTAppts}
-                            />
-                        </div>
-                        <div className="col-12">
-                            <SourceCreator userData={this.state.userData} />
-                            <TargetMarketCreator userData={this.state.userData} />
+                    <div className="col-lg-6">
+                        <div className="row">
+                            <div className="col-12">
+                                <DialDataSide
+                                    userID={this.state.userData._id}
+                                    contactData={this.state.contactData}
+                                    dialData={this.state.dialData}
+                                    apptData={this.state.appointments}
+                                    CPAppts={this.state.CPAppts}
+                                    BPAppts={this.state.BPAppts}
+                                    CCAppts={this.state.CCAppts}
+                                    BCAppts={this.state.BCAppts}
+                                    CNAppts={this.state.CNAppts}
+                                    BNAppts={this.state.BNAppts}
+                                    CPDials={this.state.CPDials}
+                                    BPDials={this.state.BPDials}
+                                    CCDials={this.state.CCDials}
+                                    BCDials={this.state.BCDials}
+                                    CNDials={this.state.CNDials}
+                                    BNDials={this.state.BNDials}
+                                    CPContacts={this.state.CPContacts}
+                                    BPContacts={this.state.BPContacts}
+                                    CCContacts={this.state.CCContacts}
+                                    BCContacts={this.state.BCContacts}
+                                    CNContacts={this.state.CNContacts}
+                                    BNContacts={this.state.BNContacts}
+                                    CSDials={this.state.CSDials}
+                                    BSDials={this.state.BSDials}
+                                    CSContacts={this.state.CSContacts}
+                                    BSContacts={this.state.BSContacts}
+                                    CSAppts={this.state.CSAppts}
+                                    BSAppts={this.state.BSAppts}
+                                    CRDials={this.state.CRDials}
+                                    BRDials={this.state.BRDials}
+                                    CRContacts={this.state.CRContacts}
+                                    BRContacts={this.state.BRContacts}
+                                    CRAppts={this.state.CRAppts}
+                                    BRAppts={this.state.BRAppts}
+                                    CTDials={this.state.CTDials}
+                                    BTDials={this.state.BTDials}
+                                    CTContacts={this.state.CTContacts}
+                                    BTContacts={this.state.BTContacts}
+                                    CTAppts={this.state.CTAppts}
+                                    BTAppts={this.state.BTAppts}
+                                />
+                            </div>
+                            <div className="col-12">
+                                <SourceCreator userData={this.state.userData} />
+                                <TargetMarketCreator userData={this.state.userData} />
+                            </div>
                         </div>
                     </div>
-                </div>
-                {/* Mid Section narrow height 12/12
+                    {/* Mid Section narrow height 12/12
                         Reminder / Todo Input 
                     */}
-                {/* Lower Section 12/12
+                    {/* Lower Section 12/12
                         Data Dashboard Below
                             Basic Data Showing first:
                                 Contacts / Dials
@@ -486,44 +484,45 @@ class ProtegeDash extends Component {
                     
                     */}
 
-                <div className="row">
-                    <div className="col-lg-8">
-                        <div className="card" style={{ textAlign: "center" }}>
-                            <h4>Your Appointments:</h4>
-                            {this.state.appointments.map(appt => (
-                                <AppointmentItem
-                                    key={appt._id}
-                                    id={appt._id}
-                                    apptname={appt.apptname}
-                                    type={appt.type}
-                                    held={appt.held}
-                                    sold={appt.sold}
-                                    dialer={appt.dialer}
-                                    source={appt.source}
-                                    date={appt.date}
-                                    notes={appt.notes}
-                                    username={this.state.user}
-                                    rerender={this.gatherAppointments}
-                                    user={this.state.userData}
-                                    targetMarket={appt.targetMarket}
-                                />
-                            ))}
+                    <div className="row">
+                        <div className="col-lg-8">
+                            <div className="card" style={{ textAlign: "center" }}>
+                                <h4>Your Appointments:</h4>
+                                {this.state.appointments.map(appt => (
+                                    <AppointmentItem
+                                        key={appt._id}
+                                        id={appt._id}
+                                        apptname={appt.apptname}
+                                        type={appt.type}
+                                        held={appt.held}
+                                        sold={appt.sold}
+                                        dialer={appt.dialer}
+                                        source={appt.source}
+                                        date={appt.date}
+                                        notes={appt.notes}
+                                        username={this.state.user}
+                                        rerender={this.gatherAppointments}
+                                        user={this.state.userData}
+                                        targetMarket={appt.targetMarket}
+                                    />
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                    {/* <div className="col-lg-1">
+                        {/* <div className="col-lg-1">
 
                     </div> */}
-                    <div className="col-lg-4">
-                        <AppointmentCreator
-                            userID={this.state.userData._id}
-                            username={this.state.user}
-                            rerender={this.gatherAppointments}
-                            userData={this.state.userData}
+                        <div className="col-lg-4">
+                            <AppointmentCreator
+                                userID={this.state.userData._id}
+                                username={this.state.user}
+                                rerender={this.gatherAppointments}
+                                userData={this.state.userData}
 
-                        />
+                            />
+                        </div>
                     </div>
-                </div>
-            </div >
+                </div >
+            </div>
         )
     }
 }
