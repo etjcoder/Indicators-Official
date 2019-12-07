@@ -348,7 +348,7 @@ class ProtegeCallBtnContainer extends Component {
         return (
             <div className="row">
                 {/* <Nav /> */}
-                <div className="card col" style={{ height: '500px' }}>
+                <div className="card col-12" style={{ height: '500px' }}>
                     <ul className="nav nav-tabs" id="myTab" role="tablist">
                         <li className="nav-item">
                             <a className="nav-link active" id="prospect-tab" data-toggle="tab" href="#prospect" role="tab" aria-controls="prospect" aria-selected="true">Prospect</a>

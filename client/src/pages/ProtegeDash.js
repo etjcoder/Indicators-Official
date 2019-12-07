@@ -24,6 +24,7 @@ import SourceSelector from "../components/SourceSelector"
 import TargetMarketSelector from "../components/TargetMarketSelector"
 import TargetMarketCreator from "../components/TargetMarketCreator"
 import MainDataViewer from "../components/MainDataViewer"
+import NoteCreator from "../components/NoteCreator"
 
 
 
@@ -405,6 +406,7 @@ class ProtegeDash extends Component {
                             source={this.state.leadSource}
                             targetMarket={this.state.targetMarket}
                         />
+                        <NoteCreator userData={this.state.userData} userID={this.state.userData._id}/>
                     </div>
                     {/* </div> */}
 
