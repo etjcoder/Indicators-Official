@@ -8,6 +8,6 @@ module.exports = {
     Sales: require("./Sales"),
     Todos: require("./Todos"),
     TargetMktDials: require("./TargetMktDials"),
-    Notes: require("./Notes")
+    Note: require("./Note")
 }
 

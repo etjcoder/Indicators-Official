@@ -3,22 +3,18 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var NoteSchema = new Schema({
-    body: {
+    noteText: {
         type: String,
         required: true
     },
-    author: {
+    noteAuthor: {
         type: Boolean,
         required: true
     },
-    protege: {
-        type: String,
+    noteTagged: {
+        type: [String],
         required: true,
         default: "none"
-    },
-    read: {
-        type: Boolean,
-        required: false
     },
     completed: {
         type: Boolean,
@@ -30,9 +26,9 @@ var NoteSchema = new Schema({
     }
 })
 
-var Notes = mongoose.model("Notes", NoteSchema)
+var Note = mongoose.model("Note", NoteSchema)
 
-module.exports = Notes
+module.exports = Note
 
 
 /// Options for type:

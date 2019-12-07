@@ -6,7 +6,7 @@ class NoteCreator extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            note: "",
+            noteText: "",
             noteAuthor: "",
             noteTagged: ""
         }
