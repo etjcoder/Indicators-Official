@@ -33,6 +33,8 @@ class ProtegeDash extends Component {
     state = {
         user: "",
         appointments: [],
+        mentors: "",
+        proteges: "",
         userData: "",
         dialData: "",
         contactData: "",
@@ -81,7 +83,12 @@ class ProtegeDash extends Component {
         // console.log("Loaded Protege Page")
         // this.gatherAppointments()
         // console.log("User Data: " + this.props.user.uid)
-        setTimeout(() => { this.getUserData() }, 1200)
+        setTimeout(() => { 
+            this.getUserData() 
+            this.gatherMentors()
+            this.gatherProteges()
+        
+        }, 1200)
     }
 
     handleInputChange = event => {
@@ -116,6 +123,24 @@ class ProtegeDash extends Component {
                 this.gatherAppointments(),
                 setTimeout(() => { this.parseDials() }, 500)
             )
+    }
+
+    gatherMentors = () => {
+        API.getMentors()
+            .then((res) => {
+                this.setState({
+                    mentors: res.data
+                })
+            })
+    }    
+
+    gatherProteges = () => {
+        API.getProteges()
+            .then((res) => {
+                this.setState({
+                    proteges: res.data
+                })
+            })
     }
 
     getContactData = () => {
@@ -406,7 +431,12 @@ class ProtegeDash extends Component {
                             source={this.state.leadSource}
                             targetMarket={this.state.targetMarket}
                         />
-                        <NoteCreator userData={this.state.userData} userID={this.state.userData._id}/>
+                        <NoteCreator 
+                            userData={this.state.userData} 
+                            userID={this.state.userData._id}
+                            proteges={this.state.proteges}
+                            mentors={this.state.mentors}
+                            />
                     </div>
                     {/* </div> */}
 

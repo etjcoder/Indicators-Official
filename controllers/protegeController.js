@@ -20,7 +20,10 @@ module.exports = {
             .create(req.body)
             .then(function(dbNote) {
                 res.json(dbNote)
-                return db.Protege.findByIdAndUpdate({ _id: req.params.id}, { $push: { notes: dbNote._id} }, {new: true})
+                return (
+                    db.Protege.findByIdAndUpdate({ _id: req.params.id}, { $push: { notes: dbNote._id} }, {new: true}),
+                    db.Mentor.findByIdAndUpdate({ _id: req.body.noteTagged}, { $push: {notes: dbNote._id} }, {new: true})
+                )
             })
             .catch(err => res.status(422).json(err))
 

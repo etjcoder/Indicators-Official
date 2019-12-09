@@ -11,6 +11,7 @@ module.exports = {
         db.Protege
             .find({ uid: req.params.id })
             .populate("dials")
+            .populate("notes")
             .then(dbProtege => res.json(dbProtege))
             .catch(err => res.status(422).json(err))
     },
@@ -43,6 +44,7 @@ module.exports = {
         db.Protege
             .find({ _id: req.params.id})
             .populate("dials")
+            .populate("notes")
             .then(dbProtege => res.json(dbProtege))
             .catch(err => res.status(422).json(err))
     },
@@ -57,6 +59,7 @@ module.exports = {
         db.Mentor
             .find({ uid: req.params.id})
             .populate("proteges")
+            .populate("notes")
             .then(dbMentor => res.json(dbMentor))
             .catch(err => res.status(422).json(err))
     },

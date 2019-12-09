@@ -35,6 +35,10 @@ var MentorSchema = new Schema({
     sales: [{
         type: Schema.Types.ObjectId,
         ref: "Sales"
+    }],
+    notes: [{
+        type: Schema.Types.ObjectId,
+        ref: "Note"
     }]
 },
     {

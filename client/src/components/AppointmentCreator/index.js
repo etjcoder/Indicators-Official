@@ -138,7 +138,6 @@ class AppointmentCreator extends Component {
                         ))}
                     </select> : <p>"No target markets created yet"</p>}
 
-                
                     <label>Appointment Notes:</label>
                     <input id="note-input" className="form-control" value={this.state.apptnotes} onChange={this.handleInputChange} name="apptnotes" type="text" placeholder="Enter any notes..." />
                     <br />
