@@ -8,7 +8,7 @@ var NoteSchema = new Schema({
         required: true
     },
     noteAuthor: {
-        type: Boolean,
+        type: String,
         required: true
     },
     noteTagged: {
@@ -18,7 +18,8 @@ var NoteSchema = new Schema({
     },
     completed: {
         type: Boolean,
-        required: false
+        required: true,
+        default: false
     }
 }, {
     timestamps: {

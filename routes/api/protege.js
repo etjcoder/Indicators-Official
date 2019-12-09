@@ -7,6 +7,8 @@ router.route("/sources/:id")
 router.route("/targets/:id")
     .post(protegeController.addTargetMkt)
     
+router.route("/note/:id")
+    .post(protegeController.createNote)
 
 
 module.exports = router;

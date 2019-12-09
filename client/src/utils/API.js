@@ -29,6 +29,9 @@ export default {
     createMentor: function(data) {
         return axios.post("/api/supervisor/mentor", data)
     },
+    saveNote: function(id, data) {
+        return axios.post("/api/protege/note/" + id, data)
+    },
     getUserData: function(id) {
         return axios.get("/api/supervisor/user/" + id)
     },

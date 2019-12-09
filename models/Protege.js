@@ -60,6 +60,10 @@ var ProtegeSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Sales"
     }],
+    notes: [{
+        type: Schema.Types.ObjectId,
+        ref: "Note"
+    }],
     almaMater: {
         type: String,
         required: false

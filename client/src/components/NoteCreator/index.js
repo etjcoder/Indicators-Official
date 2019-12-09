@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import API from "../../utils/API";
-// import cogoToast from "cogo-toast";
+import cogoToast from "cogo-toast";
 
 class NoteCreator extends Component {
     constructor(props) {
@@ -36,17 +36,13 @@ class NoteCreator extends Component {
 
 
 
-        // API.saveAppointment(this.props.userID, {
-        //     apptname: this.state.apptname,
-        //     source: this.state.apptsource,
-        //     notes: this.state.apptnotes,
-        //     date: this.state.apptdate,
-        //     dialer: this.props.userID,
-        //     type: this.state.type,
-        //     targetMarket: this.state.appttargetmkt
-        // }).then(res =>
-        //     cogoToast.info("Saved Appt!")
-        // ).catch(err => console.log(err))
+        API.saveNote(this.props.userID, {
+            noteText: this.state.note,
+            noteAuthor: this.props.userID,
+            completed: false
+        }).then(res =>
+            cogoToast.info("Saved Note!")
+        ).catch(err => console.log(err))
 
         // setTimeout(() => {
         //     // cogoToast.loading("Re-loading appointments")
