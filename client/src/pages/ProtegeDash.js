@@ -25,6 +25,7 @@ import TargetMarketSelector from "../components/TargetMarketSelector"
 import TargetMarketCreator from "../components/TargetMarketCreator"
 import MainDataViewer from "../components/MainDataViewer"
 import NoteCreator from "../components/NoteCreator"
+import NoteViewer from "../components/NoteViewer"
 
 
 
@@ -433,6 +434,12 @@ class ProtegeDash extends Component {
                         />
                         <NoteCreator 
                             userData={this.state.userData} 
+                            userID={this.state.userData._id}
+                            proteges={this.state.proteges}
+                            mentors={this.state.mentors}
+                            />
+                        <NoteViewer 
+                            userData={this.state.userData}
                             userID={this.state.userData._id}
                             proteges={this.state.proteges}
                             mentors={this.state.mentors}
