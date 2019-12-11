@@ -80,8 +80,8 @@ class NoteViewer extends Component {
                                 <div>
                                     
                                     <p>Note: {note.noteText}</p>
-                                    <p style={{fontSize: '8px'}}>Tagged to: {note.noteTagged} Completed: {JSON.stringify(note.completed)}</p>
-                                    <button value={this.props.id} onClick={() => this.completeNote(note._id)} className="btn btn-success">√</button>
+                                    <p style={{fontSize: '8px'}}>Tagged to: {note.noteTagged} Completed: {JSON.stringify(note.completed)} <span> <button value={this.props.id} onClick={() => this.completeNote(note._id)} className="btn btn-success">√</button></span></p>
+
                                     <hr />
                                 </div>
                             ))
