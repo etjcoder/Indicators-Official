@@ -27,5 +27,11 @@ module.exports = {
             })
             .catch(err => res.status(422).json(err))
 
+    },
+    completeNote: function(req, res) {
+        db.Note 
+            .findByIdAndUpdate({ _id: req.params.id}, {completed: true})
+            .then(dbNote => res.json(dbNote))
+            .catch(err => res.status(422).json(err))
     }
 }

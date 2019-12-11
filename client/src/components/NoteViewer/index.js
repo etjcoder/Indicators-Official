@@ -53,6 +53,17 @@ class NoteViewer extends Component {
 
     }
 
+    completeNote = id => {
+        // event.preventDefault()
+        console.log("Marked note complete:" + id)
+
+        API.completeNote(id, {
+            completed: true
+        }).then(res => 
+            cogoToast.info("Checked Box")
+            ).catch(err => console.log(err))
+    }
+
 
 
     render() {
@@ -70,6 +81,7 @@ class NoteViewer extends Component {
                                     
                                     <p>Note: {note.noteText}</p>
                                     <p style={{fontSize: '8px'}}>Tagged to: {note.noteTagged} Completed: {JSON.stringify(note.completed)}</p>
+                                    <button value={this.props.id} onClick={() => this.completeNote(note._id)} className="btn btn-success">√</button>
                                     <hr />
                                 </div>
                             ))
