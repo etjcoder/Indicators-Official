@@ -10,6 +10,7 @@ router.route("/targets/:id")
 router.route("/note/:id")
     .post(protegeController.createNote)
     .put(protegeController.completeNote)
+    .delete(protegeController.deleteNote)
 
 
 module.exports = router;

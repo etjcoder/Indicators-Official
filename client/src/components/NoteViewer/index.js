@@ -64,6 +64,15 @@ class NoteViewer extends Component {
             ).catch(err => console.log(err))
     }
 
+    deleteNote = id => {
+        console.log("Deleted note: " + id)
+        API.deleteNote(id)
+            .then(res => {
+                cogoToast.error("Deleted Note")
+            })
+            .catch(err => console.log(err))
+    }
+
 
 
     render() {
@@ -80,7 +89,7 @@ class NoteViewer extends Component {
                                 <div>
                                     
                                     <p>Note: {note.noteText}</p>
-                                    <p style={{fontSize: '8px'}}>Tagged to: {note.noteTagged} Completed: {JSON.stringify(note.completed)} <span> <button value={this.props.id} onClick={() => this.completeNote(note._id)} className="btn btn-success">√</button></span></p>
+                                    <p style={{fontSize: '8px'}}>Tagged to: {note.noteTagged} Completed: {JSON.stringify(note.completed)} <span> <button value={this.props.id} onClick={() => this.completeNote(note._id)} className="btn btn-success">√</button> <button value={this.props.id} onClick={() => this.deleteNote(note._id)} className="btn btn-danger">X</button></span></p>
 
                                     <hr />
                                 </div>

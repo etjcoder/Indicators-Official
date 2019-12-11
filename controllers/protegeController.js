@@ -33,5 +33,12 @@ module.exports = {
             .findByIdAndUpdate({ _id: req.params.id}, {completed: true})
             .then(dbNote => res.json(dbNote))
             .catch(err => res.status(422).json(err))
+    },
+    deleteNote: function(req, res) {
+        db.Note
+            .findById({ _id: req.params.id})
+            .then(dbNote => dbNote.remove())
+            .then(dbNote => res.json(dbNote))
+            .catch(err => res.status(422).json(err))
     }
 }

@@ -35,6 +35,9 @@ export default {
     completeNote: function(id, data) {
         return axios.put("/api/protege/note/" + id, data)
     },
+    deleteNote: function(id) {
+        return axios.delete("/api/protege/note/" + id)
+    },
     getUserData: function(id) {
         return axios.get("/api/supervisor/user/" + id)
     },
