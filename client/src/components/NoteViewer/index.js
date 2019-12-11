@@ -67,9 +67,10 @@ class NoteViewer extends Component {
                         
                             this.props.userData.notes.map(note => (
                                 <div>
+                                    
                                     <p>Note: {note.noteText}</p>
-                                    <p>Tagged to: {note.noteTagged}</p>
-                                    <p>Completed: {note.completed}</p>
+                                    <p style={{fontSize: '8px'}}>Tagged to: {note.noteTagged} Completed: {JSON.stringify(note.completed)}</p>
+                                    <hr />
                                 </div>
                             ))
                         
