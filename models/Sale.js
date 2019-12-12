@@ -2,42 +2,51 @@ var mongoose = require("mongoose");
 
 var Schema = mongoose.Schema;
 
-var SalesSchema = new Schema({
-    type: {
+var SaleSchema = new Schema({
+    clientType: {
+        type: String,
+        required: true,
+        default: "none"
+    },
+    saleName: {
         type: String,
         required: true
+    },
+    saleNotes: {
+        type: String,
+        required: true,
+        default: "no notes"
+    },
+    saleDate: {
+        type: Date,
+        required: true,
+        default: '01/01/2019'
+    },
+    protege: {
+        type: String,
+        required: true
+    },
+    mentor: {
+        type: String,
+        required: true,
+        default: "none"
     },
     product: {
         type: String,
         required: true,
         default: ""
     },
-    premium: {
-        type: Number,
-        required: true,
-        default: 0
-    },
-    commissions: {
+    commission: {
         type: Number,
         required: true,
         default: 0
     }, 
-    percentageDialer: {
+    percentageProtege: {
         type: Number,
         required: true,
         default: 0
     },
-    percentageSourceOne: {
-        type: Number,
-        required: true,
-        default: 0
-    },
-    percentageSourceTwo: {
-        type: Number,
-        required: true,
-        default: 0
-    },
-    percentageSourceThree: {
+    percentageMentor: {
         type: Number,
         required: true,
         default: 0
@@ -47,28 +56,26 @@ var SalesSchema = new Schema({
         required: true,
         default: 0
     },
-    dialer: {
+    leadSource: {
         type: String,
-        required: true
-    },
-    source: {
-        type: String,
-        required: true
-    },
-    propProduct: {
-        type: Boolean,
         required: true,
-        default: false
+        default: "none"
+    },
+    targetMarket: {
+        type: String,
+        required: true,
+        default: "none"
     }
+
 }, {
     timestamps: {
         createdAt: 'created_at'
     }
 })
 
-var Sales = mongoose.model("Sales", SalesSchema)
+var Sale = mongoose.model("Sale", SaleSchema)
 
-module.exports = Sales
+module.exports = Sale
 
 
 /// Options for type:

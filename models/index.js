@@ -5,7 +5,7 @@ module.exports = {
     Protege: require("./Protege"),
     Manager: require("./Manager"),
     Mentor: require("./Mentor"),
-    Sales: require("./Sales"),
+    Sale: require("./Sale"),
     Todos: require("./Todos"),
     TargetMktDials: require("./TargetMktDials"),
     Note: require("./Note")

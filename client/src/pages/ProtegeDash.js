@@ -26,6 +26,8 @@ import TargetMarketCreator from "../components/TargetMarketCreator"
 import MainDataViewer from "../components/MainDataViewer"
 import NoteCreator from "../components/NoteCreator"
 import NoteViewer from "../components/NoteViewer"
+import SalesCreator from "../components/SalesCreator"
+import SalesItem from "../components/SalesItem"
 
 
 
@@ -84,11 +86,11 @@ class ProtegeDash extends Component {
         // console.log("Loaded Protege Page")
         // this.gatherAppointments()
         // console.log("User Data: " + this.props.user.uid)
-        setTimeout(() => { 
-            this.getUserData() 
+        setTimeout(() => {
+            this.getUserData()
             this.gatherMentors()
             this.gatherProteges()
-        
+
         }, 1200)
     }
 
@@ -122,8 +124,9 @@ class ProtegeDash extends Component {
                     dialData: res.data[0].dials
                 }), this.getContactData(),
                 this.gatherAppointments(),
-                setTimeout(() => { 
-                    this.parseDials() 
+                this.gatherSales(),
+                setTimeout(() => {
+                    this.parseDials()
                     this.getProtegeNoteData()
                 }, 500)
             )
@@ -133,14 +136,14 @@ class ProtegeDash extends Component {
         console.log(this.state.userData._id)
 
         API.getProtegeNotes(this.state.userData._id)
-            .then(res => 
+            .then(res =>
                 this.setState({
                     taggedNotes: res.data
                 })
-                )
-                .catch( err => {
-                    console.log(err)
-                })
+            )
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     gatherMentors = () => {
@@ -150,7 +153,7 @@ class ProtegeDash extends Component {
                     mentors: res.data
                 })
             })
-    }    
+    }
 
     gatherProteges = () => {
         API.getProteges()
@@ -187,6 +190,19 @@ class ProtegeDash extends Component {
                         appointments: res.data
                     }),
                     setTimeout(() => { this.parseAppointments() }, 500)
+                )
+        }, 1000)
+    };
+
+    gatherSales = () => {
+        setTimeout(() => {
+            console.log("Gathering sales using ID: " + this.state.userData._id)
+            API.getSales(this.state.userData._id)
+                .then(res =>
+                    this.setState({
+                        sales: res.data
+                    })
+                    // ,setTimeout(() => { this.parseSales}, 500)
                 )
         }, 1000)
     };
@@ -449,20 +465,20 @@ class ProtegeDash extends Component {
                             source={this.state.leadSource}
                             targetMarket={this.state.targetMarket}
                         />
-                        <NoteCreator 
-                            userData={this.state.userData} 
+                        <NoteCreator
+                            userData={this.state.userData}
                             userID={this.state.userData._id}
                             proteges={this.state.proteges}
                             mentors={this.state.mentors}
-                            />
-                        <NoteViewer 
+                        />
+                        <NoteViewer
                             userData={this.state.userData}
                             userID={this.state.userData._id}
                             proteges={this.state.proteges}
                             mentors={this.state.mentors}
                             tagNotes={this.state.taggedNotes}
                             postNotes={this.state.userData.notes}
-                            />
+                        />
                     </div>
                     {/* </div> */}
 
@@ -542,94 +558,130 @@ class ProtegeDash extends Component {
                                 Web of Appointment Types
                     
                     */}
+                </div>
+                <div className="row">
+                    <div className="col">
+                        <MainDataViewer
+                            userID={this.state.userData._id}
+                            contactData={this.state.contactData}
+                            dialData={this.state.dialData}
+                            apptData={this.state.appointments}
+                            CPAppts={this.state.CPAppts}
+                            BPAppts={this.state.BPAppts}
+                            CCAppts={this.state.CCAppts}
+                            BCAppts={this.state.BCAppts}
+                            CNAppts={this.state.CNAppts}
+                            BNAppts={this.state.BNAppts}
+                            CPDials={this.state.CPDials}
+                            BPDials={this.state.BPDials}
+                            CCDials={this.state.CCDials}
+                            BCDials={this.state.BCDials}
+                            CNDials={this.state.CNDials}
+                            BNDials={this.state.BNDials}
+                            CPContacts={this.state.CPContacts}
+                            BPContacts={this.state.BPContacts}
+                            CCContacts={this.state.CCContacts}
+                            BCContacts={this.state.BCContacts}
+                            CNContacts={this.state.CNContacts}
+                            BNContacts={this.state.BNContacts}
+                            CSDials={this.state.CSDials}
+                            BSDials={this.state.BSDials}
+                            CSContacts={this.state.CSContacts}
+                            BSContacts={this.state.BSContacts}
+                            CSAppts={this.state.CSAppts}
+                            BSAppts={this.state.BSAppts}
+                            CRDials={this.state.CRDials}
+                            BRDials={this.state.BRDials}
+                            CRContacts={this.state.CRContacts}
+                            BRContacts={this.state.BRContacts}
+                            CRAppts={this.state.CRAppts}
+                            BRAppts={this.state.BRAppts}
+                            CTDials={this.state.CTDials}
+                            BTDials={this.state.BTDials}
+                            CTContacts={this.state.CTContacts}
+                            BTContacts={this.state.BTContacts}
+                            CTAppts={this.state.CTAppts}
+                            BTAppts={this.state.BTAppts}
+                            userData={this.state.userData}
+                        // sources={this.state.leadSource}
+                        />
                     </div>
-                    <div className="row">
-                        <div className="col">
-                            <MainDataViewer 
-                                userID={this.state.userData._id}
-                                contactData={this.state.contactData}
-                                dialData={this.state.dialData}
-                                apptData={this.state.appointments}
-                                CPAppts={this.state.CPAppts}
-                                BPAppts={this.state.BPAppts}
-                                CCAppts={this.state.CCAppts}
-                                BCAppts={this.state.BCAppts}
-                                CNAppts={this.state.CNAppts}
-                                BNAppts={this.state.BNAppts}
-                                CPDials={this.state.CPDials}
-                                BPDials={this.state.BPDials}
-                                CCDials={this.state.CCDials}
-                                BCDials={this.state.BCDials}
-                                CNDials={this.state.CNDials}
-                                BNDials={this.state.BNDials}
-                                CPContacts={this.state.CPContacts}
-                                BPContacts={this.state.BPContacts}
-                                CCContacts={this.state.CCContacts}
-                                BCContacts={this.state.BCContacts}
-                                CNContacts={this.state.CNContacts}
-                                BNContacts={this.state.BNContacts}
-                                CSDials={this.state.CSDials}
-                                BSDials={this.state.BSDials}
-                                CSContacts={this.state.CSContacts}
-                                BSContacts={this.state.BSContacts}
-                                CSAppts={this.state.CSAppts}
-                                BSAppts={this.state.BSAppts}
-                                CRDials={this.state.CRDials}
-                                BRDials={this.state.BRDials}
-                                CRContacts={this.state.CRContacts}
-                                BRContacts={this.state.BRContacts}
-                                CRAppts={this.state.CRAppts}
-                                BRAppts={this.state.BRAppts}
-                                CTDials={this.state.CTDials}
-                                BTDials={this.state.BTDials}
-                                CTContacts={this.state.CTContacts}
-                                BTContacts={this.state.BTContacts}
-                                CTAppts={this.state.CTAppts}
-                                BTAppts={this.state.BTAppts}
-                                userData={this.state.userData}
-                                // sources={this.state.leadSource}
-                            />
-                        </div>
-                    </div>
+                </div>
 
-                    <div className="row">
-                        <div className="col-lg-8">
-                            <div className="card" style={{ textAlign: "center" }}>
-                                <h4>Your Appointments:</h4>
-                                {this.state.appointments.map(appt => (
-                                    <AppointmentItem
-                                        key={appt._id}
-                                        id={appt._id}
-                                        apptname={appt.apptname}
-                                        type={appt.type}
-                                        held={appt.held}
-                                        sold={appt.sold}
-                                        dialer={appt.dialer}
-                                        source={appt.source}
-                                        date={appt.date}
-                                        notes={appt.notes}
-                                        username={this.state.user}
-                                        rerender={this.gatherAppointments}
-                                        user={this.state.userData}
-                                        targetMarket={appt.targetMarket}
-                                    />
-                                ))}
-                            </div>
+                <div className="row">
+                    <div className="col-lg-8">
+                        <div className="card" style={{ textAlign: "center" }}>
+                            <h4>Your Appointments:</h4>
+                            {this.state.appointments.map(appt => (
+                                <AppointmentItem
+                                    key={appt._id}
+                                    id={appt._id}
+                                    apptname={appt.apptname}
+                                    type={appt.type}
+                                    held={appt.held}
+                                    sold={appt.sold}
+                                    dialer={appt.dialer}
+                                    source={appt.source}
+                                    date={appt.date}
+                                    notes={appt.notes}
+                                    username={this.state.user}
+                                    rerender={this.gatherAppointments}
+                                    user={this.state.userData}
+                                    targetMarket={appt.targetMarket}
+                                />
+                            ))}
                         </div>
-                        {/* <div className="col-lg-1">
+                    </div>
+                    <div className="col-lg-8">
+                        <div className="card" style={{ textAlign: "center" }}>
+                            <h4>Your Sales</h4>
+                            {this.state.sales ? <div>
+                                {
+                                    this.state.sales.map(sale => (
+                                        <SalesItem
+                                            key={sale._id}
+                                            id={sale._id}
+                                            saleType={sale.clientType}
+                                            saleName={sale.saleName}
+                                            saleSource={sale.leadSource}
+                                            saleNotes={sale.saleNotes}
+                                            saleDate={sale.saleDate}
+                                            saleTargetMkt={sale.targetMarket}
+                                            saleCommission={sale.commission}
+                                            salePercentage={sale.percentageProtege}
+                                            saleTaggedPercentage={sale.percentageMentor}
+                                            saleProduct={sale.product}
+                                            saleWriter={sale.protege}
+                                            saleTagged={sale.mentor}
+                                            mentors={this.state.mentors}
+                                            userData={this.state.userData}
+                                        />
+                                    ))
+                                } </div>
+                                : null}
+                        </div>
+                    </div>
+                    {/* <div className="col-lg-1">
 
                     </div> */}
-                        <div className="col-lg-4">
-                            <AppointmentCreator
-                                userID={this.state.userData._id}
-                                username={this.state.user}
-                                rerender={this.gatherAppointments}
-                                userData={this.state.userData}
+                    <div className="col-lg-4">
+                        <AppointmentCreator
+                            userID={this.state.userData._id}
+                            username={this.state.user}
+                            rerender={this.gatherAppointments}
+                            userData={this.state.userData}
 
-                            />
-                        </div>
+                        />
+                        <SalesCreator
+                            userID={this.state.userData._id}
+                            username={this.state.user}
+                            // rerender={this.gatherSales}
+                            userData={this.state.userData}
+                            mentors={this.state.mentors}
+                        />
                     </div>
-                </div >
+                </div>
+            </div >
         )
     }
 }

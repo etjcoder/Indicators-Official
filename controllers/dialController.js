@@ -38,5 +38,37 @@ module.exports = {
             }).then(dbDial => res.json(dbDial))
             .catch(err => res.status(422).json(err))
     },
-
+    createSale: function(req, res) {
+        console.log("Creating Sale...")
+        db.Sale
+            .create(req.body)
+            .then(function(dbSale) {
+                res.json(dbSale)
+            })
+            .catch(err => res.status(422).json(err))
+    },
+    getProtegeSalesById: function(req, res) {
+        console.log("Getting Sales...")
+        db.Sale
+            .find({
+                    protege: req.params.id
+                })
+            .then(dbSale => res.json(dbSale))
+            .catch(err => res.status(422).json(err))
+    },
+    updateSale: function(req, res) {
+        console.log("Updating Sales")
+        db.Sale
+            .findOneAndUpdate({ _id: req.params.id}, req.body)
+            .then(dbAppt => res.json(dbAppt))
+            .catch(err => res.status(422).json(err))
+    },
+    deleteSale: function(req, res) {
+        console.log("Deleting Sales")
+        db.Sale
+            .findById({ _id: req.params.id})
+            .then(dbSale => dbSale.remove())
+            .then(dbSale => res.json(dbSale))
+            .catch(err => res.status(422).json(err))
+    }
 }

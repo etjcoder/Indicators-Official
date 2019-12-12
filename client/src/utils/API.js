@@ -14,14 +14,26 @@ export default {
     saveAppointment: function(id, data) {
         return axios.post("/api/dials/appt/" + id, data)
     },
+    saveSale: function(data) {
+        return axios.post("/api/dials/sales", data)
+    },
     getAppointments: function(id) {
         return axios.get("/api/appointments/find/" + id)
+    },
+    getSales: function(id) {
+        return axios.get("/api/dials/sales/" + id)
     },
     updateAppointment: function(id, data) {
         return axios.put("/api/appointments/edit/" + id, data)
     },
+    updateSale: function(id, data) {
+        return axios.put("/api/dials/sales/" + id, data)
+    },
     deleteAppointment: function(id) {
         return axios.delete("/api/appointments/edit/" + id)
+    },
+    deleteSale: function(id) {
+        return axios.delete("/api/dials/sales/" + id)
     },
     createUser: function(data) {
         return axios.post("/api/supervisor/protege", data)

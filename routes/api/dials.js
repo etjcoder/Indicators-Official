@@ -13,5 +13,13 @@ router.route("/contacts/:id")
 
 router.route("/appt/:id")
     .post(dialController.createAppointment)
+        
+router.route("/sales")
+    .post(dialController.createSale)
+
+router.route("/sales/:id")
+    .get(dialController.getProtegeSalesById)
+    .put(dialController.updateSale)
+    .delete(dialController.deleteSale)
 
 module.exports = router;
