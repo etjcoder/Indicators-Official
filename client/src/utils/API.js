@@ -17,11 +17,17 @@ export default {
     saveSale: function(data) {
         return axios.post("/api/dials/sales", data)
     },
+    saveSaleMentor: function(data) {
+        return axios.post("/api/dials/mentor/sales", data)
+    },
     getAppointments: function(id) {
         return axios.get("/api/appointments/find/" + id)
     },
     getSales: function(id) {
         return axios.get("/api/dials/sales/" + id)
+    },
+    getMentorSales: function(id) {
+        return axios.get("/api/dials/mentor/sales/" + id)
     },
     updateAppointment: function(id, data) {
         return axios.put("/api/appointments/edit/" + id, data)

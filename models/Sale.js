@@ -14,7 +14,7 @@ var SaleSchema = new Schema({
     },
     saleNotes: {
         type: String,
-        required: true,
+        required: false,
         default: "no notes"
     },
     saleDate: {
@@ -24,7 +24,8 @@ var SaleSchema = new Schema({
     },
     protege: {
         type: String,
-        required: true
+        required: true,
+        default: "none"
     },
     mentor: {
         type: String,
@@ -58,12 +59,12 @@ var SaleSchema = new Schema({
     },
     leadSource: {
         type: String,
-        required: true,
+        required: false,
         default: "none"
     },
     targetMarket: {
         type: String,
-        required: true,
+        required: false,
         default: "none"
     }
 

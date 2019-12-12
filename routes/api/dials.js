@@ -22,4 +22,10 @@ router.route("/sales/:id")
     .put(dialController.updateSale)
     .delete(dialController.deleteSale)
 
+router.route("/mentor/sales")
+    .post(dialController.createMentorSale)
+
+router.route("/mentor/sales/:id")
+    .get(dialController.findMentorSalesById)
+
 module.exports = router;

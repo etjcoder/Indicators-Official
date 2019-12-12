@@ -15,6 +15,8 @@ import NoteViewer from "../components/NoteViewer";
 //     import AnalyticsMAdvanced from "../components/AnalyticsMAdvanced";
 import NoteViewerMentor from "../components/NoteViewerMentor"
 import NoteCreatorMentor from "../components/NoteCreatorMentor"
+import SalesCreatorMentor from "../components/SalesCreatorMentor"
+import SalesItemMentor from "../components/SalesItemMentor"
 
 class MentorDash extends Component {
 
@@ -72,6 +74,7 @@ class MentorDash extends Component {
                 setTimeout(() => { 
                     this.getProtegeData() 
                     this.getMentorNoteData()
+                    this.gatherMentorSales()
                 }, 500))
             .catch(err => {
                 console.log(err)
@@ -88,6 +91,21 @@ class MentorDash extends Component {
                 })
                 )
                 .catch( err => {
+                    console.log(err)
+                })
+    }
+
+    gatherMentorSales = () => {
+        console.log(this.state.mentor._id)
+
+
+        API.getMentorSales(this.state.mentor._id)
+            .then(res => 
+                this.setState({
+                    salesData: res.data
+                })
+                )
+                .catch(err => {
                     console.log(err)
                 })
     }
@@ -351,7 +369,7 @@ class MentorDash extends Component {
 
                 </div>
                 <div className="row">
-                    <div className="col">
+                    <div className="col-lg-6">
                         <NoteViewerMentor
                             tagNotes = {this.state.taggedNotes}
                             postNotes = {this.state.mentor.notes}
@@ -359,6 +377,40 @@ class MentorDash extends Component {
                         <NoteCreatorMentor
                             userData = {this.state.mentor}
                         />
+                    </div>
+                    <div className="col-lg-6">
+                        <SalesCreatorMentor
+                            userID={this.state.mentor._id}
+                            userData={this.state.mentor}
+                            proteges={this.state.mentor.proteges}
+                        />
+                        <div className="card" style={{ textAlign: "center" }}>
+                            <h4>Your Sales</h4>
+                            {this.state.salesData ? <div>
+                                {
+                                    this.state.salesData.map(sale => (
+                                        <SalesItemMentor
+                                            key={sale._id}
+                                            id={sale._id}
+                                            saleType={sale.clientType}
+                                            saleName={sale.saleName}
+                                            saleSource={sale.leadSource}
+                                            saleNotes={sale.saleNotes}
+                                            saleDate={sale.saleDate}
+                                            saleTargetMkt={sale.targetMarket}
+                                            saleCommission={sale.commission}
+                                            salePercentage={sale.percentageMentor}
+                                            saleTaggedPercentage={sale.percentageProtege}
+                                            saleProduct={sale.product}
+                                            saleTagged={sale.protege}
+                                            saleWriter={sale.mentor}
+                                            proteges={this.state.mentor.proteges}
+                                            userData={this.state.mentor}
+                                        />
+                                    ))
+                                } </div>
+                                : null}
+                        </div>
                     </div>
                 </div>
                 {/* 

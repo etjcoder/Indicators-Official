@@ -47,12 +47,29 @@ module.exports = {
             })
             .catch(err => res.status(422).json(err))
     },
+    createMentorSale: function(req, res) {
+        db.Sale
+            .create(req.body)
+            .then(function(dbSale) {
+                res.json(dbSale)
+            })
+            .catch(err => res.status(422).json(err))
+    },
     getProtegeSalesById: function(req, res) {
         console.log("Getting Sales...")
         db.Sale
             .find({
                     protege: req.params.id
                 })
+            .then(dbSale => res.json(dbSale))
+            .catch(err => res.status(422).json(err))
+    },
+    findMentorSalesById: function(req, res) {
+        console.log("Getting Sales...")
+        db.Sale
+            .find({ 
+                mentor: req.params.id
+            })
             .then(dbSale => res.json(dbSale))
             .catch(err => res.status(422).json(err))
     },
