@@ -3,6 +3,7 @@ import "./Home.css";
 import Nav from "../components/Nav";
 import API from "../utils/API";
 import MentorDataViewer from "../components/MentorDataViewer"
+import NoteViewer from "../components/NoteViewer";
 // import Header from "../components/Header";
 // import TopBarMentor from "../components/TopBarMentor";
 // import NoteViewer from "../components/NoteViewer";
@@ -12,6 +13,8 @@ import MentorDataViewer from "../components/MentorDataViewer"
 // import MentorAnalytics from "../components/MentorAnalytics";
 //     import AnalyticsMBasic from "../components/AnalyticsMB";
 //     import AnalyticsMAdvanced from "../components/AnalyticsMAdvanced";
+import NoteViewerMentor from "../components/NoteViewerMentor"
+import NoteCreatorMentor from "../components/NoteCreatorMentor"
 
 class MentorDash extends Component {
 
@@ -46,12 +49,16 @@ class MentorDash extends Component {
         BSContacts: 0,
         CSAppts: 0,
         BSAppts: 0,
-        protegeSelected: ""
+        protegeSelected: "",
+        taggedNotes: "",
+        postedNotes: ""
     }
 
     componentDidMount() {
         console.log("Loaded Mentor Page")
-        setTimeout(() => { this.getMentorData() }, 1200)
+        setTimeout(() => { 
+            this.getMentorData() 
+        }, 1200)
     }
 
     getMentorData = () => {
@@ -62,10 +69,27 @@ class MentorDash extends Component {
                 this.setState({
                     mentor: res.data[0]
                 }),
-                setTimeout(() => { this.getProtegeData() }, 500))
+                setTimeout(() => { 
+                    this.getProtegeData() 
+                    this.getMentorNoteData()
+                }, 500))
             .catch(err => {
                 console.log(err)
             })
+    }
+
+    getMentorNoteData = () => {
+        console.log(this.state.mentor._id)
+
+        API.getMentorNotes(this.state.mentor._id)
+            .then(res =>
+                this.setState({
+                    taggedNotes: res.data
+                })
+                )
+                .catch( err => {
+                    console.log(err)
+                })
     }
 
     handleInputChange = event => {
@@ -325,6 +349,17 @@ class MentorDash extends Component {
                         />
                     </div>
 
+                </div>
+                <div className="row">
+                    <div className="col">
+                        <NoteViewerMentor
+                            tagNotes = {this.state.taggedNotes}
+                            postNotes = {this.state.mentor.notes}
+                        />
+                        <NoteCreatorMentor
+                            userData = {this.state.mentor}
+                        />
+                    </div>
                 </div>
                 {/* 
                         Note View 4/12 Right 

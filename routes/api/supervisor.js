@@ -26,5 +26,8 @@ router.route("/mentor/find/:id")
     .put(supervisorController.pushProtegeToMentor)
     .delete(supervisorController.pullProtegeFromArray)
 
+router.route("/mentor/notes/:id")
+    .get(supervisorController.findMentorNotes)
+    .post(supervisorController.createMentorNote)
 
 module.exports = router;

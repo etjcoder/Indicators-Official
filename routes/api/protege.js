@@ -11,6 +11,9 @@ router.route("/note/:id")
     .post(protegeController.createNote)
     .put(protegeController.completeNote)
     .delete(protegeController.deleteNote)
+    .get(protegeController.uncompleteNote)
 
+router.route("/notes/:id")
+    .get(protegeController.findProtegeNotes)
 
 module.exports = router;

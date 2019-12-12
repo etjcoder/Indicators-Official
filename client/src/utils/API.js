@@ -32,8 +32,20 @@ export default {
     saveNote: function(id, data) {
         return axios.post("/api/protege/note/" + id, data)
     },
+    saveNoteMentor: function(id, data) {
+        return axios.post("/api/supervisor/mentor/notes/" + id, data)
+    },
+    getMentorNotes(id) {
+        return axios.get("/api/supervisor/mentor/notes/" + id)
+    },
+    getProtegeNotes(id) {
+        return axios.get("/api/protege/notes/" + id)
+    },
     completeNote: function(id, data) {
         return axios.put("/api/protege/note/" + id, data)
+    },
+    uncompleteNote: function(id, data) {
+        return axios.get("/api/protege/note/" + id, data)
     },
     deleteNote: function(id) {
         return axios.delete("/api/protege/note/" + id)

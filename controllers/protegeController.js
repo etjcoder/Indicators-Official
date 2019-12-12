@@ -34,10 +34,22 @@ module.exports = {
             .then(dbNote => res.json(dbNote))
             .catch(err => res.status(422).json(err))
     },
+    uncompleteNote: function(req, res) {
+        db.Note
+            .findByIdAndUpdate({ _id: req.params.id}, {completed: false})
+            .then(dbNote => res.json(dbNote))
+            .catch(err => res.status(422).json(err))
+    },
     deleteNote: function(req, res) {
         db.Note
             .findById({ _id: req.params.id})
             .then(dbNote => dbNote.remove())
+            .then(dbNote => res.json(dbNote))
+            .catch(err => res.status(422).json(err))
+    },
+    findProtegeNotes: function(req, res) {
+        db.Note
+            .find({ noteTagged: req.params.id })
             .then(dbNote => res.json(dbNote))
             .catch(err => res.status(422).json(err))
     }

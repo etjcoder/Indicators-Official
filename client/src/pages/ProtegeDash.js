@@ -122,8 +122,25 @@ class ProtegeDash extends Component {
                     dialData: res.data[0].dials
                 }), this.getContactData(),
                 this.gatherAppointments(),
-                setTimeout(() => { this.parseDials() }, 500)
+                setTimeout(() => { 
+                    this.parseDials() 
+                    this.getProtegeNoteData()
+                }, 500)
             )
+    }
+
+    getProtegeNoteData = () => {
+        console.log(this.state.userData._id)
+
+        API.getProtegeNotes(this.state.userData._id)
+            .then(res => 
+                this.setState({
+                    taggedNotes: res.data
+                })
+                )
+                .catch( err => {
+                    console.log(err)
+                })
     }
 
     gatherMentors = () => {
@@ -443,6 +460,8 @@ class ProtegeDash extends Component {
                             userID={this.state.userData._id}
                             proteges={this.state.proteges}
                             mentors={this.state.mentors}
+                            tagNotes={this.state.taggedNotes}
+                            postNotes={this.state.userData.notes}
                             />
                     </div>
                     {/* </div> */}
