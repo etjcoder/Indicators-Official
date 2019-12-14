@@ -14,6 +14,9 @@ export default {
     saveAppointment: function(id, data) {
         return axios.post("/api/dials/appt/" + id, data)
     },
+    saveAppointmentMentor: function(id, data) {
+        return axios.post("/api/dials/appt/mentor/" + id, data)
+    },
     saveSale: function(data) {
         return axios.post("/api/dials/sales", data)
     },
@@ -28,6 +31,9 @@ export default {
     },
     getMentorSales: function(id) {
         return axios.get("/api/dials/mentor/sales/" + id)
+    },
+    getMentorAppts: function(id) {
+        return axios.get("/api/dials/mentor/appts/" + id)
     },
     updateAppointment: function(id, data) {
         return axios.put("/api/appointments/edit/" + id, data)

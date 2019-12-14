@@ -628,6 +628,7 @@ class ProtegeDash extends Component {
                                     rerender={this.gatherAppointments}
                                     user={this.state.userData}
                                     targetMarket={appt.targetMarket}
+                                    mentors={this.state.mentors}
                                 />
                             ))}
                         </div>
@@ -670,6 +671,7 @@ class ProtegeDash extends Component {
                             username={this.state.user}
                             rerender={this.gatherAppointments}
                             userData={this.state.userData}
+                            mentors={this.state.mentors}
 
                         />
                         <SalesCreator

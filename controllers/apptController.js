@@ -18,7 +18,7 @@ module.exports = {
     findUserAppts: function(req, res) {
         console.log("Finding appointments...")
         db.Appointments
-            .find({dialer: req.params.id})
+            .find({protege: req.params.id})
             .then(dbAppt => res.json(dbAppt))
             .catch(err => res.json(422).json(err))
     },

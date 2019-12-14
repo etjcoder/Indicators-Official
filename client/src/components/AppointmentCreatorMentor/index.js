@@ -4,7 +4,7 @@ import cogoToast from "cogo-toast";
 
 
 
-class AppointmentCreator extends Component {
+class AppointmentCreatorMentor extends Component {
 
     state = {
         apptname: "",
@@ -24,6 +24,8 @@ class AppointmentCreator extends Component {
         //     apptnotes: this.props.notes,
         //     apptdate: this.props.date
         // })
+
+        console.log(this.props.userID)
 
     }
 
@@ -59,39 +61,39 @@ class AppointmentCreator extends Component {
 
     handleApptSubmit = event => {
         event.preventDefault()
-        console.log("Submitting appointment under user ID: " + this.props.userID)
+        console.log("Submitting appointment under user ID: " + this.state.apptTagged)
 
-        var ApptData = {
+        // var ApptData = {
+        //     apptname: this.state.apptname,
+        //     source: this.state.apptsource,
+        //     notes: this.state.apptnotes,
+        //     date: this.state.apptdate,
+        //     dialer: "none",
+        //     type: this.state.type,
+        //     targetMarket: this.state.appttargetmkt
+        // }
+
+        // console.log(ApptData)
+
+        var protegeID = this.state.apptTagged
+        
+
+        API.saveAppointment(protegeID, {
             apptname: this.state.apptname,
             source: this.state.apptsource,
             notes: this.state.apptnotes,
             date: this.state.apptdate,
-            dialer: this.props.userID,
             type: this.state.type,
-            targetMarket: this.state.appttargetmkt
-        }
-
-        console.log(ApptData)
-
-
-
-        API.saveAppointment(this.props.userID, {
-            apptname: this.state.apptname,
-            source: this.state.apptsource,
-            notes: this.state.apptnotes,
-            date: this.state.apptdate,
-            type: this.state.type,
-            dialer: this.props.userID,
             targetMarket: this.state.appttargetmkt,
-            protege: this.props.userID,
-            mentor: this.state.apptTagged
+            mentor: this.props.userID,
+            protege: this.state.apptTagged
         }).then(res =>
             cogoToast.info("Saved Appt!")
         ).catch(err => console.log(err))
 
         setTimeout(() => {
             // cogoToast.loading("Re-loading appointments")
-            this.props.rerender()
+            // this.props.rerender()
         }, 1000)
 
     }
@@ -122,19 +124,19 @@ class AppointmentCreator extends Component {
                     <label>Date of Appointment:</label>
                     <input id="date-input" className="form-control" value={this.state.apptdate} onChange={this.handleInputChange} name="apptdate" type="date" placeholder="Enter date for your appointment" />
 
-                    <label>Mentor Tagged</label>
-                            {this.props.mentors ? <select id="mentorDropMenu" value={this.props.apptTagged} onChange={this.handleInputChange} name="apptTagged">
+                    <label>Protege Tagged</label>
+                            {this.props.userData.proteges ? <select id="mentorDropMenu" value={this.props.apptTagged} onChange={this.handleInputChange} name="apptTagged">
                                 <option value={"none"}>--Tag Mentor--</option>
-                                {this.props.mentors.map(mentor => (
-                                    <option key={mentor._id} value={mentor._id}>{mentor.firstName} {mentor.lastName}</option>
+                                {this.props.userData.proteges.map(protege => (
+                                    <option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>
                                 ))}
                             </select> : null}
 
                     <label>Lead Source:</label>
                     {/* <input id="source-input" className="form-control" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource" type="text" placeholder="Source of Lead" /> */}
-                    {this.props.userData.sources ? <select id="sourceDropMenu" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource">
+                    {this.props.protegeData.sources ? <select id="sourceDropMenu" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource">
                         <option value={"none"}>No Lead Source Selected</option>
-                        {this.props.userData.sources.map(source => (
+                        {this.props.protegeData.sources.map(source => (
                             <option value={source}>{source}</option>
                         ))}
                     </select> : <p>"No lead sources created yet"</p>}
@@ -142,9 +144,9 @@ class AppointmentCreator extends Component {
 
                     <label>Target Market:</label>
                     {/* <input id="targetmkt-input" className="form-control" value={this.state.apptTargetMkt} onChange={this.handleInputChange} name="appttargetmkt" type="text" placeholder="Target Market goes here" /> */}
-                    {this.props.userData.targetMarkets ? <select id="sourceDropMenu" value={this.state.appttargetmkt} onChange={this.handleInputChange} name="appttargetmkt">
+                    {this.props.protegeData.targetMarkets ? <select id="sourceDropMenu" value={this.state.appttargetmkt} onChange={this.handleInputChange} name="appttargetmkt">
                         <option value={"none"}>No Target Market Selected</option>
-                        {this.props.userData.targetMarkets.map(target => (
+                        {this.props.protegeData.targetMarkets.map(target => (
                             <option value={target}>{target}</option>
                         ))}
                     </select> : <p>"No target markets created yet"</p>}
@@ -162,4 +164,4 @@ class AppointmentCreator extends Component {
     }
 }
 
-export default AppointmentCreator
+export default AppointmentCreatorMentor

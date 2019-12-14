@@ -17,6 +17,8 @@ import NoteViewerMentor from "../components/NoteViewerMentor"
 import NoteCreatorMentor from "../components/NoteCreatorMentor"
 import SalesCreatorMentor from "../components/SalesCreatorMentor"
 import SalesItemMentor from "../components/SalesItemMentor"
+import AppointmentItem from "../components/AppointmentItem";
+import AppointmentCreatorMentor from "../components/AppointmentCreatorMentor"
 
 class MentorDash extends Component {
 
@@ -75,11 +77,13 @@ class MentorDash extends Component {
                     this.getProtegeData()
                     this.getMentorNoteData()
                     this.gatherMentorSales()
+                    this.gatherMentorAppts()
                 }, 500))
             .catch(err => {
                 console.log(err)
             })
     }
+
 
     getMentorNoteData = () => {
         console.log(this.state.mentor._id)
@@ -103,6 +107,19 @@ class MentorDash extends Component {
             .then(res =>
                 this.setState({
                     salesData: res.data
+                })
+            )
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
+    gatherMentorAppts = () => {
+        console.log(this.state.mentor._id)
+        API.getMentorAppts(this.state.mentor._id)
+            .then(res => 
+                this.setState({
+                    mentorViewAppts: res.data
                 })
             )
             .catch(err => {
@@ -429,7 +446,7 @@ class MentorDash extends Component {
                     </form>
                 </div>
                 <div className="row">
-                    <div className="col">
+                    <div className="col-lg-8">
                         <MentorDataViewer
                             protegeData={this.state.protegeData}
                             contactData={this.state.contactData}
@@ -474,6 +491,43 @@ class MentorDash extends Component {
                         />
                     </div>
 
+                    <div className="col-lg-4">
+                    <h3>Mentor Appointments</h3>
+                    <div className="card" style={{ textAlign: 'center'}}>
+                        {this.state.mentorViewAppts ? <div>
+                        {this.state.mentorViewAppts.map(appt => (
+                            <AppointmentItem
+                                key={appt._id}
+                                id={appt._id}
+                                apptname={appt.apptname}
+                                type={appt.type}
+                                held={appt.held}
+                                sold={appt.sold}
+                                dialer={appt.protege}
+                                source={appt.source}
+                                date={appt.date}
+                                notes={appt.notes}
+                                username={this.state.mentor.firstName + this.state.mentor.lastName}
+                                rerender={this.gatherMentorAppts}
+                                user={this.state.mentor}
+                                targetMarket={appt.targetMarket}
+                                mentors={this.state.mentor.proteges}
+                                proteges={this.state.mentor.proteges}
+
+                            />
+                        ))} </div> : null }
+                    </div>
+                    <div className="card">
+                        <AppointmentCreatorMentor 
+                            userID ={this.state.mentor._id}
+                            username={this.state.mentor.firstName + this.state.mentor.lastName} 
+                            rerender={this.gatherMentorAppts} 
+                            userData={this.state.mentor}
+                            proteges={this.state.mentor.proteges}
+                            protegeData={this.state.protegeData}
+                            />
+                    </div>
+                    </div>
                 </div>
                 <div className="row">
                     <div className="col-lg-6">

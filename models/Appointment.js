@@ -23,7 +23,18 @@ var AppointmentSchema = new Schema({
     },
     dialer: {
         type: String,
-        required: true
+        required: true,
+        default: "none"
+    },
+    protege: {
+        type: String,
+        required: true,
+        default: "none"
+    },
+    mentor: {
+        type: String,
+        required: true,
+        default: "none"
     },
     source: {
         type: String,

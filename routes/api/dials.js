@@ -13,6 +13,9 @@ router.route("/contacts/:id")
 
 router.route("/appt/:id")
     .post(dialController.createAppointment)
+
+router.route("/appt/mentor/:id")
+    .post(dialController.createMentorAppt)
         
 router.route("/sales")
     .post(dialController.createSale)
@@ -27,5 +30,8 @@ router.route("/mentor/sales")
 
 router.route("/mentor/sales/:id")
     .get(dialController.findMentorSalesById)
+
+router.route("/mentor/appts/:id")
+    .get(dialController.findMentorApptsById)
 
 module.exports = router;

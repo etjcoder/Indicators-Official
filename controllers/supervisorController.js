@@ -45,6 +45,7 @@ module.exports = {
             .find({ _id: req.params.id })
             .populate("dials")
             .populate("notes")
+            .populate("appointments")
             .then(dbProtege => res.json(dbProtege))
             .catch(err => res.status(422).json(err))
     },

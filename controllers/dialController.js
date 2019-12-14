@@ -25,9 +25,19 @@ module.exports = {
             .create(req.body)
             .then(function(dbAppt) {
                 res.json(dbAppt)
-                return db.Protege.findByIdAndUpdate({ _id: req.params.id}, { $push: { appointments: dbAppt._id } }, {new: true})
+                return db.Protege.findByIdAndUpdate({ _id: req.params.id }, { $push: { appointments: dbAppt._id } }, {new: true})
             })
             .catch(err => res.status(422).json(err))
+    },
+    createMentorAppt: function(req, res) {
+        console.log("Creating Appt...")
+        var protegeID = req.body.protege
+        db.Appointments
+            .create(req.body)
+            .then(function(dbAppt) {
+                res.json(dbAppt)
+                return db.Protege.findByIdAndUpdate({ _id: protegeID }, { $push: { appointments: dbAppt._id} }, {new: true})
+            })
     },
     findContacts: function(req, res) {
         console.log("Collecting contacts...")
@@ -68,6 +78,15 @@ module.exports = {
         console.log("Getting Sales...")
         db.Sale
             .find({ 
+                mentor: req.params.id
+            })
+            .then(dbSale => res.json(dbSale))
+            .catch(err => res.status(422).json(err))
+    },
+    findMentorApptsById: function(req, res) {
+        console.log("Getting Appts...")
+        db.Appointments
+            .find({
                 mentor: req.params.id
             })
             .then(dbSale => res.json(dbSale))
