@@ -38,7 +38,7 @@ class MentorDash extends Component {
         CCContacts: 0,
         BCContacts: 0,
         CNContacts: 0,
-        BNContacts: 0, 
+        BNContacts: 0,
         CPAppts: 0,
         BPAppts: 0,
         CCAppts: 0,
@@ -58,8 +58,8 @@ class MentorDash extends Component {
 
     componentDidMount() {
         console.log("Loaded Mentor Page")
-        setTimeout(() => { 
-            this.getMentorData() 
+        setTimeout(() => {
+            this.getMentorData()
         }, 1200)
     }
 
@@ -71,8 +71,8 @@ class MentorDash extends Component {
                 this.setState({
                     mentor: res.data[0]
                 }),
-                setTimeout(() => { 
-                    this.getProtegeData() 
+                setTimeout(() => {
+                    this.getProtegeData()
                     this.getMentorNoteData()
                     this.gatherMentorSales()
                 }, 500))
@@ -89,10 +89,10 @@ class MentorDash extends Component {
                 this.setState({
                     taggedNotes: res.data
                 })
-                )
-                .catch( err => {
-                    console.log(err)
-                })
+            )
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     gatherMentorSales = () => {
@@ -100,14 +100,14 @@ class MentorDash extends Component {
 
 
         API.getMentorSales(this.state.mentor._id)
-            .then(res => 
+            .then(res =>
                 this.setState({
                     salesData: res.data
                 })
-                )
-                .catch(err => {
-                    console.log(err)
-                })
+            )
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     handleInputChange = event => {
@@ -175,6 +175,12 @@ class MentorDash extends Component {
         var BCA = 0;
         var CNA = 0;
         var BNA = 0;
+        var CSA = 0;
+        var BSA = 0;
+        var CRA = 0;
+        var BRA = 0;
+        var CTA = 0;
+        var BTA = 0;
         for (var i = 0; i < this.state.appointments.length; i++) {
             console.log(this.state.appointments[i])
             switch (this.state.appointments[i].type) {
@@ -196,6 +202,24 @@ class MentorDash extends Component {
                 case "BND":
                     BNA++
                     break;
+                case "CSD":
+                    CSA++
+                    break;
+                case "BSD":
+                    BSA++
+                    break;
+                case "CRD":
+                    CRA++
+                    break;
+                case "BRD":
+                    BRA++
+                    break;
+                case "CTD":
+                    CTA++
+                    break;
+                case "BTD":
+                    BTA++
+                    break;
                 default:
                     break;
             }
@@ -206,7 +230,13 @@ class MentorDash extends Component {
             CCAppts: CCA,
             BCAppts: BCA,
             CNAppts: CNA,
-            BNAppts: BNA
+            BNAppts: BNA,
+            CSAppts: CSA,
+            BSAppts: BSA,
+            CRAppts: CRA,
+            BRAppts: BRA,
+            CTAppts: CTA,
+            BTAppts: BTA
         })
     }
 
@@ -218,6 +248,12 @@ class MentorDash extends Component {
         var BCD = 0;
         var CND = 0;
         var BND = 0;
+        var CSD = 0;
+        var BSD = 0;
+        var CRD = 0;
+        var BRD = 0;
+        var CTD = 0;
+        var BTD = 0;
         for (var i = 0; i < this.state.dialData.length; i++) {
             // console.log(this.state.dialData[i])
             switch (this.state.dialData[i].type) {
@@ -239,6 +275,24 @@ class MentorDash extends Component {
                 case "BND":
                     BND++
                     break;
+                case "CSD":
+                    CSD++
+                    break;
+                case "BSD":
+                    BSD++
+                    break;
+                case "CRD":
+                    CRD++
+                    break;
+                case "BRD":
+                    BRD++
+                    break;
+                case "CTD":
+                    CTD++
+                    break;
+                case "BTD":
+                    BTD++
+                    break;
                 default:
                     break;
             }
@@ -249,7 +303,13 @@ class MentorDash extends Component {
             CCDials: CCD,
             BCDials: BCD,
             CNDials: CND,
-            BNDials: BND
+            BNDials: BND,
+            CSDials: CSD,
+            BSDials: BSD,
+            CRDials: CRD,
+            BRDials: BRD,
+            CTDials: CTD,
+            BTDials: BTD
         })
     }
 
@@ -261,6 +321,12 @@ class MentorDash extends Component {
         var BCC = 0;
         var CNC = 0;
         var BNC = 0;
+        var CSC = 0;
+        var BSC = 0;
+        var CRC = 0;
+        var BRC = 0;
+        var CTC = 0;
+        var BTC = 0;
         for (var i = 0; i < this.state.contactData.length; i++) {
             switch (this.state.contactData[i].type) {
                 case "CPD":
@@ -281,6 +347,24 @@ class MentorDash extends Component {
                 case "BND":
                     BNC++
                     break;
+                case "CSD":
+                    CSC++
+                    break;
+                case "BSD":
+                    BSC++
+                    break;
+                case "CRD":
+                    CRC++
+                    break;
+                case "BRD":
+                    BRC++
+                    break;
+                case "CTD":
+                    CTC++
+                    break;
+                case "BTD":
+                    BTC++
+                    break;
                 default:
                     break;
             }
@@ -291,7 +375,13 @@ class MentorDash extends Component {
             CCContacts: CCC,
             BCContacts: BCC,
             CNContacts: CNC,
-            BNContacts: BNC
+            BNContacts: BNC,
+            CSContacts: CSC,
+            BSContacts: BSC,
+            CRContacts: CRC,
+            BRContacts: BRC,
+            CTContacts: CTC,
+            BTContacts: BTC
         })
     }
 
@@ -311,7 +401,6 @@ class MentorDash extends Component {
                 this.gatherAppointments(),
                 setTimeout(() => { this.parseDials() }, 500)
             )
-
     }
 
 
@@ -340,7 +429,7 @@ class MentorDash extends Component {
                     </form>
                 </div>
                 <div className="row">
-                    <div className="col-lg-8">
+                    <div className="col">
                         <MentorDataViewer
                             protegeData={this.state.protegeData}
                             contactData={this.state.contactData}
@@ -362,8 +451,26 @@ class MentorDash extends Component {
                             BPContacts={this.state.BPContacts}
                             CCContacts={this.state.CCContacts}
                             BCContacts={this.state.BCContacts}
-                            CNContacts={this.stateCNContacts}
+                            CNContacts={this.state.CNContacts}
                             BNContacts={this.state.BNContacts}
+                            CSDials={this.state.CSDials}
+                            BSDials={this.state.BSDials}
+                            CSContacts={this.state.CSContacts}
+                            BSContacts={this.state.BSContacts}
+                            CSAppts={this.state.CSAppts}
+                            BSAppts={this.state.BSAppts}
+                            CRDials={this.state.CRDials}
+                            BRDials={this.state.BRDials}
+                            CRContacts={this.state.CRContacts}
+                            BRContacts={this.state.BRContacts}
+                            CRAppts={this.state.CRAppts}
+                            BRAppts={this.state.BRAppts}
+                            CTDials={this.state.CTDials}
+                            BTDials={this.state.BTDials}
+                            CTContacts={this.state.CTContacts}
+                            BTContacts={this.state.BTContacts}
+                            CTAppts={this.state.CTAppts}
+                            BTAppts={this.state.BTAppts}
                         />
                     </div>
 
@@ -371,11 +478,11 @@ class MentorDash extends Component {
                 <div className="row">
                     <div className="col-lg-6">
                         <NoteViewerMentor
-                            tagNotes = {this.state.taggedNotes}
-                            postNotes = {this.state.mentor.notes}
+                            tagNotes={this.state.taggedNotes}
+                            postNotes={this.state.mentor.notes}
                         />
                         <NoteCreatorMentor
-                            userData = {this.state.mentor}
+                            userData={this.state.mentor}
                         />
                     </div>
                     <div className="col-lg-6">
