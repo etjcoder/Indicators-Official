@@ -146,12 +146,16 @@ class MentorDash extends Component {
                 this.setState({
                     protegeData: res.data[0],
                     dialData: res.data[0].dials,
-                    protegeSelected: res.data[0]._id
+                    protegeSelected: res.data[0]._id,
+                    appointments: res.data[0].appointments
                 })
             }
                 , this.getContactData(),
-                this.gatherAppointments(),
-                setTimeout(() => { this.parseDials() }, 500)
+                // this.gatherAppointments(),
+                setTimeout(() => { 
+                    this.parseDials() 
+                    this.parseAppointments()
+                }, 500)
             )
     }
 
@@ -171,18 +175,18 @@ class MentorDash extends Component {
     }
 
 
-    gatherAppointments = () => {
-        setTimeout(() => {
-            console.log("Gathering appointemnts using ID: " + this.state.protegeData._id)
-            API.getAppointments(this.state.protegeData._id)
-                .then(res =>
-                    this.setState({
-                        appointments: res.data
-                    }),
-                    setTimeout(() => { this.parseAppointments() }, 500)
-                )
-        }, 1000)
-    };
+    // gatherAppointments = () => {
+    //     setTimeout(() => {
+    //         console.log("Gathering appointemnts using ID: " + this.state.protegeData._id)
+    //         API.getAppointments(this.state.protegeData._id)
+    //             .then(res =>
+    //                 this.setState({
+    //                     appointments: res.data
+    //                 }),
+    //                 setTimeout(() => { this.parseAppointments() }, 500)
+    //             )
+    //     }, 1000)
+    // };
 
     parseAppointments = () => {
         console.log("Parsing appointments: " + this.state.appointments)

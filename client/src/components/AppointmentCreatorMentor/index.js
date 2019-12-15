@@ -116,6 +116,12 @@ class AppointmentCreatorMentor extends Component {
                         <option value="BCD">Businessowner Client</option>
                         <option value="CND">Cashflow Natural Mkt</option>
                         <option value="BND">Business Natural Mkt</option>
+                        <option value="CSD">Cashflow Suspect</option>
+                        <option value="BSD">Business Suspect</option>
+                        <option value="CRD">Cashflow Referral</option>
+                        <option value="BRD">Business Referral</option>
+                        <option value="CTD">Cashflow Target Market</option>
+                        <option value="BTD">Business Target Market</option>
                     </select>
 
                     <label>Appointment Name:</label>

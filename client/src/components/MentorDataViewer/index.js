@@ -1165,6 +1165,9 @@ class MentorDataViewer extends Component {
                     <button style={{ marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewClientPerformance}>Existing Client Call Performance</button>
                     <button style={{ marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewNaturalPerformance}>Natural Market Call Performance</button>
                     <button style={{ marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewSuspectPerformance}>Suspect Call Performance</button>
+                    <button style={{ marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewReferralPerformance}>Referral Call Performance</button>
+                    <button style={{ marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewTargetPerformance}>Target Market Call Performance</button>
+
 
                     <form>
                         {this.props.protegeData.sources ?
@@ -1223,7 +1226,12 @@ class MentorDataViewer extends Component {
                                             this.props.CRDials + this.props.BRDials,
                                             this.props.CTDials + this.props.BTDials],
                                     }]
-                                }} />
+                                }}
+                                // options={{
+                                //     legend: {
+                                //         display: false
+                                //     }}}
+                                />
                             </div>
                             <div className="col-lg-6">
                                 <Pie data={{
@@ -1270,6 +1278,10 @@ class MentorDataViewer extends Component {
                                             "#25517b"
                                         ]
                                     }]
+                                }} options={{
+                                    legend: {
+                                        display: false
+                                    }
                                 }} /> </div> </div> </div> : null
                 }
 
@@ -1353,7 +1365,13 @@ class MentorDataViewer extends Component {
                                             "#25517b"
                                         ]
                                     }]
-                                }} /> </div>
+                                }}
+                                    options={{
+                                        legend: {
+                                            display: false
+                                        }
+                                    }} 
+                                    /> </div>
 
                         </div> </div> : null
                 }
@@ -1432,7 +1450,12 @@ class MentorDataViewer extends Component {
                                                 "#25517b"
                                             ]
                                         }]
-                                    }} />
+                                    }}
+                                        options={{
+                                            legend: {
+                                                display: false
+                                            }
+                                        }} />
                                 </div> </div> </div> : null
                 }
 
@@ -1500,7 +1523,12 @@ class MentorDataViewer extends Component {
                                             "#8d044b"
                                         ]
                                     }]
-                                }} /> </div>
+                                }}
+                                    options={{
+                                        legend: {
+                                            display: false
+                                        }
+                                    }} /> </div>
                         </div>   </div> : null}
 
                 {/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1562,7 +1590,12 @@ class MentorDataViewer extends Component {
                                             "#8d044b"
                                         ]
                                     }]
-                                }} />
+                                }}
+                                    options={{
+                                        legend: {
+                                            display: false
+                                        }
+                                    }} />
                             </div>
                         </div>
                     </div> : null}
@@ -1628,6 +1661,10 @@ class MentorDataViewer extends Component {
                                             "#8d044b"
                                         ]
                                     }]
+                                }} options={{
+                                    legend: {
+                                        display: false
+                                    }
                                 }} /> </div> </div>
                     </div> : null}
 
@@ -1688,6 +1725,10 @@ class MentorDataViewer extends Component {
                                             "#25517b"
                                         ]
                                     }]
+                                }} options={{
+                                    legend: {
+                                        display: false
+                                    }
                                 }} /> </div> </div> </div> : null}
 
 
@@ -1718,7 +1759,8 @@ class MentorDataViewer extends Component {
                                             this.props.BRContacts,
                                             this.props.BTContacts],
                                     }]
-                                }} />
+                                }}
+                                />
                             </div>
                             <div className="col-lg-6">
                                 <Pie data={{
@@ -1747,7 +1789,13 @@ class MentorDataViewer extends Component {
                                             "#25517b"
                                         ]
                                     }]
-                                }} /> </div> </div> </div> : null}
+                                }}
+                                    options={{
+                                        legend: {
+                                            display: false
+                                        }
+                                    }}
+                                /> </div> </div> </div> : null}
 
 
 
@@ -1806,7 +1854,13 @@ class MentorDataViewer extends Component {
                                             "#25517b"
                                         ]
                                     }]
-                                }} /> </div> </div> </div> : null}
+                                }}
+                                    options={{
+                                        legend: {
+                                            display: false
+                                        }
+                                    }}
+                                /> </div> </div> </div> : null}
 
 
 
@@ -1839,7 +1893,13 @@ class MentorDataViewer extends Component {
                                             "#25517b"
                                         ]
                                     }]
-                                }} />
+                                }}
+                                    options={{
+                                        legend: {
+                                            display: false
+                                        }
+                                    }}
+                                />
                             </div>
 
                             <div className="col-lg-4">
@@ -1861,7 +1921,13 @@ class MentorDataViewer extends Component {
                                             "#25517b"
                                         ]
                                     }]
-                                }} />
+                                }}
+                                    options={{
+                                        legend: {
+                                            display: false
+                                        }
+                                    }}
+                                />
                             </div>
 
                             <div className="col-lg-4">
@@ -1883,7 +1949,13 @@ class MentorDataViewer extends Component {
                                             "#25517b"
                                         ]
                                     }]
-                                }} />
+                                }}
+                                    options={{
+                                        legend: {
+                                            display: false
+                                        }
+                                    }}
+                                />
                             </div>
 
 
@@ -1921,7 +1993,13 @@ class MentorDataViewer extends Component {
                                             "#25517b"
                                         ]
                                     }]
-                                }} />
+                                }}
+                                    options={{
+                                        legend: {
+                                            display: false
+                                        }
+                                    }}
+                                />
                             </div>
 
                             <div className="col-lg-4">
@@ -1943,7 +2021,13 @@ class MentorDataViewer extends Component {
                                             "#25517b"
                                         ]
                                     }]
-                                }} />
+                                }}
+                                    options={{
+                                        legend: {
+                                            display: false
+                                        }
+                                    }}
+                                />
                             </div>
 
                             <div className="col-lg-4">
@@ -1965,7 +2049,13 @@ class MentorDataViewer extends Component {
                                             "#25517b"
                                         ]
                                     }]
-                                }} />
+                                }}
+                                    options={{
+                                        legend: {
+                                            display: false
+                                        }
+                                    }}
+                                />
                             </div>
 
 
@@ -2004,7 +2094,13 @@ class MentorDataViewer extends Component {
                                             "#25517b"
                                         ]
                                     }]
-                                }} />
+                                }}
+                                    options={{
+                                        legend: {
+                                            display: false
+                                        }
+                                    }}
+                                />
                             </div>
 
                             <div className="col-lg-4">
@@ -2026,7 +2122,13 @@ class MentorDataViewer extends Component {
                                             "#25517b"
                                         ]
                                     }]
-                                }} />
+                                }}
+                                    options={{
+                                        legend: {
+                                            display: false
+                                        }
+                                    }}
+                                />
                             </div>
 
                             <div className="col-lg-4">
@@ -2048,7 +2150,13 @@ class MentorDataViewer extends Component {
                                             "#25517b"
                                         ]
                                     }]
-                                }} />
+                                }}
+                                    options={{
+                                        legend: {
+                                            display: false
+                                        }
+                                    }}
+                                />
                             </div>
 
 
@@ -2086,7 +2194,13 @@ class MentorDataViewer extends Component {
                                             "#25517b"
                                         ]
                                     }]
-                                }} />
+                                }}
+                                    options={{
+                                        legend: {
+                                            display: false
+                                        }
+                                    }}
+                                />
                             </div>
 
                             <div className="col-lg-4">
@@ -2108,7 +2222,13 @@ class MentorDataViewer extends Component {
                                             "#25517b"
                                         ]
                                     }]
-                                }} />
+                                }}
+                                    options={{
+                                        legend: {
+                                            display: false
+                                        }
+                                    }}
+                                />
                             </div>
 
                             <div className="col-lg-4">
@@ -2130,7 +2250,13 @@ class MentorDataViewer extends Component {
                                             "#25517b"
                                         ]
                                     }]
-                                }} />
+                                }}
+                                    options={{
+                                        legend: {
+                                            display: false
+                                        }
+                                    }}
+                                />
                             </div>
 
 
@@ -2168,7 +2294,13 @@ class MentorDataViewer extends Component {
                                             "#25517b"
                                         ]
                                     }]
-                                }} />
+                                }}
+                                    options={{
+                                        legend: {
+                                            display: false
+                                        }
+                                    }}
+                                />
                             </div>
 
                             <div className="col-lg-4">
@@ -2190,7 +2322,13 @@ class MentorDataViewer extends Component {
                                             "#25517b"
                                         ]
                                     }]
-                                }} />
+                                }}
+                                    options={{
+                                        legend: {
+                                            display: false
+                                        }
+                                    }}
+                                />
                             </div>
 
                             <div className="col-lg-4">
@@ -2212,7 +2350,13 @@ class MentorDataViewer extends Component {
                                             "#25517b"
                                         ]
                                     }]
-                                }} />
+                                }}
+                                    options={{
+                                        legend: {
+                                            display: false
+                                        }
+                                    }}
+                                />
                             </div>
 
 
@@ -2221,6 +2365,102 @@ class MentorDataViewer extends Component {
                     </div>
                     : null}
 
+                {/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+
+                {this.state.showTargetPerformance ?
+                    <div style={{ textAlign: 'center' }}>
+
+                        <h3>Target Market Calling Performance:</h3>
+                        <div className="row" style={{ textAlign: 'center' }}>
+
+                            <div className="col-lg-4">
+                                <h6>Dials to Contact Ratio</h6>
+                                <h6>Total Target Market Dials: {this.props.CTDials + this.props.BTDials}</h6>
+                                <h6>Contact Ratio: {Math.round((this.props.CTContacts + this.props.BTContacts) / (this.props.CTDials + this.props.BTDials) * 100)}%</h6>
+                                <Pie data={{
+                                    labels: [
+                                        "Target Market Dials without contact",
+                                        "Target Market Contacts",
+                                    ],
+                                    datasets: [{
+                                        data: [
+                                            this.props.CTDials + this.props.BTDials - this.props.CTContacts - this.props.BTContacts,
+                                            this.props.CTContacts + this.props.BTContacts
+                                        ],
+                                        backgroundColor: [
+                                            "#51aef7",
+                                            "#25517b"
+                                        ]
+                                    }]
+                                }} 
+                                options={{
+                                    legend: {
+                                        display: false
+                                    }
+                                }} />
+                            </div>
+
+                            <div className="col-lg-4">
+                                <h6>Contacts to Appointment Ratio</h6>
+                                <h6>Total Target Market Contacts: {this.props.CTContacts + this.props.BTContacts}</h6>
+                                <h6>Appointment per Contact Ratio: {Math.round((this.props.CTAppts + this.props.BTAppts) / (this.props.CTContacts + this.props.BTContacts) * 100)}%</h6>
+                                <Pie data={{
+                                    labels: [
+                                        "Target Market Contacts without appointment",
+                                        "Target Market Appointments",
+                                    ],
+                                    datasets: [{
+                                        data: [
+                                            this.props.CTContacts + this.props.BTContacts - this.props.CTAppts - this.props.BTAppts,
+                                            this.props.CTAppts + this.props.BTAppts
+                                        ],
+                                        backgroundColor: [
+                                            "#51aef7",
+                                            "#25517b"
+                                        ]
+                                    }]
+                                }} 
+                                options={{
+                                    legend: {
+                                        display: false
+                                    }
+                                }} />
+                            </div>
+
+                            <div className="col-lg-4">
+                                <h6>Dials to Appointment Ratio</h6>
+                                <h6>Total Target Market Dials: {this.props.CTDials + this.props.BTDials}</h6>
+                                <h6>Appointment per Dial Ratio: {Math.round((this.props.CTAppts + this.props.BTAppts) / (this.props.CTDials + this.props.BTDials) * 100)}%</h6>
+                                <Pie data={{
+                                    labels: [
+                                        "Target Market Dials without scheduling",
+                                        "Target Market Scheduled Appointments",
+                                    ],
+                                    datasets: [{
+                                        data: [
+                                            this.props.CTDials + this.props.BTDials - this.props.CTAppts - this.props.BTAppts,
+                                            this.props.CTAppts + this.props.BTAppts
+                                        ],
+                                        backgroundColor: [
+                                            "#51aef7",
+                                            "#25517b"
+                                        ]
+                                    }]
+                                }} 
+                                options={{
+                                    legend: {
+                                        display: false
+                                    }
+                                }} />
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    : null}
 
                 {/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2291,7 +2531,13 @@ class MentorDataViewer extends Component {
                                         "#25517b"
                                     ]
                                 }]
-                            }} /> </div>
+                            }}
+                                options={{
+                                    legend: {
+                                        display: false
+                                    }
+                                }}
+                            /> </div>
 
                         {/* /////////////////////////////////////////
                         ////////////////////////////////////////////
@@ -2321,7 +2567,13 @@ class MentorDataViewer extends Component {
                                             "#25517b"
                                         ]
                                     }]
-                                }} />
+                                }}
+                                    options={{
+                                        legend: {
+                                            display: false
+                                        }
+                                    }}
+                                />
                             </div>
 
                             <div className="col-lg-4">
@@ -2344,7 +2596,13 @@ class MentorDataViewer extends Component {
                                             "#25517b"
                                         ]
                                     }]
-                                }} />
+                                }}
+                                    options={{
+                                        legend: {
+                                            display: false
+                                        }
+                                    }}
+                                />
                             </div>
 
                             <div className="col-lg-4">
@@ -2367,7 +2625,13 @@ class MentorDataViewer extends Component {
                                             "#25517b"
                                         ]
                                     }]
-                                }} />
+                                }}
+                                    options={{
+                                        legend: {
+                                            display: false
+                                        }
+                                    }}
+                                />
                             </div>
 
 
@@ -2446,7 +2710,13 @@ class MentorDataViewer extends Component {
                                         "#25517b"
                                     ]
                                 }]
-                            }} /> </div>
+                            }}
+                                options={{
+                                    legend: {
+                                        display: false
+                                    }
+                                }}
+                            /> </div>
 
                         {/* /////////////////////////////////////////
                         ////////////////////////////////////////////
@@ -2476,7 +2746,13 @@ class MentorDataViewer extends Component {
                                             "#25517b"
                                         ]
                                     }]
-                                }} />
+                                }}
+                                    options={{
+                                        legend: {
+                                            display: false
+                                        }
+                                    }}
+                                />
                             </div>
 
                             <div className="col-lg-4">
@@ -2499,7 +2775,13 @@ class MentorDataViewer extends Component {
                                             "#25517b"
                                         ]
                                     }]
-                                }} />
+                                }}
+                                    options={{
+                                        legend: {
+                                            display: false
+                                        }
+                                    }}
+                                />
                             </div>
 
                             <div className="col-lg-4">
@@ -2522,7 +2804,13 @@ class MentorDataViewer extends Component {
                                             "#25517b"
                                         ]
                                     }]
-                                }} />
+                                }}
+                                    options={{
+                                        legend: {
+                                            display: false
+                                        }
+                                    }}
+                                />
                             </div>
 
 
@@ -2531,7 +2819,7 @@ class MentorDataViewer extends Component {
                     </div>
                     : null}
 
-                
+
             </div >
         )
     }
