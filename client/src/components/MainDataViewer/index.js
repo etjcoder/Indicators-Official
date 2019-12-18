@@ -1210,7 +1210,7 @@ class MainDataViewer extends Component {
                             <select id="sourceDropMenu" value={this.state.leadSource} onChange={this.handleInputChange} name="leadSource">
                                 <option value={"none"}>No Lead Source Selected</option>
                                 {this.props.userData.sources.map(source => (
-                                    <option value={source}>{source}</option>
+                                    <option key={source} value={source}>{source}</option>
                                 ))}
                             </select>
                             <button className="btn-primary btn" onClick={this.gatherSourceData}>Get Lead Source Data</button>
@@ -1224,7 +1224,7 @@ class MainDataViewer extends Component {
                             <select id="sourceDropMenu" value={this.state.targetMarket} onChange={this.handleInputChange} name="targetMarket">
                                 <option value={"none"}>No Target Market Selected</option>
                                 {this.props.userData.targetMarkets.map(target => (
-                                    <option value={target}>{target}</option>
+                                    <option key={target} value={target}>{target}</option>
                                 ))}
                             </select> <button className="btn-primary btn" onClick={this.gatherTargetData}>Get Target Market Data</button>
                         </div> : null}

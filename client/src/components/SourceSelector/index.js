@@ -35,7 +35,7 @@ class SourceSelector extends Component {
                                     {this.props.userData.sources ? <select id="sourceDropMenu" value={this.state.leadSource} onChange={this.handleInputChange} name="leadSource">
                                             <option value={"none"}>No Lead Source Selected</option>
                                         {this.props.userData.sources.map(source => (
-                                            <option value={source}>{source}</option>
+                                            <option key={source} value={source}>{source}</option>
                                         ))}
                                     </select> : null}
                                 </form>

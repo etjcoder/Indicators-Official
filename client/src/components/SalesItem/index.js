@@ -196,7 +196,7 @@ class SalesItem extends Component {
                             {this.props.userData.sources ? <select id="sourceDropMenu" value={this.state.saleSource} onChange={this.handleInputChange} name="saleSource">
                                 <option value={"none"}>No Lead Source Selected</option>
                                 {this.props.userData.sources.map(source => (
-                                    <option value={source}>{source}</option>
+                                    <option key={source} value={source}>{source}</option>
                                 ))}
                             </select> : <p>"No lead sources created yet"</p>}
 
@@ -206,7 +206,7 @@ class SalesItem extends Component {
                             {this.props.userData.targetMarkets ? <select id="sourceDropMenu" value={this.state.saleTargetMkt} onChange={this.handleInputChange} name="saleTargetMkt">
                                 <option value={"none"}>No Target Market Selected</option>
                                 {this.props.userData.targetMarkets.map(target => (
-                                    <option value={target}>{target}</option>
+                                    <option key={target} value={target}>{target}</option>
                                 ))}
                             </select> : <p>"No target markets created yet"</p>}
 

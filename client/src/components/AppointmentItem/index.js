@@ -129,7 +129,7 @@ class AppointmentItem extends Component {
                             {this.props.user.sources ? <select id="sourceDropMenu" defaultValue={this.props.source} value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource">
                                 {/* <option value={"none"}>No Lead Source Selected</option> */}
                                 {this.props.user.sources.map(source => (
-                                    <option value={source}>{source}</option>
+                                    <option key={source} value={source}>{source}</option>
                                 ))}
                             </select> : <p>"No lead sources created yet"</p>}
 
@@ -139,7 +139,7 @@ class AppointmentItem extends Component {
                             {this.props.user.targetMarkets ? <select id="sourceDropMenu" value={this.state.appttargetmkt} onChange={this.handleInputChange} name="appttargetmkt">
                                 {/* <option value={"none"}>No Target Market Selected</option> */}
                                 {this.props.user.targetMarkets.map(target => (
-                                    <option value={target}>{target}</option>
+                                    <option key={target} value={target}>{target}</option>
                                 ))}
                             </select> : <p>"No target markets created yet"</p>}
                             <br />

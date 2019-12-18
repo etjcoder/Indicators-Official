@@ -1,20 +1,6 @@
 import React, { Component } from "react";
 import "./Home.css";
-// import Nav from "../components/Nav";
-// import Header from "../components/Header";
 import ProtegeCallBtnContainer from "../components/ProtegeCallBtnContainer"
-// import ProtegeC1 from "../components/ProtegeC1"
-// import ProtegeC2 from "../components/ProtegeC2"
-// import ProtegeC3 from "../components/ProtegeC3"
-// import ProtegeC4 from "../components/ProtegeC4"
-// import ProtegeC5 from "../components/ProtegeC5"
-// import ProtegeC6 from "../components/ProtegeC6"
-// import ProtegeC7 from "../components/ProtegeC7"
-// import DailyResultsProtege from "../components/DailyResultsProtege"
-// import RemindersProtege from "../components/RemindersProtege"
-// import ToDoInput from "../components/ToDoInput"
-// import DataBasicProtege from "../components/DataBasicProtege"
-// import DataAdvancedProtege from "../components/DataAdvancedProtege"
 import AppointmentItem from "../components/AppointmentItem"
 import AppointmentCreator from "../components/AppointmentCreator"
 import DialDataSide from "../components/DialDataSide"
@@ -115,7 +101,7 @@ class ProtegeDash extends Component {
     }
 
     getUserData = () => {
-        console.log(this.props.user.uid)
+        // console.log(this.props.user.uid)
         var userID = this.props.user.uid
         API.getUserData(userID)
             .then(res =>
@@ -133,7 +119,7 @@ class ProtegeDash extends Component {
     }
 
     getProtegeNoteData = () => {
-        console.log(this.state.userData._id)
+        // console.log(this.state.userData._id)
 
         API.getProtegeNotes(this.state.userData._id)
             .then(res =>
@@ -166,7 +152,7 @@ class ProtegeDash extends Component {
 
     getContactData = () => {
         setTimeout(() => {
-            console.log("Searching for contacts using: " + this.state.userData._id)
+            // console.log("Searching for contacts using: " + this.state.userData._id)
             API.getContacts(this.state.userData._id)
                 .then(res =>
                     // console.log("Contacts: " )
@@ -183,7 +169,7 @@ class ProtegeDash extends Component {
 
     gatherAppointments = () => {
         setTimeout(() => {
-            console.log("Gathering appointemnts using ID: " + this.state.userData._id)
+            // console.log("Gathering appointemnts using ID: " + this.state.userData._id)
             API.getAppointments(this.state.userData._id)
                 .then(res =>
                     this.setState({
@@ -196,7 +182,7 @@ class ProtegeDash extends Component {
 
     gatherSales = () => {
         setTimeout(() => {
-            console.log("Gathering sales using ID: " + this.state.userData._id)
+            // console.log("Gathering sales using ID: " + this.state.userData._id)
             API.getSales(this.state.userData._id)
                 .then(res =>
                     this.setState({
@@ -208,7 +194,7 @@ class ProtegeDash extends Component {
     };
 
     parseAppointments = () => {
-        console.log("Parsing appointments: " + this.state.appointments)
+        // console.log("Parsing appointments: " + this.state.appointments)
         var CPA = 0;
         var BPA = 0;
         var CCA = 0;
@@ -222,7 +208,7 @@ class ProtegeDash extends Component {
         var CTA = 0;
         var BTA = 0;
         for (var i = 0; i < this.state.appointments.length; i++) {
-            console.log(this.state.appointments[i])
+            // console.log(this.state.appointments[i])
             switch (this.state.appointments[i].type) {
                 case "CPD":
                     CPA++
@@ -354,7 +340,7 @@ class ProtegeDash extends Component {
     }
 
     parseContacts = () => {
-        console.log("Parsing Contacts: " + this.state.contactData)
+        // console.log("Parsing Contacts: " + this.state.contactData)
         var CPC = 0;
         var BPC = 0;
         var CCC = 0;

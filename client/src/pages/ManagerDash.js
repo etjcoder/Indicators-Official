@@ -93,7 +93,7 @@ class ManagerDash extends Component {
             id: ProtegeID
         }).then(res => {
             console.log("Added Protege to Mentor")
-        }). catch(err => {
+        }).catch(err => {
             console.log("Unsuccssfully added Protege to Mentor")
         })
     

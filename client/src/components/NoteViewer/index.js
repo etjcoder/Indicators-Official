@@ -97,7 +97,7 @@ class NoteViewer extends Component {
                         {this.props.tagNotes ?
 
                             this.props.tagNotes.map(note => (
-                                <div>
+                                <div key={note._id}>
 
                                     <p>Note: {note.noteText}</p>
                                     <p style={{ fontSize: '8px' }}>
@@ -129,7 +129,7 @@ class NoteViewer extends Component {
                         {this.props.postNotes ?
 
                             this.props.postNotes.map(note => (
-                                <div>
+                                <div key={note}>
 
                                     <p>Note: {note.noteText}</p>
                                     <p style={{ fontSize: '8px' }}>
