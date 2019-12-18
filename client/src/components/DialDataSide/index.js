@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import API from '../../utils/API';
-// import API from "../../utils/API";
 import { Bar, Pie } from 'react-chartjs-2';
 
 class DialDataSide extends Component {

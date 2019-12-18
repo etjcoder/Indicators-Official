@@ -243,6 +243,7 @@ class ProtegeCallBtnContainer extends Component {
                 break;
             case "BTD":
                 cogoToast.success("+1 Target Mkt Scheduled")
+                break;
             default:
                 console.log("Error with cogoToast")
         }

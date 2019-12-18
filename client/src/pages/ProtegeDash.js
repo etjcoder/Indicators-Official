@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Home.css";
-import Nav from "../components/Nav";
+// import Nav from "../components/Nav";
 // import Header from "../components/Header";
 import ProtegeCallBtnContainer from "../components/ProtegeCallBtnContainer"
 // import ProtegeC1 from "../components/ProtegeC1"

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import API from '../../utils/API';
 import { Bar, Pie } from 'react-chartjs-2';
 
 class MentorDataViewer extends Component {
@@ -145,7 +144,6 @@ class MentorDataViewer extends Component {
                 showSuspectPerformance: false,
                 showReferralPerformance: false,
                 showTargetPerformance: false,
-                showSourcePerformance: false,
                 showSourcePerformance: false,
                 showSelectedTargetPerformance: false
             })
@@ -532,15 +530,15 @@ class MentorDataViewer extends Component {
             }
         }
 
-        for (var i = 0; i < this.props.contactData.length; i++) {
-            if (this.props.contactData[i].source === this.state.leadSource) {
-                parsedSourceData.parsedContacts.push(this.props.contactData[i])
+        for (var j = 0; j < this.props.contactData.length; j++) {
+            if (this.props.contactData[j].source === this.state.leadSource) {
+                parsedSourceData.parsedContacts.push(this.props.contactData[j])
             }
         }
 
-        for (var i = 0; i < this.props.apptData.length; i++) {
-            if (this.props.apptData[i].source === this.state.leadSource) {
-                parsedSourceData.parsedAppts.push(this.props.apptData[i])
+        for (var k = 0; k < this.props.apptData.length; k++) {
+            if (this.props.apptData[k].source === this.state.leadSource) {
+                parsedSourceData.parsedAppts.push(this.props.apptData[k])
             }
         }
 
@@ -844,15 +842,15 @@ class MentorDataViewer extends Component {
             }
         }
 
-        for (var i = 0; i < this.props.contactData.length; i++) {
-            if (this.props.contactData[i].targetMarket === this.state.targetMarket) {
-                parsedTargetData.parsedContacts.push(this.props.contactData[i])
+        for (var j = 0; j < this.props.contactData.length; j++) {
+            if (this.props.contactData[j].targetMarket === this.state.targetMarket) {
+                parsedTargetData.parsedContacts.push(this.props.contactData[j])
             }
         }
 
-        for (var i = 0; i < this.props.apptData.length; i++) {
-            if (this.props.apptData[i].targetMarket === this.state.targetMarket) {
-                parsedTargetData.parsedAppts.push(this.props.apptData[i])
+        for (var k = 0; k < this.props.apptData.length; k++) {
+            if (this.props.apptData[k].targetMarket === this.state.targetMarket) {
+                parsedTargetData.parsedAppts.push(this.props.apptData[k])
             }
         }
 

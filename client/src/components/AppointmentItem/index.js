@@ -62,17 +62,6 @@ class AppointmentItem extends Component {
     handleApptUpdate = event => {
         event.preventDefault()
 
-        var ApptData = {
-            apptname: this.state.apptname,
-            source: this.state.apptsource,
-            notes: this.state.apptnotes,
-            date: this.state.apptdate,
-            targetMarket: this.state.targetMarket,
-            id: this.props.id
-        }
-
-        // console.log(ApptData)
-
         this.setState({
             editModalIsOpen: false
         })

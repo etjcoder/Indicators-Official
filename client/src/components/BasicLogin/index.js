@@ -9,12 +9,6 @@ class BasicLogin extends Component {
         this.state = {
             email: '',
             password: '',
-            // designation: '',
-            // mentor: '',
-            // proteges: [],
-            // firstName: "",
-            // lastName: "",
-            // manager: "",
             userData: ""
         }
     }
@@ -35,7 +29,8 @@ class BasicLogin extends Component {
 
         var protege = false;
         var mentor = false;
-        var manager = false;
+        console.log(protege, mentor)
+        // var manager = false;
         API.getProtege(uid)
             .then(res => {
                 console.log(res)

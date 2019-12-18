@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./style.css";
-import API from "../../utils/API";
 
 class Nav extends Component {
 

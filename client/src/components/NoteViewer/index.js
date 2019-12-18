@@ -89,7 +89,7 @@ class NoteViewer extends Component {
             <div className="row">
             <div className="col-lg-6">
                 <div className="note-card card">
-                    <div id="note-welcome" div className="card-title">
+                    <div id="note-welcome" className="card-title">
                         <h4><u>View Notes Your Tagged In</u></h4>
                     </div>
                     <div className="card-body">
@@ -121,7 +121,7 @@ class NoteViewer extends Component {
             </div>
             <div className="col-lg-6">
                 <div className="note-card card">
-                    <div id="note-welcome" div className="card-title">
+                    <div id="note-welcome" className="card-title">
                         <h4><u>View Notes You Made</u></h4>
                     </div>
                     <div className="card-body">

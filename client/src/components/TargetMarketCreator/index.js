@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ReactDom from "react-dom";
 import { Input } from "../Form";
 import API from "../../utils/API";
 import cogoToast from "cogo-toast"

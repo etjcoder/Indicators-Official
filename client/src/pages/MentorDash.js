@@ -3,7 +3,7 @@ import "./Home.css";
 import Nav from "../components/Nav";
 import API from "../utils/API";
 import MentorDataViewer from "../components/MentorDataViewer"
-import NoteViewer from "../components/NoteViewer";
+// import NoteViewer from "../components/NoteViewer";
 // import Header from "../components/Header";
 // import TopBarMentor from "../components/TopBarMentor";
 // import NoteViewer from "../components/NoteViewer";
