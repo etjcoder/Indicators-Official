@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./Home.css";
-// import ProtegeCallBtnContainer from "../components/ProtegeCallBtnContainer"
-import ProtegeCallBtnContainer from "../components/ProtegeCallBtnContainer-Onsen"
+import ProtegeCallBtnContainer from "../components/ProtegeCallBtnContainer"
 import AppointmentItem from "../components/AppointmentItem"
 import AppointmentCreator from "../components/AppointmentCreator"
 import DialDataSide from "../components/DialDataSide"
@@ -78,7 +77,7 @@ class ProtegeDash extends Component {
             this.gatherMentors()
             this.gatherProteges()
 
-        }, 1200)
+        }, 1500)
     }
 
     handleInputChange = event => {
