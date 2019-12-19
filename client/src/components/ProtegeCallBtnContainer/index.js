@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import cogoToast from "cogo-toast";
 import Modal from 'react-modal'
-
-
+import { Button } from 'shards-react';
+import "./style.css"
 
 class ProtegeCallBtnContainer extends Component {
 
@@ -16,7 +16,8 @@ class ProtegeCallBtnContainer extends Component {
         appttargetmkt: "",
         apptnotes: "",
         appttype: "",
-        userdials: []
+        userdials: [],
+        otherAttributes: null
     }
 
     componentDidMount() {
@@ -179,7 +180,7 @@ class ProtegeCallBtnContainer extends Component {
             typeOfDial === "CND" ||
             typeOfDial === "CSD" ||
             typeOfDial === "CRD" ||
-            typeOfDial === "CTD" ) {
+            typeOfDial === "CTD") {
             levelOfDial = "cashflow"
         } else {
             levelOfDial = "business"
@@ -269,7 +270,7 @@ class ProtegeCallBtnContainer extends Component {
             typeOfDial === "CND" ||
             typeOfDial === "CSD" ||
             typeOfDial === "CRD" ||
-            typeOfDial === "CTD" ) {
+            typeOfDial === "CTD") {
             levelOfDial = "cashflow"
         } else {
             levelOfDial = "business"
@@ -350,68 +351,67 @@ class ProtegeCallBtnContainer extends Component {
             <div className="row">
                 {/* <Nav /> */}
                 <div className="card col-12" style={{ height: '500px' }}>
-                    <ul className="nav nav-tabs" id="myTab" role="tablist">
-                        <li className="nav-item">
+                    <ul className="nav nav-pills card-header-pills light" id="myTab" role="tablist">
+                        <li className="nav-item" id="prospect-label">
                             <a className="nav-link active" id="prospect-tab" data-toggle="tab" href="#prospect" role="tab" aria-controls="prospect" aria-selected="true">Prospect</a>
                         </li>
-                        <li className="nav-item">
+                        <li className="nav-item" id="client-label">
                             <a className="nav-link" id="client-tab" data-toggle="tab" href="#client" role="tab" aria-controls="profile" aria-selected="false">Client</a>
                         </li>
-                        <li className="nav-item">
+                        <li className="nav-item" id="natural-label">
                             <a className="nav-link" id="natural-tab" data-toggle="tab" href="#natural" role="tab" aria-controls="natural" aria-selected="false">Natural</a>
                         </li>
-                        <li className="nav-item">
+                        <li className="nav-item" id="suspect-label">
                             <a className="nav-link" id="suspect-tab" data-toggle="tab" href="#suspect" role="tab" aria-controls="suspect" aria-selected="false">Suspect</a>
                         </li>
-                        <li className="nav-item">
+                        <li className="nav-item" id="referral-label">
                             <a className="nav-link" id="referral-tab" data-toggle="tab" href="#referral" role="tab" aria-controls="referral" aria-selected="false">Referral</a>
                         </li>
 
-                        <li className="nav-item">
+                        <li className="nav-item" id="target-label">
                             <a className="nav-link" id="target-mkt-tab" data-toggle="tab" href="#target-mkt" role="tab" aria-controls="target-mkt" aria-selected="false">Target Market</a>
                         </li>
                     </ul>
-                    <div className="tab-content" id="myTabContent" style={{ textAlign: "center", padding: '50px' }}>
+                    <div className="tab-content" id="myTabContent" style={{textAlign: "center"}}>
 
                         {/* Eventually we'll want to make it so that the "Source" is triggered as a drop-down and the user can make their own Source to reference later */}
                         <div className="tab-pane fade show active" id="prospect" role="tabpanel" aria-labelledby="prospect-tab">
                             <div className="row">
-                                <div className="col-md-12">
-                                    <button onClick={() => this.findDials()}>Get Dial Data</button>
-                                </div>
                                 <div className="col-md-6">
-                                    <h3><u>Cash-Flow Prospect:</u></h3>
-                                    <button onClick={() => this.handleMissedCallSubmit("CPD")} value="CPD" className="btn btn-primary">Unanswered</button>
-                                    <button onClick={() => this.handleContactCallSubmit("CPD")} value="CPD" className="btn btn-primary">Answered, No appointment</button>
-                                    <button onClick={() => this.handleScheduledApptSubmit("CPD")} value="CPD" className="btn btn-primary">Scheduled Appointment</button>
+                                    <p><u>Cash-Flow Prospect:</u></p>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="info" onClick={() => this.handleMissedCallSubmit("CPD")} value="CPD" className="btn btn-primary">Missed Call</Button>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="warning" onClick={() => this.handleContactCallSubmit("CPD")} value="CPD" className="btn btn-primary">Contacted</Button>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="success" onClick={() => this.handleScheduledApptSubmit("CPD")} value="CPD" className="btn btn-primary">Scheduled</Button>
                                 </div>
                                 <hr />
                                 <br />
                                 <div className="col-md-6">
-                                    <h3><u>Business Prospect:</u></h3>
-                                    <button onClick={() => this.handleMissedCallSubmit("BPD")} value="BPD" className="btn btn-primary">Unanswered</button>
-                                    <button onClick={() => this.handleContactCallSubmit("BPD")} value="BPD" className="btn btn-primary">Answered, No appointment</button>
-                                    <button onClick={() => this.handleScheduledApptSubmit("BPD")} value="BPD" className="btn btn-primary">Scheduled Appointment</button>
+                                    <p><u>Business Prospect:</u></p>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="info" onClick={() => this.handleMissedCallSubmit("BPD")} value="BPD" className="btn btn-primary">Missed Call</Button>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="warning" onClick={() => this.handleContactCallSubmit("BPD")} value="BPD" className="btn btn-primary">Contacted</Button>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="success" onClick={() => this.handleScheduledApptSubmit("BPD")} value="BPD" className="btn btn-primary">Scheduled</Button>
                                 </div>
+
+
                             </div>
                         </div>
 
                         <div className="tab-pane fade" id="client" role="tabpanel" aria-labelledby="client-tab">
                             <div className="row">
                                 <div className="col-md-6">
-                                    <h3><u>Cash-Flow Client:</u></h3>
-                                    <button onClick={() => this.handleMissedCallSubmit("CCD")} value="CCD" className="btn btn-primary">Unanswered</button>
-                                    <button onClick={() => this.handleContactCallSubmit("CCD")} value="CCD" className="btn btn-primary">Answered, No appointment</button>
-                                    <button onClick={() => this.handleScheduledApptSubmit("CCD")} value="CCD" className="btn btn-primary">Scheduled Appointment</button>
+                                    <p><u>Cash-Flow Client:</u></p>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="info" onClick={() => this.handleMissedCallSubmit("CCD")} value="CCD" className="btn btn-primary">Missed Call</Button>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="warning" onClick={() => this.handleContactCallSubmit("CCD")} value="CCD" className="btn btn-primary">Contacted</Button>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="success" onClick={() => this.handleScheduledApptSubmit("CCD")} value="CCD" className="btn btn-primary">Scheduled</Button>
                                 </div>
                                 <hr />
                                 <br />
                                 <div className="col-md-6">
-                                    <h3><u>Business Client Dial:</u></h3>
+                                    <p><u>Business Client Dial:</u></p>
 
-                                    <button onClick={() => this.handleMissedCallSubmit("BCD")} value="BCD" className="btn btn-primary">Unanswered</button>
-                                    <button onClick={() => this.handleContactCallSubmit("BCD")} value="BCD" className="btn btn-primary">Answered, No appointment</button>
-                                    <button onClick={() => this.handleScheduledApptSubmit("BCD")} value="BCD" className="btn btn-primary">Scheduled Appointment</button>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="info" onClick={() => this.handleMissedCallSubmit("BCD")} value="BCD" className="btn btn-primary">Missed Call</Button>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="warning" onClick={() => this.handleContactCallSubmit("BCD")} value="BCD" className="btn btn-primary">Contacted</Button>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="success" onClick={() => this.handleScheduledApptSubmit("BCD")} value="BCD" className="btn btn-primary">Scheduled</Button>
                                 </div>
                             </div>
                         </div>
@@ -419,18 +419,18 @@ class ProtegeCallBtnContainer extends Component {
                         <div className="tab-pane fade" id="natural" role="tabpanel" aria-labelledby="natural-tab">
                             <div className="row">
                                 <div className="col-md-6">
-                                    <h3><u>Cash-Flow Natural Market:</u></h3>
-                                    <button onClick={() => this.handleMissedCallSubmit("CND")} value="CND" className="btn btn-primary">Unanswered</button>
-                                    <button onClick={() => this.handleContactCallSubmit("CND")} value="CND" className="btn btn-primary">Answered, No appointment</button>
-                                    <button onClick={() => this.handleScheduledApptSubmit("CND")} value="CND" className="btn btn-primary">Scheduled Appointment</button>
+                                    <p><u>Cash-Flow Natural Market:</u></p>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="info" onClick={() => this.handleMissedCallSubmit("CND")} value="CND" className="btn btn-primary">Missed Call</Button>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="warning" onClick={() => this.handleContactCallSubmit("CND")} value="CND" className="btn btn-primary">Contacted</Button>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="success" onClick={() => this.handleScheduledApptSubmit("CND")} value="CND" className="btn btn-primary">Scheduled</Button>
                                 </div>
                                 <hr />
                                 <br />
                                 <div className="col-md-6">
-                                    <h3><u>Business Natural Market:</u></h3>
-                                    <button onClick={() => this.handleMissedCallSubmit("BND")} value="BND" className="btn btn-primary">Unanswered</button>
-                                    <button onClick={() => this.handleContactCallSubmit("BND")} value="BND" className="btn btn-primary">Answered, No appointment</button>
-                                    <button onClick={() => this.handleScheduledApptSubmit("BND")} value="BND" className="btn btn-primary">Scheduled Appointment</button>
+                                    <p><u>Business Natural Market:</u></p>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="info" onClick={() => this.handleMissedCallSubmit("BND")} value="BND" className="btn btn-primary">Missed Call</Button>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="warning" onClick={() => this.handleContactCallSubmit("BND")} value="BND" className="btn btn-primary">Contacted</Button>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="success" onClick={() => this.handleScheduledApptSubmit("BND")} value="BND" className="btn btn-primary">Scheduled</Button>
                                 </div>
                             </div>
                         </div>
@@ -439,18 +439,18 @@ class ProtegeCallBtnContainer extends Component {
                         <div className="tab-pane fade" id="suspect" role="tabpanel" aria-labelledby="suspect-tab">
                             <div className="row">
                                 <div className="col-md-6">
-                                    <h3><u>Cash-Flow Suspect:</u></h3>
-                                    <button onClick={() => this.handleMissedCallSubmit("CSD")} value="CSD" className="btn btn-primary">Unanswered</button>
-                                    <button onClick={() => this.handleContactCallSubmit("CSD")} value="CSD" className="btn btn-primary">Answered, No appointment</button>
-                                    <button onClick={() => this.handleScheduledApptSubmit("CSD")} value="CSD" className="btn btn-primary">Scheduled Appointment</button>
+                                    <p><u>Cash-Flow Suspect:</u></p>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="info" onClick={() => this.handleMissedCallSubmit("CSD")} value="CSD" className="btn btn-primary">Missed Call</Button>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="warning" onClick={() => this.handleContactCallSubmit("CSD")} value="CSD" className="btn btn-primary">Contacted</Button>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="success" onClick={() => this.handleScheduledApptSubmit("CSD")} value="CSD" className="btn btn-primary">Scheduled</Button>
                                 </div>
                                 <hr />
                                 <br />
                                 <div className="col-md-6">
-                                    <h3><u>Business Suspect:</u></h3>
-                                    <button onClick={() => this.handleMissedCallSubmit("BSD")} value="BSD" className="btn btn-primary">Unanswered</button>
-                                    <button onClick={() => this.handleContactCallSubmit("BSD")} value="BSD" className="btn btn-primary">Answered, No appointment</button>
-                                    <button onClick={() => this.handleScheduledApptSubmit("BSD")} value="BSD" className="btn btn-primary">Scheduled Appointment</button>
+                                    <p><u>Business Suspect:</u></p>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="info" onClick={() => this.handleMissedCallSubmit("BSD")} value="BSD" className="btn btn-primary">Missed Call</Button>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="warning" onClick={() => this.handleContactCallSubmit("BSD")} value="BSD" className="btn btn-primary">Contacted</Button>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="success" onClick={() => this.handleScheduledApptSubmit("BSD")} value="BSD" className="btn btn-primary">Scheduled</Button>
                                 </div>
                             </div>
                         </div>
@@ -459,18 +459,18 @@ class ProtegeCallBtnContainer extends Component {
                         <div className="tab-pane fade" id="referral" role="tabpanel" aria-labelledby="referral-tab">
                             <div className="row">
                                 <div className="col-md-6">
-                                    <h3><u>Cash-Flow Referral:</u></h3>
-                                    <button onClick={() => this.handleMissedCallSubmit("CRD")} value="CRD" className="btn btn-primary">Unanswered</button>
-                                    <button onClick={() => this.handleContactCallSubmit("CRD")} value="CRD" className="btn btn-primary">Answered, No appointment</button>
-                                    <button onClick={() => this.handleScheduledApptSubmit("CRD")} value="CRD" className="btn btn-primary">Scheduled Appointment</button>
+                                    <p><u>Cash-Flow Referral:</u></p>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="info" onClick={() => this.handleMissedCallSubmit("CRD")} value="CRD" className="btn btn-primary">Missed Call</Button>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="warning" onClick={() => this.handleContactCallSubmit("CRD")} value="CRD" className="btn btn-primary">Contacted</Button>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="success" onClick={() => this.handleScheduledApptSubmit("CRD")} value="CRD" className="btn btn-primary">Scheduled</Button>
                                 </div>
                                 <hr />
                                 <br />
                                 <div className="col-md-6">
-                                    <h3><u>Business Referral:</u></h3>
-                                    <button onClick={() => this.handleMissedCallSubmit("BRD")} value="BRD" className="btn btn-primary">Unanswered</button>
-                                    <button onClick={() => this.handleContactCallSubmit("BRD")} value="BRD" className="btn btn-primary">Answered, No appointment</button>
-                                    <button onClick={() => this.handleScheduledApptSubmit("BRD")} value="BRD" className="btn btn-primary">Scheduled Appointment</button>
+                                    <p><u>Business Referral:</u></p>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="info" onClick={() => this.handleMissedCallSubmit("BRD")} value="BRD" className="btn btn-primary">Missed Call</Button>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="warning" onClick={() => this.handleContactCallSubmit("BRD")} value="BRD" className="btn btn-primary">Contacted</Button>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="success" onClick={() => this.handleScheduledApptSubmit("BRD")} value="BRD" className="btn btn-primary">Scheduled</Button>
                                 </div>
                             </div>
                         </div>
@@ -478,18 +478,18 @@ class ProtegeCallBtnContainer extends Component {
                         <div className="tab-pane fade" id="target-mkt" role="tabpanel" aria-labelledby="target-mkt-tab">
                             <div className="row">
                                 <div className="col-md-6">
-                                    <h3><u>Cash-Flow Target Mkt:</u></h3>
-                                    <button onClick={() => this.handleMissedCallSubmit("CTD")} value="CTD" className="btn btn-primary">Unanswered</button>
-                                    <button onClick={() => this.handleContactCallSubmit("CTD")} value="CTD" className="btn btn-primary">Answered, No appointment</button>
-                                    <button onClick={() => this.handleScheduledApptSubmit("CTD")} value="CTD" className="btn btn-primary">Scheduled Appointment</button>
+                                    <p><u>Cash-Flow Target Mkt:</u></p>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="info" onClick={() => this.handleMissedCallSubmit("CTD")} value="CTD" className="btn btn-primary">Missed Call</Button>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="warning" onClick={() => this.handleContactCallSubmit("CTD")} value="CTD" className="btn btn-primary">Contacted</Button>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="success" onClick={() => this.handleScheduledApptSubmit("CTD")} value="CTD" className="btn btn-primary">Scheduled</Button>
                                 </div>
                                 <hr />
                                 <br />
                                 <div className="col-md-6">
-                                    <h3><u>Business Target Mkt:</u></h3>
-                                    <button onClick={() => this.handleMissedCallSubmit("BTD")} value="BTD" className="btn btn-primary">Unanswered</button>
-                                    <button onClick={() => this.handleContactCallSubmit("BTD")} value="BTD" className="btn btn-primary">Answered, No appointment</button>
-                                    <button onClick={() => this.handleScheduledApptSubmit("BTD")} value="BTD" className="btn btn-primary">Scheduled Appointment</button>
+                                    <p><u>Business Target Mkt:</u></p>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="info" onClick={() => this.handleMissedCallSubmit("BTD")} value="BTD" className="btn btn-primary">Missed Call</Button>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="warning" onClick={() => this.handleContactCallSubmit("BTD")} value="BTD" className="btn btn-primary">Contacted</Button>
+                                    <Button style={{width: '80%', borderRadius: 0}} theme="success" onClick={() => this.handleScheduledApptSubmit("BTD")} value="BTD" className="btn btn-primary">Scheduled</Button>
                                 </div>
                             </div>
                         </div>
@@ -520,7 +520,7 @@ class ProtegeCallBtnContainer extends Component {
                     <div className="form-group" id="appt-holder ">
                         <Modal isOpen={this.state.modalIsOpen} onAfterOpen={this.afterOpenModal} onRequestClose={this.closeModal} style={this.customStyles} contentLabel="Your Request Viewer">
                             {/* <div className="card"> */}
-                            <h3>Appointment Logger</h3>
+                            <p>Appointment Logger</p>
                             <form className="form-group">
                                 <label for="apptname-input">Appointment Name:</label>
                                 <input id="apptname-input" className="form-control" value={this.state.apptname} onChange={this.handleInputChange} name="apptname" type="text" placeholder="Give your appointment a name!" />

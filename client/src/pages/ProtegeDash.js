@@ -443,7 +443,7 @@ class ProtegeDash extends Component {
                 </div>
 
                 <div className="row">
-                    <div className="col-lg-6">
+                    <div className="col-lg-8">
                         <ProtegeCallBtnContainer
                             rerender={this.getUserData}
                             user={this.state.userData}
@@ -478,7 +478,7 @@ class ProtegeDash extends Component {
                         Todos:
                         Notes:
                     */}
-                    <div className="col-lg-6">
+                    <div className="col-lg-4">
                         <div className="row">
                             <div className="col-12">
                                 <DialDataSide

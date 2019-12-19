@@ -1,0 +1,85 @@
+.nav-tabs > li > a:hover {
+    color: black !important;
+}
+
+#prospect-label {
+    background-color: white;
+}
+
+#prospect-tab {
+    color: navy
+}
+
+#prospect {
+    /* background-color: white */
+    background-color: white;
+    padding: 50px
+}
+
+#client-label {
+    background-color: lightblue
+}
+
+#client-tab {
+    color: navy
+}
+
+#client {
+    background-color: lightblue;
+    padding: 50px
+}
+
+#natural-label {
+    background-color: lightskyblue
+}
+
+#natural-tab {
+    color: navy
+}
+
+#natural {
+    background-color: lightskyblue;
+    padding: 50px
+}
+
+#suspect-label {
+    background-color: royalblue
+}
+
+#suspect-tab {
+    color: white
+}
+
+#suspect {
+    background-color: royalblue;
+    padding: 50px;
+    color: white
+}
+
+#referral-label {
+    background-color: blue
+}
+
+#referral-tab {
+    color: white
+}
+
+#referral {
+    background-color: blue;
+    padding: 50px;
+    color: white;
+}
+
+#target-label {
+    background-color: navy;
+}
+
+#target-mkt-tab {
+    color: white
+}
+
+#target-mkt {
+    background-color: navy;
+    padding: 50px;
+    color: white
+}
