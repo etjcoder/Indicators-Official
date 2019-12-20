@@ -37,11 +37,13 @@ a {
 
 
 #prospect-label {
-    background-color: whitesmoke;
+    background-color: rgba(236,240,247,0.8);
+    border-color: rgba(236,240,247,0.8)
 }
 
 #prospect-label:active {
-    background-color: whitesmoke !important;
+    background-color: rgba(236,240,247,0.8) !important;
+    border-color: rgba(236,240,247,0.8) !important;
 }
 
 #prospect-tab {
@@ -49,17 +51,18 @@ a {
 }
 
 #prospect-tab:active {
-    background-color: whitesmoke !important;
+    background-color: rgba(236,240,247,0.8) !important;
+    border-color: rgba(236,240,247,0.8) !important;
 }
 
 #prospect {
     /* background-color: white */
-    background-color: whitesmoke;
+    background-color: rgba(236,240,247,0.8);
     padding: 50px
 }
 
 #client-label {
-    background-color: lightblue
+    background-color: rgba(215,234,255,0.8)
 }
 
 #client-tab {
@@ -67,12 +70,12 @@ a {
 }
 
 #client {
-    background-color: lightblue;
+    background-color: rgba(215,234,255,0.8);
     padding: 50px
 }
 
 #natural-label {
-    background-color: lightskyblue
+    background-color: rgba(176,214,255,0.8)
 }
 
 #natural-tab {
@@ -80,12 +83,12 @@ a {
 }
 
 #natural {
-    background-color: lightskyblue;
+    background-color: rgba(176,214,255,0.8);
     padding: 50px
 }
 
 #suspect-label {
-    background-color: royalblue
+    background-color: rgba(114,180,255,0.8)
 }
 
 #suspect-tab {
@@ -93,13 +96,13 @@ a {
 }
 
 #suspect {
-    background-color: royalblue;
+    background-color: rgba(114,180,255,0.8);
     padding: 50px;
     color: white
 }
 
 #referral-label {
-    background-color: blue
+    background-color: rgba(77,160,255,0.8)
 }
 
 #referral-tab {
@@ -107,13 +110,13 @@ a {
 }
 
 #referral {
-    background-color: blue;
+    background-color: rgba(77,160,255,0.8);
     padding: 50px;
     color: white;
 }
 
 #target-label {
-    background-color: navy;
+    background-color: rgba(36,138,255,0.8)
 }
 
 #target-mkt-tab {
@@ -121,7 +124,7 @@ a {
 }
 
 #target-mkt {
-    background-color: navy;
+    background-color: rgba(36,138,255,0.8);
     padding: 50px;
     color: white
 }

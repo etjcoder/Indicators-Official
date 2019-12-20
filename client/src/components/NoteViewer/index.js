@@ -88,13 +88,13 @@ class NoteViewer extends Component {
 
     render() {
         return (
-            <div className="row" id="note-view-container-1">
+            <div className="row" id="note-view-container-1" style={{color: 'darkslategrey'}}>
                 <div className="col-lg-6" id="note-viewer-1" style={{padding: '10px' }}>
                     <div className="">
                         <div id="note-welcome" className="">
-                            <h4><u>View Notes Your Tagged In</u></h4>
+                            <h4 style={{color: 'whitesmoke', textAlign: 'center'}}>Notes you're tagged in:</h4>
                         </div>
-                        <div>
+                        <div className="card" style={{height: 500, padding: 20, overflow: 'auto', backgroundColor: 'transparent'}}>
 
                             {this.props.tagNotes ?
 
@@ -115,7 +115,7 @@ class NoteViewer extends Component {
                                     </div>
                                 ))
 
-                                : <p>No Notes Yet!</p>}
+                                : <p style={{color: 'whitesmoke', textAlign: 'center'}}>No notes yet!</p>}
                         </div>
                     </div>
                 </div>
@@ -123,9 +123,9 @@ class NoteViewer extends Component {
                 <div className="col-lg-6" id="note-viewer-2" style={{ padding: '10px' }}>
                     <div className="">
                         <div id="note-welcome" className="">
-                            <h4><u>View Notes You Made</u></h4>
+                            <h4 style={{color: 'whitesmoke', textAlign: 'center'}}>Notes you wrote:</h4>
                         </div>
-                        <div className="">
+                        <div className="card" style={{height: 500, padding: 20, overflow: 'auto', backgroundColor: 'transparent'}}>
 
                             {this.props.postNotes ?
 
@@ -146,7 +146,7 @@ class NoteViewer extends Component {
 
                                 ))
 
-                                : <p>No Notes Yet!</p>}
+                                : <p style={{color: 'whitesmoke', textAlign: 'center'}}>No Notes Yet!</p>}
                         </div>
                     </div>
                 </div>

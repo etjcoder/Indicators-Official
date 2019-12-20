@@ -415,8 +415,8 @@ class ProtegeDash extends Component {
 
     render() {
         return (
-            <div className="container">
-                <div className="jumbotron" style={{ backgroundColor: 'transparent', textAlign: 'center', fontStyle: 'Roboto, sans-serif' }}>
+            <div className="container" style={{backgroundColor: 'transparent'}}>
+                <div className="jumbotron" style={{ backgroundColor: 'rgba(0,0,0,0.5)', color: 'white', textAlign: 'center', fontStyle: 'Roboto, sans-serif' }}>
                     {/* ProtegeHeader */}
                     <h1>Welcome {this.state.userData.firstName} {this.state.userData.lastName}!</h1>
                 </div>
@@ -479,7 +479,7 @@ class ProtegeDash extends Component {
 
                 <div id="note-container">
                     <div className="row">
-                        <div className="col card bg-light" style={{padding: '50px'}}>
+                        <div className="col card" style={{padding: '50px', backgroundColor: 'rgba(0,0,0,0.5)', color: 'whitesmoke'}}>
                             <NoteCreator
                                 userData={this.state.userData}
                                 userID={this.state.userData._id}
