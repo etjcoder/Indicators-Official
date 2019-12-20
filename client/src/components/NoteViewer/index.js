@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import API from "../../utils/API";
 import cogoToast from "cogo-toast";
+import { Card, CardBody } from 'shards-react';
 
 class NoteViewer extends Component {
     constructor(props) {
@@ -59,16 +60,16 @@ class NoteViewer extends Component {
 
         API.completeNote(id, {
             completed: true
-        }).then(res => 
+        }).then(res =>
             cogoToast.info("Checked Box")
-            ).catch(err => console.log(err))
+        ).catch(err => console.log(err))
     }
 
     uncompleteNote = id => {
         console.log("Marked note incomplete: " + id)
         API.uncompleteNote(id, {
             completed: false
-        }).then(res => 
+        }).then(res =>
             cogoToast.info("Unchecked Box")
         ).catch(err => console.log(err))
     }
@@ -86,72 +87,65 @@ class NoteViewer extends Component {
 
     render() {
         return (
-            <div className="row">
-            <div className="col-lg-6">
-                <div className="note-card card">
-                    <div id="note-welcome" className="card-title">
-                        <h4><u>View Notes Your Tagged In</u></h4>
-                    </div>
-                    <div className="card-body">
+            <div className="row" id="note-veiw-container-1">
+                <div className="col-lg-6">
+                    <div className="overflow-auto">
+                        <div id="note-welcome" className="">
+                            <h4><u>View Notes Your Tagged In</u></h4>
+                        </div>
+                        <div>
 
-                        {this.props.tagNotes ?
+                            {this.props.tagNotes ?
 
-                            this.props.tagNotes.map(note => (
-                                <div key={note._id}>
-
-                                    <p>Note: {note.noteText}</p>
-                                    <p style={{ fontSize: '8px' }}>
-                                        Tagged to: {note.noteTagged} 
-                                        Completed: {JSON.stringify(note.completed)} 
-                                        <span> 
-                                              {note.completed ? 
-                                                <button value={this.props.id} onClick={() => this.uncompleteNote(note._id)} className="btn btn-success">√</button>
-                                                : <button value={this.props.id} onClick={() => this.completeNote(note._id)} className="btn btn-success">O</button> 
+                                this.props.tagNotes.map(note => (
+                                    <Card key={note._id}>
+                                        <CardBody>
+                                            <p>|| {note.noteText} <span>
+                                                {note.completed ?
+                                                    <button value={this.props.id} onClick={() => this.uncompleteNote(note._id)} style={{ float: 'right' }} className="btn btn-success">√ Completed</button>
+                                                    : <button value={this.props.id} onClick={() => this.completeNote(note._id)} style={{ float: 'right' }} className="btn btn-success">O Incompleted</button>
                                                 }
-                                            <button value={this.props.id} onClick={() => this.deleteNote(note._id)} className="btn btn-danger">X</button>
-                                        </span></p>
+                                                <button value={this.props.id} onClick={() => this.deleteNote(note._id)} style={{ float: 'right' }} className="btn btn-danger">X</button>
+                                            </span></p>
+                                        </CardBody>
+                                    </Card>
+                                ))
 
-                                    <hr />
-                                </div>
-                            ))
+                                : <p>No Notes Yet!</p>}
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
 
-                            : <p>No Notes Yet!</p>}
+                <div className="col-lg-6">
+                    <div className="">
+                        <div id="note-welcome" className="">
+                            <h4><u>View Notes You Made</u></h4>
+                        </div>
+                        <div className="">
+
+                            {this.props.postNotes ?
+
+                                this.props.postNotes.map(note => (
+                                    <Card key={note}>
+                                        <CardBody>
+                                            <p>||: {note.noteText} <span>
+                                                {note.completed ?
+                                                    <button value={this.props.id} onClick={() => this.uncompleteNote(note._id)} style={{ float: 'right' }} className="btn btn-success">√ Completed</button>
+                                                    : <button value={this.props.id} onClick={() => this.completeNote(note._id)} style={{ float: 'right' }} className="btn btn-success">O Mark Complete</button>
+                                                }
+                                                <button value={this.props.id} onClick={() => this.deleteNote(note._id)} style={{ float: 'right' }} className="btn btn-danger">X</button>
+                                            </span></p></CardBody>
+                                    </Card>
+
+                                ))
+
+                                : <p>No Notes Yet!</p>}
+                        </div>
                     </div>
                 </div>
             </div>
-            <div className="col-lg-6">
-                <div className="note-card card">
-                    <div id="note-welcome" className="card-title">
-                        <h4><u>View Notes You Made</u></h4>
-                    </div>
-                    <div className="card-body">
-
-                        {this.props.postNotes ?
-
-                            this.props.postNotes.map(note => (
-                                <div key={note}>
-
-                                    <p>Note: {note.noteText}</p>
-                                    <p style={{ fontSize: '8px' }}>
-                                        Tagged to: {note.noteTagged} 
-                                        Completed: {JSON.stringify(note.completed)} 
-                                        <span> 
-                                        {note.completed ? 
-                                                <button value={this.props.id} onClick={() => this.uncompleteNote(note._id)} className="btn btn-success">√</button>
-                                                : <button value={this.props.id} onClick={() => this.completeNote(note._id)} className="btn btn-success">O</button> 
-                                                }
-                                                <button value={this.props.id} onClick={() => this.deleteNote(note._id)} className="btn btn-danger">X</button>
-                                        </span></p>
-
-                                    <hr />
-                                </div>
-                            ))
-
-                            : <p>No Notes Yet!</p>}
-                    </div>
-                </div>
-            </div>
-        </div>
         )
     }
 

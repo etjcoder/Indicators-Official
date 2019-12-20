@@ -416,7 +416,7 @@ class ProtegeDash extends Component {
     render() {
         return (
             <div className="container">
-                <div className="jumbotron" style={{}}>
+                <div className="jumbotron" style={{ backgroundColor: 'transparent', textAlign: 'center', fontStyle: 'Roboto, sans-serif' }}>
                     {/* ProtegeHeader */}
                     <h1>Welcome {this.state.userData.firstName} {this.state.userData.lastName}!</h1>
                 </div>
@@ -438,38 +438,71 @@ class ProtegeDash extends Component {
                                     </select> : null}
                                 </form>
                             </div> */}
-                    <SourceSelector userData={this.state.userData} setParentState={this.setParentState} />
-                    <TargetMarketSelector userData={this.state.userData} setParentState={this.setParentStateTargetMkt} />
+                    {/* <div className="col-6">
+                        <SourceSelector userData={this.state.userData} setParentState={this.setParentState} />
+                    </div>
+                    <div className="col-6">
+                        <TargetMarketSelector userData={this.state.userData} setParentState={this.setParentStateTargetMkt} />
+                    </div> */}
                 </div>
 
-                <div className="row">
-                    <div className="col-lg-8">
-                        <ProtegeCallBtnContainer
-                            rerender={this.getUserData}
-                            user={this.state.userData}
-                            userID={this.state.userData._id}
-                            source={this.state.leadSource}
-                            targetMarket={this.state.targetMarket}
-                        />
-                        <NoteCreator
-                            userData={this.state.userData}
-                            userID={this.state.userData._id}
-                            proteges={this.state.proteges}
-                            mentors={this.state.mentors}
-                        />
-                        <NoteViewer
-                            userData={this.state.userData}
-                            userID={this.state.userData._id}
-                            proteges={this.state.proteges}
-                            mentors={this.state.mentors}
-                            tagNotes={this.state.taggedNotes}
-                            postNotes={this.state.userData.notes}
-                        />
+                <div id="call-button-container">
+                    <div className="row">
+
+                        <div className="col-lg-8">
+                            <div className="row">
+                                <div className="col">
+                                    <ProtegeCallBtnContainer
+                                        rerender={this.getUserData}
+                                        user={this.state.userData}
+                                        userID={this.state.userData._id}
+                                        source={this.state.leadSource}
+                                        targetMarket={this.state.targetMarket}
+                                        userData={this.state.userData}
+                                        setParentState={this.setParentState}
+                                        setParentStateTargetMkt={this.setParentStateTargetMkt}
+                                    />
+                                    {/* <div className="row">
+                            <div className="col-6">
+                                <SourceSelector userData={this.state.userData} setParentState={this.setParentState} />
+                            </div>
+                            <div className="col-6">
+                                <TargetMarketSelector userData={this.state.userData} setParentState={this.setParentStateTargetMkt} />
+                            </div>
+                        </div> */}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    {/* </div> */}
+                </div>
 
 
-                    {/* Daily Results 4/12 Right
+                <div id="note-container">
+                    <div className="row">
+                        <div className="col card bg-light" style={{padding: '50px'}}>
+                            <NoteCreator
+                                userData={this.state.userData}
+                                userID={this.state.userData._id}
+                                proteges={this.state.proteges}
+                                mentors={this.state.mentors}
+                            />
+                            <hr />
+                            <NoteViewer
+                                userData={this.state.userData}
+                                userID={this.state.userData._id}
+                                proteges={this.state.proteges}
+                                mentors={this.state.mentors}
+                                tagNotes={this.state.taggedNotes}
+                                postNotes={this.state.userData.notes}
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                {/* </div> */}
+
+
+                {/* Daily Results 4/12 Right
                         /// Top - Half ///
                         Dials: 
                         Contacts:
@@ -478,62 +511,62 @@ class ProtegeDash extends Component {
                         Todos:
                         Notes:
                     */}
-                    <div className="col-lg-4">
-                        <div className="row">
-                            <div className="col-12">
-                                <DialDataSide
-                                    userID={this.state.userData._id}
-                                    contactData={this.state.contactData}
-                                    dialData={this.state.dialData}
-                                    apptData={this.state.appointments}
-                                    CPAppts={this.state.CPAppts}
-                                    BPAppts={this.state.BPAppts}
-                                    CCAppts={this.state.CCAppts}
-                                    BCAppts={this.state.BCAppts}
-                                    CNAppts={this.state.CNAppts}
-                                    BNAppts={this.state.BNAppts}
-                                    CPDials={this.state.CPDials}
-                                    BPDials={this.state.BPDials}
-                                    CCDials={this.state.CCDials}
-                                    BCDials={this.state.BCDials}
-                                    CNDials={this.state.CNDials}
-                                    BNDials={this.state.BNDials}
-                                    CPContacts={this.state.CPContacts}
-                                    BPContacts={this.state.BPContacts}
-                                    CCContacts={this.state.CCContacts}
-                                    BCContacts={this.state.BCContacts}
-                                    CNContacts={this.state.CNContacts}
-                                    BNContacts={this.state.BNContacts}
-                                    CSDials={this.state.CSDials}
-                                    BSDials={this.state.BSDials}
-                                    CSContacts={this.state.CSContacts}
-                                    BSContacts={this.state.BSContacts}
-                                    CSAppts={this.state.CSAppts}
-                                    BSAppts={this.state.BSAppts}
-                                    CRDials={this.state.CRDials}
-                                    BRDials={this.state.BRDials}
-                                    CRContacts={this.state.CRContacts}
-                                    BRContacts={this.state.BRContacts}
-                                    CRAppts={this.state.CRAppts}
-                                    BRAppts={this.state.BRAppts}
-                                    CTDials={this.state.CTDials}
-                                    BTDials={this.state.BTDials}
-                                    CTContacts={this.state.CTContacts}
-                                    BTContacts={this.state.BTContacts}
-                                    CTAppts={this.state.CTAppts}
-                                    BTAppts={this.state.BTAppts}
-                                />
-                            </div>
-                            <div className="col-12">
-                                <SourceCreator userData={this.state.userData} />
-                                <TargetMarketCreator userData={this.state.userData} />
-                            </div>
+                <div className="col-lg-4">
+                    <div className="row">
+                        <div className="col-12">
+                            <DialDataSide
+                                userID={this.state.userData._id}
+                                contactData={this.state.contactData}
+                                dialData={this.state.dialData}
+                                apptData={this.state.appointments}
+                                CPAppts={this.state.CPAppts}
+                                BPAppts={this.state.BPAppts}
+                                CCAppts={this.state.CCAppts}
+                                BCAppts={this.state.BCAppts}
+                                CNAppts={this.state.CNAppts}
+                                BNAppts={this.state.BNAppts}
+                                CPDials={this.state.CPDials}
+                                BPDials={this.state.BPDials}
+                                CCDials={this.state.CCDials}
+                                BCDials={this.state.BCDials}
+                                CNDials={this.state.CNDials}
+                                BNDials={this.state.BNDials}
+                                CPContacts={this.state.CPContacts}
+                                BPContacts={this.state.BPContacts}
+                                CCContacts={this.state.CCContacts}
+                                BCContacts={this.state.BCContacts}
+                                CNContacts={this.state.CNContacts}
+                                BNContacts={this.state.BNContacts}
+                                CSDials={this.state.CSDials}
+                                BSDials={this.state.BSDials}
+                                CSContacts={this.state.CSContacts}
+                                BSContacts={this.state.BSContacts}
+                                CSAppts={this.state.CSAppts}
+                                BSAppts={this.state.BSAppts}
+                                CRDials={this.state.CRDials}
+                                BRDials={this.state.BRDials}
+                                CRContacts={this.state.CRContacts}
+                                BRContacts={this.state.BRContacts}
+                                CRAppts={this.state.CRAppts}
+                                BRAppts={this.state.BRAppts}
+                                CTDials={this.state.CTDials}
+                                BTDials={this.state.BTDials}
+                                CTContacts={this.state.CTContacts}
+                                BTContacts={this.state.BTContacts}
+                                CTAppts={this.state.CTAppts}
+                                BTAppts={this.state.BTAppts}
+                            />
+                        </div>
+                        <div className="col-12">
+                            <SourceCreator userData={this.state.userData} />
+                            <TargetMarketCreator userData={this.state.userData} />
                         </div>
                     </div>
-                    {/* Mid Section narrow height 12/12
+                </div>
+                {/* Mid Section narrow height 12/12
                         Reminder / Todo Input 
                     */}
-                    {/* Lower Section 12/12
+                {/* Lower Section 12/12
                         Data Dashboard Below
                             Basic Data Showing first:
                                 Contacts / Dials
@@ -544,132 +577,138 @@ class ProtegeDash extends Component {
                                 Web of Appointment Types
                     
                     */}
-                </div>
-                <div className="row">
-                    <div className="col">
-                        <MainDataViewer
-                            userID={this.state.userData._id}
-                            contactData={this.state.contactData}
-                            dialData={this.state.dialData}
-                            apptData={this.state.appointments}
-                            CPAppts={this.state.CPAppts}
-                            BPAppts={this.state.BPAppts}
-                            CCAppts={this.state.CCAppts}
-                            BCAppts={this.state.BCAppts}
-                            CNAppts={this.state.CNAppts}
-                            BNAppts={this.state.BNAppts}
-                            CPDials={this.state.CPDials}
-                            BPDials={this.state.BPDials}
-                            CCDials={this.state.CCDials}
-                            BCDials={this.state.BCDials}
-                            CNDials={this.state.CNDials}
-                            BNDials={this.state.BNDials}
-                            CPContacts={this.state.CPContacts}
-                            BPContacts={this.state.BPContacts}
-                            CCContacts={this.state.CCContacts}
-                            BCContacts={this.state.BCContacts}
-                            CNContacts={this.state.CNContacts}
-                            BNContacts={this.state.BNContacts}
-                            CSDials={this.state.CSDials}
-                            BSDials={this.state.BSDials}
-                            CSContacts={this.state.CSContacts}
-                            BSContacts={this.state.BSContacts}
-                            CSAppts={this.state.CSAppts}
-                            BSAppts={this.state.BSAppts}
-                            CRDials={this.state.CRDials}
-                            BRDials={this.state.BRDials}
-                            CRContacts={this.state.CRContacts}
-                            BRContacts={this.state.BRContacts}
-                            CRAppts={this.state.CRAppts}
-                            BRAppts={this.state.BRAppts}
-                            CTDials={this.state.CTDials}
-                            BTDials={this.state.BTDials}
-                            CTContacts={this.state.CTContacts}
-                            BTContacts={this.state.BTContacts}
-                            CTAppts={this.state.CTAppts}
-                            BTAppts={this.state.BTAppts}
-                            userData={this.state.userData}
-                        // sources={this.state.leadSource}
-                        />
-                    </div>
-                </div>
 
-                <div className="row">
-                    <div className="col-lg-8">
-                        <div className="card" style={{ textAlign: "center" }}>
-                            <h4>Your Appointments:</h4>
-                            {this.state.appointments.map(appt => (
-                                <AppointmentItem
-                                    key={appt._id}
-                                    id={appt._id}
-                                    apptname={appt.apptname}
-                                    type={appt.type}
-                                    held={appt.held}
-                                    sold={appt.sold}
-                                    dialer={appt.dialer}
-                                    source={appt.source}
-                                    date={appt.date}
-                                    notes={appt.notes}
-                                    username={this.state.user}
-                                    rerender={this.gatherAppointments}
-                                    user={this.state.userData}
-                                    targetMarket={appt.targetMarket}
-                                    mentors={this.state.mentors}
-                                />
-                            ))}
+                <div id="protege-data-viewer-container">
+                    <div className="row">
+                        <div className="col">
+                            <MainDataViewer
+                                userID={this.state.userData._id}
+                                contactData={this.state.contactData}
+                                dialData={this.state.dialData}
+                                apptData={this.state.appointments}
+                                CPAppts={this.state.CPAppts}
+                                BPAppts={this.state.BPAppts}
+                                CCAppts={this.state.CCAppts}
+                                BCAppts={this.state.BCAppts}
+                                CNAppts={this.state.CNAppts}
+                                BNAppts={this.state.BNAppts}
+                                CPDials={this.state.CPDials}
+                                BPDials={this.state.BPDials}
+                                CCDials={this.state.CCDials}
+                                BCDials={this.state.BCDials}
+                                CNDials={this.state.CNDials}
+                                BNDials={this.state.BNDials}
+                                CPContacts={this.state.CPContacts}
+                                BPContacts={this.state.BPContacts}
+                                CCContacts={this.state.CCContacts}
+                                BCContacts={this.state.BCContacts}
+                                CNContacts={this.state.CNContacts}
+                                BNContacts={this.state.BNContacts}
+                                CSDials={this.state.CSDials}
+                                BSDials={this.state.BSDials}
+                                CSContacts={this.state.CSContacts}
+                                BSContacts={this.state.BSContacts}
+                                CSAppts={this.state.CSAppts}
+                                BSAppts={this.state.BSAppts}
+                                CRDials={this.state.CRDials}
+                                BRDials={this.state.BRDials}
+                                CRContacts={this.state.CRContacts}
+                                BRContacts={this.state.BRContacts}
+                                CRAppts={this.state.CRAppts}
+                                BRAppts={this.state.BRAppts}
+                                CTDials={this.state.CTDials}
+                                BTDials={this.state.BTDials}
+                                CTContacts={this.state.CTContacts}
+                                BTContacts={this.state.BTContacts}
+                                CTAppts={this.state.CTAppts}
+                                BTAppts={this.state.BTAppts}
+                                userData={this.state.userData}
+                            // sources={this.state.leadSource}
+                            />
                         </div>
                     </div>
-                    <div className="col-lg-8">
-                        <div className="card" style={{ textAlign: "center" }}>
-                            <h4>Your Sales</h4>
-                            {this.state.sales ? <div>
-                                {
-                                    this.state.sales.map(sale => (
-                                        <SalesItem
-                                            key={sale._id}
-                                            id={sale._id}
-                                            saleType={sale.clientType}
-                                            saleName={sale.saleName}
-                                            saleSource={sale.leadSource}
-                                            saleNotes={sale.saleNotes}
-                                            saleDate={sale.saleDate}
-                                            saleTargetMkt={sale.targetMarket}
-                                            saleCommission={sale.commission}
-                                            salePercentage={sale.percentageProtege}
-                                            saleTaggedPercentage={sale.percentageMentor}
-                                            saleProduct={sale.product}
-                                            saleWriter={sale.protege}
-                                            saleTagged={sale.mentor}
-                                            mentors={this.state.mentors}
-                                            userData={this.state.userData}
-                                        />
-                                    ))
-                                } </div>
-                                : null}
+                </div>
+
+                <div className="row">
+                    <div id="appointments-container">
+                        <div className="col-lg-8">
+                            <div className="card" style={{ textAlign: "center" }}>
+                                <h4>Your Appointments:</h4>
+                                {this.state.appointments.map(appt => (
+                                    <AppointmentItem
+                                        key={appt._id}
+                                        id={appt._id}
+                                        apptname={appt.apptname}
+                                        type={appt.type}
+                                        held={appt.held}
+                                        sold={appt.sold}
+                                        dialer={appt.dialer}
+                                        source={appt.source}
+                                        date={appt.date}
+                                        notes={appt.notes}
+                                        username={this.state.user}
+                                        rerender={this.gatherAppointments}
+                                        user={this.state.userData}
+                                        targetMarket={appt.targetMarket}
+                                        mentors={this.state.mentors}
+                                    />
+                                ))}
+                            </div>
                         </div>
                     </div>
-                    {/* <div className="col-lg-1">
+                    <div id="sales-container">
+                        <div className="col-lg-8">
+                            <div className="card" style={{ textAlign: "center" }}>
+                                <h4>Your Sales</h4>
+                                {this.state.sales ? <div>
+                                    {
+                                        this.state.sales.map(sale => (
+                                            <SalesItem
+                                                key={sale._id}
+                                                id={sale._id}
+                                                saleType={sale.clientType}
+                                                saleName={sale.saleName}
+                                                saleSource={sale.leadSource}
+                                                saleNotes={sale.saleNotes}
+                                                saleDate={sale.saleDate}
+                                                saleTargetMkt={sale.targetMarket}
+                                                saleCommission={sale.commission}
+                                                salePercentage={sale.percentageProtege}
+                                                saleTaggedPercentage={sale.percentageMentor}
+                                                saleProduct={sale.product}
+                                                saleWriter={sale.protege}
+                                                saleTagged={sale.mentor}
+                                                mentors={this.state.mentors}
+                                                userData={this.state.userData}
+                                            />
+                                        ))
+                                    } </div>
+                                    : null}
+                            </div>
+                        </div>
+                    </div>
 
-                    </div> */}
-                    <div className="col-lg-4">
-                        <AppointmentCreator
-                            userID={this.state.userData._id}
-                            username={this.state.user}
-                            rerender={this.gatherAppointments}
-                            userData={this.state.userData}
-                            mentors={this.state.mentors}
+                    <div id="sales-appt-creator-container">
+                        <div className="col-lg-4">
+                            <AppointmentCreator
+                                userID={this.state.userData._id}
+                                username={this.state.user}
+                                rerender={this.gatherAppointments}
+                                userData={this.state.userData}
+                                mentors={this.state.mentors}
 
-                        />
-                        <SalesCreator
-                            userID={this.state.userData._id}
-                            username={this.state.user}
-                            // rerender={this.gatherSales}
-                            userData={this.state.userData}
-                            mentors={this.state.mentors}
-                        />
+                            />
+                            <SalesCreator
+                                userID={this.state.userData._id}
+                                username={this.state.user}
+                                // rerender={this.gatherSales}
+                                userData={this.state.userData}
+                                mentors={this.state.mentors}
+                            />
+                        </div>
                     </div>
                 </div>
-            </div >
+            </div>
         )
     }
 }

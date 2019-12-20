@@ -1,0 +1,9 @@
+.chosen-class {
+    background-color: goldenrod !important
+}
+
+p {
+    font-style: 'Roboto, sans-serif';
+    text-align: left;
+    font-size: 16px;
+}

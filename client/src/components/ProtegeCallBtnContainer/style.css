@@ -1,18 +1,60 @@
+/* Modifying Bootstrap Components below */
+
+.card {
+    border: 0px !important;
+}
+
+
 .nav-tabs > li > a:hover {
     color: black !important;
 }
 
+.nav-tabs > li > a:active {
+    background-color: transparent !important;
+}
+
+a.nav-link.active {
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+
+button {
+    padding: 10px !important;
+    margin: 5px !important;
+    border-radius: 10px !important;
+}
+
+p {
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+a {
+    font-family: 'Roboto', sans-serif !important;
+}
+
+/* Custom CSS Below */
+
+
 #prospect-label {
-    background-color: white;
+    background-color: whitesmoke;
+}
+
+#prospect-label:active {
+    background-color: whitesmoke !important;
 }
 
 #prospect-tab {
     color: navy
 }
 
+#prospect-tab:active {
+    background-color: whitesmoke !important;
+}
+
 #prospect {
     /* background-color: white */
-    background-color: white;
+    background-color: whitesmoke;
     padding: 50px
 }
 
