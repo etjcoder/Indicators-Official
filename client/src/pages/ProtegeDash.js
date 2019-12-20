@@ -446,10 +446,10 @@ class ProtegeDash extends Component {
                     </div> */}
                 </div>
 
-                <div id="call-button-container">
+                <div id="call-button-container" style={{textAlign: 'center'}}>
                     <div className="row">
 
-                        <div className="col-lg-8">
+                        <div className="col-lg-12">
                             <div className="row">
                                 <div className="col">
                                     <ProtegeCallBtnContainer

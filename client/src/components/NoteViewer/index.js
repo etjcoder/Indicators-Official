@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import API from "../../utils/API";
 import cogoToast from "cogo-toast";
 import { Card, CardBody } from 'shards-react';
+import './style.css'
 
 class NoteViewer extends Component {
     constructor(props) {
@@ -87,9 +88,9 @@ class NoteViewer extends Component {
 
     render() {
         return (
-            <div className="row" id="note-veiw-container-1">
-                <div className="col-lg-6">
-                    <div className="overflow-auto">
+            <div className="row" id="note-view-container-1">
+                <div className="col-lg-6" id="note-viewer-1" style={{padding: '10px' }}>
+                    <div className="">
                         <div id="note-welcome" className="">
                             <h4><u>View Notes Your Tagged In</u></h4>
                         </div>
@@ -98,27 +99,28 @@ class NoteViewer extends Component {
                             {this.props.tagNotes ?
 
                                 this.props.tagNotes.map(note => (
-                                    <Card key={note._id}>
-                                        <CardBody>
-                                            <p>|| {note.noteText} <span>
-                                                {note.completed ?
-                                                    <button value={this.props.id} onClick={() => this.uncompleteNote(note._id)} style={{ float: 'right' }} className="btn btn-success">√ Completed</button>
-                                                    : <button value={this.props.id} onClick={() => this.completeNote(note._id)} style={{ float: 'right' }} className="btn btn-success">O Incompleted</button>
-                                                }
-                                                <button value={this.props.id} onClick={() => this.deleteNote(note._id)} style={{ float: 'right' }} className="btn btn-danger">X</button>
-                                            </span></p>
-                                        </CardBody>
-                                    </Card>
+                                    <div>
+                                        <Card className="note-card" key={note._id}>
+                                            <CardBody>
+                                                <p>|| {note.noteText} <span>
+                                                    {note.completed ?
+                                                        <button value={this.props.id} onClick={() => this.uncompleteNote(note._id)} style={{ float: 'right' }} className="btn btn-success">√ Completed</button>
+                                                        : <button value={this.props.id} onClick={() => this.completeNote(note._id)} style={{ float: 'right' }} className="btn btn-success">O Incompleted</button>
+                                                    }
+                                                    <button value={this.props.id} onClick={() => this.deleteNote(note._id)} style={{ float: 'right' }} className="btn btn-danger">X</button>
+                                                </span></p>
+                                            </CardBody>
+                                        </Card>
+                                        <hr />
+                                    </div>
                                 ))
 
                                 : <p>No Notes Yet!</p>}
                         </div>
                     </div>
                 </div>
-                <br />
-                <br />
 
-                <div className="col-lg-6">
+                <div className="col-lg-6" id="note-viewer-2" style={{ padding: '10px' }}>
                     <div className="">
                         <div id="note-welcome" className="">
                             <h4><u>View Notes You Made</u></h4>
@@ -128,16 +130,19 @@ class NoteViewer extends Component {
                             {this.props.postNotes ?
 
                                 this.props.postNotes.map(note => (
-                                    <Card key={note}>
-                                        <CardBody>
-                                            <p>||: {note.noteText} <span>
-                                                {note.completed ?
-                                                    <button value={this.props.id} onClick={() => this.uncompleteNote(note._id)} style={{ float: 'right' }} className="btn btn-success">√ Completed</button>
-                                                    : <button value={this.props.id} onClick={() => this.completeNote(note._id)} style={{ float: 'right' }} className="btn btn-success">O Mark Complete</button>
-                                                }
-                                                <button value={this.props.id} onClick={() => this.deleteNote(note._id)} style={{ float: 'right' }} className="btn btn-danger">X</button>
-                                            </span></p></CardBody>
-                                    </Card>
+                                    <div>
+                                        <Card className="note-card" key={note}>
+                                            <CardBody>
+                                                <p>||: {note.noteText} <span>
+                                                    {note.completed ?
+                                                        <button value={this.props.id} onClick={() => this.uncompleteNote(note._id)} style={{ float: 'right' }} className="btn btn-success">√ Completed</button>
+                                                        : <button value={this.props.id} onClick={() => this.completeNote(note._id)} style={{ float: 'right' }} className="btn btn-success">O Mark Complete</button>
+                                                    }
+                                                    <button value={this.props.id} onClick={() => this.deleteNote(note._id)} style={{ float: 'right' }} className="btn btn-danger">X</button>
+                                                </span></p></CardBody>
+                                        </Card>
+                                        <hr />
+                                    </div>
 
                                 ))
 
