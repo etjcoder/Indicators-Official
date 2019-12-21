@@ -9,9 +9,9 @@ class DialDataSide extends Component {
             numScheduled: 0,
             date: "",
             parsedDials: "",
-            showDialChart: false,
-            showContactChart: false,
-            showApptChart: false,
+            showDialChart: true,
+            showContactChart: true,
+            showApptChart: true,
             showCashflowDials: false,
             showCashflowContacts: false,
             showCashflowAppts: false,
@@ -125,17 +125,27 @@ class DialDataSide extends Component {
 
     render() {
         return (
-            <div className="card">
-                <h4 style={{ textAlign: 'center' }}><u>Weekly Stats:</u></h4>
-                <button style={{width: '33%', marginLeft: "auto", marginRight: 'auto'}} className="btn btn-success" onClick={this.viewDialChart}>Dials: {this.props.dialData.length}</button>
-                <button style={{width: '33%', marginLeft: 'auto', marginRight: 'auto'}} className="btn btn-success" onClick={this.viewContactChart}>Contacts: {this.props.contactData.length}</button>
-                <button style={{width: '33%', marginLeft: 'auto', marginRight: 'auto'}} className="btn btn-success" onClick={this.viewApptChart}>Appointments: {this.props.apptData.length}</button>
-                
+            <div className="container card" style={{backgroundColor: 'rgba(0,0,0,0.5)', color: 'whitesmoke'}}>
+                <div className="row">
+                    <div className="col" style={{ textAlign: 'center'}}>
+                        <h5>Weekly Stats:</h5>
+                    </div>
+                </div>
+                {/* <div className="row">
+                    <div className="col-12">
+                        <button style={{width: '100%'}} className="btn btn-success" onClick={this.viewDialChart}>Dials: {this.props.dialData.length}</button>
+                    </div>
+                    <div className="col-12">
+                        <button style={{width: '100%'}} className="btn btn-success" onClick={this.viewContactChart}>Contacts: {this.props.contactData.length}</button>
+                    </div>
+                    <div className="col-12">
+                        <button style={{width: '100%'}} className="btn btn-success" onClick={this.viewApptChart}>Appts: {this.props.apptData.length}</button>
+                    </div>
+                </div> */}
                 {this.state.showDialChart ?
                     <div>
-                        <h3><u>Dial Data:</u></h3>
                         <p>Weekly Dials: {this.props.dialData.length}</p>
-                        <Bar data={{
+                        {/* <Bar data={{
                             labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                             datasets: [{
                                 label: "Dials",
@@ -149,7 +159,7 @@ class DialDataSide extends Component {
                                     this.props.CRDials + this.props.BRDials,
                                     this.props.CTDials + this.props.BTDials],
                             }]
-                        }} />
+                        }} /> */}
                         <Pie data={{
                             labels: [
                                 "Cashflow Prospect",
@@ -194,7 +204,12 @@ class DialDataSide extends Component {
                                     "#25517b"
                                 ]
                             }]
-                        }} /> </div> : null}
+                        }} 
+                        options={{
+                            legend: {
+                                display: false
+                            }
+                        }}/> </div> : null}
                 {/* <ul>Dials:{this.props.dialData.length}</ul>
                 <li>Cashflow Prospect Dials: {this.props.CPDials}</li>
                 <li>Business Prospect Dials: {this.props.BPDials}</li>
@@ -213,9 +228,8 @@ class DialDataSide extends Component {
 
                 {this.state.showContactChart ?
                     <div>
-                        <h3><u>Contact Data: </u></h3>
                         <p>Weekly Contacts: {this.props.contactData.length}</p>
-                        <Bar data={{
+                        {/* <Bar data={{
                             labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                             datasets: [{
                                 label: "Contacts",
@@ -229,7 +243,7 @@ class DialDataSide extends Component {
                                     this.props.CRContacts + this.props.BRContacts,
                                     this.props.CTContacts + this.props.BTContacts],
                             }]
-                        }} />
+                        }} /> */}
                         <Pie data={{
                             labels: [
                                 "Cashflow Prospect",
@@ -274,7 +288,12 @@ class DialDataSide extends Component {
                                     "#25517b"
                                 ]
                             }]
-                        }} />
+                        }} 
+                        options={{
+                            legend: {
+                                display: false
+                            }
+                        }}/>
 
                     </div> : null}
 
@@ -296,10 +315,9 @@ class DialDataSide extends Component {
                 <br />
                 {this.state.showApptChart ?
                     <div>
-                        <h3><u>Appointment Data:</u></h3>
                         <p>Weekly Appointments: {this.props.apptData.length}</p>
 
-                        <Bar data={{
+                        {/* <Bar data={{
                             labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                             datasets: [{
                                 label: "Appointments",
@@ -313,7 +331,7 @@ class DialDataSide extends Component {
                                     this.props.CRAppts + this.props.BRAppts,
                                     this.props.CTAppts + this.props.BTAppts],
                             }]
-                        }} />
+                        }} /> */}
                         <Pie data={{
                             labels: [
                                 "Cashflow Prospect",
@@ -358,7 +376,12 @@ class DialDataSide extends Component {
                                     "#25517b"
                                 ]
                             }]
-                        }} />
+                        }} 
+                        options={{
+                            legend: {
+                                display: false
+                            }
+                        }}/>
                     </div> : null}
                 {/* <li>Cashflow Prospect Appts: {this.props.CPAppts}</li>
                 <li>Business Prospect Appts: {this.props.BPAppts}</li>
