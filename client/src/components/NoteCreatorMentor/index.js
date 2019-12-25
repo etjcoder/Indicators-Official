@@ -40,6 +40,7 @@ class NoteCreatorMentor extends Component {
             noteText: this.state.noteText,
             noteAuthor: this.props.userData._id,
             noteTagged: this.state.noteTagged,
+            noteAuthorName: this.props.userData.firstName + " " + this.props.userData.lastName,
             completed: false
         }).then(res =>
             cogoToast.info("Saved Note!")

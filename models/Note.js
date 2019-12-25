@@ -11,6 +11,10 @@ var NoteSchema = new Schema({
         type: String,
         required: true
     },
+    noteAuthorName: {
+        type: String,
+        required: true
+    },
     noteTagged: {
         type: [String],
         required: true,

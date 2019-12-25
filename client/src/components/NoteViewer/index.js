@@ -88,20 +88,22 @@ class NoteViewer extends Component {
 
     render() {
         return (
-            <div className="row" id="note-view-container-1" style={{color: 'darkslategrey'}}>
-                <div className="col-lg-6" id="note-viewer-1" style={{padding: '10px' }}>
+            <div className="row" id="note-view-container-1" style={{color: 'darkslategrey', height: 500, overflow: 'auto'}}>
+                {/* <Card>
+                    <CardBody> */}
+                    <div className="" id="note-viewer-1" style={{padding: '10px', width: '100%', marginBottom: '-20px'}}>
                     <div className="">
                         <div id="note-welcome" className="">
-                            <h4 style={{color: 'whitesmoke', textAlign: 'center'}}>Notes you're tagged in:</h4>
+                            {/* <h4 style={{color: 'whitesmoke', textAlign: 'center'}}>Notes you're tagged in:</h4> */}
                         </div>
-                        <div className="card" style={{height: 500, padding: 20, overflow: 'auto', backgroundColor: 'transparent'}}>
+                        <div className="">
 
                             {this.props.tagNotes ?
 
                                 this.props.tagNotes.map(note => (
-                                    <div>
-                                        <Card className="note-card" key={note._id}>
-                                            <CardBody>
+                                    <div style={{background: 'whitesmoke', marginBottom: '0', padding: '10px'}}>
+                                        {/* <Card className="note-card" key={note._id}>
+                                            <CardBody> */}
                                                 <p>|| {note.noteText} <span>
                                                     {note.completed ?
                                                         <button value={this.props.id} onClick={() => this.uncompleteNote(note._id)} style={{ float: 'right' }} className="btn btn-success">√ Completed</button>
@@ -109,8 +111,9 @@ class NoteViewer extends Component {
                                                     }
                                                     <button value={this.props.id} onClick={() => this.deleteNote(note._id)} style={{ float: 'right' }} className="btn btn-danger">X</button>
                                                 </span></p>
-                                            </CardBody>
-                                        </Card>
+                                                <p>By: {note.noteAuthorName}</p>
+                                            {/* </CardBody>
+                                        </Card> */}
                                         <hr />
                                     </div>
                                 ))
@@ -120,27 +123,29 @@ class NoteViewer extends Component {
                     </div>
                 </div>
 
-                <div className="col-lg-6" id="note-viewer-2" style={{ padding: '10px' }}>
+                <div className="" id="note-viewer-2" style={{ padding: '10px', width: '100%' }}>
                     <div className="">
                         <div id="note-welcome" className="">
-                            <h4 style={{color: 'whitesmoke', textAlign: 'center'}}>Notes you wrote:</h4>
+                            {/* <h4 style={{color: 'whitesmoke', textAlign: 'center'}}>Notes you wrote:</h4> */}
                         </div>
-                        <div className="card" style={{height: 500, padding: 20, overflow: 'auto', backgroundColor: 'transparent'}}>
+                        <div className="">
 
                             {this.props.postNotes ?
 
                                 this.props.postNotes.map(note => (
-                                    <div>
-                                        <Card className="note-card" key={note}>
-                                            <CardBody>
+                                    <div style={{background: 'whitesmoke', marginBottom: '0', padding: '10px'}}>
+                                        {/* <Card className="note-card" key={note}>
+                                            <CardBody> */}
                                                 <p>||: {note.noteText} <span>
                                                     {note.completed ?
                                                         <button value={this.props.id} onClick={() => this.uncompleteNote(note._id)} style={{ float: 'right' }} className="btn btn-success">√ Completed</button>
                                                         : <button value={this.props.id} onClick={() => this.completeNote(note._id)} style={{ float: 'right' }} className="btn btn-success">O Mark Complete</button>
                                                     }
                                                     <button value={this.props.id} onClick={() => this.deleteNote(note._id)} style={{ float: 'right' }} className="btn btn-danger">X</button>
-                                                </span></p></CardBody>
-                                        </Card>
+                                                </span></p>
+                                                <p>By: {note.noteAuthorName}</p>
+                                                {/* </CardBody>
+                                        </Card> */}
                                         <hr />
                                     </div>
 
@@ -150,6 +155,8 @@ class NoteViewer extends Component {
                         </div>
                     </div>
                 </div>
+                    {/* </CardBody>
+                </Card> */}
             </div>
         )
     }

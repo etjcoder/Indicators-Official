@@ -40,6 +40,7 @@ class NoteCreator extends Component {
         API.saveNote(this.props.userID, {
             noteText: this.state.noteText,
             noteAuthor: this.props.userID,
+            noteAuthorName: this.props.userData.firstName + " " + this.props.userData.lastName,
             noteTagged: this.state.noteTagged,
             completed: false
         }).then(res =>
