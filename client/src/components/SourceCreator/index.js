@@ -9,7 +9,8 @@ class SourceCreator extends Component {
 
     state = {
         source: "",
-        userData: ""
+        userData: "",
+        showCreateSource: false
     }
 
     componentDidMount() {
@@ -35,8 +36,8 @@ class SourceCreator extends Component {
         API.saveSourceToProtege(this.props.userData._id, {
             source: this.state.source
         })
-        .then(res => this.handleSuccess())
-        .catch(err => console.log(err));
+            .then(res => this.handleSuccess())
+            .catch(err => console.log(err));
     }
 
     // saveCategory = body => {
@@ -48,22 +49,41 @@ class SourceCreator extends Component {
 
     // }
 
+    showCreate = () => {
+        if (this.state.showCreateSource === false) {
+            this.setState({
+                showCreateSource: true
+            })
+        } else {
+            this.setState({
+                showCreateSource: false
+            })
+        }
+    }
 
     render() {
         return (
             <div className="card" id="createSource">
-                <form>
-                    <h5 id="admin-requestHeadCat">Create Your Source Here</h5>
-                    <Input value={this.state.source} onChange={this.handleInputChange} name="source" placeholder="Source goes here" />
-                    <button id="admin-createCategoryBtn" onClick={this.handleFormSubmit}>Create this Source</button>
-                </form>
-                <div> 
-                    <br />
-                    <h6 id="admin-requestHeadCat">Existing Sources: </h6>
-                    {/* {this.props.sources.map(source => (
-                        <p key={source}>{source}</p>
-                    ))} */}
-                </div>
+                <h4 id="admin-requestHeadCat" style={{ color: 'whitesmoke' }}>Create Source<span><button className="btn btn-sm btn-outline-light" onClick={this.showCreate}>Show</button></span></h4>
+                {this.state.showCreateSource ?
+                    <div>
+                        <form>
+                            <Input value={this.state.source} onChange={this.handleInputChange} name="source" placeholder="Source goes here" />
+                            <button id="admin-createCategoryBtn" className="btn-outline-light btn" onClick={this.handleFormSubmit}>Create</button>
+                        </form>
+                        {/* List of Existing Sources */}
+                        <div style={{ color: 'whitesmoke' }}>
+                            <br />
+                            <h6 id="admin-requestHeadCat">Existing Sources: </h6>
+                            <div style={{ padding: 15, height: '150px', overflow: 'auto' }}>
+
+                                {this.props.userData.sources.map(source => (
+                                    <p key={source}>>> {source}<span><button id="delete-source" className="btn-outline-danger btn btn-sm" style={{ marginRight: '0px', float: 'right', textAlign: 'center' }}>X</button></span></p>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                    : null}
             </div>
         )
     }

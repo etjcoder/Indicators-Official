@@ -371,7 +371,7 @@ class ProtegeCallBtnContainer extends Component {
                         </li>
 
                         <li className="nav-item" id="target-label">
-                            <a className="nav-link" id="target-mkt-tab" data-toggle="tab" href="#target-mkt" role="tab" aria-controls="target-mkt" aria-selected="false">Target Market</a>
+                            <a className="nav-link" id="target-mkt-tab" data-toggle="tab" href="#target-mkt" role="tab" aria-controls="target-mkt" aria-selected="false">Target</a>
                         </li>
                     </ul>
                     <div className="tab-content" id="myTabContent" style={{ textAlign: "center" }}>
@@ -380,10 +380,11 @@ class ProtegeCallBtnContainer extends Component {
                         <div className="tab-pane fade show active" id="prospect" role="tabpanel" aria-labelledby="prospect-tab">
                             <div className="container" style={{textAlign: 'center'}}>
                                 <div className="row">
-                                    <div className="col">
+                                    <div className="col-md-6">
                                         <SourceSelector userData={this.props.userData} setParentState={this.props.setParentState} />
                                     </div>
-                                    <div className="col">
+                                    <br />
+                                    <div className="col-md-6">
                                         <TargetMarketSelector userData={this.props.userData} setParentState={this.props.setParentStateTargetMkt} />
                                     </div>
                                 </div>

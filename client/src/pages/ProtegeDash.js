@@ -583,7 +583,7 @@ class ProtegeDash extends Component {
                         </div>
                     </div>
 
-                    <div className="row" style={{marginTop: 200, marginBottom: 200}}>
+                    <div className="row" style={{ marginTop: 200, marginBottom: 200 }}>
                         <div className="col-lg-9">
                             {/*  ////////////////////////////////////////////////////////////////////////////////// */}
                             {/*  ////////////////////////////////////////////////////////////////////////////////// */}
@@ -633,7 +633,7 @@ class ProtegeDash extends Component {
                                 <div id="note-container">
                                     <div className="row">
                                         <div className="col card" style={{ padding: '50px', backgroundColor: 'rgba(77,160,255,0.8)', color: 'whitesmoke' }}>
-                                            <h1 style={{textAlign: 'center'}}> Notes</h1>
+                                            <h1 style={{ textAlign: 'center' }}> Notes</h1>
                                             <NoteCreator
                                                 userData={this.state.userData}
                                                 userID={this.state.userData._id}
@@ -661,18 +661,22 @@ class ProtegeDash extends Component {
                             {/*  ////////////////////////////////////////////////////////////////////////////////// */}
 
                             {this.state.showCreate ?
-                                <div className="creation-container card" style={{ textAlign: 'center', backgroundColor: 'rgba(0,0,0,0.5)', height: 1000, overflow: 'auto' }}>
+                                <div className="creation-container card" style={{ textAlign: 'center', backgroundColor: 'rgba(77,160,255,0.8)', height: 1000, overflow: 'auto' }}>
+                                    <h1 style={{ color: 'whitesmoke', marginTop: '10px'}}>Creation Tool</h1>
                                     <div className="row">
-                                        <div className="col-md-4">
+
+                                        <div className="col-12" style={{ padding: '2%' }}>
                                             <p></p>
                                             <SourceCreator userData={this.state.userData} />
                                             {/* Add a View/Edit Source option */}
                                             <hr />
+                                        </div>
+                                        <div className="col-12" style={{ padding: '2%' }}>
                                             <p></p>
                                             <TargetMarketCreator userData={this.state.userData} />
                                             {/* Add a View/Edit Target Market option */}
                                         </div>
-                                        <div className="col-md-4">
+                                        <div className="col-12" style={{ padding: '2%' }}>
                                             <p></p>
                                             <AppointmentCreator
                                                 userID={this.state.userData._id}
@@ -683,7 +687,7 @@ class ProtegeDash extends Component {
 
                                             />
                                         </div>
-                                        <div className="col-md-4">
+                                        <div className="col-12" style={{ padding: '2%' }}>
                                             <p></p>
                                             <SalesCreator
                                                 userID={this.state.userData._id}

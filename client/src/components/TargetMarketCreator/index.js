@@ -9,7 +9,8 @@ class TargetMarketCreator extends Component {
 
     state = {
         targetMarket: "",
-        userData: ""
+        userData: "",
+        showTarget: false
     }
 
     componentDidMount() {
@@ -35,8 +36,8 @@ class TargetMarketCreator extends Component {
         API.saveTargetMktToProtege(this.props.userData._id, {
             targetMarket: this.state.targetMarket
         })
-        .then(res => this.handleSuccess())
-        .catch(err => console.log(err));
+            .then(res => this.handleSuccess())
+            .catch(err => console.log(err));
     }
 
     // saveCategory = body => {
@@ -48,22 +49,42 @@ class TargetMarketCreator extends Component {
 
     // }
 
+    showTargetCreate = () => {
+        if(this.state.showTarget === false) {
+            this.setState({
+                showTarget: true
+            })
+        } else {
+            this.setState({
+                showTarget: false
+            })
+        }
+    }
+
 
     render() {
         return (
-            <div className="card" id="adminCategory">
-                <form>
-                    <h5 id="admin-requestHeadCat">Create Your Target Market Here</h5>
-                    <Input value={this.state.targetMarket} onChange={this.handleInputChange} name="targetMarket" placeholder="New Target Market goes here" />
-                    <button id="admin-createCategoryBtn" onClick={this.handleFormSubmit}>Create this Target Market</button>
-                </form>
-                <div> 
-                    <br />
-                    <h6 id="admin-requestHeadCat">Existing Target Markets: </h6>
-                    {/* {this.props.sources.map(source => (
-                        <p key={source}>{source}</p>
-                    ))} */}
-                </div>
+            <div className="card" id="createTargetMarket">
+                <h4 id="admin-requestHeadCat" style={{ color: 'whitesmoke' }}>Create Target Market<span><button className="btn btn-sm btn-outline-light" onClick={this.showTargetCreate} >Show</button></span></h4>
+                {this.state.showTarget ?
+                    <div>
+                        <form>
+                            <Input value={this.state.targetMarket} onChange={this.handleInputChange} name="targetMarket" placeholder="New Target Market goes here" />
+                            <button id="admin-createCategoryBtn" className="btn btn-outline-light" onClick={this.handleFormSubmit}>Create</button>
+                        </form>
+                        <div style={{ color: 'whitesmoke' }}>
+                            <br />
+                            <h6 id="admin-requestHeadCat">Existing Target Markets: </h6>
+                            <div style={{ height: '150px', padding: 15, overflow: 'auto' }}>
+
+                                {this.props.userData.targetMarkets.map(targetMarket => (
+                                    <p key={targetMarket}>>> {targetMarket}<span><button className="btn btn-outline-danger btn-sm" style={{ float: 'right' }}>X</button></span></p>
+                                ))}
+
+                            </div>
+                        </div>
+                    </div>
+                    : null}
             </div>
         )
     }

@@ -34,7 +34,7 @@ class SourceSelector extends Component {
             <div className="col-12">
                 <form>
                     <p style={{textAlign: 'center'}}>Choose a Source below</p>
-                    {this.props.userData.sources ? <FormSelect id="sourceDropMenu" value={this.state.leadSource} onChange={this.handleInputChange} name="leadSource">
+                    {this.props.userData.sources ? <FormSelect id="sourceDropMenu" className="customDropLight" value={this.state.leadSource} onChange={this.handleInputChange} name="leadSource">
 
                         <option value={"none"}>No Lead Source Selected</option>
                         {this.props.userData.sources.map(source => (

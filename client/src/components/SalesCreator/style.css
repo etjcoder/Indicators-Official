@@ -1,4 +1,4 @@
-#appointment-creator {
+#sale-creator {
     background-color: rgba(114,180,255,0.8);
     padding: 10px;
     border-radius: 0;
@@ -8,7 +8,7 @@
 
 .customDrop {
         /* float: right; */
-        width: 250;
+        width: 250px;
         font-size: 18px;
         line-height: 18px;
         padding-left: 10px;
