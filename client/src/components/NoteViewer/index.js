@@ -101,7 +101,7 @@ class NoteViewer extends Component {
                             {this.props.tagNotes ?
 
                                 this.props.tagNotes.map(note => (
-                                    <div style={{ background: 'whitesmoke', marginBottom: '0', padding: '10px' }}>
+                                    <div style={{ background: 'rgba(255,255,255,0.8)', marginBottom: '0', padding: '10px' }}>
                                         {/* <Card className="note-card" key={note._id}>
                                             <CardBody> */}
                                         <p>|| {note.noteText} <span>
@@ -134,7 +134,7 @@ class NoteViewer extends Component {
                             {this.props.postNotes ?
 
                                 this.props.postNotes.map(note => (
-                                    <div style={{ background: 'whitesmoke', marginBottom: '0', padding: '10px' }}>
+                                    <div style={{ background: 'rgba(255,255,255,0.8)', marginBottom: '0', padding: '10px' }}>
                                         {/* <Card className="note-card" key={note}>
                                             <CardBody> */}
                                         <p>||: {note.noteText} <span>

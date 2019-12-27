@@ -632,7 +632,8 @@ class ProtegeDash extends Component {
                             {this.state.showNotes ?
                                 <div id="note-container">
                                     <div className="row">
-                                        <div className="col card" style={{ padding: '50px', backgroundColor: 'rgba(0,0,0,0.5)', color: 'whitesmoke' }}>
+                                        <div className="col card" style={{ padding: '50px', backgroundColor: 'rgba(77,160,255,0.8)', color: 'whitesmoke' }}>
+                                            <h1 style={{textAlign: 'center'}}> Notes</h1>
                                             <NoteCreator
                                                 userData={this.state.userData}
                                                 userID={this.state.userData._id}
