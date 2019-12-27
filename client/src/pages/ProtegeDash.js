@@ -551,22 +551,22 @@ class ProtegeDash extends Component {
 
                             <div className="row">
                                 <div className="col">
-                                    <button onClick={() => this.showDials()} className="nav-button">Dial Controller</button>
+                                    <button onClick={() => this.showDials()} className="nav-button bttn-slant bttn-md">Dials</button>
                                 </div>
                                 <div className="col">
-                                    <button onClick={() => this.showNotes()} className="nav-button">Notes</button>
+                                    <button onClick={() => this.showNotes()} className="nav-button bttn-slant bttn-md">Notes</button>
                                 </div>
                                 <div className="col">
-                                    <button onClick={() => this.showCreate()} className="nav-button">Creation</button>
+                                    <button onClick={() => this.showCreate()} className="nav-button bttn-slant bttn-md">Create</button>
                                 </div>
                                 <div className="col">
-                                    <button onClick={() => this.showAnalytics()} className="nav-button">Analytics</button>
+                                    <button onClick={() => this.showAnalytics()} className="nav-button bttn-slant bttn-md">Analyze</button>
                                 </div>
                                 <div className="col">
-                                    <button onClick={() => this.showAppts()} className="nav-button">Appointments</button>
+                                    <button onClick={() => this.showAppts()} className="nav-button bttn-slant bttn-md">Schedule</button>
                                 </div>
                                 <div className="col">
-                                    <button onClick={() => this.showSales()} className="nav-button">Sales</button>
+                                    <button onClick={() => this.showSales()} className="nav-button bttn-slant bttn-md">Sales</button>
                                 </div>
                             </div>
                         </div>
