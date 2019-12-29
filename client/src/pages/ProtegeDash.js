@@ -15,7 +15,7 @@ import NoteViewer from "../components/NoteViewer"
 import SalesCreator from "../components/SalesCreator"
 import SalesItem from "../components/SalesItem"
 import SideNavPage from "../components/SideNavPage"
-
+import MainCalendar from "../components/MainCalendar"
 
 
 class ProtegeDash extends Component {
@@ -662,7 +662,7 @@ class ProtegeDash extends Component {
 
                             {this.state.showCreate ?
                                 <div className="creation-container card" style={{ textAlign: 'center', backgroundColor: 'rgba(77,160,255,0.8)', height: 1000, overflow: 'auto' }}>
-                                    <h1 style={{ color: 'whitesmoke', marginTop: '10px'}}>Creation Tool</h1>
+                                    <h1 style={{ color: 'whitesmoke', marginTop: '10px' }}>Creation Tool</h1>
                                     <div className="row">
 
                                         <div className="col-12" style={{ padding: '2%' }}>
@@ -772,6 +772,11 @@ class ProtegeDash extends Component {
 
                                 <div id="appointments-container">
                                     <div className="row">
+                                        <div className="col">
+                                            <MainCalendar 
+                                                appointments={this.state.appointments}
+                                            />
+                                        </div>
                                         <div className="col-md-4">
                                             <p></p>
                                             <AppointmentCreator
