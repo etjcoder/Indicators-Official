@@ -147,14 +147,14 @@ class SalesCreator extends Component {
                     <hr />
 
                     <label><p style={{ color: 'whitesmoke' }}>Sale Name:</p></label>
-                    <input id="apptname-input" className="form-control" value={this.state.saleName} onChange={this.handleInputChange} name="saleName" type="text" placeholder="Give your appointment a name!" />
+                    <input id="apptname-input" className="form-control sale-input" value={this.state.saleName} onChange={this.handleInputChange} name="saleName" type="text" placeholder="Give your Sale a name!" />
 
                     <hr />
                     <label><p style={{ color: 'whitesmoke' }}>Product Sold:</p></label>
-                    <input id="product-sold" className="form-control" value={this.state.saleProduct} onChange={this.handleInputChange} name="saleProduct" type="text" placeholder="Type of product sold" />
+                    <input id="product-sold" className="form-control sale-input" value={this.state.saleProduct} onChange={this.handleInputChange} name="saleProduct" type="text" placeholder="Type of product sold" />
                     <hr />
                     <label><p style={{ color: 'whitesmoke' }}>Date of Sale:</p></label>
-                    <input id="date-input" className="form-control" value={this.state.saleDate} onChange={this.handleInputChange} name="saleDate" type="date" placeholder="Enter date for your appointment" />
+                    <input id="date-input" className="form-control sale-input" value={this.state.saleDate} onChange={this.handleInputChange} name="saleDate" type="date" placeholder="Enter date for your appointment" />
                     <hr />
                     <label><p style={{ color: 'whitesmoke' }}>Mentor Tagged</p></label>
                     {this.props.mentors ? <select id="mentorDropMenu" value={this.state.saleTagged} className="customDrop" onChange={this.handleInputChange} name="saleTagged">
@@ -165,13 +165,13 @@ class SalesCreator extends Component {
                     </select> : null}
                     <hr />
                     <label><p style={{ color: 'whitesmoke' }}>Sales Commission [only enter numbers]</p></label>
-                    <input id="saleCommission" className="form-control" value={this.state.saleCommission} onChange={this.handleInputChange} name="saleCommission" />
+                    <input id="saleCommission" className="form-control sale-input" value={this.state.saleCommission} onChange={this.handleInputChange} name="saleCommission" />
                     <hr />
                     <label><p style={{ color: 'whitesmoke' }}>Your Percentage [only enter numbers]</p></label>
-                    <input id="salePercentage" className="form-control" value={this.state.salePercentage} onChange={this.handleInputChange} name="salePercentage" />
+                    <input id="salePercentage" className="form-control sale-input" value={this.state.salePercentage} onChange={this.handleInputChange} name="salePercentage" />
                     <hr />
                     <label><p style={{ color: 'whitesmoke' }}>Mentor Percentage [only enter numbers]</p></label>
-                    <input id="taggedPercentage" className="form-control" value={this.state.saleTaggedPercentage} onChange={this.handleInputChange} name="saleTaggedPercentage" />
+                    <input id="taggedPercentage" className="form-control sale-input" value={this.state.saleTaggedPercentage} onChange={this.handleInputChange} name="saleTaggedPercentage" />
 
                     <hr />
                     <label><p style={{ color: 'whitesmoke' }}>Lead Source:</p></label>

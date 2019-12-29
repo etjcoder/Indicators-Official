@@ -138,12 +138,12 @@ class AppointmentCreator extends Component {
                         <hr />
 
                         <label><p style={{ color: 'whitesmoke' }}>Appointment Name:</p></label>
-                        <input id="apptname-input" className="form-control" value={this.state.apptname} onChange={this.handleInputChange} name="apptname" type="text" placeholder="Give your appointment a name!" />
+                        <input id="apptname-input" className="form-control sale-input" value={this.state.apptname} onChange={this.handleInputChange} name="apptname" type="text" placeholder="Give your appointment a name!" />
                         <hr />
                         <label><p style={{ color: 'whitesmoke' }}>Date of Appointment:</p></label>
-                        <input id="date-input" className="form-control" value={this.state.apptdate} onChange={this.handleInputChange} name="apptdate" type="date" placeholder="Enter date for your appointment" />
+                        <input id="date-input" className="form-control sale-input" value={this.state.apptdate} onChange={this.handleInputChange} name="apptdate" type="date" placeholder="Enter date for your appointment" />
                         <hr />
-                        <label><p style={{ color: 'whitesmoke' }}>Mentor Tagged</p></label>
+                        <label><p style={{ color: 'whitesmoke' }}>Mentor Tagged: </p></label>
                         {this.props.mentors ? <select id="mentorDropMenu" className="customDrop" value={this.props.apptTagged} onChange={this.handleInputChange} name="apptTagged">
                             <option value={"none"}>--Tag Mentor--</option>
                             {this.props.mentors.map(mentor => (
@@ -151,7 +151,7 @@ class AppointmentCreator extends Component {
                             ))}
                         </select> : null}
                         <hr />
-                        <label><p style={{ color: 'whitesmoke' }}>Lead Source:</p></label>
+                        <label><p style={{ color: 'whitesmoke' }}>Lead Source: </p></label>
                         {/* <input id="source-input" className="form-control" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource" type="text" placeholder="Source of Lead" /> */}
                         {this.props.userData.sources ? <select id="sourceDropMenu" className="customDrop" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource">
                             <option value={"none"}>No Lead Source Selected</option>
@@ -161,7 +161,7 @@ class AppointmentCreator extends Component {
                         </select> : <p>"No lead sources created yet"</p>}
 
                         <hr />
-                        <label><p style={{ color: 'whitesmoke' }}>Target Market:</p></label>
+                        <label><p style={{ color: 'whitesmoke' }}>Target Market: </p></label>
                         {/* <input id="targetmkt-input" className="form-control" value={this.state.apptTargetMkt} onChange={this.handleInputChange} name="appttargetmkt" type="text" placeholder="Target Market goes here" /> */}
                         {this.props.userData.targetMarkets ? <select id="sourceDropMenu" className="customDrop" value={this.state.appttargetmkt} onChange={this.handleInputChange} name="appttargetmkt">
                             <option value={"none"}>No Target Market Selected</option>
@@ -171,7 +171,7 @@ class AppointmentCreator extends Component {
                         </select> : <p>"No target markets created yet"</p>}
                         <hr />
                         <label><p style={{ color: 'whitesmoke' }}>Appointment Notes:</p></label>
-                        <input id="note-input" className="form-control" value={this.state.apptnotes} onChange={this.handleInputChange} name="apptnotes" type="text" placeholder="Enter any notes..." />
+                        <input id="note-input" className="form-control sale-input" value={this.state.apptnotes} onChange={this.handleInputChange} name="apptnotes" type="text" placeholder="Enter any notes..." />
                         <br />
                         <button id="appt-input-btn" className="btn-success form-control" onClick={this.handleApptSubmit}>Submit Appointment</button>
 

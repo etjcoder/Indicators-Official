@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import API from "../../utils/API";
 import { Bar, Pie } from 'react-chartjs-2';
+import "./style.css"
 
 class MainDataViewer extends Component {
     constructor(props) {
@@ -25,8 +26,8 @@ class MainDataViewer extends Component {
             showSuspectPerformance: false,
             showReferralPerformance: false,
             showTargetPerformance: false,
-            leadSource: "",
-            targetMarket: "",
+            leadSource: "none",
+            targetMarket: "none",
             sourceDialData: "",
             sourceContactData: "",
             sourceApptData: "",
@@ -1181,39 +1182,134 @@ class MainDataViewer extends Component {
         })
     }
 
+    showDataOption = (e) => {
+        e.preventDefault()
+        switch (this.state.dataOption) {
+            case "genDials":
+                this.viewDialChart()
+                break;
+            case "genContacts":
+                this.viewContactChart()
+                break;
+            case "genAppts":
+                this.viewApptChart()
+                break;
+            case "cfDials":
+                this.viewCFDialChart()
+                break;
+            case "cfContacts":
+                this.viewCFContactChart()
+                break;
+            case "cfAppts":
+                this.viewCFApptChart()
+                break;
+            case "boDials":
+                this.viewBODialChart()
+                break;
+            case "boContacts":
+                this.viewBOContactChart()
+                break;
+            case "boAppts":
+                this.viewBOApptChart()
+                break;
+            default:
+                console.log("No option selected")
+                break;
+        }
+    }
+
+    showCategoryOption = (e) => {
+        e.preventDefault()
+
+        switch (this.state.categoryOption) {
+            case "pData":
+                this.viewProspectPerformance()
+                break;
+            case "cData":
+                this.viewClientPerformance()
+                break;
+            case "sData":
+                this.viewSuspectPerformance()
+            case "nData":
+                this.viewNaturalPerformance()
+                break;
+            case "rData":
+                this.viewReferralPerformance()
+                break;
+            case "tData":
+                this.viewTargetPerformance()
+                break;
+            default:
+                console.log("No proper selection made")
+                break;
+        }
+    }
+
 
     render() {
         return (
-            <div className="card">
-                <h4 style={{ textAlign: 'center' }}><u>Total Stats:</u></h4>
-                <button style={{ width: '33%', marginLeft: "auto", marginRight: 'auto' }} className="btn btn-success" onClick={this.viewDialChart}>Dials: {this.props.dialData.length}</button>
-                <button style={{ width: '33%', marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewContactChart}>Contacts: {this.props.contactData.length}</button>
-                <button style={{ width: '33%', marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewApptChart}>Appointments: {this.props.apptData.length}</button>
+            <div className="card" id="main-analytics">
+                <h1 style={{ textAlign: 'center', color: 'whitesmoke' }}><u>Analytics</u></h1>
+                {/* <button style={{ width: '30%', float: 'left' }} className="btn btn-success" onClick={this.viewDialChart}>Dials: {this.props.dialData.length}</button>
+                <button style={{ width: '30%', float: 'left' }} className="btn btn-success" onClick={this.viewContactChart}>Contacts: {this.props.contactData.length}</button>
+                <button style={{ width: '30%', float: 'left' }} className="btn btn-success" onClick={this.viewApptChart}>Appointments: {this.props.apptData.length}</button>
                 <button style={{ width: '33%', marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewCFDialChart}>Cashflow Dials Only</button>
                 <button style={{ width: '33%', marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewCFContactChart}>Cashflow Contacts Only</button>
                 <button style={{ width: '33%', marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewCFApptChart}>Cashflow Appts Only</button>
                 <button style={{ width: '33%', marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewBODialChart}>Businessowner Dials Only</button>
                 <button style={{ width: '33%', marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewBOContactChart}>Businessowner Appts Only</button>
                 <button style={{ width: '33%', marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewBOApptChart}>Businessowner Appts Only</button>
-
                 <button style={{ width: '33%', marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewProspectPerformance}>Prospect Call Performance</button>
                 <button style={{ width: '33%', marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewClientPerformance}>Existing Client Call Performance</button>
                 <button style={{ width: '33%', marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewNaturalPerformance}>Natural Market Call Performance</button>
                 <button style={{ width: '33%', marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewSuspectPerformance}>Suspect Call Performance</button>
                 <button style={{ width: '33%', marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewReferralPerformance}>Referral Call Performance</button>
-                <button style={{ width: '33%', marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewTargetPerformance}>Target Market Call Performance</button>
+                <button style={{ width: '33%', marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewTargetPerformance}>Target Market Call Performance</button> */}
+
+                <form>
+                    <div>
+                        <select id="sourceDropMenu" className="customDropDown" value={this.state.dataOption} onChange={this.handleInputChange} name="dataOption">
+                            <option value={"none"}>--Choose a Type of Call--</option>
+                            <option value={"genDials"}>Dial Data</option>
+                            <option value={"genContacts"}>Contact Data</option>
+                            <option value={"genAppts"}>Appointment Data</option>
+                            <option value={"cfDials"}>Cashflow Dial Data</option>
+                            <option value={"cfContacts"}>Cashflow Contact Data</option>
+                            <option value={"cfAppts"}>Cashflow Appointment Data</option>
+                            <option value={"boDials"}>Businessowner Dial Data</option>
+                            <option value={"boContacts"}>Businessowner Contact Data</option>
+                            <option value={"boAppts"}>Businessowner Appointment Data</option>
+                        </select>
+                        <button className="btn-outline-light btn-sm btn" onClick={this.showDataOption}>Get Performance Data</button>
+                    </div>
+                </form>
+
+                <form>
+                    <div>
+                        <select id="sourceDropMenu" className="customDropDown" value={this.state.categoryOption} onChange={this.handleInputChange} name="categoryOption">
+                            <option value={"none"}>--Choose a Category--</option>
+                            <option value={"pData"}>Prospects Call Data</option>
+                            <option value={"cData"}>Clients Call Data</option>
+                            <option value={"nData"}>Natural Market Call Data</option>
+                            <option value={"sData"}>Suspect Call Data</option>
+                            <option value={"rData"}>Referral Call Data</option>
+                            <option value={"tData"}>Target Market Call Data</option>
+                        </select>
+                        <button className="btn-outline-light btn-sm btn" onClick={this.showCategoryOption}>Get Performance Data</button>
+                    </div>
+                </form>
 
                 {/* Target Market and Lead Source Selectors */}
                 <form>
                     {this.props.userData.sources ?
                         <div>
-                            <select id="sourceDropMenu" value={this.state.leadSource} onChange={this.handleInputChange} name="leadSource">
-                                <option value={"none"}>No Lead Source Selected</option>
+                            <select id="sourceDropMenu" className="customDropDown" value={this.state.leadSource} onChange={this.handleInputChange} name="leadSource">
+                                <option value={"none"}>--Choose a Lead Source--</option>
                                 {this.props.userData.sources.map(source => (
                                     <option key={source} value={source}>{source}</option>
                                 ))}
                             </select>
-                            <button className="btn-primary btn" onClick={this.gatherSourceData}>Get Lead Source Data</button>
+                            <button className="btn-outline-light btn-sm btn" onClick={this.gatherSourceData}>Get Lead Source Data</button>
                         </div>
                         : null}
                 </form>
@@ -1221,12 +1317,12 @@ class MainDataViewer extends Component {
                 <form>
                     {this.props.userData.targetMarkets ?
                         <div>
-                            <select id="sourceDropMenu" value={this.state.targetMarket} onChange={this.handleInputChange} name="targetMarket">
-                                <option value={"none"}>No Target Market Selected</option>
+                            <select id="sourceDropMenu" className="customDropDown" value={this.state.targetMarket} onChange={this.handleInputChange} name="targetMarket">
+                                <option value={"none"}>--Choose a Target Market--</option>
                                 {this.props.userData.targetMarkets.map(target => (
                                     <option key={target} value={target}>{target}</option>
                                 ))}
-                            </select> <button className="btn-primary btn" onClick={this.gatherTargetData}>Get Target Market Data</button>
+                            </select> <button className="btn-outline-light btn-sm btn" onClick={this.gatherTargetData}>Get Target Market Data</button>
                         </div> : null}
                 </form>
 
@@ -1236,69 +1332,82 @@ class MainDataViewer extends Component {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                 {this.state.showDialChart ?
-                    <div>
+                    <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
                         <h3><u>Dial Data:</u></h3>
-                        <p>Weekly Dials: {this.props.dialData.length}</p>
-                        <Bar data={{
-                            labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
-                            datasets: [{
-                                label: "Dials",
-                                backgroundColor: 'rgb(255, 99, 132)',
-                                borderColor: 'rgb(255, 99, 132)',
-                                data: [
-                                    this.props.CPDials + this.props.BPDials,
-                                    this.props.CCDials + this.props.BCDials,
-                                    this.props.CNDials + this.props.BNDials,
-                                    this.props.CSDials + this.props.BSDials,
-                                    this.props.CRDials + this.props.BRDials,
-                                    this.props.CTDials + this.props.BTDials],
-                            }]
-                        }} />
-                        <Pie data={{
-                            labels: [
-                                "Cashflow Prospect",
-                                "Business Prospect",
-                                "Cashflow Client",
-                                "Business Client",
-                                "Cashflow Natural Market",
-                                "Business Natural Market",
-                                "Cashflow Suspect",
-                                "Business Suspect",
-                                "Cashflow Referral",
-                                "Business Referral",
-                                "Cashflow Target Market",
-                                "Business Target Market"],
-                            datasets: [{
-                                data: [
-                                    this.props.CPDials,
-                                    this.props.BPDials,
-                                    this.props.CCDials,
-                                    this.props.BCDials,
-                                    this.props.CNDials,
-                                    this.props.BNDials,
-                                    this.props.CSDials,
-                                    this.props.BSDials,
-                                    this.props.CRDials,
-                                    this.props.BRDials,
-                                    this.props.CTDials,
-                                    this.props.BTDials
-                                ],
-                                backgroundColor: [
-                                    "#3ac178",
-                                    "#443959",
-                                    "#f99b17",
-                                    "#a2e505",
-                                    "#c9917f",
-                                    "#8d044b",
-                                    "#d2d93b",
-                                    "#dd4417",
-                                    "#5191d9",
-                                    "#483d28",
-                                    "#51aef7",
-                                    "#25517b"
-                                ]
-                            }]
-                        }} /> </div> : null}
+                        <p>Total Dials: {this.props.dialData.length}</p>
+                        <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
+                            <Bar data={{
+                                labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
+                                datasets: [{
+                                    label: "Dials",
+                                    backgroundColor: 'rgba(50, 50, 50, 0.8)',
+                                    borderColor: 'rgb(255, 255, 255)',
+                                    data: [
+                                        this.props.CPDials + this.props.BPDials,
+                                        this.props.CCDials + this.props.BCDials,
+                                        this.props.CNDials + this.props.BNDials,
+                                        this.props.CSDials + this.props.BSDials,
+                                        this.props.CRDials + this.props.BRDials,
+                                        this.props.CTDials + this.props.BTDials],
+                                }]
+                            }} />
+                        </div>
+                        <br />
+                        <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
+                            <Pie data={{
+                                labels: [
+                                    "Cashflow Prospect",
+                                    "Business Prospect",
+                                    "Cashflow Client",
+                                    "Business Client",
+                                    "Cashflow Natural Market",
+                                    "Business Natural Market",
+                                    "Cashflow Suspect",
+                                    "Business Suspect",
+                                    "Cashflow Referral",
+                                    "Business Referral",
+                                    "Cashflow Target Market",
+                                    "Business Target Market"],
+                                datasets: [{
+                                    data: [
+                                        this.props.CPDials,
+                                        this.props.BPDials,
+                                        this.props.CCDials,
+                                        this.props.BCDials,
+                                        this.props.CNDials,
+                                        this.props.BNDials,
+                                        this.props.CSDials,
+                                        this.props.BSDials,
+                                        this.props.CRDials,
+                                        this.props.BRDials,
+                                        this.props.CTDials,
+                                        this.props.BTDials
+                                    ],
+                                    backgroundColor: [
+                                        "#3ac178",
+                                        "#443959",
+                                        "#f99b17",
+                                        "#a2e505",
+                                        "#c9917f",
+                                        "#8d044b",
+                                        "#d2d93b",
+                                        "#dd4417",
+                                        "#5191d9",
+                                        "#483d28",
+                                        "#51aef7",
+                                        "#25517b"
+                                    ]
+                                }]
+                            }} options={{
+                                legend: {
+                                    position: 'left',
+                                    labels: {
+                                        boxWidth: 10
+                                    }
+                                }
+                            }} /> </div>
+                    </div>
+                    : null}
 
 
                 {/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1308,69 +1417,79 @@ class MainDataViewer extends Component {
 
 
                 {this.state.showContactChart ?
-                    <div>
+                    <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
                         <h3><u>Contact Data: </u></h3>
                         <p>Weekly Contacts: {this.props.contactData.length}</p>
-                        <Bar data={{
-                            labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
-                            datasets: [{
-                                label: "Contacts",
-                                backgroundColor: 'rgb(255, 99, 132)',
-                                borderColor: 'rgb(255, 99, 132)',
-                                data: [
-                                    this.props.CPContacts + this.props.BPContacts,
-                                    this.props.CCContacts + this.props.BCContacts,
-                                    this.props.CNContacts + this.props.BNContacts,
-                                    this.props.CSContacts + this.props.BSContacts,
-                                    this.props.CRContacts + this.props.BRContacts,
-                                    this.props.CTContacts + this.props.BTContacts],
-                            }]
-                        }} />
-                        <Pie data={{
-                            labels: [
-                                "Cashflow Prospect",
-                                "Business Prospect",
-                                "Cashflow Client",
-                                "Business Client",
-                                "Cashflow Natural Market",
-                                "Business Natural Market",
-                                "Cashflow Suspect",
-                                "Business Suspect",
-                                "Cashflow Referral",
-                                "Business Referral",
-                                "Cashflow Target Market",
-                                "Business Target Market"],
-                            datasets: [{
-                                data: [
-                                    this.props.CPContacts,
-                                    this.props.BPContacts,
-                                    this.props.CCContacts,
-                                    this.props.BCContacts,
-                                    this.props.CNContacts,
-                                    this.props.BNContacts,
-                                    this.props.CSContacts,
-                                    this.props.BSContacts,
-                                    this.props.CRContacts,
-                                    this.props.BRContacts,
-                                    this.props.CTContacts,
-                                    this.props.BTContacts
-                                ],
-                                backgroundColor: [
-                                    "#3ac178",
-                                    "#443959",
-                                    "#f99b17",
-                                    "#a2e505",
-                                    "#c9917f",
-                                    "#8d044b",
-                                    "#d2d93b",
-                                    "#dd4417",
-                                    "#5191d9",
-                                    "#483d28",
-                                    "#51aef7",
-                                    "#25517b"
-                                ]
-                            }]
-                        }} />
+                        <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
+                            <Bar data={{
+                                labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
+                                datasets: [{
+                                    label: "Contacts",
+                                    backgroundColor: 'rgba(50, 50, 50, 0.8)',
+                                    borderColor: 'rgb(255, 255, 255)',
+                                    data: [
+                                        this.props.CPContacts + this.props.BPContacts,
+                                        this.props.CCContacts + this.props.BCContacts,
+                                        this.props.CNContacts + this.props.BNContacts,
+                                        this.props.CSContacts + this.props.BSContacts,
+                                        this.props.CRContacts + this.props.BRContacts,
+                                        this.props.CTContacts + this.props.BTContacts],
+                                }]
+                            }} /> </div>
+                        <br />
+                        <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
+                            <Pie data={{
+                                labels: [
+                                    "Cashflow Prospect",
+                                    "Business Prospect",
+                                    "Cashflow Client",
+                                    "Business Client",
+                                    "Cashflow Natural Market",
+                                    "Business Natural Market",
+                                    "Cashflow Suspect",
+                                    "Business Suspect",
+                                    "Cashflow Referral",
+                                    "Business Referral",
+                                    "Cashflow Target Market",
+                                    "Business Target Market"],
+                                datasets: [{
+                                    data: [
+                                        this.props.CPContacts,
+                                        this.props.BPContacts,
+                                        this.props.CCContacts,
+                                        this.props.BCContacts,
+                                        this.props.CNContacts,
+                                        this.props.BNContacts,
+                                        this.props.CSContacts,
+                                        this.props.BSContacts,
+                                        this.props.CRContacts,
+                                        this.props.BRContacts,
+                                        this.props.CTContacts,
+                                        this.props.BTContacts
+                                    ],
+                                    backgroundColor: [
+                                        "#3ac178",
+                                        "#443959",
+                                        "#f99b17",
+                                        "#a2e505",
+                                        "#c9917f",
+                                        "#8d044b",
+                                        "#d2d93b",
+                                        "#dd4417",
+                                        "#5191d9",
+                                        "#483d28",
+                                        "#51aef7",
+                                        "#25517b"
+                                    ]
+                                }]
+                            }} options={{
+                                legend: {
+                                    position: 'left',
+                                    labels: {
+                                        boxWidth: 10
+                                    }
+                                }
+                            }} /> </div>
 
                     </div> : null}
 
@@ -1380,123 +1499,143 @@ class MainDataViewer extends Component {
 
 
                 {this.state.showApptChart ?
-                    <div>
+                    <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
                         <h3><u>Appointment Data:</u></h3>
                         <p>Weekly Appointments: {this.props.apptData.length}</p>
 
-                        <Bar data={{
-                            labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
-                            datasets: [{
-                                label: "Appointments",
-                                backgroundColor: 'rgb(255, 99, 132)',
-                                borderColor: 'rgb(255, 99, 132)',
-                                data: [
-                                    this.props.CPAppts + this.props.BPAppts,
-                                    this.props.CCAppts + this.props.BCAppts,
-                                    this.props.CNAppts + this.props.BNAppts,
-                                    this.props.CSAppts + this.props.BSAppts,
-                                    this.props.CRAppts + this.props.BRAppts,
-                                    this.props.CTAppts + this.props.BTAppts],
-                            }]
-                        }} />
-                        <Pie data={{
-                            labels: [
-                                "Cashflow Prospect",
-                                "Business Prospect",
-                                "Cashflow Client",
-                                "Business Client",
-                                "Cashflow Natural Market",
-                                "Business Natural Market",
-                                "Cashflow Suspect",
-                                "Business Suspect",
-                                "Cashflow Referral",
-                                "Business Referral",
-                                "Cashflow Target Market",
-                                "Business Target Market"],
-                            datasets: [{
-                                data: [
-                                    this.props.CPAppts,
-                                    this.props.BPAppts,
-                                    this.props.CCAppts,
-                                    this.props.BCAppts,
-                                    this.props.CNAppts,
-                                    this.props.BNAppts,
-                                    this.props.CSAppts,
-                                    this.props.BSAppts,
-                                    this.props.CRAppts,
-                                    this.props.BRAppts,
-                                    this.props.CTAppts,
-                                    this.props.BTAppts
-                                ],
-                                backgroundColor: [
-                                    "#3ac178",
-                                    "#443959",
-                                    "#f99b17",
-                                    "#a2e505",
-                                    "#c9917f",
-                                    "#8d044b",
-                                    "#d2d93b",
-                                    "#dd4417",
-                                    "#5191d9",
-                                    "#483d28",
-                                    "#51aef7",
-                                    "#25517b"
-                                ]
-                            }]
-                        }} />
+                        <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
+                            <Bar data={{
+                                labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
+                                datasets: [{
+                                    label: "Appointments",
+                                    backgroundColor: 'rgba(50, 50, 50, 0.8)',
+                                    borderColor: 'rgb(255, 255, 255)',
+                                    data: [
+                                        this.props.CPAppts + this.props.BPAppts,
+                                        this.props.CCAppts + this.props.BCAppts,
+                                        this.props.CNAppts + this.props.BNAppts,
+                                        this.props.CSAppts + this.props.BSAppts,
+                                        this.props.CRAppts + this.props.BRAppts,
+                                        this.props.CTAppts + this.props.BTAppts],
+                                }]
+                            }} /> </div>
+                        <br />
+                        <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
+                            <Pie data={{
+                                labels: [
+                                    "Cashflow Prospect",
+                                    "Business Prospect",
+                                    "Cashflow Client",
+                                    "Business Client",
+                                    "Cashflow Natural Market",
+                                    "Business Natural Market",
+                                    "Cashflow Suspect",
+                                    "Business Suspect",
+                                    "Cashflow Referral",
+                                    "Business Referral",
+                                    "Cashflow Target Market",
+                                    "Business Target Market"],
+                                datasets: [{
+                                    data: [
+                                        this.props.CPAppts,
+                                        this.props.BPAppts,
+                                        this.props.CCAppts,
+                                        this.props.BCAppts,
+                                        this.props.CNAppts,
+                                        this.props.BNAppts,
+                                        this.props.CSAppts,
+                                        this.props.BSAppts,
+                                        this.props.CRAppts,
+                                        this.props.BRAppts,
+                                        this.props.CTAppts,
+                                        this.props.BTAppts
+                                    ],
+                                    backgroundColor: [
+                                        "#3ac178",
+                                        "#443959",
+                                        "#f99b17",
+                                        "#a2e505",
+                                        "#c9917f",
+                                        "#8d044b",
+                                        "#d2d93b",
+                                        "#dd4417",
+                                        "#5191d9",
+                                        "#483d28",
+                                        "#51aef7",
+                                        "#25517b"
+                                    ]
+                                }]
+                            }} options={{
+                                legend: {
+                                    position: 'left',
+                                    labels: {
+                                        boxWidth: 10
+                                    }
+                                }
+                            }} /> </div>
                     </div> : null}
 
                 {/* ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////// */}
                 {this.state.showCashflowDials ?
-                    <div>
+                    <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
                         <h3><u>Cashflow Dials Data:</u></h3>
 
-                        <Bar data={{
-                            labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
-                            datasets: [{
-                                label: "Dials",
-                                backgroundColor: 'rgb(255, 99, 132)',
-                                borderColor: 'rgb(255, 99, 132)',
-                                data: [
-                                    this.props.CPDials,
-                                    this.props.CCDials,
-                                    this.props.CNDials,
-                                    this.props.CSDials,
-                                    this.props.CRDials,
-                                    this.props.CTDials
+                        <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
+                            <Bar data={{
+                                labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
+                                datasets: [{
+                                    label: "Dials",
+                                    backgroundColor: 'rgba(50, 50, 50, 0.8)',
+                                    borderColor: 'rgb(255, 255, 255)',
+                                    data: [
+                                        this.props.CPDials,
+                                        this.props.CCDials,
+                                        this.props.CNDials,
+                                        this.props.CSDials,
+                                        this.props.CRDials,
+                                        this.props.CTDials
+                                    ],
+                                }]
+                            }} /> </div>
+                        <br />
+                        <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
+                            <Pie data={{
+                                labels: [
+                                    "Cashflow Prospect",
+                                    "Cashflow Client",
+                                    "Cashflow Natural Market",
+                                    "Cashflow Suspect",
+                                    "Cashflow Referral",
+                                    "Cashflow Target Market",
                                 ],
-                            }]
-                        }} />
-                        <Pie data={{
-                            labels: [
-                                "Cashflow Prospect",
-                                "Cashflow Client",
-                                "Cashflow Natural Market",
-                                "Cashflow Suspect",
-                                "Cashflow Referral",
-                                "Cashflow Target Market",
-                            ],
-                            datasets: [{
-                                data: [
-                                    this.props.CPDials,
-                                    this.props.CCDials,
-                                    this.props.CNDials,
-                                    this.props.CSDials,
-                                    this.props.CRDials,
-                                    this.props.CTDials
-                                ],
-                                backgroundColor: [
-                                    "#3ac178",
-                                    "#443959",
-                                    "#f99b17",
-                                    "#a2e505",
-                                    "#c9917f",
-                                    "#8d044b"
-                                ]
-                            }]
-                        }} /> </div> : null}
+                                datasets: [{
+                                    data: [
+                                        this.props.CPDials,
+                                        this.props.CCDials,
+                                        this.props.CNDials,
+                                        this.props.CSDials,
+                                        this.props.CRDials,
+                                        this.props.CTDials
+                                    ],
+                                    backgroundColor: [
+                                        "#3ac178",
+                                        "#443959",
+                                        "#f99b17",
+                                        "#a2e505",
+                                        "#c9917f",
+                                        "#8d044b"
+                                    ]
+                                }]
+                            }} options={{
+                                legend: {
+                                    position: 'left',
+                                    labels: {
+                                        boxWidth: 10
+                                    }
+                                }
+                            }} /> </div> </div> : null}
 
 
                 {/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1505,52 +1644,63 @@ class MainDataViewer extends Component {
 
 
                 {this.state.showCashflowContacts ?
-                    <div>
+                    <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
                         <h3><u>Contact Data: </u></h3>
-                        <Bar data={{
-                            labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
-                            datasets: [{
-                                label: "Contacts",
-                                backgroundColor: 'rgb(255, 99, 132)',
-                                borderColor: 'rgb(255, 99, 132)',
-                                data: [
-                                    this.props.CPContacts,
-                                    this.props.CCContacts,
-                                    this.props.CNContacts,
-                                    this.props.CSContacts,
-                                    this.props.CRContacts,
-                                    this.props.CTContacts
+                        <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
+                            <Bar data={{
+                                labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
+                                datasets: [{
+                                    label: "Contacts",
+                                    backgroundColor: 'rgba(50, 50, 50, 0.8)',
+                                    borderColor: 'rgb(255, 255, 255)',
+                                    data: [
+                                        this.props.CPContacts,
+                                        this.props.CCContacts,
+                                        this.props.CNContacts,
+                                        this.props.CSContacts,
+                                        this.props.CRContacts,
+                                        this.props.CTContacts
+                                    ],
+                                }]
+                            }} />
+                        </div>
+                        <br />
+                        <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
+                            <Pie data={{
+                                labels: [
+                                    "Cashflow Prospect",
+                                    "Cashflow Client",
+                                    "Cashflow Natural Market",
+                                    "Cashflow Suspect",
+                                    "Cashflow Referral",
+                                    "Cashflow Target Market",
                                 ],
-                            }]
-                        }} />
-                        <Pie data={{
-                            labels: [
-                                "Cashflow Prospect",
-                                "Cashflow Client",
-                                "Cashflow Natural Market",
-                                "Cashflow Suspect",
-                                "Cashflow Referral",
-                                "Cashflow Target Market",
-                            ],
-                            datasets: [{
-                                data: [
-                                    this.props.CPContacts,
-                                    this.props.CCContacts,
-                                    this.props.CNContacts,
-                                    this.props.CSContacts,
-                                    this.props.CRContacts,
-                                    this.props.CTContacts
-                                ],
-                                backgroundColor: [
-                                    "#3ac178",
-                                    "#443959",
-                                    "#f99b17",
-                                    "#a2e505",
-                                    "#c9917f",
-                                    "#8d044b"
-                                ]
-                            }]
-                        }} />
+                                datasets: [{
+                                    data: [
+                                        this.props.CPContacts,
+                                        this.props.CCContacts,
+                                        this.props.CNContacts,
+                                        this.props.CSContacts,
+                                        this.props.CRContacts,
+                                        this.props.CTContacts
+                                    ],
+                                    backgroundColor: [
+                                        "#3ac178",
+                                        "#443959",
+                                        "#f99b17",
+                                        "#a2e505",
+                                        "#c9917f",
+                                        "#8d044b"
+                                    ]
+                                }]
+                            }} options={{
+                                legend: {
+                                    position: 'left',
+                                    labels: {
+                                        boxWidth: 10
+                                    }
+                                }
+                            }} /> </div>
 
                     </div> : null}
 
@@ -1561,53 +1711,63 @@ class MainDataViewer extends Component {
 
                 <br />
                 {this.state.showCashflowAppts ?
-                    <div>
+                    <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
                         <h3><u>Appointment Data:</u></h3>
 
-                        <Bar data={{
-                            labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
-                            datasets: [{
-                                label: "Appointments",
-                                backgroundColor: 'rgb(255, 99, 132)',
-                                borderColor: 'rgb(255, 99, 132)',
-                                data: [
-                                    this.props.CPAppts,
-                                    this.props.CCAppts,
-                                    this.props.CNAppts,
-                                    this.props.CSAppts,
-                                    this.props.CRAppts,
-                                    this.props.CTAppts
+                        <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
+                            <Bar data={{
+                                labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
+                                datasets: [{
+                                    label: "Appointments",
+                                    backgroundColor: 'rgba(50, 50, 50, 0.8)',
+                                    borderColor: 'rgb(255, 255, 255)',
+                                    data: [
+                                        this.props.CPAppts,
+                                        this.props.CCAppts,
+                                        this.props.CNAppts,
+                                        this.props.CSAppts,
+                                        this.props.CRAppts,
+                                        this.props.CTAppts
+                                    ],
+                                }]
+                            }} /> </div>
+                        <br />
+                        <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
+                            <Pie data={{
+                                labels: [
+                                    "Cashflow Prospect",
+                                    "Cashflow Client",
+                                    "Cashflow Natural Market",
+                                    "Cashflow Suspect",
+                                    "Cashflow Referral",
+                                    "Cashflow Target Market",
                                 ],
-                            }]
-                        }} />
-                        <Pie data={{
-                            labels: [
-                                "Cashflow Prospect",
-                                "Cashflow Client",
-                                "Cashflow Natural Market",
-                                "Cashflow Suspect",
-                                "Cashflow Referral",
-                                "Cashflow Target Market",
-                            ],
-                            datasets: [{
-                                data: [
-                                    this.props.CPAppts,
-                                    this.props.CCAppts,
-                                    this.props.CNAppts,
-                                    this.props.CSAppts,
-                                    this.props.CRAppts,
-                                    this.props.CTAppts
-                                ],
-                                backgroundColor: [
-                                    "#3ac178",
-                                    "#443959",
-                                    "#f99b17",
-                                    "#a2e505",
-                                    "#c9917f",
-                                    "#8d044b"
-                                ]
-                            }]
-                        }} />
+                                datasets: [{
+                                    data: [
+                                        this.props.CPAppts,
+                                        this.props.CCAppts,
+                                        this.props.CNAppts,
+                                        this.props.CSAppts,
+                                        this.props.CRAppts,
+                                        this.props.CTAppts
+                                    ],
+                                    backgroundColor: [
+                                        "#3ac178",
+                                        "#443959",
+                                        "#f99b17",
+                                        "#a2e505",
+                                        "#c9917f",
+                                        "#8d044b"
+                                    ]
+                                }]
+                            }} options={{
+                                legend: {
+                                    position: 'left',
+                                    labels: {
+                                        boxWidth: 10
+                                    }
+                                }
+                            }} /> </div>
                     </div> : null}
 
 
@@ -1616,50 +1776,60 @@ class MainDataViewer extends Component {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                 {this.state.showBusinessDials ?
-                    <div>
+                    <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
                         <h3><u>Dial Data:</u></h3>
-                        <Bar data={{
-                            labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
-                            datasets: [{
-                                label: "Dials",
-                                backgroundColor: 'rgb(255, 99, 132)',
-                                borderColor: 'rgb(255, 99, 132)',
-                                data: [
-                                    this.props.BPDials,
-                                    this.props.BCDials,
-                                    this.props.BNDials,
-                                    this.props.BSDials,
-                                    this.props.BRDials,
-                                    this.props.BTDials],
-                            }]
-                        }} />
-                        <Pie data={{
-                            labels: [
-                                "Business Prospect",
-                                "Business Client",
-                                "Business Natural Market",
-                                "Business Suspect",
-                                "Business Referral",
-                                "Business Target Market"],
-                            datasets: [{
-                                data: [
-                                    this.props.BPDials,
-                                    this.props.BCDials,
-                                    this.props.BNDials,
-                                    this.props.BSDials,
-                                    this.props.BRDials,
-                                    this.props.BTDials
-                                ],
-                                backgroundColor: [
-                                    "#d2d93b",
-                                    "#dd4417",
-                                    "#5191d9",
-                                    "#483d28",
-                                    "#51aef7",
-                                    "#25517b"
-                                ]
-                            }]
-                        }} /> </div> : null}
+                        <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
+                            <Bar data={{
+                                labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
+                                datasets: [{
+                                    label: "Dials",
+                                    backgroundColor: 'rgba(50, 50, 50, 0.8)',
+                                    borderColor: 'rgb(255, 255, 255)',
+                                    data: [
+                                        this.props.BPDials,
+                                        this.props.BCDials,
+                                        this.props.BNDials,
+                                        this.props.BSDials,
+                                        this.props.BRDials,
+                                        this.props.BTDials],
+                                }]
+                            }} /> </div>
+                        <br />
+                        <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
+                            <Pie data={{
+                                labels: [
+                                    "Business Prospect",
+                                    "Business Client",
+                                    "Business Natural Market",
+                                    "Business Suspect",
+                                    "Business Referral",
+                                    "Business Target Market"],
+                                datasets: [{
+                                    data: [
+                                        this.props.BPDials,
+                                        this.props.BCDials,
+                                        this.props.BNDials,
+                                        this.props.BSDials,
+                                        this.props.BRDials,
+                                        this.props.BTDials
+                                    ],
+                                    backgroundColor: [
+                                        "#d2d93b",
+                                        "#dd4417",
+                                        "#5191d9",
+                                        "#483d28",
+                                        "#51aef7",
+                                        "#25517b"
+                                    ]
+                                }]
+                            }} options={{
+                                legend: {
+                                    position: 'left',
+                                    labels: {
+                                        boxWidth: 10
+                                    }
+                                }
+                            }} /> </div> </div> : null}
 
 
                 {/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1667,50 +1837,60 @@ class MainDataViewer extends Component {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                 {this.state.showBusinessContacts ?
-                    <div>
+                    <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
                         <h3><u>Contact Data:</u></h3>
-                        <Bar data={{
-                            labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
-                            datasets: [{
-                                label: "Contacts",
-                                backgroundColor: 'rgb(255, 99, 132)',
-                                borderColor: 'rgb(255, 99, 132)',
-                                data: [
-                                    this.props.BPContacts,
-                                    this.props.BCContacts,
-                                    this.props.BNContacts,
-                                    this.props.BSContacts,
-                                    this.props.BRContacts,
-                                    this.props.BTContacts],
-                            }]
-                        }} />
-                        <Pie data={{
-                            labels: [
-                                "Business Prospect",
-                                "Business Client",
-                                "Business Natural Market",
-                                "Business Suspect",
-                                "Business Referral",
-                                "Business Target Market"],
-                            datasets: [{
-                                data: [
-                                    this.props.BPContacts,
-                                    this.props.BCContacts,
-                                    this.props.BNContacts,
-                                    this.props.BSContacts,
-                                    this.props.BRContacts,
-                                    this.props.BTContacts
-                                ],
-                                backgroundColor: [
-                                    "#d2d93b",
-                                    "#dd4417",
-                                    "#5191d9",
-                                    "#483d28",
-                                    "#51aef7",
-                                    "#25517b"
-                                ]
-                            }]
-                        }} /> </div> : null}
+                        <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
+                            <Bar data={{
+                                labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
+                                datasets: [{
+                                    label: "Contacts",
+                                    backgroundColor: 'rgba(50, 50, 50, 0.8)',
+                                    borderColor: 'rgb(255, 255, 255)',
+                                    data: [
+                                        this.props.BPContacts,
+                                        this.props.BCContacts,
+                                        this.props.BNContacts,
+                                        this.props.BSContacts,
+                                        this.props.BRContacts,
+                                        this.props.BTContacts],
+                                }]
+                            }} /> </div>
+                        <br />
+                        <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
+                            <Pie data={{
+                                labels: [
+                                    "Business Prospect",
+                                    "Business Client",
+                                    "Business Natural Market",
+                                    "Business Suspect",
+                                    "Business Referral",
+                                    "Business Target Market"],
+                                datasets: [{
+                                    data: [
+                                        this.props.BPContacts,
+                                        this.props.BCContacts,
+                                        this.props.BNContacts,
+                                        this.props.BSContacts,
+                                        this.props.BRContacts,
+                                        this.props.BTContacts
+                                    ],
+                                    backgroundColor: [
+                                        "#d2d93b",
+                                        "#dd4417",
+                                        "#5191d9",
+                                        "#483d28",
+                                        "#51aef7",
+                                        "#25517b"
+                                    ]
+                                }]
+                            }} options={{
+                                legend: {
+                                    position: 'left',
+                                    labels: {
+                                        boxWidth: 10
+                                    }
+                                }
+                            }} /> </div> </div> : null}
 
 
 
@@ -1719,50 +1899,60 @@ class MainDataViewer extends Component {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                 {this.state.showBusinessAppts ?
-                    <div>
+                    <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
                         <h3><u>Appointment Data:</u></h3>
-                        <Bar data={{
-                            labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
-                            datasets: [{
-                                label: "Appointments",
-                                backgroundColor: 'rgb(255, 99, 132)',
-                                borderColor: 'rgb(255, 99, 132)',
-                                data: [
-                                    this.props.BPAppts,
-                                    this.props.BCAppts,
-                                    this.props.BNAppts,
-                                    this.props.BSAppts,
-                                    this.props.BRAppts,
-                                    this.props.BTAppts],
-                            }]
-                        }} />
-                        <Pie data={{
-                            labels: [
-                                "Business Prospect",
-                                "Business Client",
-                                "Business Natural Market",
-                                "Business Suspect",
-                                "Business Referral",
-                                "Business Target Market"],
-                            datasets: [{
-                                data: [
-                                    this.props.BPAppts,
-                                    this.props.BCAppts,
-                                    this.props.BNAppts,
-                                    this.props.BSAppts,
-                                    this.props.BRAppts,
-                                    this.props.BTAppts
-                                ],
-                                backgroundColor: [
-                                    "#d2d93b",
-                                    "#dd4417",
-                                    "#5191d9",
-                                    "#483d28",
-                                    "#51aef7",
-                                    "#25517b"
-                                ]
-                            }]
-                        }} /> </div> : null}
+                        <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
+                            <Bar data={{
+                                labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
+                                datasets: [{
+                                    label: "Appointments",
+                                    backgroundColor: 'rgba(50, 50, 50, 0.8)',
+                                    borderColor: 'rgb(255, 255, 255)',
+                                    data: [
+                                        this.props.BPAppts,
+                                        this.props.BCAppts,
+                                        this.props.BNAppts,
+                                        this.props.BSAppts,
+                                        this.props.BRAppts,
+                                        this.props.BTAppts],
+                                }]
+                            }} /> </div>
+                        <br />
+                        <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
+                            <Pie data={{
+                                labels: [
+                                    "Business Prospect",
+                                    "Business Client",
+                                    "Business Natural Market",
+                                    "Business Suspect",
+                                    "Business Referral",
+                                    "Business Target Market"],
+                                datasets: [{
+                                    data: [
+                                        this.props.BPAppts,
+                                        this.props.BCAppts,
+                                        this.props.BNAppts,
+                                        this.props.BSAppts,
+                                        this.props.BRAppts,
+                                        this.props.BTAppts
+                                    ],
+                                    backgroundColor: [
+                                        "#d2d93b",
+                                        "#dd4417",
+                                        "#5191d9",
+                                        "#483d28",
+                                        "#51aef7",
+                                        "#25517b"
+                                    ]
+                                }]
+                            }} options={{
+                                legend: {
+                                    position: 'left',
+                                    labels: {
+                                        boxWidth: 10
+                                    }
+                                }
+                            }} /> </div> </div> : null}
 
 
 
@@ -2268,8 +2458,8 @@ class MainDataViewer extends Component {
                     <div style={{ textAlign: 'center' }}>
 
                         <div>
-                            <h3><u>Lead Type Breakdown:</u></h3>
-                            <p>Weekly Dials: {this.state.sourceDialData.length}</p>
+                            <h3><u> {this.state.leadSource} Types of Calls</u></h3>
+                            <p>Dials: {this.state.sourceDialData.length}</p>
                             {/* <Bar data={{
                                 labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                                 datasets: [{
@@ -2285,147 +2475,179 @@ class MainDataViewer extends Component {
                                         this.state.SCTDials + this.state.SBTDials],
                                 }]
                             }} /> */}
-                            <Pie data={{
-                                labels: [
-                                    "Cashflow Prospect",
-                                    "Business Prospect",
-                                    "Cashflow Client",
-                                    "Business Client",
-                                    "Cashflow Natural Market",
-                                    "Business Natural Market",
-                                    "Cashflow Suspect",
-                                    "Business Suspect",
-                                    "Cashflow Referral",
-                                    "Business Referral",
-                                    "Cashflow Target Market",
-                                    "Business Target Market"],
-                                datasets: [{
-                                    data: [
-                                        this.state.SCPDials,
-                                        this.state.SBPDials,
-                                        this.state.SCCDials,
-                                        this.state.SBCDials,
-                                        this.state.SCNDials,
-                                        this.state.SBNDials,
-                                        this.state.SCSDials,
-                                        this.state.SBSDials,
-                                        this.state.SCRDials,
-                                        this.state.SBRDials,
-                                        this.state.SCTDials,
-                                        this.state.SBTDials
-                                    ],
-                                    backgroundColor: [
-                                        "#3ac178",
-                                        "#443959",
-                                        "#f99b17",
-                                        "#a2e505",
-                                        "#c9917f",
-                                        "#8d044b",
-                                        "#d2d93b",
-                                        "#dd4417",
-                                        "#5191d9",
-                                        "#483d28",
-                                        "#51aef7",
-                                        "#25517b"
-                                    ]
-                                }]
-                            }} /> </div>
+                            <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
+                                <Pie data={{
+                                    labels: [
+                                        "Cashflow Prospect",
+                                        "Business Prospect",
+                                        "Cashflow Client",
+                                        "Business Client",
+                                        "Cashflow Natural Market",
+                                        "Business Natural Market",
+                                        "Cashflow Suspect",
+                                        "Business Suspect",
+                                        "Cashflow Referral",
+                                        "Business Referral",
+                                        "Cashflow Target Market",
+                                        "Business Target Market"],
+                                    datasets: [{
+                                        data: [
+                                            this.state.SCPDials,
+                                            this.state.SBPDials,
+                                            this.state.SCCDials,
+                                            this.state.SBCDials,
+                                            this.state.SCNDials,
+                                            this.state.SBNDials,
+                                            this.state.SCSDials,
+                                            this.state.SBSDials,
+                                            this.state.SCRDials,
+                                            this.state.SBRDials,
+                                            this.state.SCTDials,
+                                            this.state.SBTDials
+                                        ],
+                                        backgroundColor: [
+                                            "#3ac178",
+                                            "#443959",
+                                            "#f99b17",
+                                            "#a2e505",
+                                            "#c9917f",
+                                            "#8d044b",
+                                            "#d2d93b",
+                                            "#dd4417",
+                                            "#5191d9",
+                                            "#483d28",
+                                            "#51aef7",
+                                            "#25517b"
+                                        ]
+                                    }]
+                                }} options={{
+                                    legend: {
+                                        position: 'left',
+                                        labels: {
+                                            boxWidth: 10
+                                        }
+                                    }
+                                }} /> </div> </div>
 
                         {/* /////////////////////////////////////////
                         ////////////////////////////////////////////
                         /////// SOURCE PIE CHARTS BELOW ////////////
                         ///////////////////////////////////////////
                         /////////////////////////////////////////// */}
-                        <h3>{this.state.leadSource} Lead Performance:</h3>
-                        <div className="row" style={{ textAlign: 'center' }}>
+                        <br />
+                        <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
+                            <h3>{this.state.leadSource} Lead Performance:</h3>
+                            <div className="row" style={{ textAlign: 'center' }}>
 
-                            <div className="col-lg-4">
-                                <hr />
-                                <h3>Dials to Contact Ratio</h3>
-                                <h6>Total {this.state.leadSource} Lead Dials: {this.state.SourceDials}</h6>
-                                <h6>Contact Ratio: {Math.round((this.state.SourceContacts / this.state.SourceDials) * 100)}%</h6>
-                                <Pie data={{
-                                    labels: [
-                                        `${this.state.leadSource} Lead Missed Calls`,
-                                        `${this.state.leadSource} Lead Contacts`,
-                                    ],
-                                    datasets: [{
-                                        data: [
-                                            this.state.SourceDials - this.state.SourceContacts,
-                                            this.state.SourceContacts
+                                <div className="col-lg-4">
+                                    <hr />
+                                    <h5>Contacts/Dial Ratio</h5>
+                                    <h6>Total Dials: {this.state.SourceDials}</h6>
+                                    <h6>Contact Ratio: {Math.round((this.state.SourceContacts / this.state.SourceDials) * 100)}%</h6>
+                                    <Pie data={{
+                                        labels: [
+                                            `${this.state.leadSource} Lead Missed Calls`,
+                                            `${this.state.leadSource} Lead Contacts`,
                                         ],
-                                        backgroundColor: [
-                                            "#51aef7",
-                                            "#25517b"
-                                        ]
-                                    }]
-                                }} />
+                                        datasets: [{
+                                            data: [
+                                                this.state.SourceDials - this.state.SourceContacts,
+                                                this.state.SourceContacts
+                                            ],
+                                            backgroundColor: [
+                                                "#51aef7",
+                                                "#25517b"
+                                            ]
+                                        }]
+                                    }} options={{
+                                        legend: {
+                                            position: 'bottom',
+                                            labels: {
+                                                boxWidth: 10
+                                            }
+                                        }
+                                    }} />
+                                </div>
+
+                                <div className="col-lg-4">
+                                    <hr />
+                                    <h5>Appointment / Contact Ratio</h5>
+                                    <h6>Total Contacts: {this.state.SourceContacts}</h6>
+                                    <h6>Appointment Ratio: {Math.round((this.state.SourceAppts / this.state.SourceContacts) * 100)}%</h6>
+                                    <Pie data={{
+                                        labels: [
+                                            `${this.state.leadSource} Lead Contacts without Scheduling`,
+                                            `${this.state.leadSource} Lead Appointments`,
+                                        ],
+                                        datasets: [{
+                                            data: [
+                                                this.state.SourceContacts - this.state.SourceAppts,
+                                                this.state.SourceAppts
+                                            ],
+                                            backgroundColor: [
+                                                "#51aef7",
+                                                "#25517b"
+                                            ]
+                                        }]
+                                    }} options={{
+                                        legend: {
+                                            position: 'bottom',
+                                            labels: {
+                                                boxWidth: 10
+                                            }
+                                        }
+                                    }} />
+                                </div>
+
+                                <div className="col-lg-4">
+                                    <hr />
+                                    <h5>Appointment / Dial Ratio</h5>
+                                    <h6>Total Appointments: {this.state.sourceAppts}</h6>
+                                    <h6>Appointment Ratio: {Math.round((this.state.SourceAppts / this.state.SourceDials) * 100)}%</h6>
+                                    <Pie data={{
+                                        labels: [
+                                            `${this.state.leadSource} Lead Calls without Scheduling`,
+                                            `${this.state.leadSource} Lead Calls Scheduled`,
+                                        ],
+                                        datasets: [{
+                                            data: [
+                                                this.state.SourceDials - this.state.SourceAppts,
+                                                this.state.SourceAppts
+                                            ],
+                                            backgroundColor: [
+                                                "#51aef7",
+                                                "#25517b"
+                                            ]
+                                        }]
+                                    }} options={{
+                                        legend: {
+                                            position: 'bottom',
+                                            labels: {
+                                                boxWidth: 10
+                                            }
+                                        }
+                                    }} />
+                                </div>
+
+
                             </div>
 
-                            <div className="col-lg-4">
-                                <hr />
-                                <h3>Contacts to Appointment Ratio</h3>
-                                <h6>Total Target Market Contacts: {this.state.SourceContacts}</h6>
-                                <h6>Appointment per Contact Ratio: {Math.round((this.state.SourceAppts / this.state.SourceContacts) * 100)}%</h6>
-                                <Pie data={{
-                                    labels: [
-                                        `${this.state.leadSource} Lead Contacts without Scheduling`,
-                                        `${this.state.leadSource} Lead Appointments`,
-                                    ],
-                                    datasets: [{
-                                        data: [
-                                            this.state.SourceContacts - this.state.SourceAppts,
-                                            this.state.SourceAppts
-                                        ],
-                                        backgroundColor: [
-                                            "#51aef7",
-                                            "#25517b"
-                                        ]
-                                    }]
-                                }} />
-                            </div>
-
-                            <div className="col-lg-4">
-                                <hr />
-                                <h3>Dials to Appointment Ratio</h3>
-                                <h6>{this.state.leadSource} Lead Dials: {this.state.SourceDials}</h6>
-                                <h6>Appointment per Dial Ratio: {Math.round((this.state.SourceAppts / this.state.SourceDials) * 100)}%</h6>
-                                <Pie data={{
-                                    labels: [
-                                        `${this.state.leadSource} Lead Calls without Scheduling`,
-                                        `${this.state.leadSource} Lead Calls Scheduled`,
-                                    ],
-                                    datasets: [{
-                                        data: [
-                                            this.state.SourceDials - this.state.SourceAppts,
-                                            this.state.SourceAppts
-                                        ],
-                                        backgroundColor: [
-                                            "#51aef7",
-                                            "#25517b"
-                                        ]
-                                    }]
-                                }} />
-                            </div>
-
-
-                        </div>
-
-                    </div>
+                        </div> </div>
                     : null}
 
 
-                     {/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                {/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                 {this.state.showSelectedTargetPerformance ?
                     <div style={{ textAlign: 'center' }}>
 
-                        <div>
-                            <h3><u>Lead Type Breakdown:</u></h3>
-                            <p>Weekly Dials: {this.state.targetDialData.length}</p>
-                            {/* <Bar data={{
+                        <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
+                            <div>
+                                <h3><u>{this.state.targetMarket} Types of Calls</u></h3>
+                                <p>Total Dials: {this.state.targetDialData.length}</p>
+                                {/* <Bar data={{
                                 labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                                 datasets: [{
                                     label: "Dials",
@@ -2440,133 +2662,163 @@ class MainDataViewer extends Component {
                                         this.state.SCTDials + this.state.SBTDials],
                                 }]
                             }} /> */}
-                            <Pie data={{
-                                labels: [
-                                    "Cashflow Prospect",
-                                    "Business Prospect",
-                                    "Cashflow Client",
-                                    "Business Client",
-                                    "Cashflow Natural Market",
-                                    "Business Natural Market",
-                                    "Cashflow Suspect",
-                                    "Business Suspect",
-                                    "Cashflow Referral",
-                                    "Business Referral",
-                                    "Cashflow Target Market",
-                                    "Business Target Market"],
-                                datasets: [{
-                                    data: [
-                                        this.state.TCPDials,
-                                        this.state.TBPDials,
-                                        this.state.TCCDials,
-                                        this.state.TBCDials,
-                                        this.state.TCNDials,
-                                        this.state.TBNDials,
-                                        this.state.TCSDials,
-                                        this.state.TBSDials,
-                                        this.state.TCRDials,
-                                        this.state.TBRDials,
-                                        this.state.TCTDials,
-                                        this.state.TBTDials
-                                    ],
-                                    backgroundColor: [
-                                        "#3ac178",
-                                        "#443959",
-                                        "#f99b17",
-                                        "#a2e505",
-                                        "#c9917f",
-                                        "#8d044b",
-                                        "#d2d93b",
-                                        "#dd4417",
-                                        "#5191d9",
-                                        "#483d28",
-                                        "#51aef7",
-                                        "#25517b"
-                                    ]
-                                }]
-                            }} /> </div>
+                                <Pie data={{
+                                    labels: [
+                                        "Cashflow Prospect",
+                                        "Business Prospect",
+                                        "Cashflow Client",
+                                        "Business Client",
+                                        "Cashflow Natural Market",
+                                        "Business Natural Market",
+                                        "Cashflow Suspect",
+                                        "Business Suspect",
+                                        "Cashflow Referral",
+                                        "Business Referral",
+                                        "Cashflow Target Market",
+                                        "Business Target Market"],
+                                    datasets: [{
+                                        data: [
+                                            this.state.TCPDials,
+                                            this.state.TBPDials,
+                                            this.state.TCCDials,
+                                            this.state.TBCDials,
+                                            this.state.TCNDials,
+                                            this.state.TBNDials,
+                                            this.state.TCSDials,
+                                            this.state.TBSDials,
+                                            this.state.TCRDials,
+                                            this.state.TBRDials,
+                                            this.state.TCTDials,
+                                            this.state.TBTDials
+                                        ],
+                                        backgroundColor: [
+                                            "#3ac178",
+                                            "#443959",
+                                            "#f99b17",
+                                            "#a2e505",
+                                            "#c9917f",
+                                            "#8d044b",
+                                            "#d2d93b",
+                                            "#dd4417",
+                                            "#5191d9",
+                                            "#483d28",
+                                            "#51aef7",
+                                            "#25517b"
+                                        ]
+                                    }]
+                                }} options={{
+                                    legend: {
+                                        position: 'left',
+                                        labels: {
+                                            boxWidth: 10
+                                        }
+                                    }
+                                }} /> </div> </div>
 
+                        <br />
                         {/* /////////////////////////////////////////
                         ////////////////////////////////////////////
                         /////// SOURCE PIE CHARTS BELOW ////////////
                         ///////////////////////////////////////////
                         /////////////////////////////////////////// */}
-                        <h3>{this.state.targetMarket} Calls Performance:</h3>
-                        <div className="row" style={{ textAlign: 'center' }}>
+                        <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
+                            <h3>{this.state.targetMarket} Calls Performance:</h3>
+                            <div className="row" style={{ textAlign: 'center' }}>
 
-                            <div className="col-lg-4">
-                                <hr />
-                                <h3>Dials to Contact Ratio</h3>
-                                <h6>Total {this.state.targetMarket} Lead Dials: {this.state.TargetDials}</h6>
-                                <h6>Contact Ratio: {Math.round((this.state.TargetContacts / this.state.TargetDials) * 100)}%</h6>
-                                <Pie data={{
-                                    labels: [
-                                        `${this.state.targetMarket} Missed Calls`,
-                                        `${this.state.targetMarket} Contacts`,
-                                    ],
-                                    datasets: [{
-                                        data: [
-                                            this.state.TargetDials - this.state.TargetContacts,
-                                            this.state.TargetContacts
+                                <div className="col-lg-4">
+                                    <hr />
+                                    <h5>Contact / Dial Ratio</h5>
+                                    <h6>Total Dials: {this.state.TargetDials}</h6>
+                                    <h6>Contact Ratio: {Math.round((this.state.TargetContacts / this.state.TargetDials) * 100)}%</h6>
+                                    <Pie data={{
+                                        labels: [
+                                            `${this.state.targetMarket} Missed Calls`,
+                                            `${this.state.targetMarket} Contacts`,
                                         ],
-                                        backgroundColor: [
-                                            "#51aef7",
-                                            "#25517b"
-                                        ]
-                                    }]
-                                }} />
+                                        datasets: [{
+                                            data: [
+                                                this.state.TargetDials - this.state.TargetContacts,
+                                                this.state.TargetContacts
+                                            ],
+                                            backgroundColor: [
+                                                "#51aef7",
+                                                "#25517b"
+                                            ]
+                                        }]
+                                    }} options={{
+                                        legend: {
+                                            position: 'bottom',
+                                            labels: {
+                                                boxWidth: 10
+                                            }
+                                        }
+                                    }} />
+                                </div>
+
+                                <div className="col-lg-4">
+                                    <hr />
+                                    <h5>Appointment / Contact Ratio</h5>
+                                    <h6>Total {this.state.targetMarket} Contacts: {this.state.TargetContacts}</h6>
+                                    <h6>Appointment Ratio: {Math.round((this.state.TargetAppts / this.state.TargetContacts) * 100)}%</h6>
+                                    <Pie data={{
+                                        labels: [
+                                            `${this.state.targetMarket} calls without Scheduling`,
+                                            `${this.state.targetMarket} calls Scheduled`,
+                                        ],
+                                        datasets: [{
+                                            data: [
+                                                this.state.TargetContacts - this.state.TargetAppts,
+                                                this.state.TargetAppts
+                                            ],
+                                            backgroundColor: [
+                                                "#51aef7",
+                                                "#25517b"
+                                            ]
+                                        }]
+                                    }} options={{
+                                        legend: {
+                                            position: 'bottom',
+                                            labels: {
+                                                boxWidth: 10
+                                            }
+                                        }
+                                    }} />
+                                </div>
+
+                                <div className="col-lg-4">
+                                    <hr />
+                                    <h5>Appointment / Dials Ratio</h5>
+                                    <h6>Total Appointments {this.state.targetAppts}</h6>
+                                    <h6>Appointment Ratio: {Math.round((this.state.TargetAppts / this.state.TargetDials) * 100)}%</h6>
+                                    <Pie data={{
+                                        labels: [
+                                            `${this.state.targetMarket} calls without Scheduling`,
+                                            `${this.state.targetMarket} calls Scheduled`,
+                                        ],
+                                        datasets: [{
+                                            data: [
+                                                this.state.TargetDials - this.state.TargetAppts,
+                                                this.state.TargetAppts
+                                            ],
+                                            backgroundColor: [
+                                                "#51aef7",
+                                                "#25517b"
+                                            ]
+                                        }]
+                                    }} options={{
+                                        legend: {
+                                            position: 'bottom',
+                                            labels: {
+                                                boxWidth: 10
+                                            }
+                                        }
+                                    }} />
+                                </div>
+
+
                             </div>
 
-                            <div className="col-lg-4">
-                                <hr />
-                                <h3>Contacts to Appointment Ratio</h3>
-                                <h6>Total {this.state.targetMarket} Contacts: {this.state.TargetContacts}</h6>
-                                <h6>Appointment per Contact Ratio: {Math.round((this.state.TargetAppts / this.state.TargetContacts) * 100)}%</h6>
-                                <Pie data={{
-                                    labels: [
-                                        `${this.state.targetMarket} calls without Scheduling`,
-                                        `${this.state.targetMarket} calls Scheduled`,
-                                    ],
-                                    datasets: [{
-                                        data: [
-                                            this.state.TargetContacts - this.state.TargetAppts,
-                                            this.state.TargetAppts
-                                        ],
-                                        backgroundColor: [
-                                            "#51aef7",
-                                            "#25517b"
-                                        ]
-                                    }]
-                                }} />
-                            </div>
-
-                            <div className="col-lg-4">
-                                <hr />
-                                <h3>Dials to Appointment Ratio</h3>
-                                <h6>{this.state.targetMarket} Lead Dials: {this.state.targetMarket}</h6>
-                                <h6>Appointment per Dial Ratio: {Math.round((this.state.TargetAppts / this.state.TargetDials) * 100)}%</h6>
-                                <Pie data={{
-                                    labels: [
-                                        `${this.state.targetMarket} calls without Scheduling`,
-                                        `${this.state.targetMarket} calls Scheduled`,
-                                    ],
-                                    datasets: [{
-                                        data: [
-                                            this.state.TargetDials - this.state.TargetAppts,
-                                            this.state.TargetAppts
-                                        ],
-                                        backgroundColor: [
-                                            "#51aef7",
-                                            "#25517b"
-                                        ]
-                                    }]
-                                }} />
-                            </div>
-
-
-                        </div>
-
-                    </div>
+                        </div> </div>
                     : null}
                 <hr />
 

@@ -3,7 +3,8 @@
     padding: 10px;
     border-radius: 0;
     margin: 10px;  
-    color: 'whitesmoke'
+    color: 'whitesmoke';
+    text-align: 'center' !important;
 }
 
 .customDrop {
@@ -29,4 +30,11 @@
 
 p {
     margin-top: '10px'
+}
+
+
+.sale-input {
+    width: 50%;
+    margin-left: 25%;
+    text-align: 'center'
 }
