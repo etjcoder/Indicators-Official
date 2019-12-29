@@ -42,7 +42,7 @@ export default class DemoApp extends React.Component {
                 defaultView="dayGridMonth" 
                 plugins={[dayGridPlugin]}
                 // plugins={calendarPlugins}
-                weekends={false}
+                weekends={true}
                 events={this.state.events}
             />
             </div>

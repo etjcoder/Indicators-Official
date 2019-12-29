@@ -135,16 +135,18 @@ class SalesItem extends Component {
     render() {
         return (
             <div>
-                <div style={{ height: '300px', textAlign: 'left' }}>
+                <div style={{ height: '300px', padding: '0 10% 0 10%', textAlign: 'left', backgroundColor: 'rgba(176,214,255,0.8)', overflow: 'auto', borderRadius: 5 }}>
                     <hr></hr>
-                    <h4>{this.props.saleName}: <span>{this.props.saleDate}</span></h4>
+                    <h4 style={{ textAlign: 'center' }}><u>{this.props.saleName}:</u> <span>
+                        <button value={this.props.id} onClick={this.prepEditModal} className="btn btn-outline-info btn-sm" style={{ float: 'right' }}>Edit</button>
+                        <button value={this.props.id} onClick={this.deleteSale} className="btn btn-outline-danger btn-sm" style={{ float: 'right' }}>Delete</button>
+                    </span></h4>
+                    {/* <p style={{ fontSize: '11px' }}>{this.props.saleDate}</p> */}
                     <p>Notes: {this.props.saleNotes}</p>
                     <p>Source: {this.props.saleSource}</p>
                     <p>Commissions: ${this.props.saleCommission}</p>
-                    <p>Protege: {this.props.saleWriter} Percentage: {this.props.salePercentage * 100}% Payout: ${this.props.salePercentage * this.props.saleCommission}</p>
-                    <p>Mentor: {this.props.saleTagged} Percentage: {this.props.saleTaggedPercentage * 100}% Payout: ${this.props.saleTaggedPercentage * this.props.saleCommission}</p>
-                    <button value={this.props.id} onClick={this.prepEditModal} className="btn btn-info">Edit</button>
-                    <button value={this.props.id} onClick={this.deleteSale} className="btn btn-danger">Delete</button>
+                    <p>Protege (You) Percentage: {this.props.salePercentage * 100}% Payout: ${this.props.salePercentage * this.props.saleCommission}</p>
+                    <p>Mentor Percentage: {this.props.saleTaggedPercentage * 100}% Payout: ${this.props.saleTaggedPercentage * this.props.saleCommission}</p>
                     <hr></hr>
                 </div>
 

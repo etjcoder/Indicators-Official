@@ -772,12 +772,12 @@ class ProtegeDash extends Component {
 
                                 <div id="appointments-container">
                                     <div className="row">
-                                        <div className="col">
+                                        <div className="col-12" style={{zIndex: 0}}>
                                             <MainCalendar 
                                                 appointments={this.state.appointments}
                                             />
                                         </div>
-                                        <div className="col-md-4">
+                                        <div className="col-12">
                                             <p></p>
                                             <AppointmentCreator
                                                 userID={this.state.userData._id}
@@ -789,9 +789,9 @@ class ProtegeDash extends Component {
                                             />
                                         </div>
 
-                                        <div className="col-md-8">
-                                            <div className="card" style={{ textAlign: "center", margin: 20, padding: 40 }}>
-                                                <h4>Your Appointments:</h4>
+                                        <div className="col-12">
+                                            <div className="card" style={{ textAlign: "center", margin: 20, padding: 40, height: 1000, overflow: 'auto', backgroundColor: 'rgba(114,180,255,0.8)'}}>
+                                                <h4 style={{color: 'whitesmoke'}}>Manage Your Appointments:</h4>
                                                 {this.state.appointments ?
                                                     <div>
                                                         {
@@ -832,7 +832,7 @@ class ProtegeDash extends Component {
                             {this.state.showSales ?
                                 <div id="sales-container">
                                     <div className="row">
-                                        <div className="col-md-4">
+                                        <div className="col-12">
                                             <p></p>
                                             <SalesCreator
                                                 userID={this.state.userData._id}
@@ -843,9 +843,9 @@ class ProtegeDash extends Component {
                                             />
                                         </div>
 
-                                        <div className="col-md-8">
-                                            <div className="card" style={{ textAlign: "center", margin: 20, padding: 50 }}>
-                                                <h4>Your Sales</h4>
+                                        <div className="col-12">
+                                        <div className="card" style={{ textAlign: "center", margin: 20, padding: 40, height: 1000, overflow: 'auto', backgroundColor: 'rgba(114,180,255,0.8)'}}>
+                                                <h4 style={{color: 'whitesmoke'}}>Your Sales</h4>
                                                 {this.state.sales ? <div>
                                                     {this.state.sales.map(sale => (
                                                         <SalesItem

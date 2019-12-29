@@ -102,13 +102,15 @@ class AppointmentItem extends Component {
     render() {
         return (
             <div>
-                <div style={{ height: '200px', textAlign: 'left' }}>
+                <div style={{ height: '200px', padding: '0 10% 0 10%', textAlign: 'left', backgroundColor: 'rgba(176,214,255,0.8)', overflow: 'auto', borderRadius: 5 }}>
                     <hr></hr>
-                    <h4>{this.state.apptname}: <span>{this.state.apptdate}</span></h4>
+                    <h4 style={{textAlign: 'center'}}><u>{this.state.apptname}:</u><span>
+                    <button value={this.props.id} onClick={this.prepEditModal} className="btn btn-outline-info btn-sm" style={{float: 'right'}}>Edit</button>
+                    <button value={this.props.id} onClick={this.deleteAppt} className="btn btn-outline-danger btn-sm" style={{float: 'right'}}>Delete</button>
+                    </span></h4>
+                    <p style={{fontSize: '11px'}}>{this.state.apptdate}</p>
                     <p>Notes: {this.state.apptnotes}</p>
                     <p>Source: {this.state.apptsource}</p>
-                    <button value={this.props.id} onClick={this.prepEditModal} className="btn btn-info">Edit</button>
-                    <button value={this.props.id} onClick={this.deleteAppt} className="btn btn-danger">Delete</button>
                     <hr></hr>
                 </div>
 
