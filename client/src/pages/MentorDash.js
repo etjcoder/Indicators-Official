@@ -529,6 +529,14 @@ class MentorDash extends Component {
                         </form>
                     </div>
                     <div className="row">
+
+                        {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                        {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                        {/*  /////////////////////////   Analytics Tool            /////////////////////////////// */}
+                        {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                        {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+
+
                         {this.state.viewMainData ?
                             <div className="col-12">
                                 <MentorDataViewer
@@ -575,6 +583,13 @@ class MentorDash extends Component {
                                 />
                             </div>
                             : null}
+
+                        {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                        {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                        {/*  /////////////////////////   Appointments Tool            /////////////////////////////// */}
+                        {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                        {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+
 
                         {this.state.viewAppointments ?
                             <div>
@@ -623,7 +638,13 @@ class MentorDash extends Component {
                                     </div>
                                 </div>
                             </div>
-                        : null}
+                            : null}
+
+                        {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                        {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                        {/*  /////////////////////////   Notes Tool            /////////////////////////////// */}
+                        {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                        {/*  ////////////////////////////////////////////////////////////////////////////////// */}
 
                         {this.state.viewNotes ?
                             <div id="mentor-note-container">
@@ -640,17 +661,29 @@ class MentorDash extends Component {
                             </div>
                             : null}
                     </div>
-                    <div className="row">
 
-                        {this.state.viewSales ?
-                            <div className="col-lg-6">
+                    {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                    {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                    {/*  /////////////////////////   Sales Tool            /////////////////////////////// */}
+                    {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                    {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+
+
+
+
+                    {this.state.viewSales ?
+                        <div id="sales-container">
+                            <div className="col-12">
                                 <SalesCreatorMentor
                                     userID={this.state.mentor._id}
                                     userData={this.state.mentor}
                                     proteges={this.state.mentor.proteges}
                                 />
-                                <div className="card" style={{ textAlign: "center" }}>
-                                    <h4>Your Sales</h4>
+
+                            </div>
+                            <div className="col-12">
+                                <div className="card" style={{ textAlign: "center", margin: 20, padding: 40, height: 1000, overflow: 'auto', backgroundColor: 'rgba(114,180,255,0.8)' }}>
+                                    <h4 style={{color: 'whitesmoke'}}>Your Sales</h4>
                                     {this.state.salesData ? <div>
                                         {
                                             this.state.salesData.map(sale => (
@@ -677,31 +710,9 @@ class MentorDash extends Component {
                                         : null}
                                 </div>
                             </div>
-                            : null}
-                    </div>
-                    {/* 
-                        Note View 4/12 Right 
-                            --Notes to Proteges
-                            --Read?
-                            --Completed?
-                    */}
-                    {/* Thin Bar 12/12  --Input Notes / Tag Dialer*/}
-                    {/*  Middle Bar 
-                        Protege Profiles
-                            -Daily Activity
-                            -Monthly Activity
-                            -YTD Activity
-                            -All Time Activity
-                    */}
-                    {/* 
-                        Lower Bar
-                        Data Analytics Basic
-                            --Search many types of analytics on Personal Team
-                        Data Analytics Advanced
-                            --Search analytics of firm overall statistics (anonymized) 
-                    */}
-
-                </div >
+                        </div>
+                        : null}
+                </div>
             </div >
 
         )

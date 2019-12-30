@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import cogoToast from "cogo-toast";
+import "./style.css"
 
 
 
@@ -14,10 +15,11 @@ class SalesCreatorMentor extends Component {
         saleDate: "",
         saleTargetMkt: "",
         saleTagged: "",
-        saleCommission : 0,
+        saleCommission: 0,
         salePercentage: 0,
         saleTaggedPercentage: 0,
-        saleProduct: ""
+        saleProduct: "",
+        showSale: false
     }
 
     componentDidMount() {
@@ -108,6 +110,17 @@ class SalesCreatorMentor extends Component {
 
     }
 
+    showSaleForm = () => {
+        if (this.state.showSale === false) {
+            this.setState({
+                showSale: true
+            })
+        } else {
+            this.setState({
+                showSale: false
+            })
+        }
+    }
 
 
 
@@ -115,72 +128,83 @@ class SalesCreatorMentor extends Component {
 
     render() {
         return (
-            <div className="card" style={{ padding: '10%' }}>
-                <h4>Create Sale:</h4>
-                <form className="form-group">
-                    <label>Type of Sale</label>
-                    <select className="custom-select my-1 mr-sm-2" value={this.state.saleType} onChange={this.handleInputChange} name="saleType" type="text" placeholder="Choose Client type">
-                        <option value="CPD">Cashflow Prospect</option>
-                        <option value="BPD">Businessowner Prospect</option>
-                        <option value="CCD">Cashflow Client</option>
-                        <option value="BCD">Businessowner Client</option>
-                        <option value="CND">Cashflow Natural Mkt</option>
-                        <option value="BND">Business Natural Mkt</option>
-                    </select>
+            <div className="card" id="sale-creator-mentor">
+                <h4 style={{ color: 'whitesmoke' }}>Create Sale <span><button className="btn btn-sm btn-outline-light" onClick={this.showSaleForm}>Show</button></span></h4>
+                <hr />
 
-                    <label>Sale Name:</label>
-                    <input id="apptname-input" className="form-control" value={this.state.saleName} onChange={this.handleInputChange} name="saleName" type="text" placeholder="Give your appointment a name!" />
+                {this.state.showSale ?
+                    <form className="form-group">
+                        <label><p style={{ color: 'whitesmoke' }}>Type of Sale</p></label>
+                        <select className="custom-select my-1 mr-sm-2" className="customDropMentor" value={this.state.saleType} onChange={this.handleInputChange} name="saleType" type="text" placeholder="Choose Client type">
+                            <option value="CPD">Cashflow Prospect</option>
+                            <option value="BPD">Businessowner Prospect</option>
+                            <option value="CCD">Cashflow Client</option>
+                            <option value="BCD">Businessowner Client</option>
+                            <option value="CND">Cashflow Natural Mkt</option>
+                            <option value="BND">Business Natural Mkt</option>
+                        </select>
+                        <hr />
 
-                    <label>Product Sold:</label>
-                    <input id="product-sold" className="form-control" value={this.state.saleProduct} onChange={this.handleInputChange} name="saleProduct" type="text" placeholder="Type of product sold" />
+                        <label><p style={{ color: 'whitesmoke' }}>Sale Name:</p></label>
+                        <input id="apptname-input" className="form-control" value={this.state.saleName} onChange={this.handleInputChange} name="saleName" type="text" placeholder="Give your appointment a name!" />
 
-                    <label>Date of Sale:</label>
-                    <input id="date-input" className="form-control" value={this.state.saleDate} onChange={this.handleInputChange} name="saleDate" type="date" placeholder="Enter date for your appointment" />
+                        <hr />
+                        <label><p style={{ color: 'whitesmoke' }}>Product Sold:</p></label>
+                        <input id="product-sold" className="form-control" value={this.state.saleProduct} onChange={this.handleInputChange} name="saleProduct" type="text" placeholder="Type of product sold" />
 
-                    <label>Protege Tagged</label>
-                    {this.props.proteges ? <select id="mentorDropMenu" value={this.state.saleTagged} onChange={this.handleInputChange} name="saleTagged">
+                        <hr />
+                        <label><p style={{ color: 'whitesmoke' }}>Date of Sale:</p></label>
+                        <input id="date-input" className="form-control" value={this.state.saleDate} onChange={this.handleInputChange} name="saleDate" type="date" placeholder="Enter date for your appointment" />
+
+                        <hr />
+                        <label><p style={{ color: 'whitesmoke' }}>Protege Tagged</p></label>
+                        {this.props.proteges ? <select id="mentorDropMenu" className="customDropMentor" value={this.state.saleTagged} onChange={this.handleInputChange} name="saleTagged">
                             <option value={"none"}>--Tag Mentor--</option>
-                        {this.props.proteges.map(protege => (
-                            <option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>
-                        ))}    
-                    </select> : null }
+                            {this.props.proteges.map(protege => (
+                                <option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>
+                            ))}
+                        </select> : null}
 
-                    <label>Sales Commission [only enter numbers]</label>
-                    <input id="saleCommission" className="form-control" value={this.state.saleCommission} onChange={this.handleInputChange} name="saleCommission" />
+                        <hr />
+                        <label><p style={{ color: 'whitesmoke' }}>Sales Commission [only enter numbers]</p></label>
+                        <input id="saleCommission" className="form-control" value={this.state.saleCommission} onChange={this.handleInputChange} name="saleCommission" />
 
-                    <label>Your Percentage [only enter numbers]</label>
-                    <input id="salePercentage" className="form-control" value={this.state.salePercentage} onChange={this.handleInputChange} name="salePercentage" />
+                        <hr />
+                        <label><p style={{ color: 'whitesmoke' }}>Your Percentage [only enter numbers]</p></label>
+                        <input id="salePercentage" className="form-control" value={this.state.salePercentage} onChange={this.handleInputChange} name="salePercentage" />
 
-                    <label>Mentor Percentage [only enter numbers]</label>
-                    <input id="taggedPercentage" className="form-control" value={this.state.saleTaggedPercentage} onChange={this.handleInputChange} name="saleTaggedPercentage" />
+                        <hr />
+                        <label><p style={{ color: 'whitesmoke' }}>Mentor Percentage [only enter numbers]</p></label>
+                        <input id="taggedPercentage" className="form-control" value={this.state.saleTaggedPercentage} onChange={this.handleInputChange} name="saleTaggedPercentage" />
 
+                        <hr />
+                        <label><p style={{ color: 'whitesmoke' }}>Lead Source:</p></label>
+                        {/* <input id="source-input" className="form-control" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource" type="text" placeholder="Source of Lead" /> */}
+                        {this.props.userData.sources ? <select id="sourceDropMenu" className="customDropMentor" value={this.state.saleSource} onChange={this.handleInputChange} name="saleSource">
+                            <option value={"none"}>No Lead Source Selected</option>
+                            {this.props.userData.sources.map(source => (
+                                <option value={source}>{source}</option>
+                            ))}
+                        </select> : <p style={{ color: 'whitesmoke' }}>"No lead sources created yet"</p>}
 
-                    <label>Lead Source:</label>
-                    {/* <input id="source-input" className="form-control" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource" type="text" placeholder="Source of Lead" /> */}
-                    {this.props.userData.sources ? <select id="sourceDropMenu" value={this.state.saleSource} onChange={this.handleInputChange} name="saleSource">
-                        <option value={"none"}>No Lead Source Selected</option>
-                        {this.props.userData.sources.map(source => (
-                            <option value={source}>{source}</option>
-                        ))}
-                    </select> : <p>"No lead sources created yet"</p>}
+                        <hr />
+                        <label><p style={{ color: 'whitesmoke' }}>Target Market:</p></label>
+                        {/* <input id="targetmkt-input" className="form-control" value={this.state.apptTargetMkt} onChange={this.handleInputChange} name="appttargetmkt" type="text" placeholder="Target Market goes here" /> */}
+                        {this.props.userData.targetMarkets ? <select id="sourceDropMenu" className="customDropMentor" value={this.state.saleTargetMkt} onChange={this.handleInputChange} name="saleTargetMkt">
+                            <option value={"none"}>No Target Market Selected</option>
+                            {this.props.userData.targetMarkets.map(target => (
+                                <option value={target}>{target}</option>
+                            ))}
+                        </select> : <p style={{ color: 'whitesmoke' }}>"No target markets created yet"</p>}
 
+                        <hr />
+                        <label><p style={{ color: 'whitesmoke' }}>Sales Notes:</p></label>
+                        <input id="note-input" className="form-control" value={this.state.saleNotes} onChange={this.handleInputChange} name="saleNotes" type="text" placeholder="Enter any notes here" />
+                        <br />
+                        <button id="appt-input-btn" className="btn-success form-control" onClick={this.handleSaleSubmit}>Submit Sale</button>
 
-                    <label>Target Market:</label>
-                    {/* <input id="targetmkt-input" className="form-control" value={this.state.apptTargetMkt} onChange={this.handleInputChange} name="appttargetmkt" type="text" placeholder="Target Market goes here" /> */}
-                    {this.props.userData.targetMarkets ? <select id="sourceDropMenu" value={this.state.saleTargetMkt} onChange={this.handleInputChange} name="saleTargetMkt">
-                        <option value={"none"}>No Target Market Selected</option>
-                        {this.props.userData.targetMarkets.map(target => (
-                            <option value={target}>{target}</option>
-                        ))}
-                    </select> : <p>"No target markets created yet"</p>}
-
-
-                    <label>Sales Notes:</label>
-                    <input id="note-input" className="form-control" value={this.state.saleNotes} onChange={this.handleInputChange} name="saleNotes" type="text" placeholder="Enter any notes here" />
-                    <br />
-                    <button id="appt-input-btn" className="btn-success form-control" onClick={this.handleSaleSubmit}>Submit Sale</button>
-
-                </form>
+                    </form>
+                : null}
 
             </div>
         )
