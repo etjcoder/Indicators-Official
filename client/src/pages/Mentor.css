@@ -1,0 +1,16 @@
+.customDropMentor{
+    /* float: right; */
+    width: 250;
+    font-size: 18px;
+    line-height: 18px;
+    padding-left: 10px;
+    border-radius: 10px;
+    background: transparent;
+    border: 1.5px solid white;
+    color: white;
+    height: 40px;
+    opacity: .85;
+    font-family: 'Open Sans Condensed', sans-serif;
+    cursor: pointer;
+    text-align: center;
+}

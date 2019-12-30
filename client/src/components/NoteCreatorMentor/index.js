@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import API from "../../utils/API";
 import cogoToast from "cogo-toast";
+import { Button } from 'shards-react';
+import "./style.css"
 
 class NoteCreatorMentor extends Component {
     constructor(props) {
@@ -57,14 +59,19 @@ class NoteCreatorMentor extends Component {
 
     render() {
         return (
-            <div className="note-form">
+            <div className="note-form" style={{ width: '50%', textAlign: 'center', marginLeft: '25%' }}>
                 <div id="note-welcome">
                     Create a Note.
       </div>
                 <form>
-
+                    {this.props.userData.proteges ? <select id="noteDropMenuMentor" value={this.state.noteTagged} onChange={this.handleInputChange} name="noteTagged">
+                        <option value={"none"}>--Tag Mentor--</option>
+                        {this.props.userData.proteges.map(protege => (
+                            <option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>
+                        ))}
+                    </select> : null}
                     <input value={this.state.noteText} onChange={this.handleInputChange} type="text" name="noteText" className="form-control" id="noteTextInput" aria-describedby="" placeholder="Enter note here" />
-         
+
                     {/* <input value={this.state.protege} onChange={this.handleInputChange} type="text" name="proteges" className="form-control" placeholder="Protege" />
                     {this.props.proteges ? <select id="protegeDropMenu" value={this.state.protege} onChange={this.handleArrayChange} name="protege">
                         {this.props.proteges.map(protege => (
@@ -72,16 +79,13 @@ class NoteCreatorMentor extends Component {
                         ))}
                     </select> : null} */}
                     {/* <input value={this.state.noteTagged} onChange={this.handleInputChange} type="text" name="noteTagged" className="form-control" placeholder="Tag a Mentor" /> */}
-                    {this.props.userData.proteges ? <select id="mentorDropMenu" value={this.state.noteTagged} onChange={this.handleInputChange} name="noteTagged">
-                            <option value={"none"}>--Tag Mentor--</option>
+                    {/* {this.props.userData.proteges ? <select id="mentorDropMenu" value={this.state.noteTagged} onChange={this.handleInputChange} name="noteTagged">
+                        <option value={"none"}>--Tag Mentor--</option>
                         {this.props.userData.proteges.map(protege => (
                             <option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>
-                        ))}    
-                    </select> : null }
-                    <br />
-              
-                   
-                    <button onClick={this.handleNoteSubmit} className="btn btn-outline-info">Create Note</button>
+                        ))}
+                    </select> : null} */}
+                    <Button outline theme="light" onClick={this.handleNoteSubmit} className="btn btn-outline-info">Create Note</Button>
                     {/* <button onClick={this.logOut} style={{ marginTop: '5px', marginLeft: '25px' }} className="btn btn-danger">Logout</button> */}
                 </form>
             </div>

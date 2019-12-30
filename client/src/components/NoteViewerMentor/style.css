@@ -1,0 +1,14 @@
+#note-view-container-2 {
+    background-color: transparent !important;
+}
+
+#note-viewer-1-mentor {
+    overflow: auto;
+    height: '300px'
+}
+
+
+#note-viewer-2-mentor {
+    height: '100px';
+    overflow: 'auto'
+}

@@ -68,7 +68,7 @@ class NoteViewerMentor extends Component {
         console.log("Marked note incomplete: " + id)
         API.uncompleteNote(id, {
             completed: false
-        }).then(res => 
+        }).then(res =>
             cogoToast.info("Unchecked Box")
         ).catch(err => console.log(err))
     }
@@ -86,78 +86,75 @@ class NoteViewerMentor extends Component {
 
     render() {
         return (
-            <div className="row">
-                <div className="col-lg-6">
-                    <div className="note-card card">
+            <div className="row" id="note-view-container-2" style={{ color: 'darkslategrey', height: 500, overflow: 'auto' }}>
+                <div className="" id="note-viewer-1-mentor" style={{ padding: '10px', width: '100%', marginBottom: '-20px' }}>
+                    <div className="">
                         <div id="note-welcome" div className="card-title">
-                            <h4><u>View Notes Your Tagged In</u></h4>
+                            {/* <h4><u>View Notes Your Tagged In</u></h4> */}
                         </div>
-                        <div className="card-body">
+                        <div className="">
 
                             {this.props.tagNotes ?
 
                                 this.props.tagNotes.map(note => (
-                                    <div>
+                                    <div style={{ background: 'rgba(255,255,255,0.8)', marginBottom: '0', padding: '10px' }}>
 
-                                        <p>Note: {note.noteText}</p>
+                                        <p>||: {note.noteText} <span>
+                                            <button value={this.props.id} onClick={() => this.deleteNote(note._id)} style={{ float: 'right' }} className="btn btn-danger">X</button>
+                                            {note.completed ?
+                                                <button value={this.props.id} onClick={() => this.uncompleteNote(note._id)} style={{ float: 'right' }} className="btn btn-success">√</button>
+                                                : <button value={this.props.id} onClick={() => this.completeNote(note._id)} style={{ float: 'right' }} className="btn btn-success"><i class="far fa-square"></i></button>
+                                            }
+                                        </span></p>
                                         <p style={{ fontSize: '8px' }}>
-                                            Tagged to: {note.noteTagged} 
-                                            Completed: {JSON.stringify(note.completed)} 
-                                            <span> 
-                                                {note.completed ? 
-                                                <button value={this.props.id} onClick={() => this.uncompleteNote(note._id)} className="btn btn-success">√</button>
-                                                : <button value={this.props.id} onClick={() => this.completeNote(note._id)} className="btn btn-success">O</button> 
-                                                }
-                                                <button value={this.props.id} onClick={() => this.deleteNote(note._id)} className="btn btn-danger">X</button>
-                                            </span></p>
-
-                                        <hr />
-                                    </div>
-                                ))
-
-                                : <p>No Notes Yet!</p>}
-                        </div>
-                    </div>
-                </div>
-                <div className="col-lg-6">
-                    <div className="note-card card">
-                        <div id="note-welcome" div className="card-title">
-                            <h4><u>View Notes You Made</u></h4>
-                        </div>
-                        <div className="card-body">
-
-                            {this.props.postNotes ?
-
-                                this.props.postNotes.map(note => (
-                                    <div>
-
-                                        <p>Note: {note.noteText}</p>
-                                        <p style={{ fontSize: '8px' }}>
-                                            Tagged to: {note.noteTagged} 
-                                            Completed: {JSON.stringify(note.completed)} 
-                                            <span> 
-                                            {note.completed ? 
-                                                <button value={this.props.id} onClick={() => this.uncompleteNote(note._id)} className="btn btn-success">√</button>
-                                                : <button value={this.props.id} onClick={() => this.completeNote(note._id)} className="btn btn-success">O</button> 
-                                                }
-                                                <button value={this.props.id} onClick={() => this.deleteNote(note._id)} className="btn btn-danger">X</button>
-                                            </span>
+                                            By: {note.noteTagged}
                                         </p>
 
                                         <hr />
                                     </div>
                                 ))
 
-                                : <p>No Notes Yet!</p>}
+                                : <p style={{ color: 'whitesmoke', textAlign: 'center' }}>No Notes Yet!</p>}
+                        </div>
+                    </div>
+                </div>
+
+                <div className="" id="note-viewer-2-mentor" style={{ padding: '10px', width: '100%' }}>
+                    <div className="">
+                        <div id="note-welcome" className="">
+                            {/* <h4><u>View Notes You Made</u></h4> */}
+                        </div>
+                        <div className="">
+
+                            {this.props.postNotes ?
+
+                                this.props.postNotes.map(note => (
+                                    <div style={{ background: 'rgba(255,255,255,0.8)', marginBottom: '0', padding: '10px' }}>
+
+                                        <p>||: {note.noteText}
+                                            <span>
+                                                <button value={this.props.id} onClick={() => this.deleteNote(note._id)} style={{float: 'right'}} className="btn btn-danger">X</button>
+                                                {note.completed ?
+                                                    <button value={this.props.id} onClick={() => this.uncompleteNote(note._id)} style={{float: 'right'}} className="btn btn-success">√</button>
+                                                    : <button value={this.props.id} onClick={() => this.completeNote(note._id)} style={{float: 'right'}} className="btn btn-success"><i class="far fa-square"></i></button>
+                                                }
+                                            </span>
+                                        </p>
+                                        <p style={{ fontSize: '8px' }}>
+                                            By: {note.noteTagged}
+                                        </p>
+
+                                        <hr />
+                                    </div>
+                                ))
+
+                                : <p style={{color: 'whitesmoke', textAlign: 'center'}}>No Notes Yet!</p>}
                         </div>
                     </div>
                 </div>
             </div>
         )
     }
-
-
-
 }
 
 export default NoteViewerMentor;

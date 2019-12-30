@@ -177,7 +177,6 @@ class AppointmentCreator extends Component {
 
                     </form>
                     : null}
-
             </div>
         )
 
