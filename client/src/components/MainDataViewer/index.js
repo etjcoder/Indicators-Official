@@ -2758,7 +2758,7 @@ class MainDataViewer extends Component {
                                 <div className="col-lg-4">
                                     <hr />
                                     <h5>Appointment / Contact Ratio</h5>
-                                    <h6>Total {this.state.targetMarket} Contacts: {this.state.TargetContacts}</h6>
+                                    <h6>Total Contacts: {this.state.TargetContacts}</h6>
                                     <h6>Appointment Ratio: {Math.round((this.state.TargetAppts / this.state.TargetContacts) * 100)}%</h6>
                                     <Pie data={{
                                         labels: [
