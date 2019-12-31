@@ -5,6 +5,7 @@ import Nav from "../components/Nav";
 import CreateProtegeForm from "../components/CreateProtegeForm";
 import CreateMentorForm from "../components/CreateMentorForm";
 import API from "../utils/API";
+import SideNavPageManager from "../components/SideNavPageManager"
 
 
 class ManagerDash extends Component {
@@ -18,7 +19,14 @@ class ManagerDash extends Component {
         editMentorDataFirstName: "",
         editMentorDataLastName: "",
         editMentorDataProteges: "",
-        editMentorProtegeToAdd: ""
+        editMentorProtegeToAdd: "",
+        showCreateMentorForm: false,
+        showCreateProtegeForm: false,
+        showCreateTool: false,
+        showAnalyticsTool: false,
+        showReportsTool: false,
+        showSalesTool: false,
+        mentorSelected: "none"
     }
 
     componentDidMount = () => {
@@ -86,7 +94,7 @@ class ManagerDash extends Component {
 
     addProtegeToMentor = (event) => {
         event.preventDefault()
-        var ProtegeID = this.state.editMentorProtegeToAdd
+        var ProtegeID = this.state.protegeToAdd
         var MentorID = this.state.mentorSelected
         console.log("Adding Protege ID: " + this.state.editMentorProtegeToAdd + " to " + this.state.editMentorDataFirstName + " " + this.state.editMentorDataLastName)
         API.addProtegeToMentor(MentorID, {
@@ -96,7 +104,7 @@ class ManagerDash extends Component {
         }).catch(err => {
             console.log("Unsuccssfully added Protege to Mentor")
         })
-    
+
     }
 
 
@@ -111,67 +119,151 @@ class ManagerDash extends Component {
         }).catch(err => {
             console.log("Unsuccessfully removed Protege from Mentor")
         })
-    
+
     }
+
+    showCreate = () => {
+        console.log("Showing Creation tools")
+        if (this.state.showCreateTool === true) {
+            this.setState({
+                showCreateTool: false
+            })
+        } else {
+            this.setState({
+                showCreateTool: true,
+                showAnalyticsTool: false,
+                showReportsTool: false,
+                showSalesTool: false
+            })
+        }
+    }
+
+    showAnalytics = () => {
+        console.log("Showing Analytics tools")
+    }
+
+    showReports = () => {
+        console.log("Showing Reports tools")
+    }
+
+    showSales = () => {
+        console.log("Showing Sales tools")
+    }
+
+    showCreateProtegeFormFN = (e) => {
+        e.preventDefault()
+        if (this.state.showCreateProtegeForm === false) {
+            this.setState({
+                showCreateProtegeForm: true
+            })
+        } else {
+            this.setState({
+                showCreateProtegeForm: false
+            })
+        }
+    }
+
+    showCreateMentorFormFN = (e) => {
+        e.preventDefault()
+        if (this.state.showCreateMentorForm === false) {
+            this.setState({
+                showCreateMentorForm: true
+            })
+        } else {
+            this.setState({
+                showCreateMentorForm: false
+            })
+        }
+    }
+
+
 
     render() {
         return (
-            <div className="container">
-                <Nav />
-                <div className="jumbotron" style={{ height: '500px' }}>
-                    <h1>You're on the Manager Dashboard!</h1>
-                </div>
-                <div className="row">
-                    <div className="col-lg-6">
-                        Add / Update Existing Proteges
-                        <CreateProtegeForm />
+            <div>
+
+                <SideNavPageManager
+                    createOption={this.showCreate}
+                    analyticsOption={this.showAnalytics}
+                    reportsOption={this.showReports}
+                    salesOption={this.showSales}
+                />
+
+                <div className="container">
+
+                    <div className="jumbotron" style={{ height: '200px', backgroundColor: 'rgba(0,0,0,0.5)' }}>
+                        <h3 style={{ textAlign: 'center', color: 'white' }}>You're on the Mentor Dashboard!</h3>
+
                     </div>
-                    <div className="col-lg-6">
-                        Add New Mentor
-                        <CreateMentorForm proteges={this.state.proteges} />
-                    </div>
-                </div>
-                <br />
-                <div className="row">
-                    <br />
-                    <div className="col-lg-6">
-                        Update Mentor
-                        {this.state.mentors ? <select value={this.state.mentorSelected} onChange={this.handleMentorSelection} name="mentorSelected">
-                            {this.state.mentors.map(mentor => (
-                                <option key={mentor._id} value={mentor._id}>{mentor.firstName} {mentor.lastName}</option>
-                            ))}
-                        </select> : null}
-                        {this.state.mentorSelectedData ?
-                            <div><h5>Current Proteges:</h5>
+                    {this.state.showCreateTool ?
+                        <div>
 
-                                <ul>
-                                    {this.state.editMentorDataProteges.map(protege => (
-                                        <li>{protege.firstName} {protege.lastName} <button onClick={() => this.removeProtegeFromMentor(protege._id)} className="btn-danger btn-sm">X</button></li>
-                                    ))}
-                                </ul>
+                            <div className="row">
+                                <div className="col-lg-6 card" style={{ textAlign: 'center', margin: 0, padding: 40, overflow: 'auto', backgroundColor: 'rgba(114,180,255,0.8)' }}>
+                                    <h3>Create New Protege<span><button className="btn btn-sm btn-outline-light" onClick={this.showCreateProtegeFormFN}>Show</button></span></h3>
+                                    {this.state.showCreateProtegeForm ?
+                                        <CreateProtegeForm />
+                                    : null}
+                                </div>
+                                <div className="col-lg-6 card" style={{ textAlign: 'center', margin: 0, padding: 40, overflow: 'auto', backgroundColor: 'rgba(114,180,255,0.8)' }}>
+                                    <h3>Create New Mentor<span><button className="btn btn-sm btn-outline-light" onClick={this.showCreateMentorFormFN}>Show</button></span></h3>
+                                    {this.state.showCreateMentorForm ?
+                                        <CreateMentorForm proteges={this.state.proteges} />
+                                    : null }
+                                </div>
+                            </div>
+                            <br />
+                            <div className="row">
+                                <br />
+                                <div className="col-lg-6 card" style={{ textAlign: 'center', margin: 0, padding: 40, overflow: 'auto', backgroundColor: 'rgba(114,180,255,0.8)' }}>
+                                    <h3>Update Mentor </h3>
+                                    <p style={{textAlign: 'center'}}>(Choose a Mentor to begin)</p>
+                                    {this.state.mentors ? 
+                                        <select value={this.state.mentorSelected} onChange={this.handleMentorSelection} name="mentorSelected">
+                                                <option key={"none"} value={"none"}>--Select a Mentor--</option>
+                                            {this.state.mentors.map(mentor => (
+                                                <option key={mentor._id} value={mentor._id}>{mentor.firstName} {mentor.lastName}</option>
+                                            ))}
+                                        </select> 
+                                    : null}
+                                    {this.state.mentorSelectedData ?
+                                        <div><h5>Current Proteges:</h5>
 
-                                <form>
-                                    <label>Add A Protege</label>
-                                    {this.state.editMentorDataProteges ?
-                                        <div>
-                                            <select id="protegeDropDownMenu" value={this.state.editMentorDataProteges} onChange={this.handleArrayChange} name="editMentorDataProteges">
+                                            <div style={{textAlign: 'center'}}>
+                                                {this.state.editMentorDataProteges.map(protege => (
+                                                    <h5>{protege.firstName} {protege.lastName} <span><button onClick={() => this.removeProtegeFromMentor(protege._id)} className="btn-outline-danger btn btn-sm">Remove</button></span></h5>
+                                                ))}
+                                            </div>
 
-                                                {this.state.proteges.map(protege => (<option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>))}
-                                            </select>
-                                            <button onClick={this.addProtegeToMentor} className="btn-btn-outline-info">Add Protege to Mentor</button>
+                                            <form>
+                                                <label>Add A Protege</label>
+                                                {this.state.editMentorDataProteges ?
+                                                    <div>
+                                                        <select id="protegeDropDownMenu" value={this.state.protegeToAdd} onChange={this.handleInputChange} name="protegeToAdd">
+
+                                                            {this.state.proteges.map(protege => (<option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>))}
+                                                        </select>
+                                                        <button onClick={this.addProtegeToMentor} className="btn btn-outline-dark btn-sm">Assign Protege</button>
+                                                    </div>
+                                                    : null}
+
+                                            </form>
                                         </div>
+
+
                                         : null}
 
-                                </form>
+
+
+                                    {/* <EditMentorForm proteges={this.state.proteges} /> */}
+                                </div>
                             </div>
+                        </div>
+                        : null}
 
-
-                            : null}
-
-                        {/* <EditMentorForm proteges={this.state.proteges} /> */}
-                    </div>
                 </div>
-            </div>
+
+            </div >
         )
     }
 }
