@@ -32,7 +32,48 @@ class ManagerDataViewer extends Component {
             })
         } else {
             this.setState({
-                showProtegeAnalyticsViewer: false
+                showProtegeAnalyticsViewer: false,
+                activeProtegeDataPopulated: false,
+                activeProtegeData: "",
+                appointments: "",
+                contactData: "",
+                dialData: "",
+                BCAppts: 0,
+                BCContacts: 0,
+                BCDials: 0,
+                BNAppts: 0,
+                BNContacts: 0,
+                BNDials: 0,
+                BPAppts: 0,
+                BPContacts: 0,
+                BPDials: 0,
+                BRAppts: 0,
+                BRContacts: 0,
+                BRDials: 0,
+                BSAppts: 0,
+                BSContacts: 0,
+                BSDials: 0,
+                BTAppts: 0,
+                BTContacts: 0,
+                BTDials: 0,
+                CCAppts: 0,
+                CCContacts: 0,
+                CCDials: 0,
+                CNAppts: 0,
+                CNContacts: 0,
+                CNDials: 0,
+                CPAppts: 0,
+                CPContacts: 0,
+                CPDials: 0,
+                CRAppts: 0,
+                CRContacts: 0,
+                CRDials: 0,
+                CSAppts: 0,
+                CSContacts: 0,
+                CSDials: 0,
+                CTAppts: 0,
+                CTContacts: 0,
+                CTDials: 0
             })
         }
         console.log("Show Protege Analytics using: " + this.props.allProtegeData)
@@ -48,7 +89,48 @@ class ManagerDataViewer extends Component {
             })
         } else {
             this.setState({
-                showMentorAnalyticsViewer: false
+                showMentorAnalyticsViewer: false,
+                activeMentorsProtegeDataPopulated: false,
+                activeMentorsProtegeData: "",
+                appointments: "",
+                contactData: "",
+                dialData: "",
+                BCAppts: 0,
+                BCContacts: 0,
+                BCDials: 0,
+                BNAppts: 0,
+                BNContacts: 0,
+                BNDials: 0,
+                BPAppts: 0,
+                BPContacts: 0,
+                BPDials: 0,
+                BRAppts: 0,
+                BRContacts: 0,
+                BRDials: 0,
+                BSAppts: 0,
+                BSContacts: 0,
+                BSDials: 0,
+                BTAppts: 0,
+                BTContacts: 0,
+                BTDials: 0,
+                CCAppts: 0,
+                CCContacts: 0,
+                CCDials: 0,
+                CNAppts: 0,
+                CNContacts: 0,
+                CNDials: 0,
+                CPAppts: 0,
+                CPContacts: 0,
+                CPDials: 0,
+                CRAppts: 0,
+                CRContacts: 0,
+                CRDials: 0,
+                CSAppts: 0,
+                CSContacts: 0,
+                CSDials: 0,
+                CTAppts: 0,
+                CTContacts: 0,
+                CTDials: 0
             })
         }
     }
@@ -69,32 +151,408 @@ class ManagerDataViewer extends Component {
         }
     }
 
+    ////////////////////////////////////////////////////////////////////////
+    ///////////////////////Protege Data Gathering //////////////////////////
+    ////////////////////////////////////////////////////////////////////////
+
     viewProtegeData = () => {
-        console.log(this.state.protegeToView)
-        API.getUserDataById(this.state.protegeToView)
-            .then(res => {
-                console.log(res.data)
-                this.setState({
-                    activeProtegeData: res.data[0],
-                    activeProtegeDataPopulated: true
-                })
+
+        if (this.state.activeProtegeDataPopulated === true) {
+            this.setState({
+                activeProtegeDataPopulated: false,
+                activeProtegeData: "",
+                appointments: "",
+                contactData: "",
+                dialData: "",
+                BCAppts: 0,
+                BCContacts: 0,
+                BCDials: 0,
+                BNAppts: 0,
+                BNContacts: 0,
+                BNDials: 0,
+                BPAppts: 0,
+                BPContacts: 0,
+                BPDials: 0,
+                BRAppts: 0,
+                BRContacts: 0,
+                BRDials: 0,
+                BSAppts: 0,
+                BSContacts: 0,
+                BSDials: 0,
+                BTAppts: 0,
+                BTContacts: 0,
+                BTDials: 0,
+                CCAppts: 0,
+                CCContacts: 0,
+                CCDials: 0,
+                CNAppts: 0,
+                CNContacts: 0,
+                CNDials: 0,
+                CPAppts: 0,
+                CPContacts: 0,
+                CPDials: 0,
+                CRAppts: 0,
+                CRContacts: 0,
+                CRDials: 0,
+                CSAppts: 0,
+                CSContacts: 0,
+                CSDials: 0,
+                CTAppts: 0,
+                CTContacts: 0,
+                CTDials: 0
             })
+        } else {
+            console.log(this.state.protegeToView)
+            API.getUserDataById(this.state.protegeToView)
+                .then(res => {
+                    console.log(res.data)
+                    this.setState({
+                        activeProtegeData: res.data[0],
+                        activeProtegeDataPopulated: true,
+                        dialData: res.data[0].dials,
+                        protegeSelected: res.data[0]._id,
+                        appointments: res.data[0].appointments
+                    })
+                },
+
+                    this.getContactData(),
+                    setTimeout(() => {
+                        this.parseDials()
+                        this.parseAppointments()
+                    }, 500)
+                )
+
+        }
     }
 
     viewMentorsProtegeData = () => {
-        console.log(this.state.mentorsProtegeToView)
-        API.getUserDataById(this.state.mentorsProtegeToView)
-            .then(res => {
-                console.log(res.data)
-                this.setState({
-                    activeMentorsProtegeData: res.data[0],
-                    activeMentorsProtegeDataPopulated: true
-                })
+        if (this.state.activeMentorsProtegeDataPopulated === true) {
+            this.setState({
+                activeMentorsProtegeDataPopulated: false,
+                activeMentorProtegeData: "",
+                appointments: "",
+                contactData: "",
+                dialData: "",
+                BCAppts: 0,
+                BCContacts: 0,
+                BCDials: 0,
+                BNAppts: 0,
+                BNContacts: 0,
+                BNDials: 0,
+                BPAppts: 0,
+                BPContacts: 0,
+                BPDials: 0,
+                BRAppts: 0,
+                BRContacts: 0,
+                BRDials: 0,
+                BSAppts: 0,
+                BSContacts: 0,
+                BSDials: 0,
+                BTAppts: 0,
+                BTContacts: 0,
+                BTDials: 0,
+                CCAppts: 0,
+                CCContacts: 0,
+                CCDials: 0,
+                CNAppts: 0,
+                CNContacts: 0,
+                CNDials: 0,
+                CPAppts: 0,
+                CPContacts: 0,
+                CPDials: 0,
+                CRAppts: 0,
+                CRContacts: 0,
+                CRDials: 0,
+                CSAppts: 0,
+                CSContacts: 0,
+                CSDials: 0,
+                CTAppts: 0,
+                CTContacts: 0,
+                CTDials: 0
             })
+        } else {
+            console.log(this.state.mentorsProtegeToView)
+            API.getUserDataById(this.state.mentorsProtegeToView)
+                .then(res => {
+                    console.log(res.data)
+                    this.setState({
+                        activeMentorsProtegeData: res.data[0],
+                        activeMentorsProtegeDataPopulated: true,
+                        dialData: res.data[0].dials,
+                        protegeSelected: res.data[0]._id,
+                        appointments: res.data[0].appointments
+                    })
+                },
+
+                    this.getMContactData(),
+                    setTimeout(() => {
+                        this.parseDials()
+                        this.parseAppointments()
+                    }, 500)
+
+                )
+        }
     }
+
+    ////////////////////////////////////////////////////////////////////////
+    ///////////////////////Data Parsing ////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////
+
+    getContactData = () => {
+        setTimeout(() => {
+            console.log("Searching contacts using: " + this.state.activeProtegeData._id)
+            API.getContacts(this.state.activeProtegeData._id)
+                .then(res =>
+                    this.setState({
+                        contactData: res.data
+                    }),
+                    setTimeout(() => { this.parseContacts() }, 500)
+                )
+        }, 1000)
+
+    }
+
+    getMContactData = () => {
+        setTimeout(() => {
+            console.log("Searching contacts using: " + this.state.activeMentorsProtegeData._id)
+            API.getContacts(this.state.activeMentorsProtegeData._id)
+                .then(res =>
+                    this.setState({
+                        contactData: res.data
+                    }),
+                    setTimeout(() => { this.parseContacts() }, 500)
+                )
+        }, 1000)
+
+    }
+
+
+    parseDials = () => {
+        console.log("Parsing Dials: " + this.state.dialData)
+        var CPD = 0;
+        var BPD = 0;
+        var CCD = 0;
+        var BCD = 0;
+        var CND = 0;
+        var BND = 0;
+        var CSD = 0;
+        var BSD = 0;
+        var CRD = 0;
+        var BRD = 0;
+        var CTD = 0;
+        var BTD = 0;
+        for (var i = 0; i < this.state.dialData.length; i++) {
+            // console.log(this.state.dialData[i])
+            switch (this.state.dialData[i].type) {
+                case "CPD":
+                    CPD++
+                    break;
+                case "BPD":
+                    BPD++
+                    break;
+                case "CCD":
+                    CCD++
+                    break;
+                case "BCD":
+                    BCD++
+                    break;
+                case "CND":
+                    CND++
+                    break;
+                case "BND":
+                    BND++
+                    break;
+                case "CSD":
+                    CSD++
+                    break;
+                case "BSD":
+                    BSD++
+                    break;
+                case "CRD":
+                    CRD++
+                    break;
+                case "BRD":
+                    BRD++
+                    break;
+                case "CTD":
+                    CTD++
+                    break;
+                case "BTD":
+                    BTD++
+                    break;
+                default:
+                    break;
+            }
+        }
+        this.setState({
+            CPDials: CPD,
+            BPDials: BPD,
+            CCDials: CCD,
+            BCDials: BCD,
+            CNDials: CND,
+            BNDials: BND,
+            CSDials: CSD,
+            BSDials: BSD,
+            CRDials: CRD,
+            BRDials: BRD,
+            CTDials: CTD,
+            BTDials: BTD
+        })
+    }
+
+    parseContacts = () => {
+        console.log("Parsing Contacts: " + this.state.contactData)
+        var CPC = 0;
+        var BPC = 0;
+        var CCC = 0;
+        var BCC = 0;
+        var CNC = 0;
+        var BNC = 0;
+        var CSC = 0;
+        var BSC = 0;
+        var CRC = 0;
+        var BRC = 0;
+        var CTC = 0;
+        var BTC = 0;
+        for (var i = 0; i < this.state.contactData.length; i++) {
+            switch (this.state.contactData[i].type) {
+                case "CPD":
+                    CPC++
+                    break;
+                case "BPD":
+                    BPC++
+                    break;
+                case "CCD":
+                    CCC++
+                    break;
+                case "BCD":
+                    BCC++
+                    break;
+                case "CND":
+                    CNC++
+                    break;
+                case "BND":
+                    BNC++
+                    break;
+                case "CSD":
+                    CSC++
+                    break;
+                case "BSD":
+                    BSC++
+                    break;
+                case "CRD":
+                    CRC++
+                    break;
+                case "BRD":
+                    BRC++
+                    break;
+                case "CTD":
+                    CTC++
+                    break;
+                case "BTD":
+                    BTC++
+                    break;
+                default:
+                    break;
+            }
+        }
+        this.setState({
+            CPContacts: CPC,
+            BPContacts: BPC,
+            CCContacts: CCC,
+            BCContacts: BCC,
+            CNContacts: CNC,
+            BNContacts: BNC,
+            CSContacts: CSC,
+            BSContacts: BSC,
+            CRContacts: CRC,
+            BRContacts: BRC,
+            CTContacts: CTC,
+            BTContacts: BTC
+        })
+    }
+
+
+    parseAppointments = () => {
+        console.log("Parsing appointments: " + this.state.appointments)
+        var CPA = 0;
+        var BPA = 0;
+        var CCA = 0;
+        var BCA = 0;
+        var CNA = 0;
+        var BNA = 0;
+        var CSA = 0;
+        var BSA = 0;
+        var CRA = 0;
+        var BRA = 0;
+        var CTA = 0;
+        var BTA = 0;
+        for (var i = 0; i < this.state.appointments.length; i++) {
+            console.log(this.state.appointments[i])
+            switch (this.state.appointments[i].type) {
+                case "CPD":
+                    CPA++
+                    break;
+                case "BPD":
+                    BPA++
+                    break;
+                case "CCD":
+                    CCA++
+                    break;
+                case "BCD":
+                    BCA++
+                    break;
+                case "CND":
+                    CNA++
+                    break;
+                case "BND":
+                    BNA++
+                    break;
+                case "CSD":
+                    CSA++
+                    break;
+                case "BSD":
+                    BSA++
+                    break;
+                case "CRD":
+                    CRA++
+                    break;
+                case "BRD":
+                    BRA++
+                    break;
+                case "CTD":
+                    CTA++
+                    break;
+                case "BTD":
+                    BTA++
+                    break;
+                default:
+                    break;
+            }
+        }
+        this.setState({
+            CPAppts: CPA,
+            BPAppts: BPA,
+            CCAppts: CCA,
+            BCAppts: BCA,
+            CNAppts: CNA,
+            BNAppts: BNA,
+            CSAppts: CSA,
+            BSAppts: BSA,
+            CRAppts: CRA,
+            BRAppts: BRA,
+            CTAppts: CTA,
+            BTAppts: BTA
+        })
+    }
+
+
+
+
 
     viewMentorData = () => {
         console.log(this.state.mentorToView)
+        if (this.state.activeMentorDataPopulated === false) {
         API.getMentorById(this.state.mentorToView)
             .then(res => {
                 console.log(res.data)
@@ -103,6 +561,52 @@ class ManagerDataViewer extends Component {
                     activeMentorDataPopulated: true
                 })
             })
+
+        } else {
+            this.setState({
+                activeMentorDataPopulated: false,
+                activeMentorData: "",
+                appointments: "",
+                contactData: "",
+                dialData: "",
+                BCAppts: 0,
+                BCContacts: 0,
+                BCDials: 0,
+                BNAppts: 0,
+                BNContacts: 0,
+                BNDials: 0,
+                BPAppts: 0,
+                BPContacts: 0,
+                BPDials: 0,
+                BRAppts: 0,
+                BRContacts: 0,
+                BRDials: 0,
+                BSAppts: 0,
+                BSContacts: 0,
+                BSDials: 0,
+                BTAppts: 0,
+                BTContacts: 0,
+                BTDials: 0,
+                CCAppts: 0,
+                CCContacts: 0,
+                CCDials: 0,
+                CNAppts: 0,
+                CNContacts: 0,
+                CNDials: 0,
+                CPAppts: 0,
+                CPContacts: 0,
+                CPDials: 0,
+                CRAppts: 0,
+                CRContacts: 0,
+                CRDials: 0,
+                CSAppts: 0,
+                CSContacts: 0,
+                CSDials: 0,
+                CTAppts: 0,
+                CTContacts: 0,
+                CTDials: 0
+            })
+        }
     }
 
     viewProtegeCallData = () => {
@@ -546,9 +1050,9 @@ class ManagerDataViewer extends Component {
 
                 <div className="row">
                     <div className="col-12 card bg-primary" style={{ color: 'whitesmoke' }}>
-                        <h4>Review Proteges <button className="btn btn-outline-light" onClick={this.showProtegeAnalytics}>Show</button></h4>
-                        <h4>Review Mentors <button className="btn btn-outline-light" onClick={this.showMentorAnalytics}>Show</button></h4>
-                        <h4>Review Global <button className="btn btn-outline-light" onClick={this.showGlobalAnalytics}>Show</button></h4>
+                        <h4>Review Proteges <button className="btn btn-outline-light" onClick={this.showProtegeAnalytics}>Show/Hide</button></h4>
+                        <h4>Review Mentors <button className="btn btn-outline-light" onClick={this.showMentorAnalytics}>Show/Hide</button></h4>
+                        <h4>Review Global <button className="btn btn-outline-light" onClick={this.showGlobalAnalytics}>Show/Hide</button></h4>
                     </div>
 
                     <br />
@@ -569,7 +1073,7 @@ class ManagerDataViewer extends Component {
                                         {this.props.allProtegeData.map(protege => (<option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>))}
                                     </select>
                                     {/* <button>Placeholder</button> */}
-                                    <button onClick={this.viewProtegeData} className="btn btn-outline-light btn-sm">View Data</button>
+                                    <button onClick={this.viewProtegeData} className="btn btn-outline-light btn-sm">View/Change</button>
                                     {/* <button onClick={this.removeMentorFromProtege} className="btn btn-outline-danger btn-sm">Remove Mentor</button> */}
                                 </div>
                                 : null}
@@ -700,7 +1204,7 @@ class ManagerDataViewer extends Component {
                                         {this.props.allMentorData.map(mentor => (<option key={mentor._id} value={mentor._id}>{mentor.firstName} {mentor.lastName}</option>))}
                                     </select>
                                     {/* <button>Placeholder</button> */}
-                                    <button onClick={this.viewMentorData} className="btn btn-outline-light btn-sm">View Data</button>
+                                    <button onClick={this.viewMentorData} className="btn btn-outline-light btn-sm">View/Change</button>
                                     {/* <button onClick={this.removeMentorFromProtege} className="btn btn-outline-danger btn-sm">Remove Mentor</button> */}
                                 </div>
                                 : null}
@@ -769,7 +1273,7 @@ class ManagerDataViewer extends Component {
                                     <h4 style={{ textAlign: 'center' }}>Mentor Schedule:</h4>
                                 </div>
 
-                            : null}
+                                : null}
 
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
@@ -783,7 +1287,7 @@ class ManagerDataViewer extends Component {
                                     <h4 style={{ textAlign: 'center' }}>Mentor Appointments:</h4>
                                 </div>
 
-                            : null}
+                                : null}
 
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
@@ -797,7 +1301,7 @@ class ManagerDataViewer extends Component {
                                     <h4 style={{ textAlign: 'center' }}>Mentor Sales:</h4>
                                 </div>
 
-                            : null}
+                                : null}
 
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
@@ -811,7 +1315,7 @@ class ManagerDataViewer extends Component {
                                     <h4 style={{ textAlign: 'center' }}>Mentor Weekly Report:</h4>
                                 </div>
 
-                            : null}
+                                : null}
 
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
@@ -825,7 +1329,7 @@ class ManagerDataViewer extends Component {
                                     <h4 style={{ textAlign: 'center' }}>Mentor Monthly Report:</h4>
                                 </div>
 
-                            : null}
+                                : null}
 
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
@@ -839,7 +1343,7 @@ class ManagerDataViewer extends Component {
                                     <h4 style={{ textAlign: 'center' }}>Mentor Benchmark Report:</h4>
                                 </div>
 
-                            : null}
+                                : null}
 
 
 
