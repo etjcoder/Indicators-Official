@@ -24,11 +24,11 @@ router.route("/mentor/:id")
 router.route("/mentor/find/:id")
     .get(supervisorController.findMentorById)
     .put(supervisorController.pushProtegeToMentor)
-    .delete(supervisorController.pullProtegeFromArray)
+    .post(supervisorController.pullProtegeFromArray)
 
 router.route("/protege/find/:id")
     .put(supervisorController.pushMentorToProtege)
-    .delete(supervisorController.pullMentorFromArray)
+    .post(supervisorController.pullMentorFromArray)
 
 router.route("/mentor/notes/:id")
     .get(supervisorController.findMentorNotes)

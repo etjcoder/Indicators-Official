@@ -72,6 +72,7 @@ module.exports = {
             .catch(err => res.status(422).json(err))
     },
     pullProtegeFromArray: function (req, res) {
+        console.log(req.body.id)
         db.Mentor
             .findByIdAndUpdate({ _id: req.params.id }, { $pull: { proteges: { $in: req.body.id } } }, { useFindAndModify: false})
             .then(dbMentor => res.json(dbMentor))

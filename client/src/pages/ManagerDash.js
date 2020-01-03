@@ -146,9 +146,10 @@ class ManagerDash extends Component {
     }
 
 
-    removeProtegeFromMentor = (id) => {
-        console.log("Removing Protege ID: " + id + " from " + this.state.editMentorDataFirstName + " " + this.state.editMentorDataLastName)
-        var ProtegeID = id
+    removeProtegeFromMentor = (event) => {
+        event.preventDefault()
+        // console.log("Removing Protege ID: " + id + " from " + this.state.editMentorDataFirstName + " " + this.state.editMentorDataLastName)
+        var ProtegeID = this.state.protegeToAdd
         var MentorID = this.state.mentorSelected
         API.removeProtegeFromMentor(MentorID, {
             id: ProtegeID
@@ -285,7 +286,7 @@ class ManagerDash extends Component {
 
                                             <div style={{ textAlign: 'center' }}>
                                                 {this.state.editMentorDataProteges.map(protege => (
-                                                    <h5>{protege.firstName} {protege.lastName} <span><button onClick={() => this.removeProtegeFromMentor(protege._id)} value={protege._id} className="btn-outline-danger btn btn-sm">Remove</button></span></h5>
+                                                    <h5>{protege.firstName} {protege.lastName} <span></span></h5>
                                                 ))}
                                             </div>
 
@@ -298,6 +299,7 @@ class ManagerDash extends Component {
                                                             {this.state.proteges.map(protege => (<option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>))}
                                                         </select>
                                                         <button onClick={this.addProtegeToMentor} className="btn btn-outline-dark btn-sm">Assign Protege</button>
+                                                        <button onClick={this.removeProtegeFromMentor} className="btn btn-outline-danger btn-sm">Remove Protege</button>
                                                     </div>
                                                     : null}
 
