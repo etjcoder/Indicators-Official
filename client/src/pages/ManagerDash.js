@@ -26,7 +26,9 @@ class ManagerDash extends Component {
         showAnalyticsTool: false,
         showReportsTool: false,
         showSalesTool: false,
-        mentorSelected: "none"
+        mentorSelected: "none",
+        mentorToAdd: "none",
+        protegeToAdd: 'none'
     }
 
     componentDidMount = () => {
@@ -69,7 +71,7 @@ class ManagerDash extends Component {
     }
 
     handleProtegeSelection = event => {
-        const {name , value} = event.target;
+        const { name, value } = event.target;
         this.setState({
             [name]: value
         })
@@ -92,15 +94,15 @@ class ManagerDash extends Component {
 
     getProtegeData = () => {
         console.log("Getting protege by id: " + this.state.protegeSelected)
-        API.getProtege(this.state.protegeSelected)
+        API.getUserDataById(this.state.protegeSelected)
             .then(res => {
                 console.log(res)
-                // this.setState({
-                //     protegeSelectedData: res.data[0],
-                //     editProtegeDataFirstName: res.data[0].firstName,
-                //     editProtegeDataLastName: res.data[0].lastName,
-                //     editProtegeDataMentor: res.data[0].mentor
-                // })
+                this.setState({
+                    protegeSelectedData: res.data[0],
+                    editProtegeDataFirstName: res.data[0].firstName,
+                    editProtegeDataLastName: res.data[0].lastName,
+                    editProtegeDataMentors: res.data[0].allMentors
+                })
             })
     }
 
@@ -129,6 +131,20 @@ class ManagerDash extends Component {
 
     }
 
+    addMentorToProtege = (event) => {
+        event.preventDefault()
+        var MentorID = this.state.mentorToAdd
+        var ProtegeID = this.state.protegeSelected
+        // var existingMentorID = this.state.protegeSelectedData.
+        API.addMentorToProtege(ProtegeID, {
+            id: MentorID
+        }).then(res => {
+            console.log("Added Mentor to Protege")
+        }).catch(err => {
+            console.log("Unsuccessful in adding Mentor to Protege")
+        })
+    }
+
 
     removeProtegeFromMentor = (id) => {
         console.log("Removing Protege ID: " + id + " from " + this.state.editMentorDataFirstName + " " + this.state.editMentorDataLastName)
@@ -140,6 +156,22 @@ class ManagerDash extends Component {
             console.log("Removed Protege from Mentor")
         }).catch(err => {
             console.log("Unsuccessfully removed Protege from Mentor")
+        })
+    }
+
+    removeMentorFromProtege = (event) => {
+        event.preventDefault()
+        // console.log("Removing Mentor ID: " + this.state.mentorToAdd + " from " + this.state.editProtegeDataFirstName + " " + this.state.editProtegeDataLastName)
+        var MentorID = this.state.mentorToAdd
+        var ProtegeID = this.state.protegeSelected
+
+
+        API.removeMentorFromProtege(ProtegeID, {
+            id: MentorID
+        }).then(res => {
+            console.log("Removed Mentor from Protege")
+        }).catch(err => {
+            console.log("Unsuccessful in removing Mentor from Protege")
         })
 
     }
@@ -225,13 +257,13 @@ class ManagerDash extends Component {
                                     <h3>Create New Protege<span><button className="btn btn-sm btn-outline-light" onClick={this.showCreateProtegeFormFN}>Show</button></span></h3>
                                     {this.state.showCreateProtegeForm ?
                                         <CreateProtegeForm />
-                                    : null}
+                                        : null}
                                 </div>
                                 <div className="col-12 card" style={{ color: 'white', textAlign: 'center', margin: 0, padding: 40, overflow: 'auto', backgroundColor: 'rgba(114,180,255,0.8)' }}>
                                     <h3>Create New Mentor<span><button className="btn btn-sm btn-outline-light" onClick={this.showCreateMentorFormFN}>Show</button></span></h3>
                                     {this.state.showCreateMentorForm ?
                                         <CreateMentorForm proteges={this.state.proteges} />
-                                    : null }
+                                        : null}
                                 </div>
                             </div>
                             <br />
@@ -239,21 +271,21 @@ class ManagerDash extends Component {
                                 <br />
                                 <div className="col-12 card" style={{ color: 'white', textAlign: 'center', margin: 0, padding: 40, overflow: 'auto', backgroundColor: 'rgba(114,180,255,0.8)' }}>
                                     <h3>Update Mentor </h3>
-                                    <p style={{textAlign: 'center'}}>(Choose a Mentor to begin)</p>
-                                    {this.state.mentors ? 
+                                    <p style={{ textAlign: 'center' }}>(Choose a Mentor to begin)</p>
+                                    {this.state.mentors ?
                                         <select value={this.state.mentorSelected} onChange={this.handleMentorSelection} name="mentorSelected">
-                                                <option key={"none"} value={"none"}>--Select a Mentor--</option>
+                                            <option key={"none"} value={"none"}>--Select a Mentor--</option>
                                             {this.state.mentors.map(mentor => (
                                                 <option key={mentor._id} value={mentor._id}>{mentor.firstName} {mentor.lastName}</option>
                                             ))}
-                                        </select> 
-                                    : null}
+                                        </select>
+                                        : null}
                                     {this.state.mentorSelectedData ?
                                         <div><h5>Current Proteges:</h5>
 
-                                            <div style={{textAlign: 'center'}}>
+                                            <div style={{ textAlign: 'center' }}>
                                                 {this.state.editMentorDataProteges.map(protege => (
-                                                    <h5>{protege.firstName} {protege.lastName} <span><button onClick={() => this.removeProtegeFromMentor(protege._id)} className="btn-outline-danger btn btn-sm">Remove</button></span></h5>
+                                                    <h5>{protege.firstName} {protege.lastName} <span><button onClick={() => this.removeProtegeFromMentor(protege._id)} value={protege._id} className="btn-outline-danger btn btn-sm">Remove</button></span></h5>
                                                 ))}
                                             </div>
 
@@ -262,7 +294,7 @@ class ManagerDash extends Component {
                                                 {this.state.editMentorDataProteges ?
                                                     <div>
                                                         <select id="protegeDropDownMenu" value={this.state.protegeToAdd} onChange={this.handleInputChange} name="protegeToAdd">
-
+                                                            <option value="none">--Select a Protege to Add--</option>
                                                             {this.state.proteges.map(protege => (<option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>))}
                                                         </select>
                                                         <button onClick={this.addProtegeToMentor} className="btn btn-outline-dark btn-sm">Assign Protege</button>
@@ -283,39 +315,42 @@ class ManagerDash extends Component {
                                 <br />
                                 <div className="col-12 card" style={{ color: 'white', textAlign: 'center', margin: 0, padding: 40, overflow: 'auto', backgroundColor: 'rgba(114,180,255,0.8)' }}>
                                     <h3>Update Protege </h3>
-                                    <p style={{textAlign: 'center'}}>(Choose a Protege to begin)</p>
-                                    {this.state.proteges ? 
+                                    <p style={{ textAlign: 'center' }}>(Choose a Protege to begin)</p>
+                                    {this.state.proteges ?
                                         <select value={this.state.protegeSelected} onChange={this.handleProtegeSelection} name="protegeSelected">
-                                                <option key={"none"} value={"none"}>--Select a Protege--</option>
+                                            <option key={"none"} value={"none"}>--Select a Protege--</option>
                                             {this.state.proteges.map(protege => (
                                                 <option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>
                                             ))}
-                                        </select> 
-                                    : null}
+                                        </select>
+                                        : null}
                                     {this.state.protegeSelectedData ?
-                                        <div><h5>Current Mentor:  {this.state.protegeSelectedData.mentor}</h5>
+                                        <div><h5>Current Mentors:
+                                        {/* {this.state.protegeSelectedData.mentor} */}
+                                        </h5>
 
-                                            {/* <div style={{textAlign: 'center'}}>
-                                                {this.state.mentors.map(mentor => (
-                                                    <h6>{mentor.firstName} {mentor.lastName} <span><button>Holder</button></span></h6>
+                                            <div style={{ textAlign: 'center' }}>
+                                                {this.state.editProtegeDataMentors.map(mentor => (
+                                                    <h6 key={mentor._id}>{mentor.firstName} {mentor.lastName} <span></span></h6>
                                                 ))}
-                                            </div> */}
+                                            </div>
 
                                             <form>
                                                 <label>Add A Mentor</label>
                                                 {this.state.mentors ?
                                                     <div>
                                                         <select id="mentorsDropDownMenu" value={this.state.mentorToAdd} onChange={this.handleInputChange} name="mentorToAdd">
-
-                                                            {this.state.mentor.map(mentor => (<option key={mentor._id} value={mentor._id}>{mentor.firstName} {mentor.lastName}</option>))}
+                                                            <option value="none">--Select a Mentor--</option>
+                                                            {this.state.mentors.map(mentor => (<option key={mentor._id} value={mentor._id}>{mentor.firstName} {mentor.lastName}</option>))}
                                                         </select>
                                                         <button>Placeholder</button>
-                                                        {/* <button onClick={this.addMentorToProtege} className="btn btn-outline-dark btn-sm">Assign Mentor</button> */}
+                                                        <button onClick={this.addMentorToProtege} className="btn btn-outline-dark btn-sm">Assign Mentor</button>
+                                                        <button onClick={this.removeMentorFromProtege} className="btn btn-outline-danger btn-sm">Remove Mentor</button>
                                                     </div>
                                                     : null}
                                             </form>
                                         </div>
-                                    : null}
+                                        : null}
 
 
 

@@ -31,7 +31,7 @@ var ProtegeSchema = new Schema({
     },
     allMentors: [{
         type: Schema.Types.ObjectId,
-        ref: "Mentors"
+        ref: "Mentor"
     }],
     manager: {
         type: String,

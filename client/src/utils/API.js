@@ -98,8 +98,14 @@ export default {
     addProtegeToMentor: function(id, data) {
         return axios.put("/api/supervisor/mentor/find/" + id, data)
     },
+    addMentorToProtege: function(id, data) {
+        return axios.put("/api/supervisor/protege/find/" + id, data)
+    },
     removeProtegeFromMentor: function(id, data) {
         return axios.delete("/api/supervisor/mentor/find/" + id, data)
+    },
+    removeMentorFromProtege: function(id, data) {
+        return axios.delete("/api/supervisor/protege/find/" + id, data)
     },
     getMentors: function() {
         return axios.get("/api/supervisor/mentor/")

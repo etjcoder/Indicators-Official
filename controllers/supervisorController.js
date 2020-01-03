@@ -46,6 +46,7 @@ module.exports = {
             .populate("dials")
             .populate("notes")
             .populate("appointments")
+            .populate("allMentors")
             .then(dbProtege => res.json(dbProtege))
             .catch(err => res.status(422).json(err))
     },
@@ -72,8 +73,22 @@ module.exports = {
     },
     pullProtegeFromArray: function (req, res) {
         db.Mentor
-            .update({ _id: req.params.id }, { $pull: { proteges: { $in: req.body.id } } })
+            .findByIdAndUpdate({ _id: req.params.id }, { $pull: { proteges: { $in: req.body.id } } }, { useFindAndModify: false})
             .then(dbMentor => res.json(dbMentor))
+            .catch(err => res.status(422).json(err))
+    },
+    pullMentorFromArray: function (req, res) {
+        console.log(req.body.id)
+        db.Protege
+            .findByIdAndUpdate({ _id: req.params.id}, { $pull: { allMentors: { $in: req.body.id } } })
+            .then(dbProtege => res.json(dbProtege))
+            .catch(err => res.status(422).json(err))
+    },
+    pushMentorToProtege: function (req, res) {
+        console.log(req.body.id)
+        db.Protege
+            .findByIdAndUpdate({ _id: req.params.id}, { $push: { allMentors: req.body.id} })
+            .then(dbProtege => res.json(dbProtege))
             .catch(err => res.status(422).json(err))
     },
     findMentorNotes: function (req, res) {
