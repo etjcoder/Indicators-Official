@@ -19,6 +19,9 @@ module.exports = {
         db.Protege
             .find()
             .populate("dials")
+            .populate("notes")
+            .populate("appointments")
+            .populate("allMentors")
             .then(dbProtege => res.json(dbProtege))
             .catch(err => res.status(422).json(err))
     },
@@ -31,6 +34,8 @@ module.exports = {
     findAllMentors: function (req, res) {
         db.Mentor
             .find(req.body)
+            .populate("notes")
+            .populate("proteges")
             .then(dbMentor => res.json(dbMentor))
             .catch(err => res.status(422).json(err))
     },

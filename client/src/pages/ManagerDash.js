@@ -5,7 +5,8 @@ import Nav from "../components/Nav";
 import CreateProtegeForm from "../components/CreateProtegeForm";
 import CreateMentorForm from "../components/CreateMentorForm";
 import API from "../utils/API";
-import SideNavPageManager from "../components/SideNavPageManager"
+import SideNavPageManager from "../components/SideNavPageManager";
+import ManagerDataViewer from "../components/ManagerDataViewer";
 
 
 class ManagerDash extends Component {
@@ -23,12 +24,13 @@ class ManagerDash extends Component {
         showCreateMentorForm: false,
         showCreateProtegeForm: false,
         showCreateTool: false,
-        showAnalyticsTool: false,
+        showAnalyticsTool: true,
         showReportsTool: false,
         showSalesTool: false,
         mentorSelected: "none",
         mentorToAdd: "none",
-        protegeToAdd: 'none'
+        protegeToAdd: 'none',
+
     }
 
     componentDidMount = () => {
@@ -360,7 +362,14 @@ class ManagerDash extends Component {
                                 </div>
                             </div>
                         </div>
-                        : null}
+                    : null}
+
+                    {this.state.showAnalyticsTool ?
+                        <ManagerDataViewer 
+                            allMentorData={this.state.mentors}
+                            allProtegeData={this.state.proteges}
+                        />
+                    : null}
 
                 </div>
 
