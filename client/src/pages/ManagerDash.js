@@ -368,6 +368,8 @@ class ManagerDash extends Component {
                         <ManagerDataViewer 
                             allMentorData={this.state.mentors}
                             allProtegeData={this.state.proteges}
+                            mentors={this.state.mentors}
+                            proteges={this.state.proteges}
                         />
                     : null}
 

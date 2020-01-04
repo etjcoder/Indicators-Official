@@ -111,6 +111,7 @@ class AppointmentItem extends Component {
                     <p style={{fontSize: '11px'}}>{this.state.apptdate}</p>
                     <p>Notes: {this.state.apptnotes}</p>
                     <p>Source: {this.state.apptsource}</p>
+                    <p>type: {this.props.type}</p>
                     <hr></hr>
                 </div>
 

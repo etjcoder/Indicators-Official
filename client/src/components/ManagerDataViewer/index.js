@@ -2,6 +2,26 @@ import React, { Component } from 'react';
 import { Bar, Pie } from 'react-chartjs-2';
 import "./style.css"
 import API from "../../utils/API";
+import MainCalendar from "../../components/MainCalendar"
+import AppointmentItem from "../../components/AppointmentItem"
+import SalesItem from "../../components/SalesItem"
+import NoteCreator from "../../components/NoteCreator"
+import NoteViewer from "../../components/NoteViewer"
+import DataViewerDialChart from "../DataViewerDialChart";
+import DataViewerContactChart from "../DataViewerContactChart";
+import DataViewerAppointmentChart from "../DataViewerAppointmentChart";
+import DataViewerCFDialChart from "../DataViewerCFDialChart";
+import DataViewerCFContactChart from "../DataViewerCFContactChart";
+import DataViewerCFAppointmentChart from '../DataViewerCFAppointmentChart';
+import DataViewerBODialChart from "../DataViewerBODialChart";
+import DataViewerBOContactChart from "../DataViewerBOContactChart";
+import DataViewerBOAppointmentChart from '../DataViewerBOAppointmentChart';
+import DataViewerProspectPerformance from '../DataViewerProspectPerformance';
+import DataViewerClientPerformance from '../DataViewerClientPerformance';
+import DataViewerNaturalPerformance from '../DataViewerNaturalPerformance';
+import DataViewerSuspectPerformance from '../DataViewerSuspectPerformance';
+import DataViewerReferralPerformance from '../DataViewerReferralPerformance';
+import DataViewerTargetPerformance from '../DataViewerTargetPerformance';
 
 class ManagerDataViewer extends Component {
     constructor(props) {
@@ -794,7 +814,22 @@ class ManagerDataViewer extends Component {
                 viewMentorMonthlyReport: false,
                 viewMentorBenchmarkReport: false
             })
+            setTimeout(() => { this.getProtegeNoteData() }, 500)
         }
+    }
+
+    getProtegeNoteData = () => {
+        // console.log(this.state.userData._id)
+
+        API.getProtegeNotes(this.state.activeProtegeData._id)
+            .then(res =>
+                this.setState({
+                    taggedNotes: res.data
+                })
+            )
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     viewProtegeProfile = () => {
@@ -1652,25 +1687,25 @@ class ManagerDataViewer extends Component {
         //         showSelectedTargetPerformance: false
         //     })
         // } else {
-            this.setState({
-                showDialChart: false,
-                showContactChart: false,
-                showApptChart: false,
-                showCashflowDials: false,
-                showCashflowContacts: false,
-                showCashflowAppts: false,
-                showBusinessDials: false,
-                showBusinessContacts: false,
-                showBusinessAppts: false,
-                showProspectPerformance: false,
-                showClientPerformance: false,
-                showNaturalPerformance: false,
-                showSuspectPerformance: false,
-                showReferralPerformance: false,
-                showTargetPerformance: false,
-                showSourcePerformance: false,
-                showSelectedTargetPerformance: true
-            })
+        this.setState({
+            showDialChart: false,
+            showContactChart: false,
+            showApptChart: false,
+            showCashflowDials: false,
+            showCashflowContacts: false,
+            showCashflowAppts: false,
+            showBusinessDials: false,
+            showBusinessContacts: false,
+            showBusinessAppts: false,
+            showProspectPerformance: false,
+            showClientPerformance: false,
+            showNaturalPerformance: false,
+            showSuspectPerformance: false,
+            showReferralPerformance: false,
+            showTargetPerformance: false,
+            showSourcePerformance: false,
+            showSelectedTargetPerformance: true
+        })
         // }
     }
 
@@ -2508,279 +2543,401 @@ class ManagerDataViewer extends Component {
 
 
                                     {this.state.showDialChart ?
-                                        <div style={{ color: 'whitesmoke' }}>
-                                            <div className="">
-                                                <div className="" style={{ textAlign: 'center' }}>
-                                                    <h3><u>Protege: {this.state.activeProtegeData.firstName} {this.state.activeProtegeData.lastName} </u></h3>
-                                                    <hr />
-                                                    <h4>Total Dials: {this.state.dialData.length}</h4>
-                                                </div>
-                                            </div>
+                                        <DataViewerDialChart
+                                            activeProtegeData={this.state.activeProtegeData}
+                                            dialData={this.state.dialData}
+                                            BCAppts={this.state.BCAppts}
+                                            BCContacts={this.state.BCContacts}
+                                            BCDials={this.state.BCDials}
+                                            BNAppts={this.state.BNAppts}
+                                            BNContacts={this.state.BNContacts}
+                                            BNDials={this.state.BNDials}
+                                            BPAppts={this.state.BPAppts}
+                                            BPContacts={this.state.BPContacts}
+                                            BPDials={this.state.BPDials}
+                                            BRAppts={this.state.BRAppts}
+                                            BRContacts={this.state.BRContacts}
+                                            BRDials={this.state.BRDials}
+                                            BSAppts={this.state.BSAppts}
+                                            BSContacts={this.state.BSContacts}
+                                            BSDials={this.state.BSDials}
+                                            BTAppts={this.state.BTAppts}
+                                            BTContacts={this.state.BTContacts}
+                                            BTDials={this.state.BTDials}
+                                            CCAppts={this.state.CCAppts}
+                                            CCContacts={this.state.CCContacts}
+                                            CCDials={this.state.CCDials}
+                                            CNAppts={this.state.CNAppts}
+                                            CNContacts={this.state.CNContacts}
+                                            CNDials={this.state.CNDials}
+                                            CPAppts={this.state.CPAppts}
+                                            CPContacts={this.state.CPContacts}
+                                            CPDials={this.state.CPDials}
+                                            CRAppts={this.state.CRAppts}
+                                            CRContacts={this.state.CRContacts}
+                                            CRDials={this.state.CRDials}
+                                            CSAppts={this.state.CSAppts}
+                                            CSContacts={this.state.CSContacts}
+                                            CSDials={this.state.CSDials}
+                                            CTAppts={this.state.CTAppts}
+                                            CTContacts={this.state.CTContacts}
+                                            CTDials={this.state.CTDials}
+                                        />
+                                        // <div style={{ color: 'whitesmoke' }}>
+                                        //     <div className="">
+                                        //         <div className="" style={{ textAlign: 'center' }}>
+                                        //             <h3><u>Protege: {this.state.activeProtegeData.firstName} {this.state.activeProtegeData.lastName} </u></h3>
+                                        //             <hr />
+                                        //             <h4>Total Dials: {this.state.dialData.length}</h4>
+                                        //         </div>
+                                        //     </div>
 
 
-                                            <div className="row">
-                                                <div className="card col-lg-6" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
-                                                    <Bar data={{
-                                                        labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
-                                                        datasets: [{
-                                                            label: "Dials",
-                                                            backgroundColor: 'rgb(255, 99, 132)',
-                                                            borderColor: 'rgb(255, 99, 132)',
-                                                            data: [
-                                                                this.state.CPDials + this.state.BPDials,
-                                                                this.state.CCDials + this.state.BCDials,
-                                                                this.state.CNDials + this.state.BNDials,
-                                                                this.state.CSDials + this.state.BSDials,
-                                                                this.state.CRDials + this.state.BRDials,
-                                                                this.state.CTDials + this.state.BTDials],
-                                                        }]
-                                                    }}
-                                                    // options={{
-                                                    //     legend: {
-                                                    //         display: false
-                                                    //     }}}
-                                                    />
-                                                </div>
-                                                <div className="card col-lg-6" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
-                                                    <Pie data={{
-                                                        labels: [
-                                                            "Cashflow Prospect",
-                                                            "Business Prospect",
-                                                            "Cashflow Client",
-                                                            "Business Client",
-                                                            "Cashflow Natural Market",
-                                                            "Business Natural Market",
-                                                            "Cashflow Suspect",
-                                                            "Business Suspect",
-                                                            "Cashflow Referral",
-                                                            "Business Referral",
-                                                            "Cashflow Target Market",
-                                                            "Business Target Market"],
-                                                        datasets: [{
-                                                            data: [
-                                                                this.state.CPDials,
-                                                                this.state.BPDials,
-                                                                this.state.CCDials,
-                                                                this.state.BCDials,
-                                                                this.state.CNDials,
-                                                                this.state.BNDials,
-                                                                this.state.CSDials,
-                                                                this.state.BSDials,
-                                                                this.state.CRDials,
-                                                                this.state.BRDials,
-                                                                this.state.CTDials,
-                                                                this.state.BTDials
-                                                            ],
-                                                            backgroundColor: [
-                                                                "#3ac178",
-                                                                "#443959",
-                                                                "#f99b17",
-                                                                "#a2e505",
-                                                                "#c9917f",
-                                                                "#8d044b",
-                                                                "#d2d93b",
-                                                                "#dd4417",
-                                                                "#5191d9",
-                                                                "#483d28",
-                                                                "#51aef7",
-                                                                "#25517b"
-                                                            ]
-                                                        }]
-                                                    }} options={{
-                                                        legend: {
-                                                            position: 'left',
-                                                            labels: {
-                                                                boxWidth: 10
-                                                            }
-                                                        }
-                                                    }} />
-                                                </div>
-                                            </div>
-                                        </div>
+                                        //     <div className="row">
+                                        //         <div className="card col-lg-6" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                                        //             <Bar data={{
+                                        //                 labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
+                                        //                 datasets: [{
+                                        //                     label: "Dials",
+                                        //                     backgroundColor: 'rgb(255, 99, 132)',
+                                        //                     borderColor: 'rgb(255, 99, 132)',
+                                        //                     data: [
+                                        //                         this.state.CPDials + this.state.BPDials,
+                                        //                         this.state.CCDials + this.state.BCDials,
+                                        //                         this.state.CNDials + this.state.BNDials,
+                                        //                         this.state.CSDials + this.state.BSDials,
+                                        //                         this.state.CRDials + this.state.BRDials,
+                                        //                         this.state.CTDials + this.state.BTDials],
+                                        //                 }]
+                                        //             }}
+                                        //             // options={{
+                                        //             //     legend: {
+                                        //             //         display: false
+                                        //             //     }}}
+                                        //             />
+                                        //         </div>
+                                        //         <div className="card col-lg-6" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                                        //             <Pie data={{
+                                        //                 labels: [
+                                        //                     "Cashflow Prospect",
+                                        //                     "Business Prospect",
+                                        //                     "Cashflow Client",
+                                        //                     "Business Client",
+                                        //                     "Cashflow Natural Market",
+                                        //                     "Business Natural Market",
+                                        //                     "Cashflow Suspect",
+                                        //                     "Business Suspect",
+                                        //                     "Cashflow Referral",
+                                        //                     "Business Referral",
+                                        //                     "Cashflow Target Market",
+                                        //                     "Business Target Market"],
+                                        //                 datasets: [{
+                                        //                     data: [
+                                        //                         this.state.CPDials,
+                                        //                         this.state.BPDials,
+                                        //                         this.state.CCDials,
+                                        //                         this.state.BCDials,
+                                        //                         this.state.CNDials,
+                                        //                         this.state.BNDials,
+                                        //                         this.state.CSDials,
+                                        //                         this.state.BSDials,
+                                        //                         this.state.CRDials,
+                                        //                         this.state.BRDials,
+                                        //                         this.state.CTDials,
+                                        //                         this.state.BTDials
+                                        //                     ],
+                                        //                     backgroundColor: [
+                                        //                         "#3ac178",
+                                        //                         "#443959",
+                                        //                         "#f99b17",
+                                        //                         "#a2e505",
+                                        //                         "#c9917f",
+                                        //                         "#8d044b",
+                                        //                         "#d2d93b",
+                                        //                         "#dd4417",
+                                        //                         "#5191d9",
+                                        //                         "#483d28",
+                                        //                         "#51aef7",
+                                        //                         "#25517b"
+                                        //                     ]
+                                        //                 }]
+                                        //             }} options={{
+                                        //                 legend: {
+                                        //                     position: 'left',
+                                        //                     labels: {
+                                        //                         boxWidth: 10
+                                        //                     }
+                                        //                 }
+                                        //             }} />
+                                        //         </div>
+                                        //     </div>
+                                        // </div>
                                         : null}
 
                                     {this.state.showContactChart ?
                                         <div>
-                                            <div className="row">
-                                                <div className="col" style={{ textAlign: 'center' }}>
-                                                    <hr />
-                                                    <h4 style={{ color: 'whitesmoke' }}>Total Contacts: {this.state.contactData.length}</h4>
-                                                </div>
-                                            </div>
-                                            {/* <ul>
-                    <li>Cashflow Prospect Contacts: {this.props.CPContacts}</li>
-                    <li>Business Prospect Contacts: {this.props.BPContacts}</li>
-                    <li>Cashflow Client Contacts: {this.props.CCContacts}</li>
-                    <li>Business Client Contacts: {this.props.BCContacts}</li>
-                    <li>Cashflow Natural Mkt Contacts: {this.props.CNContacts}</li>
-                    <li>Business Natural Mkt Contacts: {this.props.BNContacts}</li>
-                </ul> */}
-
-                                            <div className="row">
-                                                <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
-                                                    <Bar data={{
-                                                        labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
-                                                        datasets: [{
-                                                            label: "Contacts",
-                                                            backgroundColor: 'rgb(255, 99, 132)',
-                                                            borderColor: 'rgb(255, 99, 132)',
-                                                            data: [
-                                                                this.state.CPContacts + this.state.BPContacts,
-                                                                this.state.CCContacts + this.state.BCContacts,
-                                                                this.state.CNContacts + this.state.BNContacts,
-                                                                this.state.CSContacts + this.state.BSContacts,
-                                                                this.state.CRContacts + this.state.BRContacts,
-                                                                this.state.CTContacts + this.state.BTContacts],
-                                                        }]
-                                                    }} />
-                                                </div>
-                                                <div className="col-lg-6" card style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
-                                                    <Pie data={{
-                                                        labels: [
-                                                            "Cashflow Prospect",
-                                                            "Business Prospect",
-                                                            "Cashflow Client",
-                                                            "Business Client",
-                                                            "Cashflow Natural Market",
-                                                            "Business Natural Market",
-                                                            "Cashflow Suspect",
-                                                            "Business Suspect",
-                                                            "Cashflow Referral",
-                                                            "Business Referral",
-                                                            "Cashflow Target Market",
-                                                            "Business Target Market"],
-                                                        datasets: [{
-                                                            data: [
-                                                                this.state.CPContacts,
-                                                                this.state.BPContacts,
-                                                                this.state.CCContacts,
-                                                                this.state.BCContacts,
-                                                                this.state.CNContacts,
-                                                                this.state.BNContacts,
-                                                                this.state.CSContacts,
-                                                                this.state.BSContacts,
-                                                                this.state.CRContacts,
-                                                                this.state.BRContacts,
-                                                                this.state.CTContacts,
-                                                                this.state.BTContacts
-                                                            ],
-                                                            backgroundColor: [
-                                                                "#3ac178",
-                                                                "#443959",
-                                                                "#f99b17",
-                                                                "#a2e505",
-                                                                "#c9917f",
-                                                                "#8d044b",
-                                                                "#d2d93b",
-                                                                "#dd4417",
-                                                                "#5191d9",
-                                                                "#483d28",
-                                                                "#51aef7",
-                                                                "#25517b"
-                                                            ]
-                                                        }]
-                                                    }}
-                                                        options={{
-                                                            legend: {
-                                                                position: 'left',
-                                                                labels: {
-                                                                    boxWidth: 10
-                                                                }
-                                                            }
-                                                        }}
-                                                    /> </div>
-
-                                            </div>
+                                            <DataViewerContactChart
+                                                activeProtegeData={this.state.activeProtegeData}
+                                                contactData={this.state.contactData}
+                                                BCAppts={this.state.BCAppts}
+                                                BCContacts={this.state.BCContacts}
+                                                BCDials={this.state.BCDials}
+                                                BNAppts={this.state.BNAppts}
+                                                BNContacts={this.state.BNContacts}
+                                                BNDials={this.state.BNDials}
+                                                BPAppts={this.state.BPAppts}
+                                                BPContacts={this.state.BPContacts}
+                                                BPDials={this.state.BPDials}
+                                                BRAppts={this.state.BRAppts}
+                                                BRContacts={this.state.BRContacts}
+                                                BRDials={this.state.BRDials}
+                                                BSAppts={this.state.BSAppts}
+                                                BSContacts={this.state.BSContacts}
+                                                BSDials={this.state.BSDials}
+                                                BTAppts={this.state.BTAppts}
+                                                BTContacts={this.state.BTContacts}
+                                                BTDials={this.state.BTDials}
+                                                CCAppts={this.state.CCAppts}
+                                                CCContacts={this.state.CCContacts}
+                                                CCDials={this.state.CCDials}
+                                                CNAppts={this.state.CNAppts}
+                                                CNContacts={this.state.CNContacts}
+                                                CNDials={this.state.CNDials}
+                                                CPAppts={this.state.CPAppts}
+                                                CPContacts={this.state.CPContacts}
+                                                CPDials={this.state.CPDials}
+                                                CRAppts={this.state.CRAppts}
+                                                CRContacts={this.state.CRContacts}
+                                                CRDials={this.state.CRDials}
+                                                CSAppts={this.state.CSAppts}
+                                                CSContacts={this.state.CSContacts}
+                                                CSDials={this.state.CSDials}
+                                                CTAppts={this.state.CTAppts}
+                                                CTContacts={this.state.CTContacts}
+                                                CTDials={this.state.CTDials}
+                                            />
                                         </div>
+                                        //                         <div>
+                                        //                             <div className="row">
+                                        //                                 <div className="col" style={{ textAlign: 'center' }}>
+                                        //                                     <hr />
+                                        //                                     <h4 style={{ color: 'whitesmoke' }}>Total Contacts: {this.state.contactData.length}</h4>
+                                        //                                 </div>
+                                        //                             </div>
+                                        //                             {/* <ul>
+                                        //     <li>Cashflow Prospect Contacts: {this.props.CPContacts}</li>
+                                        //     <li>Business Prospect Contacts: {this.props.BPContacts}</li>
+                                        //     <li>Cashflow Client Contacts: {this.props.CCContacts}</li>
+                                        //     <li>Business Client Contacts: {this.props.BCContacts}</li>
+                                        //     <li>Cashflow Natural Mkt Contacts: {this.props.CNContacts}</li>
+                                        //     <li>Business Natural Mkt Contacts: {this.props.BNContacts}</li>
+                                        // </ul> */}
+
+                                        //                             <div className="row">
+                                        //                                 <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                                        //                                     <Bar data={{
+                                        //                                         labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
+                                        //                                         datasets: [{
+                                        //                                             label: "Contacts",
+                                        //                                             backgroundColor: 'rgb(255, 99, 132)',
+                                        //                                             borderColor: 'rgb(255, 99, 132)',
+                                        //                                             data: [
+                                        //                                                 this.state.CPContacts + this.state.BPContacts,
+                                        //                                                 this.state.CCContacts + this.state.BCContacts,
+                                        //                                                 this.state.CNContacts + this.state.BNContacts,
+                                        //                                                 this.state.CSContacts + this.state.BSContacts,
+                                        //                                                 this.state.CRContacts + this.state.BRContacts,
+                                        //                                                 this.state.CTContacts + this.state.BTContacts],
+                                        //                                         }]
+                                        //                                     }} />
+                                        //                                 </div>
+                                        //                                 <div className="col-lg-6" card style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                                        //                                     <Pie data={{
+                                        //                                         labels: [
+                                        //                                             "Cashflow Prospect",
+                                        //                                             "Business Prospect",
+                                        //                                             "Cashflow Client",
+                                        //                                             "Business Client",
+                                        //                                             "Cashflow Natural Market",
+                                        //                                             "Business Natural Market",
+                                        //                                             "Cashflow Suspect",
+                                        //                                             "Business Suspect",
+                                        //                                             "Cashflow Referral",
+                                        //                                             "Business Referral",
+                                        //                                             "Cashflow Target Market",
+                                        //                                             "Business Target Market"],
+                                        //                                         datasets: [{
+                                        //                                             data: [
+                                        //                                                 this.state.CPContacts,
+                                        //                                                 this.state.BPContacts,
+                                        //                                                 this.state.CCContacts,
+                                        //                                                 this.state.BCContacts,
+                                        //                                                 this.state.CNContacts,
+                                        //                                                 this.state.BNContacts,
+                                        //                                                 this.state.CSContacts,
+                                        //                                                 this.state.BSContacts,
+                                        //                                                 this.state.CRContacts,
+                                        //                                                 this.state.BRContacts,
+                                        //                                                 this.state.CTContacts,
+                                        //                                                 this.state.BTContacts
+                                        //                                             ],
+                                        //                                             backgroundColor: [
+                                        //                                                 "#3ac178",
+                                        //                                                 "#443959",
+                                        //                                                 "#f99b17",
+                                        //                                                 "#a2e505",
+                                        //                                                 "#c9917f",
+                                        //                                                 "#8d044b",
+                                        //                                                 "#d2d93b",
+                                        //                                                 "#dd4417",
+                                        //                                                 "#5191d9",
+                                        //                                                 "#483d28",
+                                        //                                                 "#51aef7",
+                                        //                                                 "#25517b"
+                                        //                                             ]
+                                        //                                         }]
+                                        //                                     }}
+                                        //                                         options={{
+                                        //                                             legend: {
+                                        //                                                 position: 'left',
+                                        //                                                 labels: {
+                                        //                                                     boxWidth: 10
+                                        //                                                 }
+                                        //                                             }
+                                        //                                         }}
+                                        //                                     /> </div>
+
+                                        //                             </div>
+                                        //                         </div>
                                         : null}
 
 
                                     {this.state.showApptChart ?
-                                        <div>
-                                            <div className="row">
-                                                <div className="col" style={{ textAlign: 'center' }}>
-                                                    <hr />
-                                                    <h4 style={{ color: 'whitesmoke' }}>Total Appointments: {this.state.appointments.length} </h4>
-                                                </div>
-                                            </div>
 
-                                            <div className="row">
-                                                <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
-                                                    <Bar data={{
-                                                        labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
-                                                        datasets: [{
-                                                            label: "Appointments",
-                                                            backgroundColor: 'rgb(255, 99, 132)',
-                                                            borderColor: 'rgb(255, 99, 132)',
-                                                            data: [
-                                                                this.state.CPAppts + this.state.BPAppts,
-                                                                this.state.CCAppts + this.state.BCAppts,
-                                                                this.state.CNAppts + this.state.BNAppts,
-                                                                this.state.CSAppts + this.state.BSAppts,
-                                                                this.state.CRAppts + this.state.BRAppts,
-                                                                this.state.CTAppts + this.state.BTAppts],
-                                                        }]
-                                                    }} />
-                                                </div>
-                                                <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
-                                                    <Pie data={{
-                                                        labels: [
-                                                            "Cashflow Prospect",
-                                                            "Business Prospect",
-                                                            "Cashflow Client",
-                                                            "Business Client",
-                                                            "Cashflow Natural Market",
-                                                            "Business Natural Market",
-                                                            "Cashflow Suspect",
-                                                            "Business Suspect",
-                                                            "Cashflow Referral",
-                                                            "Business Referral",
-                                                            "Cashflow Target Market",
-                                                            "Business Target Market"],
-                                                        datasets: [{
-                                                            data: [
-                                                                this.state.CPAppts,
-                                                                this.state.BPAppts,
-                                                                this.state.CCAppts,
-                                                                this.state.BCAppts,
-                                                                this.state.CNAppts,
-                                                                this.state.BNAppts,
-                                                                this.state.CSAppts,
-                                                                this.state.BSAppts,
-                                                                this.state.CRAppts,
-                                                                this.state.BRAppts,
-                                                                this.state.CTAppts,
-                                                                this.state.BTAppts
-                                                            ],
-                                                            backgroundColor: [
-                                                                "#3ac178",
-                                                                "#443959",
-                                                                "#f99b17",
-                                                                "#a2e505",
-                                                                "#c9917f",
-                                                                "#8d044b",
-                                                                "#d2d93b",
-                                                                "#dd4417",
-                                                                "#5191d9",
-                                                                "#483d28",
-                                                                "#51aef7",
-                                                                "#25517b"
-                                                            ]
-                                                        }]
-                                                    }}
-                                                        options={{
-                                                            legend: {
-                                                                position: 'left',
-                                                                labels: {
-                                                                    boxWidth: 10
-                                                                }
-                                                            }
-                                                        }} />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        : null
-                                    }
+                                        <DataViewerAppointmentChart
+                                            activeProtegeData={this.state.activeProtegeData}
+                                            appointments={this.state.appointments}
+                                            BCAppts={this.state.BCAppts}
+                                            BCContacts={this.state.BCContacts}
+                                            BCDials={this.state.BCDials}
+                                            BNAppts={this.state.BNAppts}
+                                            BNContacts={this.state.BNContacts}
+                                            BNDials={this.state.BNDials}
+                                            BPAppts={this.state.BPAppts}
+                                            BPContacts={this.state.BPContacts}
+                                            BPDials={this.state.BPDials}
+                                            BRAppts={this.state.BRAppts}
+                                            BRContacts={this.state.BRContacts}
+                                            BRDials={this.state.BRDials}
+                                            BSAppts={this.state.BSAppts}
+                                            BSContacts={this.state.BSContacts}
+                                            BSDials={this.state.BSDials}
+                                            BTAppts={this.state.BTAppts}
+                                            BTContacts={this.state.BTContacts}
+                                            BTDials={this.state.BTDials}
+                                            CCAppts={this.state.CCAppts}
+                                            CCContacts={this.state.CCContacts}
+                                            CCDials={this.state.CCDials}
+                                            CNAppts={this.state.CNAppts}
+                                            CNContacts={this.state.CNContacts}
+                                            CNDials={this.state.CNDials}
+                                            CPAppts={this.state.CPAppts}
+                                            CPContacts={this.state.CPContacts}
+                                            CPDials={this.state.CPDials}
+                                            CRAppts={this.state.CRAppts}
+                                            CRContacts={this.state.CRContacts}
+                                            CRDials={this.state.CRDials}
+                                            CSAppts={this.state.CSAppts}
+                                            CSContacts={this.state.CSContacts}
+                                            CSDials={this.state.CSDials}
+                                            CTAppts={this.state.CTAppts}
+                                            CTContacts={this.state.CTContacts}
+                                            CTDials={this.state.CTDials}
+                                        />
+                                        // <div>
+                                        //     <div className="row">
+                                        //         <div className="col" style={{ textAlign: 'center' }}>
+                                        //             <hr />
+                                        //             <h4 style={{ color: 'whitesmoke' }}>Total Appointments: {this.state.appointments.length} </h4>
+                                        //         </div>
+                                        //     </div>
+
+                                        //     <div className="row">
+                                        //         <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                                        //             <Bar data={{
+                                        //                 labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
+                                        //                 datasets: [{
+                                        //                     label: "Appointments",
+                                        //                     backgroundColor: 'rgb(255, 99, 132)',
+                                        //                     borderColor: 'rgb(255, 99, 132)',
+                                        //                     data: [
+                                        //                         this.state.CPAppts + this.state.BPAppts,
+                                        //                         this.state.CCAppts + this.state.BCAppts,
+                                        //                         this.state.CNAppts + this.state.BNAppts,
+                                        //                         this.state.CSAppts + this.state.BSAppts,
+                                        //                         this.state.CRAppts + this.state.BRAppts,
+                                        //                         this.state.CTAppts + this.state.BTAppts],
+                                        //                 }]
+                                        //             }} />
+                                        //         </div>
+                                        //         <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                                        //             <Pie data={{
+                                        //                 labels: [
+                                        //                     "Cashflow Prospect",
+                                        //                     "Business Prospect",
+                                        //                     "Cashflow Client",
+                                        //                     "Business Client",
+                                        //                     "Cashflow Natural Market",
+                                        //                     "Business Natural Market",
+                                        //                     "Cashflow Suspect",
+                                        //                     "Business Suspect",
+                                        //                     "Cashflow Referral",
+                                        //                     "Business Referral",
+                                        //                     "Cashflow Target Market",
+                                        //                     "Business Target Market"],
+                                        //                 datasets: [{
+                                        //                     data: [
+                                        //                         this.state.CPAppts,
+                                        //                         this.state.BPAppts,
+                                        //                         this.state.CCAppts,
+                                        //                         this.state.BCAppts,
+                                        //                         this.state.CNAppts,
+                                        //                         this.state.BNAppts,
+                                        //                         this.state.CSAppts,
+                                        //                         this.state.BSAppts,
+                                        //                         this.state.CRAppts,
+                                        //                         this.state.BRAppts,
+                                        //                         this.state.CTAppts,
+                                        //                         this.state.BTAppts
+                                        //                     ],
+                                        //                     backgroundColor: [
+                                        //                         "#3ac178",
+                                        //                         "#443959",
+                                        //                         "#f99b17",
+                                        //                         "#a2e505",
+                                        //                         "#c9917f",
+                                        //                         "#8d044b",
+                                        //                         "#d2d93b",
+                                        //                         "#dd4417",
+                                        //                         "#5191d9",
+                                        //                         "#483d28",
+                                        //                         "#51aef7",
+                                        //                         "#25517b"
+                                        //                     ]
+                                        //                 }]
+                                        //             }}
+                                        //                 options={{
+                                        //                     legend: {
+                                        //                         position: 'left',
+                                        //                         labels: {
+                                        //                             boxWidth: 10
+                                        //                         }
+                                        //                     }
+                                        //                 }} />
+                                        //         </div>
+                                        //     </div>
+                                        // </div>
+                                        : null}
 
                                     <hr />
 
@@ -2789,74 +2946,114 @@ class ManagerDataViewer extends Component {
                 ///////////////////////////////////////////////////// */}
 
                                     {this.state.showCashflowDials ?
-                                        <div>
-                                            <div className="row">
-                                                <div className="col" style={{ textAlign: 'center', color: 'whitesmoke' }}>
-                                                    <hr />
-                                                    <h4>Cashflow Dials Data:</h4>
-                                                </div>
-                                            </div>
+                                        <DataViewerCFDialChart
+                                            activeProtegeData={this.state.activeProtegeData}
+                                            dialData={this.state.dialData}
+                                            BCAppts={this.state.BCAppts}
+                                            BCContacts={this.state.BCContacts}
+                                            BCDials={this.state.BCDials}
+                                            BNAppts={this.state.BNAppts}
+                                            BNContacts={this.state.BNContacts}
+                                            BNDials={this.state.BNDials}
+                                            BPAppts={this.state.BPAppts}
+                                            BPContacts={this.state.BPContacts}
+                                            BPDials={this.state.BPDials}
+                                            BRAppts={this.state.BRAppts}
+                                            BRContacts={this.state.BRContacts}
+                                            BRDials={this.state.BRDials}
+                                            BSAppts={this.state.BSAppts}
+                                            BSContacts={this.state.BSContacts}
+                                            BSDials={this.state.BSDials}
+                                            BTAppts={this.state.BTAppts}
+                                            BTContacts={this.state.BTContacts}
+                                            BTDials={this.state.BTDials}
+                                            CCAppts={this.state.CCAppts}
+                                            CCContacts={this.state.CCContacts}
+                                            CCDials={this.state.CCDials}
+                                            CNAppts={this.state.CNAppts}
+                                            CNContacts={this.state.CNContacts}
+                                            CNDials={this.state.CNDials}
+                                            CPAppts={this.state.CPAppts}
+                                            CPContacts={this.state.CPContacts}
+                                            CPDials={this.state.CPDials}
+                                            CRAppts={this.state.CRAppts}
+                                            CRContacts={this.state.CRContacts}
+                                            CRDials={this.state.CRDials}
+                                            CSAppts={this.state.CSAppts}
+                                            CSContacts={this.state.CSContacts}
+                                            CSDials={this.state.CSDials}
+                                            CTAppts={this.state.CTAppts}
+                                            CTContacts={this.state.CTContacts}
+                                            CTDials={this.state.CTDials}
+                                        />
+                                        // <div>
+                                        //     <div className="row">
+                                        //         <div className="col" style={{ textAlign: 'center', color: 'whitesmoke' }}>
+                                        //             <hr />
+                                        //             <h4>Cashflow Dials Data:</h4>
+                                        //         </div>
+                                        //     </div>
 
-                                            <div className="row">
+                                        //     <div className="row">
 
 
-                                                <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
-                                                    <Bar data={{
-                                                        labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
-                                                        datasets: [{
-                                                            label: "Dials",
-                                                            backgroundColor: 'rgb(255, 99, 132)',
-                                                            borderColor: 'rgb(255, 99, 132)',
-                                                            data: [
-                                                                this.state.CPDials,
-                                                                this.state.CCDials,
-                                                                this.state.CNDials,
-                                                                this.state.CSDials,
-                                                                this.state.CRDials,
-                                                                this.state.CTDials
-                                                            ],
-                                                        }]
-                                                    }} />
-                                                </div>
-                                                <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
-                                                    <Pie data={{
-                                                        labels: [
-                                                            "Cashflow Prospect",
-                                                            "Cashflow Client",
-                                                            "Cashflow Natural Market",
-                                                            "Cashflow Suspect",
-                                                            "Cashflow Referral",
-                                                            "Cashflow Target Market",
-                                                        ],
-                                                        datasets: [{
-                                                            data: [
-                                                                this.state.CPDials,
-                                                                this.state.CCDials,
-                                                                this.state.CNDials,
-                                                                this.state.CSDials,
-                                                                this.state.CRDials,
-                                                                this.state.CTDials
-                                                            ],
-                                                            backgroundColor: [
-                                                                "#3ac178",
-                                                                "#443959",
-                                                                "#f99b17",
-                                                                "#a2e505",
-                                                                "#c9917f",
-                                                                "#8d044b"
-                                                            ]
-                                                        }]
-                                                    }}
-                                                        options={{
-                                                            legend: {
-                                                                position: 'left',
-                                                                labels: {
-                                                                    boxWidth: 10
-                                                                }
-                                                            }
-                                                        }} /> </div>
-                                            </div>
-                                        </div>
+                                        //         <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                                        //             <Bar data={{
+                                        //                 labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
+                                        //                 datasets: [{
+                                        //                     label: "Dials",
+                                        //                     backgroundColor: 'rgb(255, 99, 132)',
+                                        //                     borderColor: 'rgb(255, 99, 132)',
+                                        //                     data: [
+                                        //                         this.state.CPDials,
+                                        //                         this.state.CCDials,
+                                        //                         this.state.CNDials,
+                                        //                         this.state.CSDials,
+                                        //                         this.state.CRDials,
+                                        //                         this.state.CTDials
+                                        //                     ],
+                                        //                 }]
+                                        //             }} />
+                                        //         </div>
+                                        //         <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                                        //             <Pie data={{
+                                        //                 labels: [
+                                        //                     "Cashflow Prospect",
+                                        //                     "Cashflow Client",
+                                        //                     "Cashflow Natural Market",
+                                        //                     "Cashflow Suspect",
+                                        //                     "Cashflow Referral",
+                                        //                     "Cashflow Target Market",
+                                        //                 ],
+                                        //                 datasets: [{
+                                        //                     data: [
+                                        //                         this.state.CPDials,
+                                        //                         this.state.CCDials,
+                                        //                         this.state.CNDials,
+                                        //                         this.state.CSDials,
+                                        //                         this.state.CRDials,
+                                        //                         this.state.CTDials
+                                        //                     ],
+                                        //                     backgroundColor: [
+                                        //                         "#3ac178",
+                                        //                         "#443959",
+                                        //                         "#f99b17",
+                                        //                         "#a2e505",
+                                        //                         "#c9917f",
+                                        //                         "#8d044b"
+                                        //                     ]
+                                        //                 }]
+                                        //             }}
+                                        //                 options={{
+                                        //                     legend: {
+                                        //                         position: 'left',
+                                        //                         labels: {
+                                        //                             boxWidth: 10
+                                        //                         }
+                                        //                     }
+                                        //                 }} /> </div>
+                                        //     </div>
+                                        // </div>
                                         : null}
 
                                     {/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2865,71 +3062,111 @@ class ManagerDataViewer extends Component {
 
 
                                     {this.state.showCashflowContacts ?
-                                        <div>
-                                            <div className="row" style={{ textAlign: 'center', color: 'whitesmoke' }}>
-                                                <div className="col">
-                                                    <h4>Contact Data:</h4>
-                                                </div>
-                                            </div>
-                                            <div className="row">
-                                                <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
-                                                    <Bar data={{
-                                                        labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
-                                                        datasets: [{
-                                                            label: "Contacts",
-                                                            backgroundColor: 'rgb(255, 99, 132)',
-                                                            borderColor: 'rgb(255, 99, 132)',
-                                                            data: [
-                                                                this.state.CPContacts,
-                                                                this.state.CCContacts,
-                                                                this.state.CNContacts,
-                                                                this.state.CSContacts,
-                                                                this.state.CRContacts,
-                                                                this.state.CTContacts
-                                                            ],
-                                                        }]
-                                                    }} />
-                                                </div>
-                                                <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
-                                                    <Pie data={{
-                                                        labels: [
-                                                            "Cashflow Prospect",
-                                                            "Cashflow Client",
-                                                            "Cashflow Natural Market",
-                                                            "Cashflow Suspect",
-                                                            "Cashflow Referral",
-                                                            "Cashflow Target Market",
-                                                        ],
-                                                        datasets: [{
-                                                            data: [
-                                                                this.state.CPContacts,
-                                                                this.state.CCContacts,
-                                                                this.state.CNContacts,
-                                                                this.state.CSContacts,
-                                                                this.state.CRContacts,
-                                                                this.state.CTContacts
-                                                            ],
-                                                            backgroundColor: [
-                                                                "#3ac178",
-                                                                "#443959",
-                                                                "#f99b17",
-                                                                "#a2e505",
-                                                                "#c9917f",
-                                                                "#8d044b"
-                                                            ]
-                                                        }]
-                                                    }}
-                                                        options={{
-                                                            legend: {
-                                                                position: 'left',
-                                                                labels: {
-                                                                    boxWidth: 10
-                                                                }
-                                                            }
-                                                        }} />
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <DataViewerCFContactChart
+                                            activeProtegeData={this.state.activeProtegeData}
+                                            contactData={this.state.contactData}
+                                            BCAppts={this.state.BCAppts}
+                                            BCContacts={this.state.BCContacts}
+                                            BCDials={this.state.BCDials}
+                                            BNAppts={this.state.BNAppts}
+                                            BNContacts={this.state.BNContacts}
+                                            BNDials={this.state.BNDials}
+                                            BPAppts={this.state.BPAppts}
+                                            BPContacts={this.state.BPContacts}
+                                            BPDials={this.state.BPDials}
+                                            BRAppts={this.state.BRAppts}
+                                            BRContacts={this.state.BRContacts}
+                                            BRDials={this.state.BRDials}
+                                            BSAppts={this.state.BSAppts}
+                                            BSContacts={this.state.BSContacts}
+                                            BSDials={this.state.BSDials}
+                                            BTAppts={this.state.BTAppts}
+                                            BTContacts={this.state.BTContacts}
+                                            BTDials={this.state.BTDials}
+                                            CCAppts={this.state.CCAppts}
+                                            CCContacts={this.state.CCContacts}
+                                            CCDials={this.state.CCDials}
+                                            CNAppts={this.state.CNAppts}
+                                            CNContacts={this.state.CNContacts}
+                                            CNDials={this.state.CNDials}
+                                            CPAppts={this.state.CPAppts}
+                                            CPContacts={this.state.CPContacts}
+                                            CPDials={this.state.CPDials}
+                                            CRAppts={this.state.CRAppts}
+                                            CRContacts={this.state.CRContacts}
+                                            CRDials={this.state.CRDials}
+                                            CSAppts={this.state.CSAppts}
+                                            CSContacts={this.state.CSContacts}
+                                            CSDials={this.state.CSDials}
+                                            CTAppts={this.state.CTAppts}
+                                            CTContacts={this.state.CTContacts}
+                                            CTDials={this.state.CTDials}
+                                        />
+                                        // <div>
+                                        //     <div className="row" style={{ textAlign: 'center', color: 'whitesmoke' }}>
+                                        //         <div className="col">
+                                        //             <h4>Contact Data:</h4>
+                                        //         </div>
+                                        //     </div>
+                                        //     <div className="row">
+                                        //         <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                                        //             <Bar data={{
+                                        //                 labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
+                                        //                 datasets: [{
+                                        //                     label: "Contacts",
+                                        //                     backgroundColor: 'rgb(255, 99, 132)',
+                                        //                     borderColor: 'rgb(255, 99, 132)',
+                                        //                     data: [
+                                        //                         this.state.CPContacts,
+                                        //                         this.state.CCContacts,
+                                        //                         this.state.CNContacts,
+                                        //                         this.state.CSContacts,
+                                        //                         this.state.CRContacts,
+                                        //                         this.state.CTContacts
+                                        //                     ],
+                                        //                 }]
+                                        //             }} />
+                                        //         </div>
+                                        //         <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                                        //             <Pie data={{
+                                        //                 labels: [
+                                        //                     "Cashflow Prospect",
+                                        //                     "Cashflow Client",
+                                        //                     "Cashflow Natural Market",
+                                        //                     "Cashflow Suspect",
+                                        //                     "Cashflow Referral",
+                                        //                     "Cashflow Target Market",
+                                        //                 ],
+                                        //                 datasets: [{
+                                        //                     data: [
+                                        //                         this.state.CPContacts,
+                                        //                         this.state.CCContacts,
+                                        //                         this.state.CNContacts,
+                                        //                         this.state.CSContacts,
+                                        //                         this.state.CRContacts,
+                                        //                         this.state.CTContacts
+                                        //                     ],
+                                        //                     backgroundColor: [
+                                        //                         "#3ac178",
+                                        //                         "#443959",
+                                        //                         "#f99b17",
+                                        //                         "#a2e505",
+                                        //                         "#c9917f",
+                                        //                         "#8d044b"
+                                        //                     ]
+                                        //                 }]
+                                        //             }}
+                                        //                 options={{
+                                        //                     legend: {
+                                        //                         position: 'left',
+                                        //                         labels: {
+                                        //                             boxWidth: 10
+                                        //                         }
+                                        //                     }
+                                        //                 }} />
+                                        //         </div>
+                                        //     </div>
+                                        // </div>
                                         : null}
 
 
@@ -2939,71 +3176,111 @@ class ManagerDataViewer extends Component {
 
                                     <br />
                                     {this.state.showCashflowAppts ?
-                                        <div>
-                                            <div className="row" style={{ textAlign: 'center', color: 'whitesmoke' }}>
-                                                <div className="col">
-                                                    <h4>Appointment Data:</h4>
-                                                </div>
-                                            </div>
+                                        <DataViewerCFAppointmentChart
+                                            activeProtegeData={this.state.activeProtegeData}
+                                            appointments={this.state.appointments}
+                                            BCAppts={this.state.BCAppts}
+                                            BCContacts={this.state.BCContacts}
+                                            BCDials={this.state.BCDials}
+                                            BNAppts={this.state.BNAppts}
+                                            BNContacts={this.state.BNContacts}
+                                            BNDials={this.state.BNDials}
+                                            BPAppts={this.state.BPAppts}
+                                            BPContacts={this.state.BPContacts}
+                                            BPDials={this.state.BPDials}
+                                            BRAppts={this.state.BRAppts}
+                                            BRContacts={this.state.BRContacts}
+                                            BRDials={this.state.BRDials}
+                                            BSAppts={this.state.BSAppts}
+                                            BSContacts={this.state.BSContacts}
+                                            BSDials={this.state.BSDials}
+                                            BTAppts={this.state.BTAppts}
+                                            BTContacts={this.state.BTContacts}
+                                            BTDials={this.state.BTDials}
+                                            CCAppts={this.state.CCAppts}
+                                            CCContacts={this.state.CCContacts}
+                                            CCDials={this.state.CCDials}
+                                            CNAppts={this.state.CNAppts}
+                                            CNContacts={this.state.CNContacts}
+                                            CNDials={this.state.CNDials}
+                                            CPAppts={this.state.CPAppts}
+                                            CPContacts={this.state.CPContacts}
+                                            CPDials={this.state.CPDials}
+                                            CRAppts={this.state.CRAppts}
+                                            CRContacts={this.state.CRContacts}
+                                            CRDials={this.state.CRDials}
+                                            CSAppts={this.state.CSAppts}
+                                            CSContacts={this.state.CSContacts}
+                                            CSDials={this.state.CSDials}
+                                            CTAppts={this.state.CTAppts}
+                                            CTContacts={this.state.CTContacts}
+                                            CTDials={this.state.CTDials}
+                                        />
+                                        // <div>
+                                        //     <div className="row" style={{ textAlign: 'center', color: 'whitesmoke' }}>
+                                        //         <div className="col">
+                                        //             <h4>Appointment Data:</h4>
+                                        //         </div>
+                                        //     </div>
 
-                                            <div className="row">
-                                                <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
-                                                    <Bar data={{
-                                                        labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
-                                                        datasets: [{
-                                                            label: "Appointments",
-                                                            backgroundColor: 'rgb(255, 99, 132)',
-                                                            borderColor: 'rgb(255, 99, 132)',
-                                                            data: [
-                                                                this.state.CPAppts,
-                                                                this.state.CCAppts,
-                                                                this.state.CNAppts,
-                                                                this.state.CSAppts,
-                                                                this.state.CRAppts,
-                                                                this.state.CTAppts
-                                                            ],
-                                                        }]
-                                                    }} />
-                                                </div>
-                                                <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
-                                                    <Pie data={{
-                                                        labels: [
-                                                            "Cashflow Prospect",
-                                                            "Cashflow Client",
-                                                            "Cashflow Natural Market",
-                                                            "Cashflow Suspect",
-                                                            "Cashflow Referral",
-                                                            "Cashflow Target Market",
-                                                        ],
-                                                        datasets: [{
-                                                            data: [
-                                                                this.state.CPAppts,
-                                                                this.state.CCAppts,
-                                                                this.state.CNAppts,
-                                                                this.state.CSAppts,
-                                                                this.state.CRAppts,
-                                                                this.state.CTAppts
-                                                            ],
-                                                            backgroundColor: [
-                                                                "#3ac178",
-                                                                "#443959",
-                                                                "#f99b17",
-                                                                "#a2e505",
-                                                                "#c9917f",
-                                                                "#8d044b"
-                                                            ]
-                                                        }]
-                                                    }} options={{
-                                                        legend: {
-                                                            position: 'left',
-                                                            labels: {
-                                                                boxWidth: 10
-                                                            }
-                                                        }
-                                                    }} />
-                                                </div>
-                                            </div>
-                                        </div>
+                                        //     <div className="row">
+                                        //         <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                                        //             <Bar data={{
+                                        //                 labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
+                                        //                 datasets: [{
+                                        //                     label: "Appointments",
+                                        //                     backgroundColor: 'rgb(255, 99, 132)',
+                                        //                     borderColor: 'rgb(255, 99, 132)',
+                                        //                     data: [
+                                        //                         this.state.CPAppts,
+                                        //                         this.state.CCAppts,
+                                        //                         this.state.CNAppts,
+                                        //                         this.state.CSAppts,
+                                        //                         this.state.CRAppts,
+                                        //                         this.state.CTAppts
+                                        //                     ],
+                                        //                 }]
+                                        //             }} />
+                                        //         </div>
+                                        //         <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                                        //             <Pie data={{
+                                        //                 labels: [
+                                        //                     "Cashflow Prospect",
+                                        //                     "Cashflow Client",
+                                        //                     "Cashflow Natural Market",
+                                        //                     "Cashflow Suspect",
+                                        //                     "Cashflow Referral",
+                                        //                     "Cashflow Target Market",
+                                        //                 ],
+                                        //                 datasets: [{
+                                        //                     data: [
+                                        //                         this.state.CPAppts,
+                                        //                         this.state.CCAppts,
+                                        //                         this.state.CNAppts,
+                                        //                         this.state.CSAppts,
+                                        //                         this.state.CRAppts,
+                                        //                         this.state.CTAppts
+                                        //                     ],
+                                        //                     backgroundColor: [
+                                        //                         "#3ac178",
+                                        //                         "#443959",
+                                        //                         "#f99b17",
+                                        //                         "#a2e505",
+                                        //                         "#c9917f",
+                                        //                         "#8d044b"
+                                        //                     ]
+                                        //                 }]
+                                        //             }} options={{
+                                        //                 legend: {
+                                        //                     position: 'left',
+                                        //                     labels: {
+                                        //                         boxWidth: 10
+                                        //                     }
+                                        //                 }
+                                        //             }} />
+                                        //         </div>
+                                        //     </div>
+                                        // </div>
                                         : null}
 
 
@@ -3012,68 +3289,108 @@ class ManagerDataViewer extends Component {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                                     {this.state.showBusinessDials ?
-                                        <div>
-                                            <div className="row" style={{ textAlign: 'center', color: 'whitesmoke' }}>
-                                                <div className="col">
-                                                    <h4>Dial Data:</h4>
-                                                </div>
-                                            </div>
-                                            <div className="row">
-                                                <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
-                                                    <Bar data={{
-                                                        labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
-                                                        datasets: [{
-                                                            label: "Dials",
-                                                            backgroundColor: 'rgb(255, 99, 132)',
-                                                            borderColor: 'rgb(255, 99, 132)',
-                                                            data: [
-                                                                this.state.BPDials,
-                                                                this.state.BCDials,
-                                                                this.state.BNDials,
-                                                                this.state.BSDials,
-                                                                this.state.BRDials,
-                                                                this.state.BTDials],
-                                                        }]
-                                                    }} />
-                                                </div>
-                                                <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
-                                                    <Pie data={{
-                                                        labels: [
-                                                            "Business Prospect",
-                                                            "Business Client",
-                                                            "Business Natural Market",
-                                                            "Business Suspect",
-                                                            "Business Referral",
-                                                            "Business Target Market"],
-                                                        datasets: [{
-                                                            data: [
-                                                                this.state.BPDials,
-                                                                this.state.BCDials,
-                                                                this.state.BNDials,
-                                                                this.state.BSDials,
-                                                                this.state.BRDials,
-                                                                this.state.BTDials
-                                                            ],
-                                                            backgroundColor: [
-                                                                "#d2d93b",
-                                                                "#dd4417",
-                                                                "#5191d9",
-                                                                "#483d28",
-                                                                "#51aef7",
-                                                                "#25517b"
-                                                            ]
-                                                        }]
-                                                    }} options={{
-                                                        legend: {
-                                                            position: 'left',
-                                                            labels: {
-                                                                boxWidth: 10
-                                                            }
-                                                        }
-                                                    }} />
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <DataViewerBODialChart
+                                            activeProtegeData={this.state.activeProtegeData}
+                                            dialData={this.state.dialData}
+                                            BCAppts={this.state.BCAppts}
+                                            BCContacts={this.state.BCContacts}
+                                            BCDials={this.state.BCDials}
+                                            BNAppts={this.state.BNAppts}
+                                            BNContacts={this.state.BNContacts}
+                                            BNDials={this.state.BNDials}
+                                            BPAppts={this.state.BPAppts}
+                                            BPContacts={this.state.BPContacts}
+                                            BPDials={this.state.BPDials}
+                                            BRAppts={this.state.BRAppts}
+                                            BRContacts={this.state.BRContacts}
+                                            BRDials={this.state.BRDials}
+                                            BSAppts={this.state.BSAppts}
+                                            BSContacts={this.state.BSContacts}
+                                            BSDials={this.state.BSDials}
+                                            BTAppts={this.state.BTAppts}
+                                            BTContacts={this.state.BTContacts}
+                                            BTDials={this.state.BTDials}
+                                            CCAppts={this.state.CCAppts}
+                                            CCContacts={this.state.CCContacts}
+                                            CCDials={this.state.CCDials}
+                                            CNAppts={this.state.CNAppts}
+                                            CNContacts={this.state.CNContacts}
+                                            CNDials={this.state.CNDials}
+                                            CPAppts={this.state.CPAppts}
+                                            CPContacts={this.state.CPContacts}
+                                            CPDials={this.state.CPDials}
+                                            CRAppts={this.state.CRAppts}
+                                            CRContacts={this.state.CRContacts}
+                                            CRDials={this.state.CRDials}
+                                            CSAppts={this.state.CSAppts}
+                                            CSContacts={this.state.CSContacts}
+                                            CSDials={this.state.CSDials}
+                                            CTAppts={this.state.CTAppts}
+                                            CTContacts={this.state.CTContacts}
+                                            CTDials={this.state.CTDials}
+                                        />
+                                        // <div>
+                                        //     <div className="row" style={{ textAlign: 'center', color: 'whitesmoke' }}>
+                                        //         <div className="col">
+                                        //             <h4>Dial Data:</h4>
+                                        //         </div>
+                                        //     </div>
+                                        //     <div className="row">
+                                        //         <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                                        //             <Bar data={{
+                                        //                 labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
+                                        //                 datasets: [{
+                                        //                     label: "Dials",
+                                        //                     backgroundColor: 'rgb(255, 99, 132)',
+                                        //                     borderColor: 'rgb(255, 99, 132)',
+                                        //                     data: [
+                                        //                         this.state.BPDials,
+                                        //                         this.state.BCDials,
+                                        //                         this.state.BNDials,
+                                        //                         this.state.BSDials,
+                                        //                         this.state.BRDials,
+                                        //                         this.state.BTDials],
+                                        //                 }]
+                                        //             }} />
+                                        //         </div>
+                                        //         <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                                        //             <Pie data={{
+                                        //                 labels: [
+                                        //                     "Business Prospect",
+                                        //                     "Business Client",
+                                        //                     "Business Natural Market",
+                                        //                     "Business Suspect",
+                                        //                     "Business Referral",
+                                        //                     "Business Target Market"],
+                                        //                 datasets: [{
+                                        //                     data: [
+                                        //                         this.state.BPDials,
+                                        //                         this.state.BCDials,
+                                        //                         this.state.BNDials,
+                                        //                         this.state.BSDials,
+                                        //                         this.state.BRDials,
+                                        //                         this.state.BTDials
+                                        //                     ],
+                                        //                     backgroundColor: [
+                                        //                         "#d2d93b",
+                                        //                         "#dd4417",
+                                        //                         "#5191d9",
+                                        //                         "#483d28",
+                                        //                         "#51aef7",
+                                        //                         "#25517b"
+                                        //                     ]
+                                        //                 }]
+                                        //             }} options={{
+                                        //                 legend: {
+                                        //                     position: 'left',
+                                        //                     labels: {
+                                        //                         boxWidth: 10
+                                        //                     }
+                                        //                 }
+                                        //             }} />
+                                        //         </div>
+                                        //     </div>
+                                        // </div>
                                         : null}
 
 
@@ -3082,71 +3399,111 @@ class ManagerDataViewer extends Component {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                                     {this.state.showBusinessContacts ?
-                                        <div>
-                                            <div className="row">
-                                                <div className="col" style={{ color: 'whitesmoke' }}>
-                                                    <h4>Contact Data:</h4>
-                                                </div>
-                                            </div>
-                                            <div className="row">
-                                                <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
-                                                    <Bar data={{
-                                                        labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
-                                                        datasets: [{
-                                                            label: "Contacts",
-                                                            backgroundColor: 'rgb(255, 99, 132)',
-                                                            borderColor: 'rgb(255, 99, 132)',
-                                                            data: [
-                                                                this.state.BPContacts,
-                                                                this.state.BCContacts,
-                                                                this.state.BNContacts,
-                                                                this.state.BSContacts,
-                                                                this.state.BRContacts,
-                                                                this.state.BTContacts],
-                                                        }]
-                                                    }}
-                                                    />
-                                                </div>
-                                                <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
-                                                    <Pie data={{
-                                                        labels: [
-                                                            "Business Prospect",
-                                                            "Business Client",
-                                                            "Business Natural Market",
-                                                            "Business Suspect",
-                                                            "Business Referral",
-                                                            "Business Target Market"],
-                                                        datasets: [{
-                                                            data: [
-                                                                this.state.BPContacts,
-                                                                this.state.BCContacts,
-                                                                this.state.BNContacts,
-                                                                this.state.BSContacts,
-                                                                this.state.BRContacts,
-                                                                this.state.BTContacts
-                                                            ],
-                                                            backgroundColor: [
-                                                                "#d2d93b",
-                                                                "#dd4417",
-                                                                "#5191d9",
-                                                                "#483d28",
-                                                                "#51aef7",
-                                                                "#25517b"
-                                                            ]
-                                                        }]
-                                                    }}
-                                                        options={{
-                                                            legend: {
-                                                                position: 'left',
-                                                                labels: {
-                                                                    boxWidth: 10
-                                                                }
-                                                            }
-                                                        }}
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <DataViewerBOContactChart
+                                            activeProtegeData={this.state.activeProtegeData}
+                                            contactData={this.state.contactData}
+                                            BCAppts={this.state.BCAppts}
+                                            BCContacts={this.state.BCContacts}
+                                            BCDials={this.state.BCDials}
+                                            BNAppts={this.state.BNAppts}
+                                            BNContacts={this.state.BNContacts}
+                                            BNDials={this.state.BNDials}
+                                            BPAppts={this.state.BPAppts}
+                                            BPContacts={this.state.BPContacts}
+                                            BPDials={this.state.BPDials}
+                                            BRAppts={this.state.BRAppts}
+                                            BRContacts={this.state.BRContacts}
+                                            BRDials={this.state.BRDials}
+                                            BSAppts={this.state.BSAppts}
+                                            BSContacts={this.state.BSContacts}
+                                            BSDials={this.state.BSDials}
+                                            BTAppts={this.state.BTAppts}
+                                            BTContacts={this.state.BTContacts}
+                                            BTDials={this.state.BTDials}
+                                            CCAppts={this.state.CCAppts}
+                                            CCContacts={this.state.CCContacts}
+                                            CCDials={this.state.CCDials}
+                                            CNAppts={this.state.CNAppts}
+                                            CNContacts={this.state.CNContacts}
+                                            CNDials={this.state.CNDials}
+                                            CPAppts={this.state.CPAppts}
+                                            CPContacts={this.state.CPContacts}
+                                            CPDials={this.state.CPDials}
+                                            CRAppts={this.state.CRAppts}
+                                            CRContacts={this.state.CRContacts}
+                                            CRDials={this.state.CRDials}
+                                            CSAppts={this.state.CSAppts}
+                                            CSContacts={this.state.CSContacts}
+                                            CSDials={this.state.CSDials}
+                                            CTAppts={this.state.CTAppts}
+                                            CTContacts={this.state.CTContacts}
+                                            CTDials={this.state.CTDials}
+                                        />
+                                        // <div>
+                                        //     <div className="row">
+                                        //         <div className="col" style={{ color: 'whitesmoke' }}>
+                                        //             <h4>Contact Data:</h4>
+                                        //         </div>
+                                        //     </div>
+                                        //     <div className="row">
+                                        //         <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                                        //             <Bar data={{
+                                        //                 labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
+                                        //                 datasets: [{
+                                        //                     label: "Contacts",
+                                        //                     backgroundColor: 'rgb(255, 99, 132)',
+                                        //                     borderColor: 'rgb(255, 99, 132)',
+                                        //                     data: [
+                                        //                         this.state.BPContacts,
+                                        //                         this.state.BCContacts,
+                                        //                         this.state.BNContacts,
+                                        //                         this.state.BSContacts,
+                                        //                         this.state.BRContacts,
+                                        //                         this.state.BTContacts],
+                                        //                 }]
+                                        //             }}
+                                        //             />
+                                        //         </div>
+                                        //         <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                                        //             <Pie data={{
+                                        //                 labels: [
+                                        //                     "Business Prospect",
+                                        //                     "Business Client",
+                                        //                     "Business Natural Market",
+                                        //                     "Business Suspect",
+                                        //                     "Business Referral",
+                                        //                     "Business Target Market"],
+                                        //                 datasets: [{
+                                        //                     data: [
+                                        //                         this.state.BPContacts,
+                                        //                         this.state.BCContacts,
+                                        //                         this.state.BNContacts,
+                                        //                         this.state.BSContacts,
+                                        //                         this.state.BRContacts,
+                                        //                         this.state.BTContacts
+                                        //                     ],
+                                        //                     backgroundColor: [
+                                        //                         "#d2d93b",
+                                        //                         "#dd4417",
+                                        //                         "#5191d9",
+                                        //                         "#483d28",
+                                        //                         "#51aef7",
+                                        //                         "#25517b"
+                                        //                     ]
+                                        //                 }]
+                                        //             }}
+                                        //                 options={{
+                                        //                     legend: {
+                                        //                         position: 'left',
+                                        //                         labels: {
+                                        //                             boxWidth: 10
+                                        //                         }
+                                        //                     }
+                                        //                 }}
+                                        //             />
+                                        //         </div>
+                                        //     </div>
+                                        // </div>
                                         : null}
 
 
@@ -3156,70 +3513,110 @@ class ManagerDataViewer extends Component {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                                     {this.state.showBusinessAppts ?
-                                        <div>
-                                            <div className="row">
-                                                <div className="col">
-                                                    <h3 style={{ color: 'whitesmoke', textAlign: 'center' }}><u>Businessowner Appointments Data</u></h3>
-                                                </div>
-                                            </div>
+                                        <DataViewerBOAppointmentChart
+                                            activeProtegeData={this.state.activeProtegeData}
+                                            appointments={this.state.appointments}
+                                            BCAppts={this.state.BCAppts}
+                                            BCContacts={this.state.BCContacts}
+                                            BCDials={this.state.BCDials}
+                                            BNAppts={this.state.BNAppts}
+                                            BNContacts={this.state.BNContacts}
+                                            BNDials={this.state.BNDials}
+                                            BPAppts={this.state.BPAppts}
+                                            BPContacts={this.state.BPContacts}
+                                            BPDials={this.state.BPDials}
+                                            BRAppts={this.state.BRAppts}
+                                            BRContacts={this.state.BRContacts}
+                                            BRDials={this.state.BRDials}
+                                            BSAppts={this.state.BSAppts}
+                                            BSContacts={this.state.BSContacts}
+                                            BSDials={this.state.BSDials}
+                                            BTAppts={this.state.BTAppts}
+                                            BTContacts={this.state.BTContacts}
+                                            BTDials={this.state.BTDials}
+                                            CCAppts={this.state.CCAppts}
+                                            CCContacts={this.state.CCContacts}
+                                            CCDials={this.state.CCDials}
+                                            CNAppts={this.state.CNAppts}
+                                            CNContacts={this.state.CNContacts}
+                                            CNDials={this.state.CNDials}
+                                            CPAppts={this.state.CPAppts}
+                                            CPContacts={this.state.CPContacts}
+                                            CPDials={this.state.CPDials}
+                                            CRAppts={this.state.CRAppts}
+                                            CRContacts={this.state.CRContacts}
+                                            CRDials={this.state.CRDials}
+                                            CSAppts={this.state.CSAppts}
+                                            CSContacts={this.state.CSContacts}
+                                            CSDials={this.state.CSDials}
+                                            CTAppts={this.state.CTAppts}
+                                            CTContacts={this.state.CTContacts}
+                                            CTDials={this.state.CTDials}
+                                        />
+                                        // <div>
+                                        //     <div className="row">
+                                        //         <div className="col">
+                                        //             <h3 style={{ color: 'whitesmoke', textAlign: 'center' }}><u>Businessowner Appointments Data</u></h3>
+                                        //         </div>
+                                        //     </div>
 
-                                            <div className="row">
-                                                <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
-                                                    <Bar data={{
-                                                        labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
-                                                        datasets: [{
-                                                            label: "Appointments",
-                                                            backgroundColor: 'rgb(255, 99, 132)',
-                                                            borderColor: 'rgb(255, 99, 132)',
-                                                            data: [
-                                                                this.state.BPAppts,
-                                                                this.state.BCAppts,
-                                                                this.state.BNAppts,
-                                                                this.state.BSAppts,
-                                                                this.state.BRAppts,
-                                                                this.state.BTAppts],
-                                                        }]
-                                                    }} /> </div>
-                                                <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
-                                                    <Pie data={{
-                                                        labels: [
-                                                            "Business Prospect",
-                                                            "Business Client",
-                                                            "Business Natural Market",
-                                                            "Business Suspect",
-                                                            "Business Referral",
-                                                            "Business Target Market"],
-                                                        datasets: [{
-                                                            data: [
-                                                                this.state.BPAppts,
-                                                                this.state.BCAppts,
-                                                                this.state.BNAppts,
-                                                                this.state.BSAppts,
-                                                                this.state.BRAppts,
-                                                                this.state.BTAppts
-                                                            ],
-                                                            backgroundColor: [
-                                                                "#d2d93b",
-                                                                "#dd4417",
-                                                                "#5191d9",
-                                                                "#483d28",
-                                                                "#51aef7",
-                                                                "#25517b"
-                                                            ]
-                                                        }]
-                                                    }}
-                                                        options={{
-                                                            legend: {
-                                                                position: 'left',
-                                                                labels: {
-                                                                    boxWidth: 10
-                                                                }
-                                                            }
-                                                        }}
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
+                                        //     <div className="row">
+                                        //         <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                                        //             <Bar data={{
+                                        //                 labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
+                                        //                 datasets: [{
+                                        //                     label: "Appointments",
+                                        //                     backgroundColor: 'rgb(255, 99, 132)',
+                                        //                     borderColor: 'rgb(255, 99, 132)',
+                                        //                     data: [
+                                        //                         this.state.BPAppts,
+                                        //                         this.state.BCAppts,
+                                        //                         this.state.BNAppts,
+                                        //                         this.state.BSAppts,
+                                        //                         this.state.BRAppts,
+                                        //                         this.state.BTAppts],
+                                        //                 }]
+                                        //             }} /> </div>
+                                        //         <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                                        //             <Pie data={{
+                                        //                 labels: [
+                                        //                     "Business Prospect",
+                                        //                     "Business Client",
+                                        //                     "Business Natural Market",
+                                        //                     "Business Suspect",
+                                        //                     "Business Referral",
+                                        //                     "Business Target Market"],
+                                        //                 datasets: [{
+                                        //                     data: [
+                                        //                         this.state.BPAppts,
+                                        //                         this.state.BCAppts,
+                                        //                         this.state.BNAppts,
+                                        //                         this.state.BSAppts,
+                                        //                         this.state.BRAppts,
+                                        //                         this.state.BTAppts
+                                        //                     ],
+                                        //                     backgroundColor: [
+                                        //                         "#d2d93b",
+                                        //                         "#dd4417",
+                                        //                         "#5191d9",
+                                        //                         "#483d28",
+                                        //                         "#51aef7",
+                                        //                         "#25517b"
+                                        //                     ]
+                                        //                 }]
+                                        //             }}
+                                        //                 options={{
+                                        //                     legend: {
+                                        //                         position: 'left',
+                                        //                         labels: {
+                                        //                             boxWidth: 10
+                                        //                         }
+                                        //                     }
+                                        //                 }}
+                                        //             />
+                                        //         </div>
+                                        //     </div>
+                                        // </div>
                                         : null}
 
 
@@ -3229,99 +3626,139 @@ class ManagerDataViewer extends Component {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                                     {this.state.showProspectPerformance ?
-                                        <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
+                                        <DataViewerProspectPerformance
+                                            category={"Prospect"}
+                                            BCAppts={this.state.BCAppts}
+                                            BCContacts={this.state.BCContacts}
+                                            BCDials={this.state.BCDials}
+                                            BNAppts={this.state.BNAppts}
+                                            BNContacts={this.state.BNContacts}
+                                            BNDials={this.state.BNDials}
+                                            BPAppts={this.state.BPAppts}
+                                            BPContacts={this.state.BPContacts}
+                                            BPDials={this.state.BPDials}
+                                            BRAppts={this.state.BRAppts}
+                                            BRContacts={this.state.BRContacts}
+                                            BRDials={this.state.BRDials}
+                                            BSAppts={this.state.BSAppts}
+                                            BSContacts={this.state.BSContacts}
+                                            BSDials={this.state.BSDials}
+                                            BTAppts={this.state.BTAppts}
+                                            BTContacts={this.state.BTContacts}
+                                            BTDials={this.state.BTDials}
+                                            CCAppts={this.state.CCAppts}
+                                            CCContacts={this.state.CCContacts}
+                                            CCDials={this.state.CCDials}
+                                            CNAppts={this.state.CNAppts}
+                                            CNContacts={this.state.CNContacts}
+                                            CNDials={this.state.CNDials}
+                                            CPAppts={this.state.CPAppts}
+                                            CPContacts={this.state.CPContacts}
+                                            CPDials={this.state.CPDials}
+                                            CRAppts={this.state.CRAppts}
+                                            CRContacts={this.state.CRContacts}
+                                            CRDials={this.state.CRDials}
+                                            CSAppts={this.state.CSAppts}
+                                            CSContacts={this.state.CSContacts}
+                                            CSDials={this.state.CSDials}
+                                            CTAppts={this.state.CTAppts}
+                                            CTContacts={this.state.CTContacts}
+                                            CTDials={this.state.CTDials}
 
-                                            <h3>Prospect Calling Performance:</h3>
-                                            <div className="row" style={{ textAlign: 'center' }}>
+                                        />
+                                        // <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
 
-                                                <div className="col-lg-4">
-                                                    <h6>Dials to Contact Ratio</h6>
-                                                    <h6>Total Prospect Dials: {this.state.CPDials + this.state.BPDials}</h6>
-                                                    <h6>Contact Ratio: {Math.round((this.state.CPContacts + this.state.BPContacts) / (this.state.CPDials + this.state.BPDials) * 100)}%</h6>
-                                                    <Pie data={{
-                                                        labels: [
-                                                            "Prospect Dials without contacts",
-                                                            "Prospect Contacts",
-                                                        ],
-                                                        datasets: [{
-                                                            data: [
-                                                                this.state.CPDials + this.state.BPDials - this.state.CPContacts - this.state.BPContacts,
-                                                                this.state.CPContacts + this.state.BPContacts
-                                                            ],
-                                                            backgroundColor: [
-                                                                "#51aef7",
-                                                                "#25517b"
-                                                            ]
-                                                        }]
-                                                    }}
-                                                        options={{
-                                                            legend: {
-                                                                display: false
-                                                            }
-                                                        }}
-                                                    />
-                                                </div>
+                                        //     <h3>Prospect Calling Performance:</h3>
+                                        //     <div className="row" style={{ textAlign: 'center' }}>
 
-                                                <div className="col-lg-4">
-                                                    <h6>Contacts to Appointment Ratio</h6>
-                                                    <h6>Total Prospect Contacts: {this.state.CPContacts + this.state.BPContacts}</h6>
-                                                    <h6>Appointment per Contact Ratio: {Math.round((this.state.CPAppts + this.state.BPAppts) / (this.state.CPContacts + this.state.BPContacts) * 100)}%</h6>
-                                                    <Pie data={{
-                                                        labels: [
-                                                            "Prospect Contacts without appointments",
-                                                            "Prospect Appointments",
-                                                        ],
-                                                        datasets: [{
-                                                            data: [
-                                                                this.state.CPContacts + this.state.BPContacts - this.state.CPAppts - this.state.BPAppts,
-                                                                this.state.CPAppts + this.state.BPAppts
-                                                            ],
-                                                            backgroundColor: [
-                                                                "#51aef7",
-                                                                "#25517b"
-                                                            ]
-                                                        }]
-                                                    }}
-                                                        options={{
-                                                            legend: {
-                                                                display: false
-                                                            }
-                                                        }}
-                                                    />
-                                                </div>
+                                        //         <div className="col-lg-4">
+                                        //             <h6>Dials to Contact Ratio</h6>
+                                        //             <h6>Total Prospect Dials: {this.state.CPDials + this.state.BPDials}</h6>
+                                        //             <h6>Contact Ratio: {Math.round((this.state.CPContacts + this.state.BPContacts) / (this.state.CPDials + this.state.BPDials) * 100)}%</h6>
+                                        //             <Pie data={{
+                                        //                 labels: [
+                                        //                     "Prospect Dials without contacts",
+                                        //                     "Prospect Contacts",
+                                        //                 ],
+                                        //                 datasets: [{
+                                        //                     data: [
+                                        //                         this.state.CPDials + this.state.BPDials - this.state.CPContacts - this.state.BPContacts,
+                                        //                         this.state.CPContacts + this.state.BPContacts
+                                        //                     ],
+                                        //                     backgroundColor: [
+                                        //                         "#51aef7",
+                                        //                         "#25517b"
+                                        //                     ]
+                                        //                 }]
+                                        //             }}
+                                        //                 options={{
+                                        //                     legend: {
+                                        //                         display: false
+                                        //                     }
+                                        //                 }}
+                                        //             />
+                                        //         </div>
 
-                                                <div className="col-lg-4">
-                                                    <h6>Dials to Appointment Ratio</h6>
-                                                    <h6>Total Prospect Dials: {this.state.CPDials + this.state.BPDials}</h6>
-                                                    <h6>Appointment per Dial Ratio: {Math.round((this.state.CPAppts + this.state.BPAppts) / (this.state.CPDials + this.state.BPDials) * 100)}%</h6>
-                                                    <Pie data={{
-                                                        labels: [
-                                                            "Prospect Dials without appointments",
-                                                            "Prospect Appointments",
-                                                        ],
-                                                        datasets: [{
-                                                            data: [
-                                                                this.state.CPDials + this.state.BPDials - this.state.CPAppts - this.state.BPAppts,
-                                                                this.state.CPAppts + this.state.BPAppts
-                                                            ],
-                                                            backgroundColor: [
-                                                                "#51aef7",
-                                                                "#25517b"
-                                                            ]
-                                                        }]
-                                                    }}
-                                                        options={{
-                                                            legend: {
-                                                                display: false
-                                                            }
-                                                        }}
-                                                    />
-                                                </div>
+                                        //         <div className="col-lg-4">
+                                        //             <h6>Contacts to Appointment Ratio</h6>
+                                        //             <h6>Total Prospect Contacts: {this.state.CPContacts + this.state.BPContacts}</h6>
+                                        //             <h6>Appointment per Contact Ratio: {Math.round((this.state.CPAppts + this.state.BPAppts) / (this.state.CPContacts + this.state.BPContacts) * 100)}%</h6>
+                                        //             <Pie data={{
+                                        //                 labels: [
+                                        //                     "Prospect Contacts without appointments",
+                                        //                     "Prospect Appointments",
+                                        //                 ],
+                                        //                 datasets: [{
+                                        //                     data: [
+                                        //                         this.state.CPContacts + this.state.BPContacts - this.state.CPAppts - this.state.BPAppts,
+                                        //                         this.state.CPAppts + this.state.BPAppts
+                                        //                     ],
+                                        //                     backgroundColor: [
+                                        //                         "#51aef7",
+                                        //                         "#25517b"
+                                        //                     ]
+                                        //                 }]
+                                        //             }}
+                                        //                 options={{
+                                        //                     legend: {
+                                        //                         display: false
+                                        //                     }
+                                        //                 }}
+                                        //             />
+                                        //         </div>
+
+                                        //         <div className="col-lg-4">
+                                        //             <h6>Dials to Appointment Ratio</h6>
+                                        //             <h6>Total Prospect Dials: {this.state.CPDials + this.state.BPDials}</h6>
+                                        //             <h6>Appointment per Dial Ratio: {Math.round((this.state.CPAppts + this.state.BPAppts) / (this.state.CPDials + this.state.BPDials) * 100)}%</h6>
+                                        //             <Pie data={{
+                                        //                 labels: [
+                                        //                     "Prospect Dials without appointments",
+                                        //                     "Prospect Appointments",
+                                        //                 ],
+                                        //                 datasets: [{
+                                        //                     data: [
+                                        //                         this.state.CPDials + this.state.BPDials - this.state.CPAppts - this.state.BPAppts,
+                                        //                         this.state.CPAppts + this.state.BPAppts
+                                        //                     ],
+                                        //                     backgroundColor: [
+                                        //                         "#51aef7",
+                                        //                         "#25517b"
+                                        //                     ]
+                                        //                 }]
+                                        //             }}
+                                        //                 options={{
+                                        //                     legend: {
+                                        //                         display: false
+                                        //                     }
+                                        //                 }}
+                                        //             />
+                                        //         </div>
 
 
-                                            </div>
+                                        //     </div>
 
-                                        </div>
+                                        // </div>
                                         : null}
 
                                     {/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3329,99 +3766,139 @@ class ManagerDataViewer extends Component {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                                     {this.state.showClientPerformance ?
-                                        <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
+                                        <DataViewerClientPerformance
+                                            category={"Client"}
+                                            BCAppts={this.state.BCAppts}
+                                            BCContacts={this.state.BCContacts}
+                                            BCDials={this.state.BCDials}
+                                            BNAppts={this.state.BNAppts}
+                                            BNContacts={this.state.BNContacts}
+                                            BNDials={this.state.BNDials}
+                                            BPAppts={this.state.BPAppts}
+                                            BPContacts={this.state.BPContacts}
+                                            BPDials={this.state.BPDials}
+                                            BRAppts={this.state.BRAppts}
+                                            BRContacts={this.state.BRContacts}
+                                            BRDials={this.state.BRDials}
+                                            BSAppts={this.state.BSAppts}
+                                            BSContacts={this.state.BSContacts}
+                                            BSDials={this.state.BSDials}
+                                            BTAppts={this.state.BTAppts}
+                                            BTContacts={this.state.BTContacts}
+                                            BTDials={this.state.BTDials}
+                                            CCAppts={this.state.CCAppts}
+                                            CCContacts={this.state.CCContacts}
+                                            CCDials={this.state.CCDials}
+                                            CNAppts={this.state.CNAppts}
+                                            CNContacts={this.state.CNContacts}
+                                            CNDials={this.state.CNDials}
+                                            CPAppts={this.state.CPAppts}
+                                            CPContacts={this.state.CPContacts}
+                                            CPDials={this.state.CPDials}
+                                            CRAppts={this.state.CRAppts}
+                                            CRContacts={this.state.CRContacts}
+                                            CRDials={this.state.CRDials}
+                                            CSAppts={this.state.CSAppts}
+                                            CSContacts={this.state.CSContacts}
+                                            CSDials={this.state.CSDials}
+                                            CTAppts={this.state.CTAppts}
+                                            CTContacts={this.state.CTContacts}
+                                            CTDials={this.state.CTDials}
 
-                                            <h3>Client Calling Performance:</h3>
-                                            <div className="row" style={{ textAlign: 'center' }}>
+                                        />
+                                        // <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
 
-                                                <div className="col-lg-4">
-                                                    <h6>Dials to Contact Ratio</h6>
-                                                    <h6>Total Client Dials: {this.state.CCDials + this.state.BCDials}</h6>
-                                                    <h6>Contact Ratio: {Math.round((this.state.CCContacts + this.state.BCContacts) / (this.state.CCDials + this.state.BCDials) * 100)}%</h6>
-                                                    <Pie data={{
-                                                        labels: [
-                                                            "Client Dials without contacts",
-                                                            "Client Contacts",
-                                                        ],
-                                                        datasets: [{
-                                                            data: [
-                                                                this.state.CCDials + this.state.BCDials - this.state.CCContacts - this.state.BCContacts,
-                                                                this.state.CCContacts + this.state.BCContacts
-                                                            ],
-                                                            backgroundColor: [
-                                                                "#51aef7",
-                                                                "#25517b"
-                                                            ]
-                                                        }]
-                                                    }}
-                                                        options={{
-                                                            legend: {
-                                                                display: false
-                                                            }
-                                                        }}
-                                                    />
-                                                </div>
+                                        //     <h3>Client Calling Performance:</h3>
+                                        //     <div className="row" style={{ textAlign: 'center' }}>
 
-                                                <div className="col-lg-4">
-                                                    <h6>Contacts to Appointment Ratio</h6>
-                                                    <h6>Total Client Contacts: {this.state.CCContacts + this.state.BCContacts}</h6>
-                                                    <h6>Appointment per Contact Ratio: {Math.round((this.state.CCAppts + this.state.BCAppts) / (this.state.CCContacts + this.state.BCContacts) * 100)}%</h6>
-                                                    <Pie data={{
-                                                        labels: [
-                                                            "Client Contacts without appointment",
-                                                            "Client Appointments",
-                                                        ],
-                                                        datasets: [{
-                                                            data: [
-                                                                this.state.CCContacts + this.state.BCContacts - this.state.CCAppts - this.state.BCAppts,
-                                                                this.state.CCAppts + this.state.BCAppts
-                                                            ],
-                                                            backgroundColor: [
-                                                                "#51aef7",
-                                                                "#25517b"
-                                                            ]
-                                                        }]
-                                                    }}
-                                                        options={{
-                                                            legend: {
-                                                                display: false
-                                                            }
-                                                        }}
-                                                    />
-                                                </div>
+                                        //         <div className="col-lg-4">
+                                        //             <h6>Dials to Contact Ratio</h6>
+                                        //             <h6>Total Client Dials: {this.state.CCDials + this.state.BCDials}</h6>
+                                        //             <h6>Contact Ratio: {Math.round((this.state.CCContacts + this.state.BCContacts) / (this.state.CCDials + this.state.BCDials) * 100)}%</h6>
+                                        //             <Pie data={{
+                                        //                 labels: [
+                                        //                     "Client Dials without contacts",
+                                        //                     "Client Contacts",
+                                        //                 ],
+                                        //                 datasets: [{
+                                        //                     data: [
+                                        //                         this.state.CCDials + this.state.BCDials - this.state.CCContacts - this.state.BCContacts,
+                                        //                         this.state.CCContacts + this.state.BCContacts
+                                        //                     ],
+                                        //                     backgroundColor: [
+                                        //                         "#51aef7",
+                                        //                         "#25517b"
+                                        //                     ]
+                                        //                 }]
+                                        //             }}
+                                        //                 options={{
+                                        //                     legend: {
+                                        //                         display: false
+                                        //                     }
+                                        //                 }}
+                                        //             />
+                                        //         </div>
 
-                                                <div className="col-lg-4">
-                                                    <h6>Dials to Appointment Ratio</h6>
-                                                    <h6>Total Client Dials: {this.state.CCDials + this.state.BCDials}</h6>
-                                                    <h6>Appointment per Dial Ratio: {Math.round((this.state.CCAppts + this.state.BCAppts) / (this.state.CCDials + this.state.BCDials) * 100)}%</h6>
-                                                    <Pie data={{
-                                                        labels: [
-                                                            "Client Dials without appointment",
-                                                            "Client Appointments",
-                                                        ],
-                                                        datasets: [{
-                                                            data: [
-                                                                this.state.CCDials + this.state.BCDials - this.state.CCAppts - this.state.BCAppts,
-                                                                this.state.CCAppts + this.state.BCAppts
-                                                            ],
-                                                            backgroundColor: [
-                                                                "#51aef7",
-                                                                "#25517b"
-                                                            ]
-                                                        }]
-                                                    }}
-                                                        options={{
-                                                            legend: {
-                                                                display: false
-                                                            }
-                                                        }}
-                                                    />
-                                                </div>
+                                        //         <div className="col-lg-4">
+                                        //             <h6>Contacts to Appointment Ratio</h6>
+                                        //             <h6>Total Client Contacts: {this.state.CCContacts + this.state.BCContacts}</h6>
+                                        //             <h6>Appointment per Contact Ratio: {Math.round((this.state.CCAppts + this.state.BCAppts) / (this.state.CCContacts + this.state.BCContacts) * 100)}%</h6>
+                                        //             <Pie data={{
+                                        //                 labels: [
+                                        //                     "Client Contacts without appointment",
+                                        //                     "Client Appointments",
+                                        //                 ],
+                                        //                 datasets: [{
+                                        //                     data: [
+                                        //                         this.state.CCContacts + this.state.BCContacts - this.state.CCAppts - this.state.BCAppts,
+                                        //                         this.state.CCAppts + this.state.BCAppts
+                                        //                     ],
+                                        //                     backgroundColor: [
+                                        //                         "#51aef7",
+                                        //                         "#25517b"
+                                        //                     ]
+                                        //                 }]
+                                        //             }}
+                                        //                 options={{
+                                        //                     legend: {
+                                        //                         display: false
+                                        //                     }
+                                        //                 }}
+                                        //             />
+                                        //         </div>
+
+                                        //         <div className="col-lg-4">
+                                        //             <h6>Dials to Appointment Ratio</h6>
+                                        //             <h6>Total Client Dials: {this.state.CCDials + this.state.BCDials}</h6>
+                                        //             <h6>Appointment per Dial Ratio: {Math.round((this.state.CCAppts + this.state.BCAppts) / (this.state.CCDials + this.state.BCDials) * 100)}%</h6>
+                                        //             <Pie data={{
+                                        //                 labels: [
+                                        //                     "Client Dials without appointment",
+                                        //                     "Client Appointments",
+                                        //                 ],
+                                        //                 datasets: [{
+                                        //                     data: [
+                                        //                         this.state.CCDials + this.state.BCDials - this.state.CCAppts - this.state.BCAppts,
+                                        //                         this.state.CCAppts + this.state.BCAppts
+                                        //                     ],
+                                        //                     backgroundColor: [
+                                        //                         "#51aef7",
+                                        //                         "#25517b"
+                                        //                     ]
+                                        //                 }]
+                                        //             }}
+                                        //                 options={{
+                                        //                     legend: {
+                                        //                         display: false
+                                        //                     }
+                                        //                 }}
+                                        //             />
+                                        //         </div>
 
 
-                                            </div>
+                                        //     </div>
 
-                                        </div>
+                                        // </div>
                                         : null}
 
 
@@ -3430,99 +3907,138 @@ class ManagerDataViewer extends Component {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                                     {this.state.showNaturalPerformance ?
-                                        <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
+                                        <DataViewerNaturalPerformance
+                                            category={"Natural"}
+                                            BCAppts={this.state.BCAppts}
+                                            BCContacts={this.state.BCContacts}
+                                            BCDials={this.state.BCDials}
+                                            BNAppts={this.state.BNAppts}
+                                            BNContacts={this.state.BNContacts}
+                                            BNDials={this.state.BNDials}
+                                            BPAppts={this.state.BPAppts}
+                                            BPContacts={this.state.BPContacts}
+                                            BPDials={this.state.BPDials}
+                                            BRAppts={this.state.BRAppts}
+                                            BRContacts={this.state.BRContacts}
+                                            BRDials={this.state.BRDials}
+                                            BSAppts={this.state.BSAppts}
+                                            BSContacts={this.state.BSContacts}
+                                            BSDials={this.state.BSDials}
+                                            BTAppts={this.state.BTAppts}
+                                            BTContacts={this.state.BTContacts}
+                                            BTDials={this.state.BTDials}
+                                            CCAppts={this.state.CCAppts}
+                                            CCContacts={this.state.CCContacts}
+                                            CCDials={this.state.CCDials}
+                                            CNAppts={this.state.CNAppts}
+                                            CNContacts={this.state.CNContacts}
+                                            CNDials={this.state.CNDials}
+                                            CPAppts={this.state.CPAppts}
+                                            CPContacts={this.state.CPContacts}
+                                            CPDials={this.state.CPDials}
+                                            CRAppts={this.state.CRAppts}
+                                            CRContacts={this.state.CRContacts}
+                                            CRDials={this.state.CRDials}
+                                            CSAppts={this.state.CSAppts}
+                                            CSContacts={this.state.CSContacts}
+                                            CSDials={this.state.CSDials}
+                                            CTAppts={this.state.CTAppts}
+                                            CTContacts={this.state.CTContacts}
+                                            CTDials={this.state.CTDials}
+                                        />
+                                        // <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
 
-                                            <h3>Natural Market Calling Performance:</h3>
-                                            <div className="row" style={{ textAlign: 'center' }}>
+                                        //     <h3>Natural Market Calling Performance:</h3>
+                                        //     <div className="row" style={{ textAlign: 'center' }}>
 
-                                                <div className="col-lg-4">
-                                                    <h6>Dials to Contact Ratio</h6>
-                                                    <h6>Total Natural Market Dials: {this.state.CNDials + this.state.BNDials}</h6>
-                                                    <h6>Contact Ratio: {Math.round((this.state.CNContacts + this.state.BNContacts) / (this.state.CNDials + this.state.BNDials) * 100)}%</h6>
-                                                    <Pie data={{
-                                                        labels: [
-                                                            "Natural Market Dials without contact",
-                                                            "Natural Market Contacts",
-                                                        ],
-                                                        datasets: [{
-                                                            data: [
-                                                                this.state.CNDials + this.state.BNDials - this.state.CNContacts - this.state.BNContacts,
-                                                                this.state.CNContacts + this.state.BNContacts
-                                                            ],
-                                                            backgroundColor: [
-                                                                "#51aef7",
-                                                                "#25517b"
-                                                            ]
-                                                        }]
-                                                    }}
-                                                        options={{
-                                                            legend: {
-                                                                display: false
-                                                            }
-                                                        }}
-                                                    />
-                                                </div>
+                                        //         <div className="col-lg-4">
+                                        //             <h6>Dials to Contact Ratio</h6>
+                                        //             <h6>Total Natural Market Dials: {this.state.CNDials + this.state.BNDials}</h6>
+                                        //             <h6>Contact Ratio: {Math.round((this.state.CNContacts + this.state.BNContacts) / (this.state.CNDials + this.state.BNDials) * 100)}%</h6>
+                                        //             <Pie data={{
+                                        //                 labels: [
+                                        //                     "Natural Market Dials without contact",
+                                        //                     "Natural Market Contacts",
+                                        //                 ],
+                                        //                 datasets: [{
+                                        //                     data: [
+                                        //                         this.state.CNDials + this.state.BNDials - this.state.CNContacts - this.state.BNContacts,
+                                        //                         this.state.CNContacts + this.state.BNContacts
+                                        //                     ],
+                                        //                     backgroundColor: [
+                                        //                         "#51aef7",
+                                        //                         "#25517b"
+                                        //                     ]
+                                        //                 }]
+                                        //             }}
+                                        //                 options={{
+                                        //                     legend: {
+                                        //                         display: false
+                                        //                     }
+                                        //                 }}
+                                        //             />
+                                        //         </div>
 
-                                                <div className="col-lg-4">
-                                                    <h6>Contacts to Appointment Ratio</h6>
-                                                    <h6>Total Natural Market Contacts: {this.state.CNContacts + this.state.BNContacts}</h6>
-                                                    <h6>Appointment per Contact Ratio: {Math.round((this.state.CNAppts + this.state.BNAppts) / (this.state.CNContacts + this.state.BNContacts) * 100)}%</h6>
-                                                    <Pie data={{
-                                                        labels: [
-                                                            "Natural Market Contacts without appointment",
-                                                            "Natural Market Appointments",
-                                                        ],
-                                                        datasets: [{
-                                                            data: [
-                                                                this.state.CNContacts + this.state.BNContacts - this.state.CNAppts - this.state.BNAppts,
-                                                                this.state.CNAppts + this.state.BNAppts
-                                                            ],
-                                                            backgroundColor: [
-                                                                "#51aef7",
-                                                                "#25517b"
-                                                            ]
-                                                        }]
-                                                    }}
-                                                        options={{
-                                                            legend: {
-                                                                display: false
-                                                            }
-                                                        }}
-                                                    />
-                                                </div>
+                                        //         <div className="col-lg-4">
+                                        //             <h6>Contacts to Appointment Ratio</h6>
+                                        //             <h6>Total Natural Market Contacts: {this.state.CNContacts + this.state.BNContacts}</h6>
+                                        //             <h6>Appointment per Contact Ratio: {Math.round((this.state.CNAppts + this.state.BNAppts) / (this.state.CNContacts + this.state.BNContacts) * 100)}%</h6>
+                                        //             <Pie data={{
+                                        //                 labels: [
+                                        //                     "Natural Market Contacts without appointment",
+                                        //                     "Natural Market Appointments",
+                                        //                 ],
+                                        //                 datasets: [{
+                                        //                     data: [
+                                        //                         this.state.CNContacts + this.state.BNContacts - this.state.CNAppts - this.state.BNAppts,
+                                        //                         this.state.CNAppts + this.state.BNAppts
+                                        //                     ],
+                                        //                     backgroundColor: [
+                                        //                         "#51aef7",
+                                        //                         "#25517b"
+                                        //                     ]
+                                        //                 }]
+                                        //             }}
+                                        //                 options={{
+                                        //                     legend: {
+                                        //                         display: false
+                                        //                     }
+                                        //                 }}
+                                        //             />
+                                        //         </div>
 
-                                                <div className="col-lg-4">
-                                                    <h6>Dials to Appointment Ratio</h6>
-                                                    <h6>Total Natural Market Dials: {this.state.CNDials + this.state.BNDials}</h6>
-                                                    <h6>Appointment per Dial Ratio: {Math.round((this.state.CNAppts + this.state.BNAppts) / (this.state.CNDials + this.state.BNDials) * 100)}%</h6>
-                                                    <Pie data={{
-                                                        labels: [
-                                                            "Natural Market Dials without appointment",
-                                                            "Natuarl Market Appointments",
-                                                        ],
-                                                        datasets: [{
-                                                            data: [
-                                                                this.state.CNDials + this.state.BNDials - this.state.CNAppts - this.state.BNAppts,
-                                                                this.state.CNAppts + this.state.BNAppts
-                                                            ],
-                                                            backgroundColor: [
-                                                                "#51aef7",
-                                                                "#25517b"
-                                                            ]
-                                                        }]
-                                                    }}
-                                                        options={{
-                                                            legend: {
-                                                                display: false
-                                                            }
-                                                        }}
-                                                    />
-                                                </div>
+                                        //         <div className="col-lg-4">
+                                        //             <h6>Dials to Appointment Ratio</h6>
+                                        //             <h6>Total Natural Market Dials: {this.state.CNDials + this.state.BNDials}</h6>
+                                        //             <h6>Appointment per Dial Ratio: {Math.round((this.state.CNAppts + this.state.BNAppts) / (this.state.CNDials + this.state.BNDials) * 100)}%</h6>
+                                        //             <Pie data={{
+                                        //                 labels: [
+                                        //                     "Natural Market Dials without appointment",
+                                        //                     "Natuarl Market Appointments",
+                                        //                 ],
+                                        //                 datasets: [{
+                                        //                     data: [
+                                        //                         this.state.CNDials + this.state.BNDials - this.state.CNAppts - this.state.BNAppts,
+                                        //                         this.state.CNAppts + this.state.BNAppts
+                                        //                     ],
+                                        //                     backgroundColor: [
+                                        //                         "#51aef7",
+                                        //                         "#25517b"
+                                        //                     ]
+                                        //                 }]
+                                        //             }}
+                                        //                 options={{
+                                        //                     legend: {
+                                        //                         display: false
+                                        //                     }
+                                        //                 }}
+                                        //             />
+                                        //         </div>
 
 
-                                            </div>
+                                        //     </div>
 
-                                        </div>
+                                        // </div>
                                         : null}
 
                                     {/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3530,99 +4046,138 @@ class ManagerDataViewer extends Component {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                                     {this.state.showSuspectPerformance ?
-                                        <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
+                                        <DataViewerSuspectPerformance
+                                            category={"Suspect"}
+                                            BCAppts={this.state.BCAppts}
+                                            BCContacts={this.state.BCContacts}
+                                            BCDials={this.state.BCDials}
+                                            BNAppts={this.state.BNAppts}
+                                            BNContacts={this.state.BNContacts}
+                                            BNDials={this.state.BNDials}
+                                            BPAppts={this.state.BPAppts}
+                                            BPContacts={this.state.BPContacts}
+                                            BPDials={this.state.BPDials}
+                                            BRAppts={this.state.BRAppts}
+                                            BRContacts={this.state.BRContacts}
+                                            BRDials={this.state.BRDials}
+                                            BSAppts={this.state.BSAppts}
+                                            BSContacts={this.state.BSContacts}
+                                            BSDials={this.state.BSDials}
+                                            BTAppts={this.state.BTAppts}
+                                            BTContacts={this.state.BTContacts}
+                                            BTDials={this.state.BTDials}
+                                            CCAppts={this.state.CCAppts}
+                                            CCContacts={this.state.CCContacts}
+                                            CCDials={this.state.CCDials}
+                                            CNAppts={this.state.CNAppts}
+                                            CNContacts={this.state.CNContacts}
+                                            CNDials={this.state.CNDials}
+                                            CPAppts={this.state.CPAppts}
+                                            CPContacts={this.state.CPContacts}
+                                            CPDials={this.state.CPDials}
+                                            CRAppts={this.state.CRAppts}
+                                            CRContacts={this.state.CRContacts}
+                                            CRDials={this.state.CRDials}
+                                            CSAppts={this.state.CSAppts}
+                                            CSContacts={this.state.CSContacts}
+                                            CSDials={this.state.CSDials}
+                                            CTAppts={this.state.CTAppts}
+                                            CTContacts={this.state.CTContacts}
+                                            CTDials={this.state.CTDials}
+                                        />
+                                        // <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
 
-                                            <h3>Suspect Calling Performance:</h3>
-                                            <div className="row" style={{ textAlign: 'center' }}>
+                                        //     <h3>Suspect Calling Performance:</h3>
+                                        //     <div className="row" style={{ textAlign: 'center' }}>
 
-                                                <div className="col-lg-4">
-                                                    <h6>Dials to Contact Ratio</h6>
-                                                    <h6>Total Suspect Dials: {this.state.CSDials + this.state.BSDials}</h6>
-                                                    <h6>Contact Ratio: {Math.round((this.state.CSContacts + this.state.BSContacts) / (this.state.CSDials + this.state.BSDials) * 100)}%</h6>
-                                                    <Pie data={{
-                                                        labels: [
-                                                            "Suspect Dials without contact",
-                                                            "Suspect Contacts",
-                                                        ],
-                                                        datasets: [{
-                                                            data: [
-                                                                this.state.CSDials + this.state.BSDials - this.state.CSContacts - this.state.BSContacts,
-                                                                this.state.CSContacts + this.state.BSContacts
-                                                            ],
-                                                            backgroundColor: [
-                                                                "#51aef7",
-                                                                "#25517b"
-                                                            ]
-                                                        }]
-                                                    }}
-                                                        options={{
-                                                            legend: {
-                                                                display: false
-                                                            }
-                                                        }}
-                                                    />
-                                                </div>
+                                        //         <div className="col-lg-4">
+                                        //             <h6>Dials to Contact Ratio</h6>
+                                        //             <h6>Total Suspect Dials: {this.state.CSDials + this.state.BSDials}</h6>
+                                        //             <h6>Contact Ratio: {Math.round((this.state.CSContacts + this.state.BSContacts) / (this.state.CSDials + this.state.BSDials) * 100)}%</h6>
+                                        //             <Pie data={{
+                                        //                 labels: [
+                                        //                     "Suspect Dials without contact",
+                                        //                     "Suspect Contacts",
+                                        //                 ],
+                                        //                 datasets: [{
+                                        //                     data: [
+                                        //                         this.state.CSDials + this.state.BSDials - this.state.CSContacts - this.state.BSContacts,
+                                        //                         this.state.CSContacts + this.state.BSContacts
+                                        //                     ],
+                                        //                     backgroundColor: [
+                                        //                         "#51aef7",
+                                        //                         "#25517b"
+                                        //                     ]
+                                        //                 }]
+                                        //             }}
+                                        //                 options={{
+                                        //                     legend: {
+                                        //                         display: false
+                                        //                     }
+                                        //                 }}
+                                        //             />
+                                        //         </div>
 
-                                                <div className="col-lg-4">
-                                                    <h6>Contacts to Appointment Ratio</h6>
-                                                    <h6>Total Suspect Contacts: {this.state.CSContacts + this.state.BSContacts}</h6>
-                                                    <h6>Appointment per Contact Ratio: {Math.round((this.state.CSAppts + this.state.BSAppts) / (this.state.CSContacts + this.state.BSContacts) * 100)}%</h6>
-                                                    <Pie data={{
-                                                        labels: [
-                                                            "Suspect Contacts without appointment",
-                                                            "Suspect Appointments",
-                                                        ],
-                                                        datasets: [{
-                                                            data: [
-                                                                this.state.CSContacts + this.state.BSContacts - this.state.CSAppts - this.state.BSAppts,
-                                                                this.state.CSAppts + this.state.BSAppts
-                                                            ],
-                                                            backgroundColor: [
-                                                                "#51aef7",
-                                                                "#25517b"
-                                                            ]
-                                                        }]
-                                                    }}
-                                                        options={{
-                                                            legend: {
-                                                                display: false
-                                                            }
-                                                        }}
-                                                    />
-                                                </div>
+                                        //         <div className="col-lg-4">
+                                        //             <h6>Contacts to Appointment Ratio</h6>
+                                        //             <h6>Total Suspect Contacts: {this.state.CSContacts + this.state.BSContacts}</h6>
+                                        //             <h6>Appointment per Contact Ratio: {Math.round((this.state.CSAppts + this.state.BSAppts) / (this.state.CSContacts + this.state.BSContacts) * 100)}%</h6>
+                                        //             <Pie data={{
+                                        //                 labels: [
+                                        //                     "Suspect Contacts without appointment",
+                                        //                     "Suspect Appointments",
+                                        //                 ],
+                                        //                 datasets: [{
+                                        //                     data: [
+                                        //                         this.state.CSContacts + this.state.BSContacts - this.state.CSAppts - this.state.BSAppts,
+                                        //                         this.state.CSAppts + this.state.BSAppts
+                                        //                     ],
+                                        //                     backgroundColor: [
+                                        //                         "#51aef7",
+                                        //                         "#25517b"
+                                        //                     ]
+                                        //                 }]
+                                        //             }}
+                                        //                 options={{
+                                        //                     legend: {
+                                        //                         display: false
+                                        //                     }
+                                        //                 }}
+                                        //             />
+                                        //         </div>
 
-                                                <div className="col-lg-4">
-                                                    <h6>Dials to Appointment Ratio</h6>
-                                                    <h6>Total Suspect Dials: {this.state.CSDials + this.state.BSDials}</h6>
-                                                    <h6>Appointment per Dial Ratio: {Math.round((this.state.CSAppts + this.state.BSAppts) / (this.state.CSDials + this.state.BSDials) * 100)}%</h6>
-                                                    <Pie data={{
-                                                        labels: [
-                                                            "Suspect Dials without appointment",
-                                                            "Suspect Appointments",
-                                                        ],
-                                                        datasets: [{
-                                                            data: [
-                                                                this.state.CSDials + this.state.BSDials - this.state.CSAppts - this.state.BSAppts,
-                                                                this.state.CSAppts + this.state.BSAppts
-                                                            ],
-                                                            backgroundColor: [
-                                                                "#51aef7",
-                                                                "#25517b"
-                                                            ]
-                                                        }]
-                                                    }}
-                                                        options={{
-                                                            legend: {
-                                                                display: false
-                                                            }
-                                                        }}
-                                                    />
-                                                </div>
+                                        //         <div className="col-lg-4">
+                                        //             <h6>Dials to Appointment Ratio</h6>
+                                        //             <h6>Total Suspect Dials: {this.state.CSDials + this.state.BSDials}</h6>
+                                        //             <h6>Appointment per Dial Ratio: {Math.round((this.state.CSAppts + this.state.BSAppts) / (this.state.CSDials + this.state.BSDials) * 100)}%</h6>
+                                        //             <Pie data={{
+                                        //                 labels: [
+                                        //                     "Suspect Dials without appointment",
+                                        //                     "Suspect Appointments",
+                                        //                 ],
+                                        //                 datasets: [{
+                                        //                     data: [
+                                        //                         this.state.CSDials + this.state.BSDials - this.state.CSAppts - this.state.BSAppts,
+                                        //                         this.state.CSAppts + this.state.BSAppts
+                                        //                     ],
+                                        //                     backgroundColor: [
+                                        //                         "#51aef7",
+                                        //                         "#25517b"
+                                        //                     ]
+                                        //                 }]
+                                        //             }}
+                                        //                 options={{
+                                        //                     legend: {
+                                        //                         display: false
+                                        //                     }
+                                        //                 }}
+                                        //             />
+                                        //         </div>
 
 
-                                            </div>
+                                        //     </div>
 
-                                        </div>
+                                        // </div>
                                         : null}
 
                                     {/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3630,99 +4185,137 @@ class ManagerDataViewer extends Component {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                                     {this.state.showReferralPerformance ?
-                                        <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
+                                        <DataViewerReferralPerformance
+                                            category={"Referral"}
+                                            BCAppts={this.state.BCAppts}
+                                            BCContacts={this.state.BCContacts}
+                                            BCDials={this.state.BCDials}
+                                            BNAppts={this.state.BNAppts}
+                                            BNContacts={this.state.BNContacts}
+                                            BNDials={this.state.BNDials}
+                                            BPAppts={this.state.BPAppts}
+                                            BPContacts={this.state.BPContacts}
+                                            BPDials={this.state.BPDials}
+                                            BRAppts={this.state.BRAppts}
+                                            BRContacts={this.state.BRContacts}
+                                            BRDials={this.state.BRDials}
+                                            BSAppts={this.state.BSAppts}
+                                            BSContacts={this.state.BSContacts}
+                                            BSDials={this.state.BSDials}
+                                            BTAppts={this.state.BTAppts}
+                                            BTContacts={this.state.BTContacts}
+                                            BTDials={this.state.BTDials}
+                                            CCAppts={this.state.CCAppts}
+                                            CCContacts={this.state.CCContacts}
+                                            CCDials={this.state.CCDials}
+                                            CNAppts={this.state.CNAppts}
+                                            CNContacts={this.state.CNContacts}
+                                            CNDials={this.state.CNDials}
+                                            CPAppts={this.state.CPAppts}
+                                            CPContacts={this.state.CPContacts}
+                                            CPDials={this.state.CPDials}
+                                            CRAppts={this.state.CRAppts}
+                                            CRContacts={this.state.CRContacts}
+                                            CRDials={this.state.CRDials}
+                                            CSAppts={this.state.CSAppts}
+                                            CSContacts={this.state.CSContacts}
+                                            CSDials={this.state.CSDials}
+                                            CTAppts={this.state.CTAppts}
+                                            CTContacts={this.state.CTContacts}
+                                            CTDials={this.state.CTDials}
+                                        />
 
-                                            <h3>Referral Calling Performance:</h3>
-                                            <div className="row" style={{ textAlign: 'center' }}>
+                                        // <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
 
-                                                <div className="col-lg-4">
-                                                    <h6>Dials to Contact Ratio</h6>
-                                                    <h6>Total Referral Dials: {this.state.CRDials + this.state.BRDials}</h6>
-                                                    <h6>Contact Ratio: {Math.round((this.state.CRContacts + this.state.BRContacts) / (this.state.CRDials + this.state.BRDials) * 100)}%</h6>
-                                                    <Pie data={{
-                                                        labels: [
-                                                            "Referral Dials without contact",
-                                                            "Referral Contacts",
-                                                        ],
-                                                        datasets: [{
-                                                            data: [
-                                                                this.state.CRDials + this.state.BRDials - this.state.CRContacts - this.state.BRContacts,
-                                                                this.state.CRContacts + this.state.BRContacts
-                                                            ],
-                                                            backgroundColor: [
-                                                                "#51aef7",
-                                                                "#25517b"
-                                                            ]
-                                                        }]
-                                                    }}
-                                                        options={{
-                                                            legend: {
-                                                                display: false
-                                                            }
-                                                        }}
-                                                    />
-                                                </div>
+                                        //     <h3>Referral Calling Performance:</h3>
+                                        //     <div className="row" style={{ textAlign: 'center' }}>
 
-                                                <div className="col-lg-4">
-                                                    <h6>Contacts to Appointment Ratio</h6>
-                                                    <h6>Total Referral Contacts: {this.state.CRContacts + this.state.BRContacts}</h6>
-                                                    <h6>Appointment per Contact Ratio: {Math.round((this.state.CRAppts + this.state.BRAppts) / (this.state.CRContacts + this.state.BRContacts) * 100)}%</h6>
-                                                    <Pie data={{
-                                                        labels: [
-                                                            "Referral Contacts without appointment",
-                                                            "Referral Appointments",
-                                                        ],
-                                                        datasets: [{
-                                                            data: [
-                                                                this.state.CRContacts + this.state.BRContacts - this.state.CRAppts - this.state.BRAppts,
-                                                                this.state.CRAppts + this.state.BRAppts
-                                                            ],
-                                                            backgroundColor: [
-                                                                "#51aef7",
-                                                                "#25517b"
-                                                            ]
-                                                        }]
-                                                    }}
-                                                        options={{
-                                                            legend: {
-                                                                display: false
-                                                            }
-                                                        }}
-                                                    />
-                                                </div>
+                                        //         <div className="col-lg-4">
+                                        //             <h6>Dials to Contact Ratio</h6>
+                                        //             <h6>Total Referral Dials: {this.state.CRDials + this.state.BRDials}</h6>
+                                        //             <h6>Contact Ratio: {Math.round((this.state.CRContacts + this.state.BRContacts) / (this.state.CRDials + this.state.BRDials) * 100)}%</h6>
+                                        //             <Pie data={{
+                                        //                 labels: [
+                                        //                     "Referral Dials without contact",
+                                        //                     "Referral Contacts",
+                                        //                 ],
+                                        //                 datasets: [{
+                                        //                     data: [
+                                        //                         this.state.CRDials + this.state.BRDials - this.state.CRContacts - this.state.BRContacts,
+                                        //                         this.state.CRContacts + this.state.BRContacts
+                                        //                     ],
+                                        //                     backgroundColor: [
+                                        //                         "#51aef7",
+                                        //                         "#25517b"
+                                        //                     ]
+                                        //                 }]
+                                        //             }}
+                                        //                 options={{
+                                        //                     legend: {
+                                        //                         display: false
+                                        //                     }
+                                        //                 }}
+                                        //             />
+                                        //         </div>
 
-                                                <div className="col-lg-4">
-                                                    <h6>Dials to Appointment Ratio</h6>
-                                                    <h6>Total Referral Dials: {this.state.CRDials + this.state.BRDials}</h6>
-                                                    <h6>Appointment per Dial Ratio: {Math.round((this.state.CRAppts + this.state.BRAppts) / (this.props.CRDials + this.props.BRDials) * 100)}%</h6>
-                                                    <Pie data={{
-                                                        labels: [
-                                                            "Referral Dials without appointment",
-                                                            "Referral Appointments",
-                                                        ],
-                                                        datasets: [{
-                                                            data: [
-                                                                this.state.CRDials + this.state.BRDials - this.state.CRAppts - this.state.BRAppts,
-                                                                this.state.CRAppts + this.state.BRAppts
-                                                            ],
-                                                            backgroundColor: [
-                                                                "#51aef7",
-                                                                "#25517b"
-                                                            ]
-                                                        }]
-                                                    }}
-                                                        options={{
-                                                            legend: {
-                                                                display: false
-                                                            }
-                                                        }}
-                                                    />
-                                                </div>
+                                        //         <div className="col-lg-4">
+                                        //             <h6>Contacts to Appointment Ratio</h6>
+                                        //             <h6>Total Referral Contacts: {this.state.CRContacts + this.state.BRContacts}</h6>
+                                        //             <h6>Appointment per Contact Ratio: {Math.round((this.state.CRAppts + this.state.BRAppts) / (this.state.CRContacts + this.state.BRContacts) * 100)}%</h6>
+                                        //             <Pie data={{
+                                        //                 labels: [
+                                        //                     "Referral Contacts without appointment",
+                                        //                     "Referral Appointments",
+                                        //                 ],
+                                        //                 datasets: [{
+                                        //                     data: [
+                                        //                         this.state.CRContacts + this.state.BRContacts - this.state.CRAppts - this.state.BRAppts,
+                                        //                         this.state.CRAppts + this.state.BRAppts
+                                        //                     ],
+                                        //                     backgroundColor: [
+                                        //                         "#51aef7",
+                                        //                         "#25517b"
+                                        //                     ]
+                                        //                 }]
+                                        //             }}
+                                        //                 options={{
+                                        //                     legend: {
+                                        //                         display: false
+                                        //                     }
+                                        //                 }}
+                                        //             />
+                                        //         </div>
 
+                                        //         <div className="col-lg-4">
+                                        //             <h6>Dials to Appointment Ratio</h6>
+                                        //             <h6>Total Referral Dials: {this.state.CRDials + this.state.BRDials}</h6>
+                                        //             <h6>Appointment per Dial Ratio: {Math.round((this.state.CRAppts + this.state.BRAppts) / (this.props.CRDials + this.props.BRDials) * 100)}%</h6>
+                                        //             <Pie data={{
+                                        //                 labels: [
+                                        //                     "Referral Dials without appointment",
+                                        //                     "Referral Appointments",
+                                        //                 ],
+                                        //                 datasets: [{
+                                        //                     data: [
+                                        //                         this.state.CRDials + this.state.BRDials - this.state.CRAppts - this.state.BRAppts,
+                                        //                         this.state.CRAppts + this.state.BRAppts
+                                        //                     ],
+                                        //                     backgroundColor: [
+                                        //                         "#51aef7",
+                                        //                         "#25517b"
+                                        //                     ]
+                                        //                 }]
+                                        //             }}
+                                        //                 options={{
+                                        //                     legend: {
+                                        //                         display: false
+                                        //                     }
+                                        //                 }}
+                                        //             />
+                                        //         </div>
+                                        //     </div>
 
-                                            </div>
-
-                                        </div>
+                                        // </div>
                                         : null}
 
                                     {/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3730,93 +4323,132 @@ class ManagerDataViewer extends Component {
                                     //////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                                     {this.state.showTargetPerformance ?
-                                        <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
+                                        <DataViewerTargetPerformance
+                                            category={"Target"}
+                                            BCAppts={this.state.BCAppts}
+                                            BCContacts={this.state.BCContacts}
+                                            BCDials={this.state.BCDials}
+                                            BNAppts={this.state.BNAppts}
+                                            BNContacts={this.state.BNContacts}
+                                            BNDials={this.state.BNDials}
+                                            BPAppts={this.state.BPAppts}
+                                            BPContacts={this.state.BPContacts}
+                                            BPDials={this.state.BPDials}
+                                            BRAppts={this.state.BRAppts}
+                                            BRContacts={this.state.BRContacts}
+                                            BRDials={this.state.BRDials}
+                                            BSAppts={this.state.BSAppts}
+                                            BSContacts={this.state.BSContacts}
+                                            BSDials={this.state.BSDials}
+                                            BTAppts={this.state.BTAppts}
+                                            BTContacts={this.state.BTContacts}
+                                            BTDials={this.state.BTDials}
+                                            CCAppts={this.state.CCAppts}
+                                            CCContacts={this.state.CCContacts}
+                                            CCDials={this.state.CCDials}
+                                            CNAppts={this.state.CNAppts}
+                                            CNContacts={this.state.CNContacts}
+                                            CNDials={this.state.CNDials}
+                                            CPAppts={this.state.CPAppts}
+                                            CPContacts={this.state.CPContacts}
+                                            CPDials={this.state.CPDials}
+                                            CRAppts={this.state.CRAppts}
+                                            CRContacts={this.state.CRContacts}
+                                            CRDials={this.state.CRDials}
+                                            CSAppts={this.state.CSAppts}
+                                            CSContacts={this.state.CSContacts}
+                                            CSDials={this.state.CSDials}
+                                            CTAppts={this.state.CTAppts}
+                                            CTContacts={this.state.CTContacts}
+                                            CTDials={this.state.CTDials}
+                                        />
+                                        // <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
 
-                                            <h3>Target Market Calling Performance:</h3>
-                                            <div className="row" style={{ textAlign: 'center' }}>
+                                        //     <h3>Target Market Calling Performance:</h3>
+                                        //     <div className="row" style={{ textAlign: 'center' }}>
 
-                                                <div className="col-lg-4">
-                                                    <h6>Dials to Contact Ratio</h6>
-                                                    <h6>Total Target Market Dials: {this.state.CTDials + this.state.BTDials}</h6>
-                                                    <h6>Contact Ratio: {Math.round((this.state.CTContacts + this.state.BTContacts) / (this.state.CTDials + this.state.BTDials) * 100)}%</h6>
-                                                    <Pie data={{
-                                                        labels: [
-                                                            "Target Market Dials without contact",
-                                                            "Target Market Contacts",
-                                                        ],
-                                                        datasets: [{
-                                                            data: [
-                                                                this.state.CTDials + this.state.BTDials - this.state.CTContacts - this.state.BTContacts,
-                                                                this.state.CTContacts + this.state.BTContacts
-                                                            ],
-                                                            backgroundColor: [
-                                                                "#51aef7",
-                                                                "#25517b"
-                                                            ]
-                                                        }]
-                                                    }}
-                                                        options={{
-                                                            legend: {
-                                                                display: false
-                                                            }
-                                                        }} />
-                                                </div>
+                                        //         <div className="col-lg-4">
+                                        //             <h6>Dials to Contact Ratio</h6>
+                                        //             <h6>Total Target Market Dials: {this.state.CTDials + this.state.BTDials}</h6>
+                                        //             <h6>Contact Ratio: {Math.round((this.state.CTContacts + this.state.BTContacts) / (this.state.CTDials + this.state.BTDials) * 100)}%</h6>
+                                        //             <Pie data={{
+                                        //                 labels: [
+                                        //                     "Target Market Dials without contact",
+                                        //                     "Target Market Contacts",
+                                        //                 ],
+                                        //                 datasets: [{
+                                        //                     data: [
+                                        //                         this.state.CTDials + this.state.BTDials - this.state.CTContacts - this.state.BTContacts,
+                                        //                         this.state.CTContacts + this.state.BTContacts
+                                        //                     ],
+                                        //                     backgroundColor: [
+                                        //                         "#51aef7",
+                                        //                         "#25517b"
+                                        //                     ]
+                                        //                 }]
+                                        //             }}
+                                        //                 options={{
+                                        //                     legend: {
+                                        //                         display: false
+                                        //                     }
+                                        //                 }} />
+                                        //         </div>
 
-                                                <div className="col-lg-4">
-                                                    <h6>Contacts to Appointment Ratio</h6>
-                                                    <h6>Total Target Market Contacts: {this.state.CTContacts + this.state.BTContacts}</h6>
-                                                    <h6>Appointment per Contact Ratio: {Math.round((this.state.CTAppts + this.state.BTAppts) / (this.state.CTContacts + this.state.BTContacts) * 100)}%</h6>
-                                                    <Pie data={{
-                                                        labels: [
-                                                            "Target Market Contacts without appointment",
-                                                            "Target Market Appointments",
-                                                        ],
-                                                        datasets: [{
-                                                            data: [
-                                                                this.state.CTContacts + this.state.BTContacts - this.state.CTAppts - this.state.BTAppts,
-                                                                this.state.CTAppts + this.state.BTAppts
-                                                            ],
-                                                            backgroundColor: [
-                                                                "#51aef7",
-                                                                "#25517b"
-                                                            ]
-                                                        }]
-                                                    }}
-                                                        options={{
-                                                            legend: {
-                                                                display: false
-                                                            }
-                                                        }} />
-                                                </div>
+                                        //         <div className="col-lg-4">
+                                        //             <h6>Contacts to Appointment Ratio</h6>
+                                        //             <h6>Total Target Market Contacts: {this.state.CTContacts + this.state.BTContacts}</h6>
+                                        //             <h6>Appointment per Contact Ratio: {Math.round((this.state.CTAppts + this.state.BTAppts) / (this.state.CTContacts + this.state.BTContacts) * 100)}%</h6>
+                                        //             <Pie data={{
+                                        //                 labels: [
+                                        //                     "Target Market Contacts without appointment",
+                                        //                     "Target Market Appointments",
+                                        //                 ],
+                                        //                 datasets: [{
+                                        //                     data: [
+                                        //                         this.state.CTContacts + this.state.BTContacts - this.state.CTAppts - this.state.BTAppts,
+                                        //                         this.state.CTAppts + this.state.BTAppts
+                                        //                     ],
+                                        //                     backgroundColor: [
+                                        //                         "#51aef7",
+                                        //                         "#25517b"
+                                        //                     ]
+                                        //                 }]
+                                        //             }}
+                                        //                 options={{
+                                        //                     legend: {
+                                        //                         display: false
+                                        //                     }
+                                        //                 }} />
+                                        //         </div>
 
-                                                <div className="col-lg-4">
-                                                    <h6>Dials to Appointment Ratio</h6>
-                                                    <h6>Total Target Market Dials: {this.state.CTDials + this.state.BTDials}</h6>
-                                                    <h6>Appointment per Dial Ratio: {Math.round((this.state.CTAppts + this.state.BTAppts) / (this.state.CTDials + this.state.BTDials) * 100)}%</h6>
-                                                    <Pie data={{
-                                                        labels: [
-                                                            "Target Market Dials without scheduling",
-                                                            "Target Market Scheduled Appointments",
-                                                        ],
-                                                        datasets: [{
-                                                            data: [
-                                                                this.state.CTDials + this.state.BTDials - this.state.CTAppts - this.state.BTAppts,
-                                                                this.state.CTAppts + this.state.BTAppts
-                                                            ],
-                                                            backgroundColor: [
-                                                                "#51aef7",
-                                                                "#25517b"
-                                                            ]
-                                                        }]
-                                                    }}
-                                                        options={{
-                                                            legend: {
-                                                                display: false
-                                                            }
-                                                        }} />
-                                                </div>
-                                            </div>
-                                        </div>
+                                        //         <div className="col-lg-4">
+                                        //             <h6>Dials to Appointment Ratio</h6>
+                                        //             <h6>Total Target Market Dials: {this.state.CTDials + this.state.BTDials}</h6>
+                                        //             <h6>Appointment per Dial Ratio: {Math.round((this.state.CTAppts + this.state.BTAppts) / (this.state.CTDials + this.state.BTDials) * 100)}%</h6>
+                                        //             <Pie data={{
+                                        //                 labels: [
+                                        //                     "Target Market Dials without scheduling",
+                                        //                     "Target Market Scheduled Appointments",
+                                        //                 ],
+                                        //                 datasets: [{
+                                        //                     data: [
+                                        //                         this.state.CTDials + this.state.BTDials - this.state.CTAppts - this.state.BTAppts,
+                                        //                         this.state.CTAppts + this.state.BTAppts
+                                        //                     ],
+                                        //                     backgroundColor: [
+                                        //                         "#51aef7",
+                                        //                         "#25517b"
+                                        //                     ]
+                                        //                 }]
+                                        //             }}
+                                        //                 options={{
+                                        //                     legend: {
+                                        //                         display: false
+                                        //                     }
+                                        //                 }} />
+                                        //         </div>
+                                        //     </div>
+                                        // </div>
                                         : null}
 
 
@@ -3830,7 +4462,7 @@ class ManagerDataViewer extends Component {
                                             <div style={{ color: 'whitesmoke' }}>
                                                 <h3><u>{this.state.leadSource} Types of Leads</u></h3>
                                                 <p>Total Dials: {this.state.sourceDialData.length}</p>
-                                               
+
                                                 <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
                                                     <Pie data={{
                                                         labels: [
@@ -4011,10 +4643,10 @@ class ManagerDataViewer extends Component {
                                         <div style={{ textAlign: 'center' }}>
 
                                             <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
-                                                <div style={{color: 'whitesmoke'}}>
+                                                <div style={{ color: 'whitesmoke' }}>
                                                     <h3><u>{this.state.targetMarket} Types of Leads</u></h3>
                                                     <p>Total Dials: {this.state.targetDialData.length}</p>
-                                                    
+
                                                     <Pie data={{
                                                         labels: [
                                                             "Cashflow Prospect",
@@ -4195,11 +4827,11 @@ class ManagerDataViewer extends Component {
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                             <button className="btn btn-info" onClick={this.viewProtegeSchedule}>View Schedule</button>
                             {this.state.viewProtegeSchedule ?
-                                <div className="col-12 card bg-primary" style={{ color: 'whitesmoke' }}>
-                                    <h4 style={{ textAlign: 'center' }}>Protege Schedule:</h4>
-                                        <MainCalendar
-                                            appointments={this.state.appointments}
-                                        />
+                                <div className="col-12 card bg-primary" style={{ color: 'darkslategrey' }}>
+                                    <h4 style={{ textAlign: 'center', color: 'whitesmoke' }}>Protege Schedule:</h4>
+                                    <MainCalendar
+                                        appointments={this.state.appointments}
+                                    />
                                 </div>
                                 : null}
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
@@ -4210,6 +4842,36 @@ class ManagerDataViewer extends Component {
                             {this.state.viewProtegeAppointments ?
                                 <div className="col-12 card bg-primary" style={{ color: 'whitesmoke' }}>
                                     <h4 style={{ textAlign: 'center' }}>Protege Appointments:</h4>
+                                    <div className="col-12">
+                                        <div className="card" style={{ textAlign: "center", margin: 20, padding: 40, height: 1000, overflow: 'auto', backgroundColor: 'rgba(114,180,255,0.8)' }}>
+                                            <h4 style={{ color: 'whitesmoke' }}>View {this.state.activeProtegeData.firstName + " " + this.state.activeProtegeData.lastName}'s Appointments:</h4>
+                                            {this.state.appointments ?
+                                                <div style={{ color: 'darkslategrey' }}>
+                                                    {
+                                                        this.state.appointments.map(appt => (
+                                                            <AppointmentItem
+                                                                key={appt._id}
+                                                                id={appt._id}
+                                                                apptname={appt.apptname}
+                                                                type={appt.type}
+                                                                held={appt.held}
+                                                                sold={appt.sold}
+                                                                dialer={appt.dialer}
+                                                                source={appt.source}
+                                                                date={appt.date}
+                                                                notes={appt.notes}
+                                                                // username={this.state.user}
+                                                                rerender={this.gatherAppointments}
+                                                                user={this.state.activeProtegeData}
+                                                                targetMarket={appt.targetMarket}
+                                                            // mentors={this.state.entors}
+                                                            />
+                                                        ))
+                                                    }
+                                                </div>
+                                                : null}
+                                        </div>
+                                    </div>
                                 </div>
                                 : null}
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
@@ -4220,6 +4882,34 @@ class ManagerDataViewer extends Component {
                             {this.state.viewProtegeSales ?
                                 <div className="col-12 card bg-primary" style={{ color: 'whitesmoke' }}>
                                     <h4 style={{ textAlign: 'center' }}>Protege Sales:</h4>
+                                    <div className="col-12">
+                                        <div className="card" style={{ textAlign: "center", margin: 20, padding: 40, height: 1000, overflow: 'auto', backgroundColor: 'rgba(114,180,255,0.8)' }}>
+                                            <h4 style={{ color: 'whitesmoke' }}>Your Sales</h4>
+                                            {this.state.activeProtegeData.sales ? <div>
+                                                {this.state.activeProtegeData.sales.map(sale => (
+                                                    <SalesItem
+                                                        key={sale._id}
+                                                        id={sale._id}
+                                                        saleType={sale.clientType}
+                                                        saleName={sale.saleName}
+                                                        saleSource={sale.leadSource}
+                                                        saleNotes={sale.saleNotes}
+                                                        saleDate={sale.saleDate}
+                                                        saleTargetMkt={sale.targetMarket}
+                                                        saleCommission={sale.commission}
+                                                        salePercentage={sale.percentageProtege}
+                                                        saleTaggedPercentage={sale.percentageMentor}
+                                                        saleProduct={sale.product}
+                                                        saleWriter={sale.protege}
+                                                        saleTagged={sale.mentor}
+                                                        // mentors={this.state.mentors}
+                                                        userData={this.state.activeProtegeData}
+                                                    />
+                                                ))
+                                                } </div>
+                                                : null}
+                                        </div>
+                                    </div>
                                 </div>
                                 : null}
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
@@ -4230,6 +4920,28 @@ class ManagerDataViewer extends Component {
                             {this.state.viewProtegeNotes ?
                                 <div className="col-12 card bg-primary" style={{ color: 'whitesmoke' }}>
                                     <h4 style={{ textAlign: 'center' }}>Protege Notes:</h4>
+                                    <div id="note-container">
+                                        <div className="row">
+                                            <div className="col card" style={{ padding: '50px', backgroundColor: 'rgba(77,160,255,0.8)', color: 'whitesmoke' }}>
+                                                <h1 style={{ textAlign: 'center' }}> Notes</h1>
+                                                <NoteCreator
+                                                    userData={this.state.activeProtegeData}
+                                                    userID={this.state.activeProtegeData._id}
+                                                    proteges={this.props.proteges}
+                                                    mentors={this.props.mentors}
+                                                />
+                                                <hr />
+                                                <NoteViewer
+                                                    userData={this.state.activeProtegeData}
+                                                    userID={this.state.activeProtegeData._id}
+                                                    proteges={this.props.proteges}
+                                                    mentors={this.props.mentors}
+                                                    tagNotes={this.state.taggedNotes}
+                                                    postNotes={this.state.activeProtegeData.notes}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 : null}
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
