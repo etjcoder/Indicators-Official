@@ -50,7 +50,7 @@ class TargetMarketCreator extends Component {
     // }
 
     showTargetCreate = () => {
-        if(this.state.showTarget === false) {
+        if (this.state.showTarget === false) {
             this.setState({
                 showTarget: true
             })
@@ -64,14 +64,18 @@ class TargetMarketCreator extends Component {
 
     render() {
         return (
-            <div className="card" id="createTargetMarket">
-                <h4 id="admin-requestHeadCat" style={{ color: 'whitesmoke' }}>Create Target Market<span><button className="btn btn-sm btn-outline-light" onClick={this.showTargetCreate} >Show</button></span></h4>
-                {this.state.showTarget ?
-                    <div>
+            <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '' }}>
+                {/* <h4 id="admin-requestHeadCat" style={{ color: 'whitesmoke' }}>Create Target Market<span><button className="btn btn-sm btn-outline-light" onClick={this.showTargetCreate} >Show</button></span></h4>
+                {this.state.showTarget ? */}
+                <div>
+                    <div style={{ textAlign: 'center' }}>
                         <form>
-                            <Input value={this.state.targetMarket} onChange={this.handleInputChange} name="targetMarket" placeholder="New Target Market goes here" />
-                            <button id="admin-createCategoryBtn" className="btn btn-outline-light" onClick={this.handleFormSubmit}>Create</button>
+                            <input value={this.state.targetMarket} onChange={this.handleInputChange} name="targetMarket" placeholder="Create Target Industry" />
                         </form>
+                        <button id="admin-createCategoryBtn" className="btn btn-outline-dark" onClick={this.handleFormSubmit}>Create</button>
+
+                    </div>
+                    {this.state.showExistingTargets ?
                         <div style={{ color: 'whitesmoke' }}>
                             <br />
                             <h6 id="admin-requestHeadCat">Existing Target Markets: </h6>
@@ -83,8 +87,9 @@ class TargetMarketCreator extends Component {
 
                             </div>
                         </div>
-                    </div>
-                    : null}
+                        : null}
+                </div>
+                {/* : null} */}
             </div>
         )
     }

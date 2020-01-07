@@ -37,12 +37,12 @@ export default class DemoApp extends React.Component {
 
     render() {
         return (
-            <div className="card bg-light">
+            <div className="card bg-light" style={{height: '400px'}}>
             <FullCalendar
                 defaultView="dayGridMonth" 
                 plugins={[dayGridPlugin]}
                 // plugins={calendarPlugins}
-                weekends={true}
+                weekends={false}
                 events={this.state.events}
             />
             </div>

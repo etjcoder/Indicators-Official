@@ -44,8 +44,10 @@ class NoteViewer extends Component {
             noteAuthor: this.props.userID,
             noteTagged: this.state.noteTagged,
             completed: false
-        }).then(res =>
+        }).then(res => {
             cogoToast.info("Saved Note!")
+            this.props.rerender()
+        }
         ).catch(err => console.log(err))
 
         // setTimeout(() => {
@@ -61,8 +63,9 @@ class NoteViewer extends Component {
 
         API.completeNote(id, {
             completed: true
-        }).then(res =>
-            cogoToast.info("Checked Box")
+        }).then(res => {
+            this.props.rerender()
+        }
         ).catch(err => console.log(err))
     }
 
@@ -70,8 +73,10 @@ class NoteViewer extends Component {
         console.log("Marked note incomplete: " + id)
         API.uncompleteNote(id, {
             completed: false
-        }).then(res =>
+        }).then(res => {
             cogoToast.info("Unchecked Box")
+            this.props.rerender()
+        }
         ).catch(err => console.log(err))
     }
 
@@ -80,6 +85,7 @@ class NoteViewer extends Component {
         API.deleteNote(id)
             .then(res => {
                 cogoToast.error("Deleted Note")
+                this.props.rerender()
             })
             .catch(err => console.log(err))
     }
@@ -88,77 +94,40 @@ class NoteViewer extends Component {
 
     render() {
         return (
-            <div className="row" id="note-view-container-1" style={{ color: 'darkslategrey', height: 500, overflow: 'auto' }}>
-                {/* <Card>
-                    <CardBody> */}
-                <div className="" id="note-viewer-1" style={{ padding: '10px', width: '100%', marginBottom: '-20px' }}>
+            <div className="" id="note-view-container-1" style={{ color: 'black', height: 500, overflow: 'auto', borderWidth: '1px', borderColor: 'black', backgroundColor: 'rgba(0,0,0,0.3)' }}>
+
+                <div id="note-viewer-1" style={{ padding: '', width: '', marginBottom: '10px' }}>
+
                     <div className="">
-                        <div id="note-welcome" className="">
-                            {/* <h4 style={{color: 'whitesmoke', textAlign: 'center'}}>Notes you're tagged in:</h4> */}
-                        </div>
-                        <div className="">
 
-                            {this.props.tagNotes ?
+                        {this.props.taggedNotes ?
 
-                                this.props.tagNotes.map(note => (
-                                    <div style={{ background: 'rgba(255,255,255,0.8)', marginBottom: '0', padding: '10px' }}>
-                                        {/* <Card className="note-card" key={note._id}>
+                            this.props.taggedNotes.map(note => (
+                                <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', margin: 10 }}>
+                                    {/* <Card className="note-card" key={note._id}>
                                             <CardBody> */}
-                                        <p>|| {note.noteText} <span>
-                                            <button value={this.props.id} onClick={() => this.deleteNote(note._id)} style={{ float: 'right' }} className="btn btn-danger">X</button>
-                                            {note.completed ?
-                                                <button value={this.props.id} onClick={() => this.uncompleteNote(note._id)} style={{ float: 'right' }} className="btn btn-success">√</button>
-                                                : <button value={this.props.id} onClick={() => this.completeNote(note._id)} style={{ float: 'right' }} className="btn btn-success"><i class="far fa-square"></i></button>
-                                            }
+                                    <p><span>
+                                        <button value={this.props.id} onClick={() => this.deleteNote(note._id)} style={{ float: 'right' }} className="btn btn-outline-danger">X</button>
+                                        {note.completed ?
+                                            <button value={this.props.id} onClick={() => this.uncompleteNote(note._id)} style={{ float: 'right' }} className="btn btn-outline-dark">√</button>
+                                            : <button value={this.props.id} onClick={() => this.completeNote(note._id)} style={{ float: 'right' }} className="btn btn-outline-dark"><i class="far fa-square"></i></button>
+                                        }
 
-                                        </span></p>
-                                        <p>By: {note.noteAuthorName}</p>
-                                        {/* </CardBody>
-                                        </Card> */}
-                                        <hr />
-                                    </div>
-                                ))
+                                    </span></p>
+                                    <p style={{fontSize: this.props.fontSize}}> {note.noteText} </p>
+                                    <p style={{ fontSize: '14px' }}>By: {note.noteAuthorName}</p>
 
-                                : <p style={{ color: 'whitesmoke', textAlign: 'center' }}>No notes yet!</p>}
-                        </div>
+                                    <hr />
+                                </div>
+
+                            ))
+
+                            : <p style={{ color: 'whitesmoke', textAlign: 'center' }}>No notes yet!</p>}
                     </div>
                 </div>
 
-                <div className="" id="note-viewer-2" style={{ padding: '10px', width: '100%' }}>
-                    <div className="">
-                        <div id="note-welcome" className="">
-                            {/* <h4 style={{color: 'whitesmoke', textAlign: 'center'}}>Notes you wrote:</h4> */}
-                        </div>
-                        <div className="">
 
-                            {this.props.postNotes ?
 
-                                this.props.postNotes.map(note => (
-                                    <div style={{ background: 'rgba(255,255,255,0.8)', marginBottom: '0', padding: '10px' }}>
-                                        {/* <Card className="note-card" key={note}>
-                                            <CardBody> */}
-                                        <p>||: {note.noteText} <span>
-                                            <button value={this.props.id} onClick={() => this.deleteNote(note._id)} style={{ float: 'right' }} className="btn btn-danger">X</button>
-                                            {note.completed ?
-                                                <button value={this.props.id} onClick={() => this.uncompleteNote(note._id)} style={{ float: 'right' }} className="btn btn-success">√</button>
-                                                : <button value={this.props.id} onClick={() => this.completeNote(note._id)} style={{ float: 'right' }} className="btn btn-success"><i class="far fa-square"></i></button>
-                                            }
-
-                                        </span></p>
-                                        <p>By: {note.noteAuthorName}</p>
-                                        {/* </CardBody>
-                                        </Card> */}
-                                        <hr />
-                                    </div>
-
-                                ))
-
-                                : <p style={{ color: 'whitesmoke', textAlign: 'center' }}>No Notes Yet!</p>}
-                        </div>
-                    </div>
-                </div>
-                {/* </CardBody>
-                </Card> */}
             </div>
         )
     }

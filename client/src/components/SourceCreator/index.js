@@ -63,16 +63,19 @@ class SourceCreator extends Component {
 
     render() {
         return (
-            <div className="card" id="createSource">
-                <h4 id="admin-requestHeadCat" style={{ color: 'whitesmoke' }}>Create Source<span><button className="btn btn-sm btn-outline-light" onClick={this.showCreate}>Show</button></span></h4>
-                {this.state.showCreateSource ?
-                    <div>
+            <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '' }}>
+                {/* {this.state.showCreateSource ? */}
+                <div>
+                    <div style={{ textAlign: 'center' }}>
                         <form>
-                            <Input value={this.state.source} onChange={this.handleInputChange} name="source" placeholder="Source goes here" />
-                            <button id="admin-createCategoryBtn" className="btn-outline-light btn" onClick={this.handleFormSubmit}>Create</button>
+                            <input value={this.state.source} onChange={this.handleInputChange} name="source" placeholder="Create Referrer/Source" />
                         </form>
-                        {/* List of Existing Sources */}
-                        <div style={{ color: 'whitesmoke' }}>
+                        <button style={{}} id="admin-createCategoryBtn" className="btn-outline-dark btn" onClick={this.handleFormSubmit}>Create</button>
+
+                    </div>
+                    {/* List of Existing Sources */}
+                    {this.state.showExistingSources ?
+                        <div>
                             <br />
                             <h6 id="admin-requestHeadCat">Existing Sources: </h6>
                             <div style={{ padding: 15, height: '150px', overflow: 'auto' }}>
@@ -82,8 +85,9 @@ class SourceCreator extends Component {
                                 ))}
                             </div>
                         </div>
-                    </div>
-                    : null}
+                        : null}
+                </div>
+                {/* : null} */}
             </div>
         )
     }

@@ -73,7 +73,8 @@ class ProtegeDash extends Component {
         showCreate: false,
         showAnalytics: false,
         showAppts: false,
-        showSales: false
+        showSales: false,
+        showNoteViewer: true
     }
 
     componentDidMount = () => {
@@ -137,10 +138,12 @@ class ProtegeDash extends Component {
         // console.log(this.state.userData._id)
 
         API.getProtegeNotes(this.state.userData._id)
-            .then(res =>
+            .then(res => {
+                console.log(res.data)
                 this.setState({
-                    taggedNotes: res.data
+                    notes: res.data
                 })
+            }
             )
             .catch(err => {
                 console.log(err)
@@ -207,6 +210,15 @@ class ProtegeDash extends Component {
                 )
         }, 1000)
     };
+
+    gatherNotes = () => {
+        API.gatherNotes(this.state.userData._id)
+            .then(res =>
+                this.setState({
+
+                })
+            )
+    }
 
     showApptViewer = () => {
 
@@ -548,6 +560,8 @@ class ProtegeDash extends Component {
     }
 
 
+
+
     render() {
         return (
             <div>
@@ -562,12 +576,21 @@ class ProtegeDash extends Component {
                 <div className="container" style={{ backgroundColor: 'transparent' }}>
                     <div className="row">
                         <div className="col">
+                            <div className="jumbotron" style={{ width: '100%', margin: '0', backgroundColor: 'rgba(25,25,25,0.8)', color: 'whitesmoke', textAlign: 'center', fontStyle: 'Roboto, sans-serif' }}>
+                                <div className="row">
+                                    <div className="col" style={{ textAlign: 'center', padding: '30px' }}>
+                                        <h2>{this.state.userData.firstName} {this.state.userData.lastName}</h2>
+                                        <h4> Indicators Application Dashboard</h4>
+                                    </div>
+                                </div>
+                            </div>
                             {/*  ////////////////////////////////////////////////////////////////////////////////// */}
                             {/*  ////////////////////////////////////////////////////////////////////////////////// */}
                             {/*  /////////////////////////    Jumbotron Navig       /////////////////////////////// */}
                             {/*  ////////////////////////////////////////////////////////////////////////////////// */}
                             {/*  ////////////////////////////////////////////////////////////////////////////////// */}
-                            {/* <div className="jumbotron" style={{ backgroundColor: 'rgba(0,0,0,0.5)', color: 'white', textAlign: 'center', fontStyle: 'Roboto, sans-serif' }}>
+                            {/* 
+                            <div className="jumbotron" style={{ backgroundColor: 'rgba(0,0,0,0.5)', color: 'white', textAlign: 'center', fontStyle: 'Roboto, sans-serif' }}>
                                 <div className="row">
                                     <div className="col" style={{ textAlign: 'center' }}>
                                         <h1>Welcome {this.state.userData.firstName} {this.state.userData.lastName}!</h1>
@@ -598,7 +621,67 @@ class ProtegeDash extends Component {
                         </div>
                     </div>
 
-                    <div className="row" style={{ marginTop: 200, marginBottom: 200 }}>
+                    {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                    {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                    {/*  /////////////////////////    Analytics Module      /////////////////////////////// */}
+                    {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                    {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+
+                    {this.state.showAnalytics ?
+                        <div id="protege-data-viewer-container">
+                            <div className="row">
+                                <div className="col-12">
+                                    <MainDataViewer
+                                        userID={this.state.userData._id}
+                                        contactData={this.state.contactData}
+                                        dialData={this.state.dialData}
+                                        apptData={this.state.appointments}
+                                        CPAppts={this.state.CPAppts}
+                                        BPAppts={this.state.BPAppts}
+                                        CCAppts={this.state.CCAppts}
+                                        BCAppts={this.state.BCAppts}
+                                        CNAppts={this.state.CNAppts}
+                                        BNAppts={this.state.BNAppts}
+                                        CPDials={this.state.CPDials}
+                                        BPDials={this.state.BPDials}
+                                        CCDials={this.state.CCDials}
+                                        BCDials={this.state.BCDials}
+                                        CNDials={this.state.CNDials}
+                                        BNDials={this.state.BNDials}
+                                        CPContacts={this.state.CPContacts}
+                                        BPContacts={this.state.BPContacts}
+                                        CCContacts={this.state.CCContacts}
+                                        BCContacts={this.state.BCContacts}
+                                        CNContacts={this.state.CNContacts}
+                                        BNContacts={this.state.BNContacts}
+                                        CSDials={this.state.CSDials}
+                                        BSDials={this.state.BSDials}
+                                        CSContacts={this.state.CSContacts}
+                                        BSContacts={this.state.BSContacts}
+                                        CSAppts={this.state.CSAppts}
+                                        BSAppts={this.state.BSAppts}
+                                        CRDials={this.state.CRDials}
+                                        BRDials={this.state.BRDials}
+                                        CRContacts={this.state.CRContacts}
+                                        BRContacts={this.state.BRContacts}
+                                        CRAppts={this.state.CRAppts}
+                                        BRAppts={this.state.BRAppts}
+                                        CTDials={this.state.CTDials}
+                                        BTDials={this.state.BTDials}
+                                        CTContacts={this.state.CTContacts}
+                                        BTContacts={this.state.BTContacts}
+                                        CTAppts={this.state.CTAppts}
+                                        BTAppts={this.state.BTAppts}
+                                        userData={this.state.userData}
+                                    // sources={this.state.leadSource}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        : null}
+
+
+                    <div className="row" style={{ marginTop: '20px', marginBottom: 200 }}>
                         <div className="col-lg-6">
                             {/*  ////////////////////////////////////////////////////////////////////////////////// */}
                             {/*  ////////////////////////////////////////////////////////////////////////////////// */}
@@ -647,8 +730,8 @@ class ProtegeDash extends Component {
                             {this.state.showNotes ?
                                 <div id="note-container">
                                     <div className="row">
-                                        <div className="col card" style={{ padding: '50px', backgroundColor: 'rgba(77,160,255,0.8)', color: 'whitesmoke' }}>
-                                            <h1 style={{ textAlign: 'center' }}> Notes</h1>
+                                        <div className="col card" style={{ padding: '50px', backgroundColor: 'rgba(77,160,255,0.80)', color: 'whitesmoke' }}>
+                                            <h2 style={{ textAlign: 'center', padding: '20px', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px', borderRadius: '10px' }}>Notes</h2>
                                             <NoteCreator
                                                 userData={this.state.userData}
                                                 userID={this.state.userData._id}
@@ -656,14 +739,23 @@ class ProtegeDash extends Component {
                                                 mentors={this.state.mentors}
                                             />
                                             <hr />
-                                            <NoteViewer
-                                                userData={this.state.userData}
-                                                userID={this.state.userData._id}
-                                                proteges={this.state.proteges}
-                                                mentors={this.state.mentors}
-                                                tagNotes={this.state.taggedNotes}
-                                                postNotes={this.state.userData.notes}
-                                            />
+                                            <div style={{ height: '50px', textAlign: 'center', color: 'white', backgroundColor: 'rgba(0,0,0,0.50)' }}>
+                                                <p style={{ textAlign: 'center', paddingTop: '5px' }}>Your Notes</p>
+                                            </div>
+                                            {this.state.showNoteViewer ?
+                                                <NoteViewer
+                                                    userData={this.state.userData}
+                                                    userID={this.state.userData._id}
+                                                    proteges={this.state.proteges}
+                                                    mentors={this.state.mentors}
+                                                    taggedNotes={this.state.notes}
+                                                    rerender={this.getProtegeNoteData}
+                                                    fontSize={'20px'}
+                                                />
+                                                : null}
+                                            <div style={{ height: '20px', color: 'black', backgroundColor: 'rgba(0,0,0,0.50)' }}>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -676,8 +768,8 @@ class ProtegeDash extends Component {
                             {/*  ////////////////////////////////////////////////////////////////////////////////// */}
 
                             {this.state.showCreate ?
-                                <div className="creation-container card" style={{ textAlign: 'center', backgroundColor: 'rgba(77,160,255,0.8)', height: 1000, overflow: 'auto' }}>
-                                    <h1 style={{ color: 'whitesmoke', marginTop: '10px' }}>Creation Tool</h1>
+                                <div className="col card" style={{ padding: '50px', backgroundColor: 'rgba(77,160,255,0.80)', color: 'whitesmoke' }}>
+                                    <h2 style={{ textAlign: 'center', padding: '20px', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px', borderRadius: '10px' }}>Creation Tool</h2>
                                     <div className="row">
 
                                         <div className="col-12" style={{ padding: '2%' }}>
@@ -725,7 +817,7 @@ class ProtegeDash extends Component {
                             {this.state.showAnalytics ?
                                 <div id="protege-data-viewer-container">
                                     <div className="row">
-                                        <div className="col">
+                                        <div className="col-12">
                                             <MainDataViewer
                                                 userID={this.state.userData._id}
                                                 contactData={this.state.contactData}
@@ -803,35 +895,43 @@ class ProtegeDash extends Component {
 
                                             />
                                         </div>
-
                                         <div className="col-12">
-                                            <div className="card" style={{ textAlign: "center", margin: 20, padding: 40, height: 1000, overflow: 'auto', backgroundColor: 'rgba(114,180,255,0.8)' }}>
-                                                <h4 style={{ color: 'whitesmoke' }}>Manage Your Appointments:</h4>
-                                                {this.state.appointments ?
+                                            <div className="card col-12" style={{ marginBottom: '10px', marginTop: '10px', textAlign: "left", padding: 10, height: '', overflow: 'auto', backgroundColor: 'rgba(36,138,255,0.8)' }}>
+
+                                                <h4 style={{ textAlign: 'center', padding: '10%', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px' }}>Appointment Manager
+                                                <br />
+                                                    <span button className="btn btn-sm btn-outline-dark" onClick={this.showApptViewer}>Quick Show</span><span button className="btn btn-sm btn-outline-dark" onClick={this.showApptForm}>Show Full</span></h4>
+
+                                                {this.state.showApptViewer ?
                                                     <div>
                                                         {
-                                                            this.state.appointments.map(appt => (
-                                                                <AppointmentItem
-                                                                    key={appt._id}
-                                                                    id={appt._id}
-                                                                    apptname={appt.apptname}
-                                                                    type={appt.type}
-                                                                    held={appt.held}
-                                                                    sold={appt.sold}
-                                                                    dialer={appt.dialer}
-                                                                    source={appt.source}
-                                                                    date={appt.date}
-                                                                    notes={appt.notes}
-                                                                    username={this.state.user}
-                                                                    rerender={this.gatherAppointments}
-                                                                    user={this.state.userData}
-                                                                    targetMarket={appt.targetMarket}
-                                                                    mentors={this.state.mentors}
-                                                                />
-                                                            ))
+                                                            this.state.appointments ?
+                                                                <div style={{ height: '400px', overflow: 'auto' }}>
+                                                                    {
+                                                                        this.state.appointments.map(appt => (
+                                                                            <AppointmentItem
+                                                                                key={appt._id}
+                                                                                id={appt._id}
+                                                                                apptname={appt.apptname}
+                                                                                type={appt.type}
+                                                                                held={appt.held}
+                                                                                sold={appt.sold}
+                                                                                dialer={appt.dialer}
+                                                                                source={appt.source}
+                                                                                date={appt.date}
+                                                                                notes={appt.notes}
+                                                                                username={this.state.user}
+                                                                                rerender={this.gatherAppointments}
+                                                                                user={this.state.userData}
+                                                                                targetMarket={appt.targetMarket}
+                                                                                mentors={this.state.mentors}
+                                                                            />
+                                                                        ))
+                                                                    }
+                                                                </div>
+                                                                : null
                                                         }
-                                                    </div>
-                                                    : null}
+                                                    </div> : null}
                                             </div>
                                         </div>
                                     </div>
@@ -946,6 +1046,17 @@ class ProtegeDash extends Component {
                                             BTAppts={this.state.BTAppts}
                                         />
                                     </div>
+                                    <br />
+                                    <div className="col-12" style={{ padding: 10, height: '', overflow: 'auto' }}>
+                                        <div className="container card">
+                                            <SourceCreator userData={this.state.userData} />
+                                        </div>
+                                    </div>
+                                    <div className="col-12" style={{ padding: 10, height: '', overflow: 'auto' }}>
+                                        <div className="contianer card">
+                                            <TargetMarketCreator userData={this.state.userData} />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -979,6 +1090,7 @@ class ProtegeDash extends Component {
                                     <br />
 
                                     {/* <div className="col-12"> */}
+
                                     <div className="card col-12" style={{ marginBottom: '10px', textAlign: "left", padding: 10, height: '', overflow: 'auto', backgroundColor: 'rgba(36,138,255,0.8)' }}>
 
                                         <h4 style={{ textAlign: 'center', padding: '10%', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px' }}>View/Edit Appointments <span button className="btn btn-sm btn-outline-dark" onClick={this.showApptViewer}>Quick Show</span><span button className="btn btn-sm btn-outline-dark" onClick={this.showApptForm}>Show Full</span></h4>
@@ -987,7 +1099,7 @@ class ProtegeDash extends Component {
                                             <div>
                                                 {
                                                     this.state.appointments ?
-                                                        <div style={{height: '400px', overflow: 'auto'}}>
+                                                        <div style={{ height: '400px', overflow: 'auto' }}>
                                                             {
                                                                 this.state.appointments.map(appt => (
                                                                     <AppointmentItem
@@ -1014,19 +1126,45 @@ class ProtegeDash extends Component {
                                                 }
                                             </div> : null}
                                     </div>
-                                
+
                                     {/* </div> */}
                                     {/* <div className="col-12" style={{ zIndex: 0 }}> */}
-                                    <MainCalendar
-                                        appointments={this.state.appointments}
-                                    />
+                                    <div className="card col-12" style={{ zIndex: 0, marginBottom: '10px', textAlign: 'center', padding: 10, height: '350px', overflow: 'auto', backgroundColor: 'rgba(36,138,255,0.8', padding: '10px' }}>
+                                        <div style={{ height: '50px', textAlign: 'center', color: 'white', backgroundColor: 'rgba(0,0,0,0.50)' }}>
+                                            <p style={{ textAlign: 'center', paddingTop: '5px' }}>Your Notes</p>
+                                        </div>
+                                        {this.state.showNoteViewer ?
+                                            <div style={{ fontSize: '12px' }}>
+                                                <NoteViewer
+                                                    userData={this.state.userData}
+                                                    userID={this.state.userData._id}
+                                                    proteges={this.state.proteges}
+                                                    mentors={this.state.mentors}
+                                                    taggedNotes={this.state.notes}
+                                                    rerender={this.getProtegeNoteData}
+                                                    fontSize={'14px'}
+                                                />
+                                            </div>
+                                            : null}
+                                        <div style={{ height: '20px', color: 'black', backgroundColor: 'rgba(0,0,0,0.50)' }}>
+                                        </div>
+                                    </div>
+
+                                    <div className="card col-12" style={{ zIndex: 0, marginBottom: '10px', textAlign: 'center', padding: 10, height: '250px', overflow: 'auto', backgroundColor: 'rgba(36,138,255,0.8', padding: '10px' }}>
+                                        <NoteCreator
+                                            userData={this.state.userData}
+                                            userID={this.state.userData._id}
+                                            proteges={this.state.proteges}
+                                            mentors={this.state.mentors}
+                                        />
+                                    </div>
                                     {/* </div> */}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div >
-            </div>
+            </div >
 
         )
     }

@@ -59,17 +59,18 @@ class NoteCreator extends Component {
 
     render() {
         return (
-            <div className="note-form" style={{ width: '50%', textAlign: 'center' }}>
+            <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}>
+
                 <div id="note-welcome">
-                    Create a Note.
-      </div>
+                    <h4>Create a Note</h4>
+                </div>
                 <form>
-                    {this.props.mentors ? <FormSelect id="noteDropMenu" value={this.state.noteTagged} onChange={this.handleInputChange} name="noteTagged">
+                    {this.props.mentors ? <select id="" value={this.state.noteTagged} onChange={this.handleInputChange} name="noteTagged">
                         <option value={"none"}>--Tag Mentor--</option>
                         {this.props.mentors.map(mentor => (
                             <option key={mentor._id} value={mentor._id}>{mentor.firstName} {mentor.lastName}</option>
                         ))}
-                    </FormSelect> : null}
+                    </select> : null}
                     <br />
                     <FormTextarea id="noteTextArea" value={this.state.noteText} onChange={this.handleInputChange} type="text" name="noteText" className="form-control" id="noteTextInput" aria-describedby="" placeholder="Enter note here" />
 
@@ -83,7 +84,7 @@ class NoteCreator extends Component {
 
 
 
-                    <Button outline theme="light" onClick={this.handleNoteSubmit} className="btn btn-outline-info">Create Note</Button>
+                    <button outline onClick={this.handleNoteSubmit} style={{float:' right'}} className="btn btn-outline-dark">Create Note</button>
                     {/* <button onClick={this.logOut} style={{ marginTop: '5px', marginLeft: '25px' }} className="btn btn-danger">Logout</button> */}
                 </form>
             </div>

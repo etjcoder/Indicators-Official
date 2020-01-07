@@ -116,7 +116,9 @@ class AppointmentCreator extends Component {
     render() {
         return (
             <div className="card col-12" id="prospect" style={{ textAlign: 'left', backgroundColor: 'rgba(36,138,255,0.8)', padding: '0' }}>
-                <h4 style={{ textAlign: 'center', padding: '10%', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px' }}>Create Appointment <span button className="btn btn-sm btn-outline-dark" onClick={this.showApptForm}>Quick Show</span><span button className="btn btn-sm btn-outline-dark" onClick={this.showFullApptForm}>Show Full</span></h4>
+                <h4 style={{ textAlign: 'center', padding: '10%', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px' }}>Create Appointment 
+                <br/> 
+                <span button className="btn btn-sm btn-outline-dark" onClick={this.showApptForm}>Quick Show</span><span button className="btn btn-sm btn-outline-dark" onClick={this.showFullApptForm}>Show Full</span></h4>
                 <hr />
                 {this.state.showAppt ?
                 <div style={{padding: '10px', height: '400px', overflow: 'auto'}}>

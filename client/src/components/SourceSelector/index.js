@@ -33,7 +33,7 @@ class SourceSelector extends Component {
         return (
             <div>
                 <form>
-                    <p  style={{float: 'left', marginRight: 5}}>Referral Source: <span style={{fontSize: 10}}>(optional)</span></p>
+                    <p  style={{float: 'left', marginRight: 5}}>Referrer: <span style={{fontSize: 10}}>(optional)</span></p>
                     {this.props.userData.sources ? <select id="" className="" value={this.state.leadSource} onChange={this.handleInputChange} name="leadSource">
 
                         <option value={"none"}>---------------</option>

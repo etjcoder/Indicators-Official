@@ -49,7 +49,8 @@ module.exports = {
     },
     findProtegeNotes: function(req, res) {
         db.Note
-            .find({ noteTagged: req.params.id })
+            .find({$or: [{ noteTagged: req.params.id }, {noteAuthor: req.params.id}]})
+            .sort({ 'created_at': -1 })
             .then(dbNote => res.json(dbNote))
             .catch(err => res.status(422).json(err))
     }

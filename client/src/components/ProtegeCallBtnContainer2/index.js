@@ -470,9 +470,9 @@ class ProtegeCallBtnContainer extends Component {
             <div className="row">
                 <div className="card col-12" id="prospect" style={{ textAlign: 'left', backgroundColor: 'rgba(36,138,255,0.8)' }}>
                     <form>
-                        <h2 style={{ textAlign: 'center', padding: '50px', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black' }}>Call Logger</h2>
+                        <h2 style={{ textAlign: 'center', padding: '20px', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', borderRadius: '10px' }}>Call Logger</h2>
                         <hr />
-                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}>
+                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '150px' }}>
                             <p style={{ float: 'left', marginRight: 5 }}>Type of Call <span style={{ fontSize: 10 }}>(required)  </span>  </p>
                             <select style={{ marginLeft: 'auto' }} id="" className="" value={this.state.levelofDial} onChange={this.handleInputChange} name="levelOfDial">
                                 <option value="none">Select Type 1</option>
@@ -496,8 +496,8 @@ class ProtegeCallBtnContainer extends Component {
                             </select>
                         </div>
                         <hr />
-                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}>
-                            <p style={{ float: 'left', marginRight: 5 }}>Mentor who provided lead <span style={{ fontSize: 10 }}>(optional)</span></p>
+                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '100px' }}>
+                            <p style={{ float: 'left', marginRight: 5 }}>Tag a Mentor <span style={{ fontSize: 10 }}>(optional)</span></p>
                             {this.props.userData.allMentors ? <select id="" className="" value={this.state.mentorTagged} onChange={this.handleInputChange} name="mentorTagged">
                                 <option value="none">--------------------</option>
                                 {this.props.userData.allMentors.map(mentor => (
@@ -508,15 +508,15 @@ class ProtegeCallBtnContainer extends Component {
                         </div>
                         <hr />
                         {/* <hr /> */}
-                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}>
+                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '100px' }}>
                             <SourceSelector userData={this.props.userData} setParentState={this.props.setParentState} />
                         </div>
                         <hr />
-                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}>
+                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '100px' }}>
                             <TargetMarketSelector userData={this.props.userData} setParentState={this.props.setParentStateTargetMkt} />
                         </div>
                         <hr />
-                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}>
+                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '100px' }}>
                             <p style={{ float: 'left', marginRight: 5 }}>Call Result <span style={{ fontSize: 10 }}>(required)</span></p>
                             <select id="" className="" value={this.state.callResult} onChange={this.handleInputChange} name="callResult">
                                 <option value="none">Select a Result</option>
