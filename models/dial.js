@@ -36,6 +36,11 @@ var DialSchema = new Schema({
         type: String,
         required: true,
         default: "none"
+    },
+    mentorTagged: {
+        type: String,
+        required: true,
+        default: "none"
     }
 })
 

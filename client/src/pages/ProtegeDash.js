@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Home.css";
 import ProtegeCallBtnContainer from "../components/ProtegeCallBtnContainer"
+import ProtegeCallBtnContainer2 from "../components/ProtegeCallBtnContainer2"
 import AppointmentItem from "../components/AppointmentItem"
 import AppointmentCreator from "../components/AppointmentCreator"
 import DialDataSide from "../components/DialDataSide"
@@ -206,6 +207,20 @@ class ProtegeDash extends Component {
                 )
         }, 1000)
     };
+
+    showApptViewer = () => {
+
+        if (this.state.showApptViewer === true) {
+            this.setState({
+                showApptViewer: false
+            })
+        } else {
+            this.setState({
+                showApptViewer: true
+            })
+        }
+
+    }
 
     ///////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////
@@ -584,7 +599,7 @@ class ProtegeDash extends Component {
                     </div>
 
                     <div className="row" style={{ marginTop: 200, marginBottom: 200 }}>
-                        <div className="col-lg-9">
+                        <div className="col-lg-6">
                             {/*  ////////////////////////////////////////////////////////////////////////////////// */}
                             {/*  ////////////////////////////////////////////////////////////////////////////////// */}
                             {/*  /////////////////////////    Dial Controller       /////////////////////////////// */}
@@ -598,7 +613,7 @@ class ProtegeDash extends Component {
                                         <div className="col-lg-12">
                                             <div className="row">
                                                 <div className="col">
-                                                    <ProtegeCallBtnContainer
+                                                    <ProtegeCallBtnContainer2
                                                         rerender={this.getUserData}
                                                         user={this.state.userData}
                                                         userID={this.state.userData._id}
@@ -772,8 +787,8 @@ class ProtegeDash extends Component {
 
                                 <div id="appointments-container">
                                     <div className="row">
-                                        <div className="col-12" style={{zIndex: 0}}>
-                                            <MainCalendar 
+                                        <div className="col-12" style={{ zIndex: 0 }}>
+                                            <MainCalendar
                                                 appointments={this.state.appointments}
                                             />
                                         </div>
@@ -790,8 +805,8 @@ class ProtegeDash extends Component {
                                         </div>
 
                                         <div className="col-12">
-                                            <div className="card" style={{ textAlign: "center", margin: 20, padding: 40, height: 1000, overflow: 'auto', backgroundColor: 'rgba(114,180,255,0.8)'}}>
-                                                <h4 style={{color: 'whitesmoke'}}>Manage Your Appointments:</h4>
+                                            <div className="card" style={{ textAlign: "center", margin: 20, padding: 40, height: 1000, overflow: 'auto', backgroundColor: 'rgba(114,180,255,0.8)' }}>
+                                                <h4 style={{ color: 'whitesmoke' }}>Manage Your Appointments:</h4>
                                                 {this.state.appointments ?
                                                     <div>
                                                         {
@@ -844,8 +859,8 @@ class ProtegeDash extends Component {
                                         </div>
 
                                         <div className="col-12">
-                                        <div className="card" style={{ textAlign: "center", margin: 20, padding: 40, height: 1000, overflow: 'auto', backgroundColor: 'rgba(114,180,255,0.8)'}}>
-                                                <h4 style={{color: 'whitesmoke'}}>Your Sales</h4>
+                                            <div className="card" style={{ textAlign: "center", margin: 20, padding: 40, height: 1000, overflow: 'auto', backgroundColor: 'rgba(114,180,255,0.8)' }}>
+                                                <h4 style={{ color: 'whitesmoke' }}>Your Sales</h4>
                                                 {this.state.sales ? <div>
                                                     {this.state.sales.map(sale => (
                                                         <SalesItem
@@ -881,7 +896,7 @@ class ProtegeDash extends Component {
 
                             {/*  ////////////////////////////////////////////////////////////////////////////////// */}
                             {/*  ////////////////////////////////////////////////////////////////////////////////// */}
-                            {/*  /////////////////////////    Side Data Viewer       /////////////////////////////// */}
+                            {/*  /////////////////////////    Middle Quick Data Viewer       ////////////////////// */}
                             {/*  ////////////////////////////////////////////////////////////////////////////////// */}
                             {/*  ////////////////////////////////////////////////////////////////////////////////// */}
 
@@ -931,6 +946,81 @@ class ProtegeDash extends Component {
                                             BTAppts={this.state.BTAppts}
                                         />
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                        {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                        {/*  /////////////////////////    Side Data Tools      /////////////////////////////// */}
+                        {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                        {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+
+
+                        <div className="col-lg-3">
+                            <div id="">
+                                <div className="row">
+
+                                    {/* <div className="col-12"> */}
+                                    <div style={{ width: '100%', marginBottom: '10px' }}>
+                                        <AppointmentCreator
+                                            userID={this.state.userData._id}
+                                            username={this.state.user}
+                                            rerender={this.gatherAppointments}
+                                            userData={this.state.userData}
+                                            mentors={this.state.mentors}
+
+                                        />
+                                    </div>
+                                    {/* </div> */}
+                                    <br />
+                                    <br />
+
+                                    {/* <div className="col-12"> */}
+                                    <div className="card col-12" style={{ marginBottom: '10px', textAlign: "left", padding: 10, height: '', overflow: 'auto', backgroundColor: 'rgba(36,138,255,0.8)' }}>
+
+                                        <h4 style={{ textAlign: 'center', padding: '10%', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px' }}>View/Edit Appointments <span button className="btn btn-sm btn-outline-dark" onClick={this.showApptViewer}>Quick Show</span><span button className="btn btn-sm btn-outline-dark" onClick={this.showApptForm}>Show Full</span></h4>
+
+                                        {this.state.showApptViewer ?
+                                            <div>
+                                                {
+                                                    this.state.appointments ?
+                                                        <div style={{height: '400px', overflow: 'auto'}}>
+                                                            {
+                                                                this.state.appointments.map(appt => (
+                                                                    <AppointmentItem
+                                                                        key={appt._id}
+                                                                        id={appt._id}
+                                                                        apptname={appt.apptname}
+                                                                        type={appt.type}
+                                                                        held={appt.held}
+                                                                        sold={appt.sold}
+                                                                        dialer={appt.dialer}
+                                                                        source={appt.source}
+                                                                        date={appt.date}
+                                                                        notes={appt.notes}
+                                                                        username={this.state.user}
+                                                                        rerender={this.gatherAppointments}
+                                                                        user={this.state.userData}
+                                                                        targetMarket={appt.targetMarket}
+                                                                        mentors={this.state.mentors}
+                                                                    />
+                                                                ))
+                                                            }
+                                                        </div>
+                                                        : null
+                                                }
+                                            </div> : null}
+                                    </div>
+                                
+                                    {/* </div> */}
+                                    {/* <div className="col-12" style={{ zIndex: 0 }}> */}
+                                    <MainCalendar
+                                        appointments={this.state.appointments}
+                                    />
+                                    {/* </div> */}
                                 </div>
                             </div>
                         </div>

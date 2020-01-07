@@ -1,0 +1,130 @@
+/* Modifying Bootstrap Components below */
+
+.card {
+    border: 0px !important;
+}
+
+
+.nav-tabs > li > a:hover {
+    color: black !important;
+}
+
+.nav-tabs > li > a:active {
+    background-color: transparent !important;
+}
+
+a.nav-link.active {
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+
+button {
+    padding: 10px !important;
+    margin: 5px !important;
+    border-radius: 10px !important;
+}
+
+p {
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+a {
+    font-family: 'Roboto', sans-serif !important;
+}
+
+/* Custom CSS Below */
+
+
+#prospect-label {
+    background-color: rgba(236,240,247,0.8);
+    border-color: rgba(236,240,247,0.8)
+}
+
+#prospect-label:active {
+    background-color: rgba(236,240,247,0.8) !important;
+    border-color: rgba(236,240,247,0.8) !important;
+}
+
+#prospect-tab {
+    color: navy
+}
+
+#prospect-tab:active {
+    background-color: rgba(236,240,247,0.8) !important;
+    border-color: rgba(236,240,247,0.8) !important;
+}
+
+#prospect {
+    /* background-color: white */
+    background-color: rgba(236,240,247,0.8);
+    padding: 50px
+}
+
+#client-label {
+    background-color: rgba(215,234,255,0.8)
+}
+
+#client-tab {
+    color: navy
+}
+
+#client {
+    background-color: rgba(215,234,255,0.8);
+    padding: 50px
+}
+
+#natural-label {
+    background-color: rgba(176,214,255,0.8)
+}
+
+#natural-tab {
+    color: navy
+}
+
+#natural {
+    background-color: rgba(176,214,255,0.8);
+    padding: 50px
+}
+
+#suspect-label {
+    background-color: rgba(114,180,255,0.8)
+}
+
+#suspect-tab {
+    color: white
+}
+
+#suspect {
+    background-color: rgba(114,180,255,0.8);
+    padding: 50px;
+    color: white
+}
+
+#referral-label {
+    background-color: rgba(77,160,255,0.8)
+}
+
+#referral-tab {
+    color: white
+}
+
+#referral {
+    background-color: rgba(77,160,255,0.8);
+    padding: 50px;
+    color: white;
+}
+
+#target-label {
+    background-color: rgba(36,138,255,0.8)
+}
+
+#target-mkt-tab {
+    color: white
+}
+
+#target-mkt {
+    background-color: rgba(36,138,255,0.8);
+    padding: 50px;
+    color: white
+}

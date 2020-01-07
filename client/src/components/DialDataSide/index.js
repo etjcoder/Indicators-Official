@@ -131,53 +131,24 @@ class DialDataSide extends Component {
                         <h5>Weekly Stats:</h5>
                     </div>
                 </div>
-                
+
                 {this.state.showDialChart ?
                     <div>
-                        <p>Weekly Dials: {this.props.dialData.length}</p>
+                        <p style={{width: '100%', fontSize: '16px'}}>Breakdown:</p>
                     
                         <Pie data={{
                             labels: [
-                                "Cashflow Prospect",
-                                "Business Prospect",
-                                "Cashflow Client",
-                                "Business Client",
-                                "Cashflow Natural Market",
-                                "Business Natural Market",
-                                "Cashflow Suspect",
-                                "Business Suspect",
-                                "Cashflow Referral",
-                                "Business Referral",
-                                "Cashflow Target Market",
-                                "Business Target Market"],
+                                "Standard / Cashflow",
+                                "Tier-1 / Businessowner"
+                                ],
                             datasets: [{
                                 data: [
-                                    this.props.CPDials,
-                                    this.props.BPDials,
-                                    this.props.CCDials,
-                                    this.props.BCDials,
-                                    this.props.CNDials,
-                                    this.props.BNDials,
-                                    this.props.CSDials,
-                                    this.props.BSDials,
-                                    this.props.CRDials,
-                                    this.props.BRDials,
-                                    this.props.CTDials,
-                                    this.props.BTDials
+                                    this.props.CPDials + this.props.CCDials + this.props.CNDials + this.props.CSDials + this.props.CRDials + this.props.CTDials, 
+                                    this.props.BTDials + this.props.BPDials + this.props.BCDials + this.props.BNDials + this.props.BSDials + this.props.BRDials
                                 ],
                                 backgroundColor: [
                                     "#3ac178",
-                                    "#443959",
-                                    "#f99b17",
-                                    "#a2e505",
-                                    "#c9917f",
-                                    "#8d044b",
-                                    "#d2d93b",
-                                    "#dd4417",
-                                    "#5191d9",
-                                    "#483d28",
-                                    "#51aef7",
-                                    "#25517b"
+                                    "#443959"
                                 ]
                             }]
                         }} 
@@ -185,41 +156,29 @@ class DialDataSide extends Component {
                             legend: {
                                 display: false
                             }
-                        }}/> </div> : null}
+                        }}/></div> : null}
                 <br />
-
-                {this.state.showContactChart ?
+                
+                {this.state.showDialChart ?
                     <div>
-                        <p>Weekly Contacts: {this.props.contactData.length}</p>
-                       
+                        <p style={{width: '100%', fontSize: '16px'}}>Weekly Dials: {this.props.dialData.length}</p>
+                    
                         <Pie data={{
                             labels: [
-                                "Cashflow Prospect",
-                                "Business Prospect",
-                                "Cashflow Client",
-                                "Business Client",
-                                "Cashflow Natural Market",
-                                "Business Natural Market",
-                                "Cashflow Suspect",
-                                "Business Suspect",
-                                "Cashflow Referral",
-                                "Business Referral",
-                                "Cashflow Target Market",
-                                "Business Target Market"],
+                                "Warm Lead / Prospect",
+                                "Delegated Client",
+                                "Natural Market",
+                                "Vertical / Orphan",
+                                "Referral",
+                                "Target Market"],
                             datasets: [{
                                 data: [
-                                    this.props.CPContacts,
-                                    this.props.BPContacts,
-                                    this.props.CCContacts,
-                                    this.props.BCContacts,
-                                    this.props.CNContacts,
-                                    this.props.BNContacts,
-                                    this.props.CSContacts,
-                                    this.props.BSContacts,
-                                    this.props.CRContacts,
-                                    this.props.BRContacts,
-                                    this.props.CTContacts,
-                                    this.props.BTContacts
+                                    this.props.CPDials + this.props.BPDials,
+                                    this.props.CCDials + this.props.BCDials,
+                                    this.props.CNDials + this.props.BNDials,
+                                    this.props.CSDials + this.props.BSDials,
+                                    this.props.CRDials + this.props.BRDials,
+                                    this.props.CTDials + this.props.BTDials
                                 ],
                                 backgroundColor: [
                                     "#3ac178",
@@ -227,13 +186,45 @@ class DialDataSide extends Component {
                                     "#f99b17",
                                     "#a2e505",
                                     "#c9917f",
-                                    "#8d044b",
-                                    "#d2d93b",
-                                    "#dd4417",
-                                    "#5191d9",
-                                    "#483d28",
-                                    "#51aef7",
-                                    "#25517b"
+                                    "#8d044b"
+                                ]
+                            }]
+                        }} 
+                        options={{
+                            legend: {
+                                display: false
+                            }
+                        }}/></div> : null}
+                <br />
+
+                {this.state.showContactChart ?
+                    <div>
+                        <p style={{width: '100%', fontSize: '16px'}}>Weekly Contacts: {this.props.contactData.length}</p>
+                       
+                        <Pie data={{
+                            labels: [
+                                "Warm Lead / Prospect",
+                                "Delegated Client",
+                                "Natural Market",
+                                "Vertical / Orphan",
+                                "Referral",
+                                "Target Market"],
+                            datasets: [{
+                                data: [
+                                    this.props.CPContacts + this.props.BPContacts,
+                                    this.props.CCContacts + this.props.BCContacts,
+                                    this.props.CNContacts + this.props.BNContacts,
+                                    this.props.CSContacts + this.props.BSContacts,
+                                    this.props.CRContacts + this.props.BRContacts,
+                                    this.props.CTContacts + this.props.BTContacts
+                                ],
+                                backgroundColor: [
+                                    "#3ac178",
+                                    "#443959",
+                                    "#f99b17",
+                                    "#a2e505",
+                                    "#c9917f",
+                                    "#8d044b"
                                 ]
                             }]
                         }} 
@@ -250,37 +241,25 @@ class DialDataSide extends Component {
                 <br />
                 {this.state.showApptChart ?
                     <div>
-                        <p>Weekly Appointments: {this.props.apptData.length}</p>
+                        <p style={{width: '100%', fontSize: '16px'}}>Weekly Appointments: {this.props.apptData.length}</p>
 
                       
                         <Pie data={{
                             labels: [
-                                "Cashflow Prospect",
-                                "Business Prospect",
-                                "Cashflow Client",
-                                "Business Client",
-                                "Cashflow Natural Market",
-                                "Business Natural Market",
-                                "Cashflow Suspect",
-                                "Business Suspect",
-                                "Cashflow Referral",
-                                "Business Referral",
-                                "Cashflow Target Market",
-                                "Business Target Market"],
+                                "Warm Lead / Prospect",
+                                "Delegated Client",
+                                "Natural Market",
+                                "Vertical / Orphan",
+                                "Referral",
+                                "Target Market"],
                             datasets: [{
                                 data: [
-                                    this.props.CPAppts,
-                                    this.props.BPAppts,
-                                    this.props.CCAppts,
-                                    this.props.BCAppts,
-                                    this.props.CNAppts,
-                                    this.props.BNAppts,
-                                    this.props.CSAppts,
-                                    this.props.BSAppts,
-                                    this.props.CRAppts,
-                                    this.props.BRAppts,
-                                    this.props.CTAppts,
-                                    this.props.BTAppts
+                                    this.props.CPAppts + this.props.BPAppts,
+                                    this.props.CCAppts + this.props.BCAppts,
+                                    this.props.CNAppts + this.props.BNAppts,
+                                    this.props.CSAppts + this.props.BSAppts,
+                                    this.props.CRAppts + this.props.BRAppts,
+                                    this.props.CTAppts + this.props.BTAppts
                                 ],
                                 backgroundColor: [
                                     "#3ac178",
@@ -288,13 +267,7 @@ class DialDataSide extends Component {
                                     "#f99b17",
                                     "#a2e505",
                                     "#c9917f",
-                                    "#8d044b",
-                                    "#d2d93b",
-                                    "#dd4417",
-                                    "#5191d9",
-                                    "#483d28",
-                                    "#51aef7",
-                                    "#25517b"
+                                    "#8d044b"
                                 ]
                             }]
                         }} 

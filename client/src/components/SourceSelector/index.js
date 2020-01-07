@@ -31,16 +31,16 @@ class SourceSelector extends Component {
 
     render() {
         return (
-            <div className="col-12">
+            <div>
                 <form>
-                    <p style={{textAlign: 'center'}}>Choose a Source below</p>
-                    {this.props.userData.sources ? <FormSelect id="sourceDropMenu" className="customDropLight" value={this.state.leadSource} onChange={this.handleInputChange} name="leadSource">
+                    <p  style={{float: 'left', marginRight: 5}}>Referral Source: <span style={{fontSize: 10}}>(optional)</span></p>
+                    {this.props.userData.sources ? <select id="" className="" value={this.state.leadSource} onChange={this.handleInputChange} name="leadSource">
 
-                        <option value={"none"}>No Lead Source Selected</option>
+                        <option value={"none"}>---------------</option>
                         {this.props.userData.sources.map(source => (
                             <option key={source} value={source}>{source}</option>
                         ))}
-                    </FormSelect> : null}
+                    </select> : null}
                 </form>
             </div>
         )

@@ -115,67 +115,88 @@ class AppointmentCreator extends Component {
 
     render() {
         return (
-            <div className="card" id="appointment-creator">
-                <h4 style={{ color: 'whitesmoke' }}>Create Appointment <span button className="btn btn-sm btn-outline-light" onClick={this.showApptForm}>Show</span></h4>
+            <div className="card col-12" id="prospect" style={{ textAlign: 'left', backgroundColor: 'rgba(36,138,255,0.8)', padding: '0' }}>
+                <h4 style={{ textAlign: 'center', padding: '10%', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px' }}>Create Appointment <span button className="btn btn-sm btn-outline-dark" onClick={this.showApptForm}>Quick Show</span><span button className="btn btn-sm btn-outline-dark" onClick={this.showFullApptForm}>Show Full</span></h4>
                 <hr />
                 {this.state.showAppt ?
+                <div style={{padding: '10px', height: '400px', overflow: 'auto'}}>
+
                     <form className="form-group">
-                        <label className="customLabel"><p style={{ color: 'whitesmoke' }}>Type of Appointment </p></label>
-                        <select className="custom-select my-1 mr-sm-2" value={this.state.type} className="customDrop" onChange={this.handleInputChange} name="type" type="text" placeholder="Choose an appointment type..">
-                            <option value="CPD">Cashflow Prospect</option>
-                            <option value="BPD">Businessowner Prospect</option>
-                            <option value="CCD">Cashflow Client</option>
-                            <option value="BCD">Businessowner Client</option>
-                            <option value="CND">Cashflow Natural Mkt</option>
-                            <option value="BND">Business Natural Mkt</option>
-                            <option value="CSD">Cashflow Suspect</option>
-                            <option value="BSD">Business Suspect</option>
-                            <option value="CRD">Cashflow Referral</option>
-                            <option value="BRD">Business Referral</option>
-                            <option value="CTD">Cashflow Target Market</option>
-                            <option value="BTD">Business Target</option>
-                        </select>
-                        <hr />
-
-                        <label><p style={{ color: 'whitesmoke' }}>Appointment Name:</p></label>
-                        <input id="apptname-input" className="form-control sale-input" value={this.state.apptname} onChange={this.handleInputChange} name="apptname" type="text" placeholder="Give your appointment a name!" />
-                        <hr />
-                        <label><p style={{ color: 'whitesmoke' }}>Date of Appointment:</p></label>
-                        <input id="date-input" className="form-control sale-input" value={this.state.apptdate} onChange={this.handleInputChange} name="apptdate" type="date" placeholder="Enter date for your appointment" />
-                        <hr />
-                        <label><p style={{ color: 'whitesmoke' }}>Mentor Tagged: </p></label>
-                        {this.props.mentors ? <select id="mentorDropMenu" className="customDrop" value={this.props.apptTagged} onChange={this.handleInputChange} name="apptTagged">
-                            <option value={"none"}>--Tag Mentor--</option>
-                            {this.props.mentors.map(mentor => (
-                                <option key={mentor._id} value={mentor._id}>{mentor.firstName} {mentor.lastName}</option>
-                            ))}
-                        </select> : null}
-                        <hr />
-                        <label><p style={{ color: 'whitesmoke' }}>Lead Source: </p></label>
-                        {/* <input id="source-input" className="form-control" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource" type="text" placeholder="Source of Lead" /> */}
-                        {this.props.userData.sources ? <select id="sourceDropMenu" className="customDrop" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource">
-                            <option value={"none"}>No Lead Source Selected</option>
-                            {this.props.userData.sources.map(source => (
-                                <option key={source} value={source}>{source}</option>
-                            ))}
-                        </select> : <p>"No lead sources created yet"</p>}
+                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}>
+                            <label className="customLabel"><p style={{ color: 'black' }}>Type of Appointment </p></label>
+                            <select className="custom-select my-1 mr-sm-2" value={this.state.type} className="" onChange={this.handleInputChange} name="type" type="text" placeholder="Choose an appointment type..">
+                                <option value="CPD">Cashflow Prospect</option>
+                                <option value="BPD">Businessowner Prospect</option>
+                                <option value="CCD">Cashflow Client</option>
+                                <option value="BCD">Businessowner Client</option>
+                                <option value="CND">Cashflow Natural Mkt</option>
+                                <option value="BND">Business Natural Mkt</option>
+                                <option value="CSD">Cashflow Suspect</option>
+                                <option value="BSD">Business Suspect</option>
+                                <option value="CRD">Cashflow Referral</option>
+                                <option value="BRD">Business Referral</option>
+                                <option value="CTD">Cashflow Target Market</option>
+                                <option value="BTD">Business Target</option>
+                            </select>
+                        </div>
 
                         <hr />
-                        <label><p style={{ color: 'whitesmoke' }}>Target Market: </p></label>
-                        {/* <input id="targetmkt-input" className="form-control" value={this.state.apptTargetMkt} onChange={this.handleInputChange} name="appttargetmkt" type="text" placeholder="Target Market goes here" /> */}
-                        {this.props.userData.targetMarkets ? <select id="sourceDropMenu" className="customDrop" value={this.state.appttargetmkt} onChange={this.handleInputChange} name="appttargetmkt">
-                            <option value={"none"}>No Target Market Selected</option>
-                            {this.props.userData.targetMarkets.map(target => (
-                                <option key={target} value={target}>{target}</option>
-                            ))}
-                        </select> : <p>"No target markets created yet"</p>}
+                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}>
+
+                            <label><p style={{ color: 'black' }}>Appointment Name:</p></label>
+                            <input id="apptname-input" className="form-control" value={this.state.apptname} onChange={this.handleInputChange} name="apptname" type="text" placeholder="Give your appointment a name!" />
+                        </div>
                         <hr />
-                        <label><p style={{ color: 'whitesmoke' }}>Appointment Notes:</p></label>
-                        <input id="note-input" className="form-control sale-input" value={this.state.apptnotes} onChange={this.handleInputChange} name="apptnotes" type="text" placeholder="Enter any notes..." />
+                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}>
+
+                            <label><p style={{ color: 'black' }}>Date of Appointment:</p></label>
+                            <input id="date-input" className="form-control" value={this.state.apptdate} onChange={this.handleInputChange} name="apptdate" type="date" placeholder="Enter date for your appointment" />
+                        </div>
+                        <hr />
+                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}>
+                            <label><p style={{ color: 'black' }}>Mentor Tagged: </p></label>
+                            {this.props.mentors ? <select id="mentorDropMenu" className="" value={this.props.apptTagged} onChange={this.handleInputChange} name="apptTagged">
+                                <option value={"none"}>--Tag Mentor--</option>
+                                {this.props.mentors.map(mentor => (
+                                    <option key={mentor._id} value={mentor._id}>{mentor.firstName} {mentor.lastName}</option>
+                                ))}
+                            </select> : null}
+                        </div>
+                        <hr />
+                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}>
+
+                            <label><p style={{ color: 'black' }}>Lead Source: </p></label>
+                            {/* <input id="source-input" className="form-control" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource" type="text" placeholder="Source of Lead" /> */}
+                            {this.props.userData.sources ? <select id="sourceDropMenu" className="" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource">
+                                <option value={"none"}>No Lead Source Selected</option>
+                                {this.props.userData.sources.map(source => (
+                                    <option key={source} value={source}>{source}</option>
+                                ))}
+                            </select> : <p>"No lead sources created yet"</p>}
+                        </div>
+                        <hr />
+                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}>
+
+                            <label><p style={{ color: 'black' }}>Target Market: </p></label>
+                            {/* <input id="targetmkt-input" className="form-control" value={this.state.apptTargetMkt} onChange={this.handleInputChange} name="appttargetmkt" type="text" placeholder="Target Market goes here" /> */}
+                            {this.props.userData.targetMarkets ? <select id="sourceDropMenu" className="" value={this.state.appttargetmkt} onChange={this.handleInputChange} name="appttargetmkt">
+                                <option value={"none"}>No Target Market Selected</option>
+                                {this.props.userData.targetMarkets.map(target => (
+                                    <option key={target} value={target}>{target}</option>
+                                ))}
+                            </select> : <p>"No target markets created yet"</p>}
+                        </div>
+                        <hr />
+                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}>
+
+                            <label><p style={{ color: 'black' }}>Appointment Notes:</p></label>
+                            <input id="note-input" className="form-control" value={this.state.apptnotes} onChange={this.handleInputChange} name="apptnotes" type="text" placeholder="Enter any notes..." />
+                        </div>
                         <br />
                         <button id="appt-input-btn" className="btn-success form-control" onClick={this.handleApptSubmit}>Submit Appointment</button>
 
                     </form>
+                    </div>
                     : null}
             </div>
         )

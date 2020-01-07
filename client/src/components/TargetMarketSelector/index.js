@@ -30,15 +30,15 @@ class TargetMarketSelector extends Component {
 
     render() {
         return (
-            <div className="col-12">
+            <div>
                 <form>
-                    <p style={{textAlign: 'center'}}>Choose a Target Market below</p>
-                    {this.props.userData.targetMarkets ? <FormSelect id="sourceDropMenu" className="customDropLight" value={this.state.targetMarket} onChange={this.handleInputChange} name="targetMarket">
-                        <option value={"none"}>No Target Market Selected</option>
+                    <p  style={{float: 'left', marginRight: 5}}>Target Market: <span style={{fontSize: 10}}>(optional)</span></p>
+                    {this.props.userData.targetMarkets ? <select id="sourceDropMenu" className="" value={this.state.targetMarket} onChange={this.handleInputChange} name="targetMarket">
+                        <option value={"none"}>----------------------</option>
                         {this.props.userData.targetMarkets.map(target => (
                             <option key={target} className="chosen-targetmkt" value={target}>{target}</option>
                         ))}
-                    </FormSelect> : null}
+                    </select> : null}
                 </form>
             </div>
         )
