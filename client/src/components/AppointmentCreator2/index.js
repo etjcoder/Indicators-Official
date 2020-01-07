@@ -27,12 +27,6 @@ class AppointmentCreator extends Component {
         //     apptdate: this.props.date
         // })
 
-        if (this.props.showAppt === true) {
-            this.setState({
-                showAppt: true
-            })
-        }
-
     }
 
     handleInputChange = event => {
@@ -124,17 +118,15 @@ class AppointmentCreator extends Component {
             <div className="card col-12" id="prospect" style={{ textAlign: 'left', backgroundColor: 'rgba(36,138,255,0.8)', padding: '0' }}>
                 <h4 style={{ textAlign: 'center', padding: '10%', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px' }}>Create Appointment 
                 <br/> 
-                <span button className="btn btn-sm btn-outline-dark" onClick={this.showApptForm}>Show</span></h4>
+                <span button className="btn btn-sm btn-outline-dark" onClick={this.showApptForm}>Quick Show</span><span button className="btn btn-sm btn-outline-dark" onClick={this.showFullApptForm}>Show Full</span></h4>
                 <hr />
                 {this.state.showAppt ?
                 <div style={{padding: '10px', height: '400px', overflow: 'auto'}}>
 
-                    <form className="">
+                    <form className="form-group">
                         <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}>
-
-
-                        <label>Type: </label>
-                            <select id="mentorDropMenu" className="" value={this.state.type} onChange={this.handleInputChange} name="type" type="text">
+                            <label className="customLabel"><p style={{ color: 'black' }}>Type of Appointment </p></label>
+                            <select className="custom-select my-1 mr-sm-2" value={this.state.type} className="" onChange={this.handleInputChange} name="type" type="text" placeholder="Choose an appointment type..">
                                 <option value="CPD">Cashflow Prospect</option>
                                 <option value="BPD">Businessowner Prospect</option>
                                 <option value="CCD">Cashflow Client</option>
@@ -148,51 +140,46 @@ class AppointmentCreator extends Component {
                                 <option value="CTD">Cashflow Target Market</option>
                                 <option value="BTD">Business Target</option>
                             </select>
-                            <br />
-                        {/* </div> */}
+                        </div>
 
-               
-                        {/* <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}> */}
+                        <hr />
+                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}>
 
-                            <label>Name:</label>
+                            <label><p style={{ color: 'black' }}>Appointment Name:</p></label>
                             <input id="apptname-input" className="form-control" value={this.state.apptname} onChange={this.handleInputChange} name="apptname" type="text" placeholder="Give your appointment a name!" />
-                        {/* </div> */}
-                      
-                        {/* <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}> */}
-                        <br />
-                            <label>Date:</label>
+                        </div>
+                        <hr />
+                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}>
+
+                            <label><p style={{ color: 'black' }}>Date of Appointment:</p></label>
                             <input id="date-input" className="form-control" value={this.state.apptdate} onChange={this.handleInputChange} name="apptdate" type="date" placeholder="Enter date for your appointment" />
-                        {/* </div> */}
-                        <br />
-                        {/* <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}> */}
-                            <label>Mentor: </label>
-                            
-                            {this.props.mentors ? 
-                            <select id="mentorDropMenu" className="" value={this.props.apptTagged} onChange={this.handleInputChange} name="apptTagged">
-                                <option value={"none"}>-----------Tag Mentor------------</option>
+                        </div>
+                        <hr />
+                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}>
+                            <label><p style={{ color: 'black' }}>Mentor Tagged: </p></label>
+                            {this.props.mentors ? <select id="mentorDropMenu" className="" value={this.props.apptTagged} onChange={this.handleInputChange} name="apptTagged">
+                                <option value={"none"}>--Tag Mentor--</option>
                                 {this.props.mentors.map(mentor => (
                                     <option key={mentor._id} value={mentor._id}>{mentor.firstName} {mentor.lastName}</option>
                                 ))}
-                            </select> 
-                            : null}
-                        {/* </div> */}
-                         <br />
-                
-                        {/* <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}> */}
+                            </select> : null}
+                        </div>
+                        <hr />
+                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}>
 
-                            <label>Referrer: </label>
+                            <label><p style={{ color: 'black' }}>Lead Source: </p></label>
                             {/* <input id="source-input" className="form-control" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource" type="text" placeholder="Source of Lead" /> */}
                             {this.props.userData.sources ? <select id="sourceDropMenu" className="" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource">
                                 <option value={"none"}>No Lead Source Selected</option>
                                 {this.props.userData.sources.map(source => (
                                     <option key={source} value={source}>{source}</option>
                                 ))}
-                            </select> : <p>"No referrers created yet"</p>}
-                        {/* </div> */}
-                                    <br />
-                        {/* <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}> */}
+                            </select> : <p>"No lead sources created yet"</p>}
+                        </div>
+                        <hr />
+                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}>
 
-                            <label>Industry: </label>
+                            <label><p style={{ color: 'black' }}>Target Market: </p></label>
                             {/* <input id="targetmkt-input" className="form-control" value={this.state.apptTargetMkt} onChange={this.handleInputChange} name="appttargetmkt" type="text" placeholder="Target Market goes here" /> */}
                             {this.props.userData.targetMarkets ? <select id="sourceDropMenu" className="" value={this.state.appttargetmkt} onChange={this.handleInputChange} name="appttargetmkt">
                                 <option value={"none"}>No Target Market Selected</option>
@@ -200,12 +187,11 @@ class AppointmentCreator extends Component {
                                     <option key={target} value={target}>{target}</option>
                                 ))}
                             </select> : <p>"No target markets created yet"</p>}
-                        {/* </div> */}
-                        <br />
-              
-                        {/* <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}> */}
+                        </div>
+                        <hr />
+                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}>
 
-                            <label>Notes:</label>
+                            <label><p style={{ color: 'black' }}>Appointment Notes:</p></label>
                             <input id="note-input" className="form-control" value={this.state.apptnotes} onChange={this.handleInputChange} name="apptnotes" type="text" placeholder="Enter any notes..." />
                         </div>
                         <br />

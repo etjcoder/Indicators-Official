@@ -68,13 +68,14 @@ class ProtegeDash extends Component {
         BTAppts: 0,
         leadSource: "none",
         targetMarket: "none",
-        showDials: true,
+        showDials: false,
         showNotes: false,
-        showCreate: false,
+        // showCreate: false,
         showAnalytics: false,
         showAppts: false,
         showSales: false,
-        showNoteViewer: true
+        showNoteViewer: false,
+        showCreate: true
     }
 
     componentDidMount = () => {
@@ -705,11 +706,23 @@ class ProtegeDash extends Component {
                                                         userData={this.state.userData}
                                                         setParentState={this.setParentState}
                                                         setParentStateTargetMkt={this.setParentStateTargetMkt}
+                                                        username={this.state.user}
+                                                        rerender={this.gatherAppointments}
+                                                        mentors={this.state.mentors}
                                                     />
                                                     {/* <div className="row">
                             <div className="col-6">
                                 <SourceSelector userData={this.state.userData} setParentState={this.setParentState} />
                             </div>
+
+                            <AppointmentCreator
+                                                userID={this.state.userData._id}
+                                                username={this.state.user}
+                                                rerender={this.gatherAppointments}
+                                                userData={this.state.userData}
+                                                mentors={this.state.mentors}
+
+                                            />
                             <div className="col-6">
                                 <TargetMarketSelector userData={this.state.userData} setParentState={this.setParentStateTargetMkt} />
                             </div>

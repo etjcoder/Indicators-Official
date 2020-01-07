@@ -6,6 +6,8 @@ import { Button } from 'shards-react';
 import "./style.css"
 import SourceSelector from '../SourceSelector';
 import TargetMarketSelector from '../TargetMarketSelector'
+import AppointmentCreator from '../AppointmentCreator'
+
 
 class ProtegeCallBtnContainer extends Component {
 
@@ -22,13 +24,26 @@ class ProtegeCallBtnContainer extends Component {
         otherAttributes: null,
         mentorTagged: "none",
         typeOfCall: 'none',
-        callResult: 'none'
+        callResult: 'none',
+        customStyles: {
+            content: {
+                top: '50%',
+                left: '50%',
+                right: 'auto',
+                bottom: 'auto',
+                marginRight: '-50%',
+                transform: 'translate(-50%, -50%)',
+                backgroundColor: 'rgba(0,0,0,0.75)'
+            }
+        }
     }
 
     componentDidMount() {
         // console.log("Loaded Protege Page")
 
     }
+
+
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -472,8 +487,8 @@ class ProtegeCallBtnContainer extends Component {
                     <form>
                         <h2 style={{ textAlign: 'center', padding: '20px', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', borderRadius: '10px' }}>Call Logger</h2>
                         <hr />
-                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '150px' }}>
-                            <p style={{ float: 'left', marginRight: 5 }}>Type of Call <span style={{ fontSize: 10 }}>(required)  </span>  </p>
+                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '', border: 'none' }}>
+                            <label style={{ float: 'left', textAlign: 'right', marginRight: '15px', width: '200px' }}>Type of Call <span style={{ fontSize: 10 }}>(required)  </span>  </label>
                             <select style={{ marginLeft: 'auto' }} id="" className="" value={this.state.levelofDial} onChange={this.handleInputChange} name="levelOfDial">
                                 <option value="none">Select Type 1</option>
                                 <option value="cashflow">Standard / Cashflow</option>
@@ -494,10 +509,10 @@ class ProtegeCallBtnContainer extends Component {
                             <option value="BRD">Tier-1 New Referral</option>
                             <option value="BTD">Tier-1 Targeted Industry</option> */}
                             </select>
-                        </div>
-                        <hr />
-                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '100px' }}>
-                            <p style={{ float: 'left', marginRight: 5 }}>Tag a Mentor <span style={{ fontSize: 10 }}>(optional)</span></p>
+                            {/* </div> */}
+                            <hr />
+                            {/* <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '100px' }}> */}
+                            <label style={{ float: 'left', textAlign: 'right', marginRight: '15px', width: '200px', border: 'none' }}>Tag a Mentor <span style={{ fontSize: 10 }}>(optional)</span></label>
                             {this.props.userData.allMentors ? <select id="" className="" value={this.state.mentorTagged} onChange={this.handleInputChange} name="mentorTagged">
                                 <option value="none">--------------------</option>
                                 {this.props.userData.allMentors.map(mentor => (
@@ -505,28 +520,30 @@ class ProtegeCallBtnContainer extends Component {
                                 ))}
                             </select>
                                 : <p style={{ fontSize: '8px' }}>You have note been assigned a Mentor yet!</p>}
-                        </div>
-                        <hr />
-                        {/* <hr /> */}
-                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '100px' }}>
+                            {/* </div> */}
+                            <hr />
+                            {/* <hr /> */}
+                            {/* <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '100px' }}> */}
                             <SourceSelector userData={this.props.userData} setParentState={this.props.setParentState} />
-                        </div>
-                        <hr />
-                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '100px' }}>
+                            {/* </div> */}
+                            <hr />
+                            {/* <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '100px' }}> */}
                             <TargetMarketSelector userData={this.props.userData} setParentState={this.props.setParentStateTargetMkt} />
-                        </div>
-                        <hr />
-                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '100px' }}>
-                            <p style={{ float: 'left', marginRight: 5 }}>Call Result <span style={{ fontSize: 10 }}>(required)</span></p>
+                            {/* </div> */}
+                            <hr />
+                            {/* <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '100px' }}> */}
+                            <label style={{ float: 'left', textAlign: 'right', marginRight: '15px', width: '200px', border: 'none' }}>Call Result <span style={{ fontSize: 10 }}>(required)</span></label>
                             <select id="" className="" value={this.state.callResult} onChange={this.handleInputChange} name="callResult">
                                 <option value="none">Select a Result</option>
                                 <option value="MissedCall">No Answer</option>
                                 <option value="Contacted">Contact, not scheduled</option>
                                 <option value="Scheduled">Contacted, scheduled</option>
                             </select>
+
+
                         </div>
+                        <button style={{ float: 'right' }} className="btn btn-success" onClick={this.handleCallSubmit}>Log Call</button>
                         <hr />
-                        <button style={{ width: '33%', marginLeft: 'auto', marginRight: '25%', float: 'right' }} className="btn btn-success" onClick={this.handleCallSubmit}>Log Call</button>
                     </form>
                 </div>
 
@@ -540,40 +557,28 @@ class ProtegeCallBtnContainer extends Component {
                 {/* <div className="card-body"> */}
 
                 <div className="form-group" id="appt-holder ">
-                    <Modal isOpen={this.state.modalIsOpen} onAfterOpen={this.afterOpenModal} onRequestClose={this.closeModal} style={this.customStyles} contentLabel="Your Request Viewer">
+                    <Modal isOpen={this.state.modalIsOpen} onAfterOpen={this.afterOpenModal} onRequestClose={this.closeModal}
+                        style={this.state.customStyles}
+                        contentLabel="Your Request Viewer"
+                    >
+
                         {/* <div className="card"> */}
-                        <p>Appointment Logger</p>
-                        <form className="form-group">
-                            <label for="apptname-input">Appointment Name:</label>
-                            <input id="apptname-input" className="form-control" value={this.state.apptname} onChange={this.handleInputChange} name="apptname" type="text" placeholder="Give your appointment a name!" />
 
-                            <label for="date-input">Date of Appointment:</label>
-                            <input id="date-input" className="form-control" value={this.state.apptdate} onChange={this.handleInputChange} name="apptdate" type="date" placeholder="Enter date for your appointment" />
-                            <br />
-                            <label>Lead Source:</label>
-                            {/* <input id="source-input" className="form-control" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource" type="text" placeholder="Source of Lead" /> */}
-                            {this.props.user.sources ? <select id="sourceDropMenu" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource">
-                                <option value={"none"}>No Lead Source Selected</option>
-                                {this.props.user.sources.map(source => (
-                                    <option key={source} value={source}>{source}</option>
-                                ))}
-                            </select> : <p>"No lead sources created yet"</p>}
 
-                            <br />
-                            <label>Target Market:</label>
-                            {/* <input id="targetmkt-input" className="form-control" value={this.state.apptTargetMkt} onChange={this.handleInputChange} name="appttargetmkt" type="text" placeholder="Target Market goes here" /> */}
-                            {this.props.user.targetMarkets ? <select id="sourceDropMenu" value={this.state.appttargetmkt} onChange={this.handleInputChange} name="appttargetmkt">
-                                <option value={"none"}>No Target Market Selected</option>
-                                {this.props.user.targetMarkets.map(target => (
-                                    <option key={target} value={target}>{target}</option>
-                                ))}
-                            </select> : <p>"No target markets created yet"</p>}
-                            <br />
-                            <label for="note-input">Appointment Notes:</label>
-                            <input id="note-input" className="form-control" value={this.state.apptnotes} onChange={this.handleInputChange} name="apptnotes" type="text" placeholder="Enter any notes..." />
-                            <br />
-                            <button id="appt-input-btn" className="btn-success form-control" onClick={this.handleApptSubmit}>Submit Appointment</button>
-                        </form>
+
+
+                        <AppointmentCreator
+                            userID={this.props.userID}
+                            username={this.props.username}
+                            rerender={this.props.rerender}
+                            userData={this.props.userData}
+                            mentors={this.props.mentors}
+                            showAppt={true}
+                        />
+
+
+
+
                         {/* </div> */}
                     </Modal>
                 </div>
