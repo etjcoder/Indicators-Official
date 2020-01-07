@@ -133,20 +133,20 @@ class AppointmentCreator extends Component {
                         <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}>
 
 
-                        <label>Type: </label>
+                        <label>Type : </label>
                             <select id="mentorDropMenu" className="" value={this.state.type} onChange={this.handleInputChange} name="type" type="text">
-                                <option value="CPD">Cashflow Prospect</option>
-                                <option value="BPD">Businessowner Prospect</option>
-                                <option value="CCD">Cashflow Client</option>
-                                <option value="BCD">Businessowner Client</option>
-                                <option value="CND">Cashflow Natural Mkt</option>
-                                <option value="BND">Business Natural Mkt</option>
-                                <option value="CSD">Cashflow Suspect</option>
-                                <option value="BSD">Business Suspect</option>
-                                <option value="CRD">Cashflow Referral</option>
-                                <option value="BRD">Business Referral</option>
-                                <option value="CTD">Cashflow Target Market</option>
-                                <option value="BTD">Business Target</option>
+                                <option value="CPD">Standard Prospect</option>
+                                <option value="CCD">Standard Client</option>
+                                <option value="CND">Standard Natural</option>
+                                <option value="CSD">Standard Suspect</option>
+                                <option value="CRD">Standard Referral</option>
+                                <option value="CTD">Standard Target</option>
+                                <option value="BPD">Tier-1 Prospect</option>
+                                <option value="BCD">Tier-1 Client</option>
+                                <option value="BND">Tier-1 Natural</option>
+                                <option value="BSD">Tier-1 Suspect</option>
+                                <option value="BRD">Tier-1 Referral</option>
+                                <option value="BTD">Tier-1 Target</option>
                             </select>
                             <br />
                         {/* </div> */}
@@ -154,22 +154,22 @@ class AppointmentCreator extends Component {
                
                         {/* <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}> */}
 
-                            <label>Name:</label>
+                            <label>Name :</label>
                             <input id="apptname-input" className="form-control" value={this.state.apptname} onChange={this.handleInputChange} name="apptname" type="text" placeholder="Give your appointment a name!" />
                         {/* </div> */}
                       
                         {/* <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}> */}
                         <br />
-                            <label>Date:</label>
+                            <label>Date :</label>
                             <input id="date-input" className="form-control" value={this.state.apptdate} onChange={this.handleInputChange} name="apptdate" type="date" placeholder="Enter date for your appointment" />
                         {/* </div> */}
                         <br />
                         {/* <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}> */}
-                            <label>Mentor: </label>
+                            <label>Mentor : </label>
                             
                             {this.props.mentors ? 
                             <select id="mentorDropMenu" className="" value={this.props.apptTagged} onChange={this.handleInputChange} name="apptTagged">
-                                <option value={"none"}>-----------Tag Mentor------------</option>
+                                <option value={"none"}>None Selected</option>
                                 {this.props.mentors.map(mentor => (
                                     <option key={mentor._id} value={mentor._id}>{mentor.firstName} {mentor.lastName}</option>
                                 ))}
@@ -180,10 +180,10 @@ class AppointmentCreator extends Component {
                 
                         {/* <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}> */}
 
-                            <label>Referrer: </label>
+                            <label>Referrer : </label>
                             {/* <input id="source-input" className="form-control" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource" type="text" placeholder="Source of Lead" /> */}
                             {this.props.userData.sources ? <select id="sourceDropMenu" className="" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource">
-                                <option value={"none"}>No Lead Source Selected</option>
+                                <option value={"none"}>None Selected</option>
                                 {this.props.userData.sources.map(source => (
                                     <option key={source} value={source}>{source}</option>
                                 ))}
@@ -192,10 +192,10 @@ class AppointmentCreator extends Component {
                                     <br />
                         {/* <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}> */}
 
-                            <label>Industry: </label>
+                            <label>Industry : </label>
                             {/* <input id="targetmkt-input" className="form-control" value={this.state.apptTargetMkt} onChange={this.handleInputChange} name="appttargetmkt" type="text" placeholder="Target Market goes here" /> */}
                             {this.props.userData.targetMarkets ? <select id="sourceDropMenu" className="" value={this.state.appttargetmkt} onChange={this.handleInputChange} name="appttargetmkt">
-                                <option value={"none"}>No Target Market Selected</option>
+                                <option value={"none"}>None Selected</option>
                                 {this.props.userData.targetMarkets.map(target => (
                                     <option key={target} value={target}>{target}</option>
                                 ))}
@@ -205,7 +205,7 @@ class AppointmentCreator extends Component {
               
                         {/* <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}> */}
 
-                            <label>Notes:</label>
+                            <label>Notes :</label>
                             <input id="note-input" className="form-control" value={this.state.apptnotes} onChange={this.handleInputChange} name="apptnotes" type="text" placeholder="Enter any notes..." />
                         </div>
                         <br />
