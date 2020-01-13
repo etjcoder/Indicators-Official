@@ -19,6 +19,7 @@ module.exports = {
         console.log("Finding appointments...")
         db.Appointments
             .find({protege: req.params.id})
+            .sort({date: -1})
             .then(dbAppt => res.json(dbAppt))
             .catch(err => res.json(422).json(err))
     },

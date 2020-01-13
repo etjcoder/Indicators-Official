@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import cogoToast from "cogo-toast";
 import Modal from "react-modal"
+import { mergeEventStores } from "@fullcalendar/core";
 
 
 
@@ -13,7 +14,8 @@ class AppointmentItem extends Component {
         apptsource: "",
         apptnotes: "",
         apptdate: "",
-        appttargetmkt: ""
+        appttargetmkt: "",
+        mentorTagged: ""
     }
 
     componentDidMount() {
@@ -27,6 +29,37 @@ class AppointmentItem extends Component {
             appttargetmkt: this.props.targetMarket
         })
 
+        setTimeout(() => { this.setMentorName() }, 1000);
+
+    }
+
+    setMentorName = () => {
+
+        var mentorName = "";
+
+        for (var i = 0; i < this.props.mentors.length; i++) {
+            if (this.props.mentor === this.props.mentors[i]._id) {
+                mentorName = this.props.mentors[i].firstName + " " + this.props.mentors[i].lastName;
+                console.log("Looped Mentor Name:" + mentorName);
+                this.setMentorTag(mentorName)
+            }
+        }
+
+        // setTimeout(() => { 
+
+        //     this.setState({
+        //         mentorName: mentorName
+        //     })
+
+        // }, 1000);
+
+    }
+
+    setMentorTag = (mentor) => {
+        console.log("Setting Mentor with: " + mentor);
+        this.setState({
+            mentorTagged: mentor
+        })
     }
 
     handleInputChange = event => {
@@ -101,33 +134,39 @@ class AppointmentItem extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <div style={{ height: '', padding: '0 10% 0 10%', textAlign: 'left', backgroundColor: 'rgba(255, 255, 255,0.75)', overflow: 'auto', borderRadius: 5 }}>
                     <br />
                     <h4 style={{ textAlign: 'center' }}>{this.state.apptname}</h4>
-                    <h6 style={{textAlign: 'center' }}>{this.state.apptdate}</h6>
+                    <h6 style={{ textAlign: 'center' }}>{this.state.apptdate}</h6>
                     <hr /> <hr />
 
-                    <p>Notes: {this.state.apptnotes}</p>
-                    <p>Source: {this.state.apptsource}</p>
-                    <p>type:
-                    {this.props.type === "CPD" ? <p>Cashflow Prospect</p> : null}
-                        {this.props.type === "BPD" ? <p>Businessowner Prospect</p> : null}
-                        {this.props.type === "CCD" ? <p>Cashflow Delegated Client</p> : null}
-                        {this.props.type === "BCD" ? <p>Businessowner Delegated Client</p> : null}
-                        {this.props.type === "CND" ? <p>Cashflow Natural Market</p> : null}
-                        {this.props.type === "BND" ? <p>Businessowner Natural Market</p> : null}
-                        {this.props.type === "CSD" ? <p>Cashflow Vertical/Orphan</p> : null}
-                        {this.props.type === "BSD" ? <p>Businessowner Vertical/Orphan</p> : null}
-                        {this.props.type === "CRD" ? <p>Cashflow Referral</p> : null}
-                        {this.props.type === "BRD" ? <p>Businessowner Referral"</p> : null}
-                        {this.props.type === "CTD" ? <p>Cashflow Target Industry</p> : null}
-                        {this.props.type === "BTD" ? <p>Businessowner Target Industry</p> : null}
-                    </p>
+                    <button value={this.props.id} onClick={this.deleteAppt} className="btn btn-danger btn-sm" style={{ float: 'right' }}>X</button>
+                    <button value={this.props.id} onClick={this.prepEditModal} className="btn btn-info btn-sm" style={{ float: 'right' }}>Edit</button>
+                    <br />
+
+                    <div className="card bg-dark" style={{ padding: '20px', clear: 'both' }}>
+                        <p style={{ color: 'white' }}>Notes: {this.state.apptnotes}</p>
+                    </div>
+                    <div className="card" style={{ padding: '20px' }}>
+                        <p style={{ fontSize: '14px', width: '50%', float: 'left' }}>Mentor: {this.state.mentorTagged}</p>
+                        <p style={{ fontSize: '14px', width: '50%', float: 'right' }}>Type:
+                    {this.props.type === "CPD" ? <span> Cashflow Prospect</span> : null}
+                            {this.props.type === "BPD" ? <span> Businessowner Prospect</span> : null}
+                            {this.props.type === "CCD" ? <span> Cashflow Delegated Client</span> : null}
+                            {this.props.type === "BCD" ? <span> Businessowner Delegated Client</span> : null}
+                            {this.props.type === "CND" ? <span> Cashflow Natural Market</span> : null}
+                            {this.props.type === "BND" ? <span> Businessowner Natural Market</span> : null}
+                            {this.props.type === "CSD" ? <span> Cashflow Vertical/Orphan</span> : null}
+                            {this.props.type === "BSD" ? <span> Businessowner Vertical/Orphan</span> : null}
+                            {this.props.type === "CRD" ? <span> Cashflow Referral</span> : null}
+                            {this.props.type === "BRD" ? <span> Businessowner Referral"</span> : null}
+                            {this.props.type === "CTD" ? <span> Cashflow Target Industry</span> : null}
+                            {this.props.type === "BTD" ? <span> Businessowner Target Industry</span> : null}
+                        </p>
+                    </div>
                     <hr />
-                    <button value={this.props.id} onClick={this.prepEditModal} className="btn btn-outline-info btn-sm" style={{ float: 'right' }}>Edit</button>
-                        <button value={this.props.id} onClick={this.deleteAppt} className="btn btn-outline-danger btn-sm" style={{ float: 'right' }}>Delete</button>
-                    
+
                 </div>
 
 

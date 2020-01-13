@@ -909,11 +909,11 @@ class ProtegeDash extends Component {
                                             />
                                         </div>
                                         <div className="col-12">
-                                            <div className="card col-12" style={{ marginBottom: '10px', marginTop: '10px', textAlign: "left", padding: 10, height: '', overflow: 'auto', backgroundColor: 'rgba(36,138,255,0.8)' }}>
+                                            <div className="card" style={{ marginBottom: '10px', marginTop: '10px', textAlign: "left", padding: 10, height: '', overflow: 'auto', backgroundColor: 'rgba(36,138,255,0.8)' }}>
 
                                                 <h4 style={{ textAlign: 'center', padding: '10%', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px' }}>Appointment Manager
                                                 <br />
-                                                    <span button className="btn btn-sm btn-outline-dark" onClick={this.showApptViewer}>Quick Show</span><span button className="btn btn-sm btn-outline-dark" onClick={this.showApptForm}>Show Full</span></h4>
+                                                    <span button className="btn btn-sm btn-outline-dark" onClick={this.showApptViewer}>Show</span></h4>
 
                                                 {this.state.showApptViewer ?
                                                     <div>
@@ -926,6 +926,7 @@ class ProtegeDash extends Component {
                                                                                 key={appt._id}
                                                                                 id={appt._id}
                                                                                 apptname={appt.apptname}
+                                                                                mentor={appt.mentor}
                                                                                 type={appt.type}
                                                                                 held={appt.held}
                                                                                 sold={appt.sold}
@@ -972,9 +973,10 @@ class ProtegeDash extends Component {
                                         </div>
 
                                         <div className="col-12">
-                                            <div className="card" style={{ textAlign: "center", margin: 20, padding: 40, height: 1000, overflow: 'auto', backgroundColor: 'rgba(114,180,255,0.8)' }}>
-                                                <h4 style={{ color: 'whitesmoke' }}>Your Sales</h4>
-                                                {this.state.sales ? <div>
+                                            <div className="card" style={{ marginBottom: '10px', marginTop: '10px', textAlign: "left", padding: 10, height: '', overflow: 'auto', backgroundColor: 'rgba(36,138,255,0.8)' }}>
+                                                <h4 style={{ textAlign: 'center', padding: '10%', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px' }}>Your Sales</h4>
+                                                {this.state.sales ? 
+                                                <div style={{height: '400px', overflow: 'auto'}}>
                                                     {this.state.sales.map(sale => (
                                                         <SalesItem
                                                             key={sale._id}
