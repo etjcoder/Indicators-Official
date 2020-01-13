@@ -66,12 +66,13 @@ class SourceCreator extends Component {
             <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '' }}>
                 {/* {this.state.showCreateSource ? */}
                 <div>
-                    <div style={{ textAlign: 'center' }}>
-                        <form>
-                            <input value={this.state.source} onChange={this.handleInputChange} name="source" placeholder="Create Referrer/Source" />
-                        </form>
-                        <button style={{}} id="admin-createCategoryBtn" className="btn-outline-dark btn" onClick={this.handleFormSubmit}>Create</button>
+                    <div className="input-group">
 
+                    <label style={{}}><u>Lead Sources:</u></label>
+                        <form style={{width: '', margin: '0'}}>
+                            <input value={this.state.source} onChange={this.handleInputChange} className="input-group" name="source" placeholder="Referrer/Source" />
+                            <button style={{}} id="admin-createCategoryBtn" className="btn-outline-dark btn btn-sm" onClick={this.handleFormSubmit}>Save</button>
+                        </form>
                     </div>
                     {/* List of Existing Sources */}
                     {this.state.showExistingSources ?

@@ -485,7 +485,7 @@ class ProtegeCallBtnContainer extends Component {
             <div className="row">
                 <div className="card col-12" id="prospect" style={{ textAlign: 'left', backgroundColor: 'rgba(36,138,255,0.8)' }}>
                     <form>
-                        <h2 style={{ textAlign: 'center', padding: '20px', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', borderRadius: '10px' }}>Call Logger</h2>
+                        <h2 style={{ textAlign: 'center', padding: '20px', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', borderRadius: '10px' }}>I N D I C A T O R S</h2>
                         <hr />
                         <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '', border: 'none' }}>
                             <label style={{ float: 'left', textAlign: 'right', marginRight: '15px', width: '200px' }}>Type of Call <span style={{ fontSize: 10 }}>(required)  </span>  </label>

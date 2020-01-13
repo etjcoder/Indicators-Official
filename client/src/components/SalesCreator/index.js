@@ -129,78 +129,84 @@ class SalesCreator extends Component {
 
     render() {
         return (
-            <div className="card" id="sale-creator">
-                <h4 style={{color: 'whitesmoke'}}>Create Sale <span><button className="btn btn-sm btn-outline-light" onClick={this.showSaleForm}>Show</button></span></h4>
+            <div className="card col-12" id="sale-creator" style={{ textAlign: 'left', backgroundColor: 'rgba(36,138,255,0.8)', padding: '0' }}>
+                <h4 style={{ textAlign: 'center', padding: '10%', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px' }}>Create Sale 
+                <br /> <button className="btn btn-sm btn-outline-dark" onClick={this.showSaleForm}>Show</button></h4> 
+                
+
+
                 <hr />
-                {this.state.showSale ? 
-                <div>
-                <form className="form-group">
-                    <label><p style={{ color: 'whitesmoke' }}>Type of Sale</p></label>
-                    <select className="custom-select my-1 mr-sm-2" value={this.state.saleType} className="customDrop" onChange={this.handleInputChange} name="saleType" type="text" placeholder="Choose Client type">
-                        <option value="CPD">Cashflow Prospect</option>
-                        <option value="BPD">Businessowner Prospect</option>
-                        <option value="CCD">Cashflow Client</option>
-                        <option value="BCD">Businessowner Client</option>
-                        <option value="CND">Cashflow Natural Mkt</option>
-                        <option value="BND">Business Natural Mkt</option>
-                    </select>
-                    <hr />
+                {this.state.showSale ?
+                    <div style={{ padding: '10px', height: '400px', overflow: 'auto' }}>
+                        <form className="">
+                            <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}>
 
-                    <label><p style={{ color: 'whitesmoke' }}>Sale Name:</p></label>
-                    <input id="apptname-input" className="form-control sale-input" value={this.state.saleName} onChange={this.handleInputChange} name="saleName" type="text" placeholder="Give your Sale a name!" />
+                                <label>Type:</label>
+                                <select className="custom-select my-1 mr-sm-2" value={this.state.saleType} className="" onChange={this.handleInputChange} name="saleType" type="text" placeholder="Choose Client type">
+                                    <option value="CPD">Cashflow Prospect</option>
+                                    <option value="BPD">Businessowner Prospect</option>
+                                    <option value="CCD">Cashflow Client</option>
+                                    <option value="BCD">Businessowner Client</option>
+                                    <option value="CND">Cashflow Natural Mkt</option>
+                                    <option value="BND">Business Natural Mkt</option>
+                                </select>
+                                <hr />
 
-                    <hr />
-                    <label><p style={{ color: 'whitesmoke' }}>Product Sold:</p></label>
-                    <input id="product-sold" className="form-control sale-input" value={this.state.saleProduct} onChange={this.handleInputChange} name="saleProduct" type="text" placeholder="Type of product sold" />
-                    <hr />
-                    <label><p style={{ color: 'whitesmoke' }}>Date of Sale:</p></label>
-                    <input id="date-input" className="form-control sale-input" value={this.state.saleDate} onChange={this.handleInputChange} name="saleDate" type="date" placeholder="Enter date for your appointment" />
-                    <hr />
-                    <label><p style={{ color: 'whitesmoke' }}>Mentor Tagged</p></label>
-                    {this.props.mentors ? <select id="mentorDropMenu" value={this.state.saleTagged} className="customDrop" onChange={this.handleInputChange} name="saleTagged">
-                        <option value={"none"}>--Tag Mentor--</option>
-                        {this.props.mentors.map(mentor => (
-                            <option key={mentor._id} value={mentor._id}>{mentor.firstName} {mentor.lastName}</option>
-                        ))}
-                    </select> : null}
-                    <hr />
-                    <label><p style={{ color: 'whitesmoke' }}>Sales Commission [only enter numbers]</p></label>
-                    <input id="saleCommission" className="form-control sale-input" value={this.state.saleCommission} onChange={this.handleInputChange} name="saleCommission" />
-                    <hr />
-                    <label><p style={{ color: 'whitesmoke' }}>Your Percentage [only enter numbers]</p></label>
-                    <input id="salePercentage" className="form-control sale-input" value={this.state.salePercentage} onChange={this.handleInputChange} name="salePercentage" />
-                    <hr />
-                    <label><p style={{ color: 'whitesmoke' }}>Mentor Percentage [only enter numbers]</p></label>
-                    <input id="taggedPercentage" className="form-control sale-input" value={this.state.saleTaggedPercentage} onChange={this.handleInputChange} name="saleTaggedPercentage" />
+                                <label>Sale Name:</label>
+                                <input id="apptname-input" className="form-control" value={this.state.saleName} onChange={this.handleInputChange} name="saleName" type="text" placeholder="Give your Sale a name!" />
 
-                    <hr />
-                    <label><p style={{ color: 'whitesmoke' }}>Lead Source:</p></label>
-                    {/* <input id="source-input" className="form-control" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource" type="text" placeholder="Source of Lead" /> */}
-                    {this.props.userData.sources ? <select id="sourceDropMenu" value={this.state.saleSource} className="customDrop" onChange={this.handleInputChange} name="saleSource">
-                        <option value={"none"}>No Lead Source Selected</option>
-                        {this.props.userData.sources.map(source => (
-                            <option key={source} value={source}>{source}</option>
-                        ))}
-                    </select> : <p style={{ color: 'whitesmoke' }}>"No lead sources created yet"</p>}
+                                <hr />
+                                <label>Product Sold:</label>
+                                <input id="product-sold" className="form-control" value={this.state.saleProduct} onChange={this.handleInputChange} name="saleProduct" type="text" placeholder="Type of product sold" />
+                                <hr />
+                                <label>Date of Sale:</label>
+                                <input id="date-input" className="form-control" value={this.state.saleDate} onChange={this.handleInputChange} name="saleDate" type="date" placeholder="Enter date for your appointment" />
+                                <hr />
+                                <label>Mentor Tagged</label>
+                                {this.props.mentors ? <select id="mentorDropMenu" value={this.state.saleTagged} className="" onChange={this.handleInputChange} name="saleTagged">
+                                    <option value={"none"}>--Tag Mentor--</option>
+                                    {this.props.mentors.map(mentor => (
+                                        <option key={mentor._id} value={mentor._id}>{mentor.firstName} {mentor.lastName}</option>
+                                    ))}
+                                </select> : null}
+                                <hr />
+                                <label>Sales Commission [only enter numbers]</label>
+                                <input id="saleCommission" className="form-control" value={this.state.saleCommission} onChange={this.handleInputChange} name="saleCommission" />
+                                <hr />
+                                <label>Your Percentage [only enter numbers]</label>
+                                <input id="salePercentage" className="form-control" value={this.state.salePercentage} onChange={this.handleInputChange} name="salePercentage" />
+                                <hr />
+                                <label>Mentor Percentage [only enter numbers]</label>
+                                <input id="taggedPercentage" className="form-control" value={this.state.saleTaggedPercentage} onChange={this.handleInputChange} name="saleTaggedPercentage" />
 
-                    <hr />
-                    <label><p style={{ color: 'whitesmoke' }}>Target Market:</p></label>
-                    {/* <input id="targetmkt-input" className="form-control" value={this.state.apptTargetMkt} onChange={this.handleInputChange} name="appttargetmkt" type="text" placeholder="Target Market goes here" /> */}
-                    {this.props.userData.targetMarkets ? <select id="sourceDropMenu" value={this.state.saleTargetMkt} className="customDrop" onChange={this.handleInputChange} name="saleTargetMkt">
-                        <option value={"none"}>No Target Market Selected</option>
-                        {this.props.userData.targetMarkets.map(target => (
-                            <option key={target} value={target}>{target}</option>
-                        ))}
-                    </select> : <p style={{ color: 'whitesmoke' }}>"No target markets created yet"</p>}
-                    <hr />
-                    <label><p style={{ color: 'whitesmoke' }}>Sales Notes:</p></label>
-                    <input id="note-input" className="form-control" value={this.state.saleNotes} onChange={this.handleInputChange} name="saleNotes" type="text" placeholder="Enter any notes here" />
-                    <br />
-                    <button id="appt-input-btn" className="btn-success form-control" onClick={this.handleSaleSubmit}>Submit Sale</button>
+                                <hr />
+                                <label>Lead Source:</label>
+                                {/* <input id="source-input" className="form-control" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource" type="text" placeholder="Source of Lead" /> */}
+                                {this.props.userData.sources ? <select id="sourceDropMenu" value={this.state.saleSource} className="" onChange={this.handleInputChange} name="saleSource">
+                                    <option value={"none"}>No Lead Source Selected</option>
+                                    {this.props.userData.sources.map(source => (
+                                        <option key={source} value={source}>{source}</option>
+                                    ))}
+                                </select> : <p style={{ color: 'whitesmoke' }}>"No lead sources created yet"</p>}
 
-                </form>
-                </div>
-                : null}
+                                <hr />
+                                <label>Target Market:</label>
+                                {/* <input id="targetmkt-input" className="form-control" value={this.state.apptTargetMkt} onChange={this.handleInputChange} name="appttargetmkt" type="text" placeholder="Target Market goes here" /> */}
+                                {this.props.userData.targetMarkets ? <select id="sourceDropMenu" value={this.state.saleTargetMkt} className="" onChange={this.handleInputChange} name="saleTargetMkt">
+                                    <option value={"none"}>No Target Market Selected</option>
+                                    {this.props.userData.targetMarkets.map(target => (
+                                        <option key={target} value={target}>{target}</option>
+                                    ))}
+                                </select> : <p style={{ color: 'black' }}>"No target markets created yet"</p>}
+                                <hr />
+                                <label>Sales Notes:</label>
+                                <input id="note-input" className="form-control" value={this.state.saleNotes} onChange={this.handleInputChange} name="saleNotes" type="text" placeholder="Enter any notes here" />
+                                <br />
+                                <button id="appt-input-btn" className="btn-success form-control" onClick={this.handleSaleSubmit}>Submit Sale</button>
+                            </div>
+                        </form>
+                    </div>
+                    : null}
             </div>
         )
 

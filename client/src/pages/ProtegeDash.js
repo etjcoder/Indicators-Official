@@ -782,17 +782,17 @@ class ProtegeDash extends Component {
 
                             {this.state.showCreate ?
                                 <div className="col card" style={{ padding: '50px', backgroundColor: 'rgba(77,160,255,0.80)', color: 'whitesmoke' }}>
-                                    <h2 style={{ textAlign: 'center', padding: '20px', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px', borderRadius: '10px' }}>Creation Tool</h2>
+                                    <h2 style={{ textAlign: 'center', padding: '20px', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px', borderRadius: '10px' }}>C R E A T E</h2>
                                     <div className="row">
 
-                                        <div className="col-12" style={{ padding: '2%' }}>
-                                            <p></p>
+                                        <div className="col-md-6" style={{ padding: '2%', textAlign: 'center' }}>
+                                            {/* <p>Lead Source Creation:</p> */}
                                             <SourceCreator userData={this.state.userData} />
                                             {/* Add a View/Edit Source option */}
                                             <hr />
                                         </div>
-                                        <div className="col-12" style={{ padding: '2%' }}>
-                                            <p></p>
+                                        <div className="col-md-6" style={{ padding: '2%', textAlign: 'center' }}>
+                                            {/* <p>Target Market Creation:</p> */}
                                             <TargetMarketCreator userData={this.state.userData} />
                                             {/* Add a View/Edit Target Market option */}
                                         </div>

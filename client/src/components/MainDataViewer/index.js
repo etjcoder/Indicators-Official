@@ -1249,7 +1249,8 @@ class MainDataViewer extends Component {
     render() {
         return (
             // <div className="card" id="main-analytics">
-            <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '5%', borderRadius: '30px' }}>
+
+            <div className="container" style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '5%', borderRadius: '30px' }}>
                 <h1 style={{ textAlign: 'center', color: 'black' }}><u>Analytics</u></h1>
                 <hr />
                 {/* <button style={{ width: '30%', float: 'left' }} className="btn btn-success" onClick={this.viewDialChart}>Dials: {this.props.dialData.length}</button>
@@ -1267,72 +1268,83 @@ class MainDataViewer extends Component {
                 <button style={{ width: '33%', marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewSuspectPerformance}>Suspect Call Performance</button>
                 <button style={{ width: '33%', marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewReferralPerformance}>Referral Call Performance</button>
                 <button style={{ width: '33%', marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewTargetPerformance}>Target Market Call Performance</button> */}
+                <div className="row">
+                    <div className="col-lg-6">
+                        <form>
+                            <div style={{ textAlign: 'center' }}>
+                                <p style={{ textAlign: 'center' }}>View Types of Calls Made</p>
+                                <select id="sourceDropMenu" className="" value={this.state.dataOption} onChange={this.handleInputChange} name="dataOption">
+                                    <option value={"none"}>------------------------------------------------------------</option>
+                                    <option value={"genDials"}>Dials</option>
+                                    <option value={"genContacts"}>Contacts</option>
+                                    <option value={"genAppts"}>Appointments</option>
+                                    <option value={"cfDials"}>Standard Dials Data</option>
+                                    <option value={"cfContacts"}>Standard Contact Data</option>
+                                    <option value={"cfAppts"}>Standard Appointment Data</option>
+                                    <option value={"boDials"}>Tier-1 Dial Data</option>
+                                    <option value={"boContacts"}>Tier-1 Contact Data</option>
+                                    <option value={"boAppts"}>Tier-1 Appointment Data</option>
+                                </select>
+                                <button className="btn-outline-dark btn-sm btn" onClick={this.showDataOption}>Generate</button>
 
-                <form>
-                    <div style={{ textAlign: 'center' }}>
-                        <p style={{ textAlign: 'center' }}>View Basic Call Result Reports</p>
-                        <select id="sourceDropMenu" className="" value={this.state.dataOption} onChange={this.handleInputChange} name="dataOption">
-                            <option value={"none"}>------------------------------------------------------------</option>
-                            <option value={"genDials"}>Dials</option>
-                            <option value={"genContacts"}>Contacts</option>
-                            <option value={"genAppts"}>Appointments</option>
-                            <option value={"cfDials"}>Standard Dials Data</option>
-                            <option value={"cfContacts"}>Standard Contact Data</option>
-                            <option value={"cfAppts"}>Standard Appointment Data</option>
-                            <option value={"boDials"}>Tier-1 Dial Data</option>
-                            <option value={"boContacts"}>Tier-1 Contact Data</option>
-                            <option value={"boAppts"}>Tier-1 Appointment Data</option>
-                        </select>
-                        <button className="btn-outline-dark btn-sm btn" onClick={this.showDataOption}>Generate</button>
+                            </div>
 
+                        </form>
                     </div>
 
-                </form>
-
-                <form>
-                    <div style={{ textAlign: 'center' }}>
-                        <p style={{ textAlign: 'center' }}>View Performance of Type of Lead</p>
-                        <select id="sourceDropMenu" className="" value={this.state.categoryOption} onChange={this.handleInputChange} name="categoryOption">
-                            <option value={"none"}>------------------------------------------------------------</option>
-                            <option value={"pData"}>Warm Leads/ Prospects</option>
-                            <option value={"cData"}>Delegated Clients</option>
-                            <option value={"nData"}>Natural Market</option>
-                            <option value={"sData"}>Verticals / Orphans</option>
-                            <option value={"rData"}>New Referrals</option>
-                            <option value={"tData"}>Targeted Industries</option>
-                        </select>
-                        <button className="btn-outline-dark btn-sm btn" onClick={this.showCategoryOption}>Generate</button>
+                    <div className="col-lg-6">
+                        <form>
+                            <div style={{ textAlign: 'center' }}>
+                                <p style={{ textAlign: 'center' }}>View Performance by Type of Call</p>
+                                <select id="sourceDropMenu" className="" value={this.state.categoryOption} onChange={this.handleInputChange} name="categoryOption">
+                                    <option value={"none"}>------------------------------------------------------------</option>
+                                    <option value={"pData"}>Warm Leads/ Prospects</option>
+                                    <option value={"cData"}>Delegated Clients</option>
+                                    <option value={"nData"}>Natural Market</option>
+                                    <option value={"sData"}>Verticals / Orphans</option>
+                                    <option value={"rData"}>New Referrals</option>
+                                    <option value={"tData"}>Targeted Industries</option>
+                                </select>
+                                <button className="btn-outline-dark btn-sm btn" onClick={this.showCategoryOption}>Generate</button>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </div>
 
                 {/* Target Market and Lead Source Selectors */}
-                <form>
-                    {this.props.userData.sources ?
-                        <div style={{ textAlign: 'center' }}>
-                            <p style={{ textAlign: 'center' }}> View Efficiency of Referral Sources</p>
-                            <select id="sourceDropMenu" className="" value={this.state.leadSource} onChange={this.handleInputChange} name="leadSource">
-                                <option value={"none"}>------------------------------------------------------------</option>
-                                {this.props.userData.sources.map(source => (
-                                    <option key={source} value={source}>{source}</option>
-                                ))}
-                            </select>
-                            <button className="btn-outline-dark btn-sm btn" onClick={this.gatherSourceData}>Generate</button>
-                        </div>
-                        : null}
-                </form>
+                <div className="row">
+                    <div className="col-lg-6">
+                        <form>
+                            {this.props.userData.sources ?
+                                <div style={{ textAlign: 'center' }}>
+                                    <p style={{ textAlign: 'center' }}> View Performance by Referral Source</p>
+                                    <select id="sourceDropMenu" className="" value={this.state.leadSource} onChange={this.handleInputChange} name="leadSource">
+                                        <option value={"none"}>------------------------------------------------------------</option>
+                                        {this.props.userData.sources.map(source => (
+                                            <option key={source} value={source}>{source}</option>
+                                        ))}
+                                    </select>
+                                    <button className="btn-outline-dark btn-sm btn" onClick={this.gatherSourceData}>Generate</button>
+                                </div>
+                                : null}
+                        </form>
+                    </div>
 
-                <form>
-                    {this.props.userData.targetMarkets ?
-                        <div style={{ textAlign: 'center' }}>
-                            <p style={{ textAlign: 'center' }}> View Efficiency of Target Industry</p>
-                            <select id="sourceDropMenu" className="" value={this.state.targetMarket} onChange={this.handleInputChange} name="targetMarket">
-                                <option value={"none"}>------------------------------------------------------------</option>
-                                {this.props.userData.targetMarkets.map(target => (
-                                    <option key={target} value={target}>{target}</option>
-                                ))}
-                            </select> <button className="btn-outline-dark btn-sm btn" onClick={this.gatherTargetData}>Generate</button>
-                        </div> : null}
-                </form>
+                    <div className="col-lg-6">
+                        <form>
+                            {this.props.userData.targetMarkets ?
+                                <div style={{ textAlign: 'center' }}>
+                                    <p style={{ textAlign: 'center' }}> View Performance by Target Industry</p>
+                                    <select id="sourceDropMenu" className="" value={this.state.targetMarket} onChange={this.handleInputChange} name="targetMarket">
+                                        <option value={"none"}>------------------------------------------------------------</option>
+                                        {this.props.userData.targetMarkets.map(target => (
+                                            <option key={target} value={target}>{target}</option>
+                                        ))}
+                                    </select> <button className="btn-outline-dark btn-sm btn" onClick={this.gatherTargetData}>Generate</button>
+                                </div> : null}
+                        </form>
+                    </div>
+                </div>
 
 
                 {/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1778,7 +1790,7 @@ class MainDataViewer extends Component {
                                     }]
                                 }} /> </div>
                             <br />
-                            <div style={{ width: '80%', marginLeft: '10%',  backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
                                 <Pie data={{
                                     labels: [
                                         "Cashflow Prospect",
@@ -1826,7 +1838,7 @@ class MainDataViewer extends Component {
                     this.state.showBusinessDials ?
                         <div style={{ textAlign: 'center', color: 'black' }}>
                             <h3><u>Dial Data:</u></h3>
-                            <div style={{width: '80%', marginLeft: '10%',  backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
                                 <Bar data={{
                                     labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                                     datasets: [{
@@ -1857,7 +1869,7 @@ class MainDataViewer extends Component {
                                     }]
                                 }} /> </div>
                             <br />
-                            <div style={{width: '80%', marginLeft: '10%',  backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
                                 <Pie data={{
                                     labels: [
                                         "Business Prospect",
@@ -1903,7 +1915,7 @@ class MainDataViewer extends Component {
                     this.state.showBusinessContacts ?
                         <div style={{ textAlign: 'center', color: 'black' }}>
                             <h3><u>Contact Data:</u></h3>
-                            <div style={{width: '80%', marginLeft: '10%',  backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
                                 <Bar data={{
                                     labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                                     datasets: [{
@@ -1934,7 +1946,7 @@ class MainDataViewer extends Component {
                                     }]
                                 }} /> </div>
                             <br />
-                            <div style={{width: '80%', marginLeft: '10%',  backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
                                 <Pie data={{
                                     labels: [
                                         "Business Prospect",
@@ -1981,7 +1993,7 @@ class MainDataViewer extends Component {
                     this.state.showBusinessAppts ?
                         <div style={{ textAlign: 'center', color: 'black' }}>
                             <h3><u>Appointment Data:</u></h3>
-                            <div style={{width: '80%', marginLeft: '10%',  backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
                                 <Bar data={{
                                     labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                                     datasets: [{
@@ -2012,7 +2024,7 @@ class MainDataViewer extends Component {
                                     }]
                                 }} /> </div>
                             <br />
-                            <div style={{width: '80%', marginLeft: '10%',  backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
                                 <Pie data={{
                                     labels: [
                                         "Business Prospect",
@@ -2567,7 +2579,6 @@ class MainDataViewer extends Component {
 
                             <div>
                                 <h3><u> {this.state.leadSource} Types of Calls</u></h3>
-                                <p>Dials: {this.state.sourceDialData.length}</p>
                                 {/* <Bar data={{
                                 labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                                 datasets: [{
@@ -2583,49 +2594,32 @@ class MainDataViewer extends Component {
                                         this.state.SCTDials + this.state.SBTDials],
                                 }]
                             }} /> */}
-                                <div className="card" style={{width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>                            
+                                <div className="card" style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                                    <p style={{ textAlign: 'center' }}>Total Dials: {this.state.sourceDialData.length}</p>
                                     <Pie data={{
                                         labels: [
-                                            "Cashflow Prospect",
-                                            "Business Prospect",
-                                            "Cashflow Client",
-                                            "Business Client",
-                                            "Cashflow Natural Market",
-                                            "Business Natural Market",
-                                            "Cashflow Suspect",
-                                            "Business Suspect",
-                                            "Cashflow Referral",
-                                            "Business Referral",
-                                            "Cashflow Target Market",
-                                            "Business Target Market"],
+                                            "Cashflow Leads",
+                                            "Tier-1 Leads"],
                                         datasets: [{
                                             data: [
-                                                this.state.SCPDials,
-                                                this.state.SBPDials,
-                                                this.state.SCCDials,
-                                                this.state.SBCDials,
-                                                this.state.SCNDials,
-                                                this.state.SBNDials,
-                                                this.state.SCSDials,
-                                                this.state.SBSDials,
-                                                this.state.SCRDials,
-                                                this.state.SBRDials,
+                                                this.state.SCPDials +
+                                                this.state.SCCDials +
+                                                this.state.SCNDials +
+                                                this.state.SCSDials +
+                                                this.state.SCRDials +
                                                 this.state.SCTDials,
+
+                                                this.state.SBPDials +
+                                                this.state.SBCDials +
+                                                this.state.SBNDials +
+                                                this.state.SBSDials +
+                                                this.state.SBRDials +
                                                 this.state.SBTDials
                                             ],
                                             backgroundColor: [
-                                                "#3ac178",
-                                                "#443959",
-                                                "#f99b17",
-                                                "#a2e505",
-                                                "#c9917f",
-                                                "#8d044b",
-                                                "#d2d93b",
-                                                "#dd4417",
-                                                "#5191d9",
-                                                "#483d28",
-                                                "#51aef7",
-                                                "#25517b"
+
+                                                "#25517b",
+                                                "#d2d93b"
                                             ]
                                         }]
                                     }} options={{
@@ -2752,11 +2746,10 @@ class MainDataViewer extends Component {
                 {
                     this.state.showSelectedTargetPerformance ?
                         <div style={{ textAlign: 'center' }}>
-
-                            <div className="card" style={{width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                            <h3><u>{this.state.targetMarket} Types of Calls</u></h3>
+                            <div className="card" style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
                                 <div>
-                                    <h3><u>{this.state.targetMarket} Types of Calls</u></h3>
-                                    <p>Total Dials: {this.state.targetDialData.length}</p>
+                                    <p style={{ textAlign: 'center' }}>Total Dials: {this.state.targetDialData.length}</p>
                                     {/* <Bar data={{
                                 labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                                 datasets: [{
@@ -2774,46 +2767,28 @@ class MainDataViewer extends Component {
                             }} /> */}
                                     <Pie data={{
                                         labels: [
-                                            "Cashflow Prospect",
-                                            "Business Prospect",
-                                            "Cashflow Client",
-                                            "Business Client",
-                                            "Cashflow Natural Market",
-                                            "Business Natural Market",
-                                            "Cashflow Suspect",
-                                            "Business Suspect",
-                                            "Cashflow Referral",
-                                            "Business Referral",
-                                            "Cashflow Target Market",
-                                            "Business Target Market"],
+                                            "Cashflow Leads",
+                                            "Tier-1 Leads"],
                                         datasets: [{
                                             data: [
-                                                this.state.TCPDials,
-                                                this.state.TBPDials,
-                                                this.state.TCCDials,
-                                                this.state.TBCDials,
-                                                this.state.TCNDials,
-                                                this.state.TBNDials,
-                                                this.state.TCSDials,
-                                                this.state.TBSDials,
-                                                this.state.TCRDials,
-                                                this.state.TBRDials,
+                                                this.state.TCPDials +
+                                                this.state.TCCDials +
+                                                this.state.TCNDials +
+                                                this.state.TCSDials +
+                                                this.state.TCRDials +
                                                 this.state.TCTDials,
+
+                                                this.state.TBPDials +
+                                                this.state.TBCDials +
+                                                this.state.TBNDials +
+                                                this.state.TBSDials +
+                                                this.state.TBRDials +
                                                 this.state.TBTDials
                                             ],
                                             backgroundColor: [
-                                                "#3ac178",
-                                                "#443959",
-                                                "#f99b17",
-                                                "#a2e505",
-                                                "#c9917f",
-                                                "#8d044b",
-                                                "#d2d93b",
-                                                "#dd4417",
-                                                "#5191d9",
-                                                "#483d28",
-                                                "#51aef7",
-                                                "#25517b"
+
+                                                "#25517b",
+                                                "#d2d93b"
                                             ]
                                         }]
                                     }} options={{
@@ -2823,7 +2798,7 @@ class MainDataViewer extends Component {
                                                 boxWidth: 10
                                             }
                                         }
-                                    }} /> </div> </div>
+                                    }} />  </div> </div>
 
                             <br />
                             {/* /////////////////////////////////////////

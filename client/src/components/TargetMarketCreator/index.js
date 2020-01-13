@@ -67,12 +67,14 @@ class TargetMarketCreator extends Component {
             <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '' }}>
                 {/* <h4 id="admin-requestHeadCat" style={{ color: 'whitesmoke' }}>Create Target Market<span><button className="btn btn-sm btn-outline-light" onClick={this.showTargetCreate} >Show</button></span></h4>
                 {this.state.showTarget ? */}
-                <div>
-                    <div style={{ textAlign: 'center' }}>
+                <div className="">
+                    <div style={{textAlign: 'center' }} className="input-group">
+                        <label style={{}}><u>Target Industries</u></label>
                         <form>
-                            <input value={this.state.targetMarket} onChange={this.handleInputChange} name="targetMarket" placeholder="Create Target Industry" />
+                            <input value={this.state.targetMarket} onChange={this.handleInputChange} className="input-group" name="targetMarket" placeholder="Target Industry" />
+                            <button id="admin-createCategoryBtn" className="btn btn-sm btn-outline-dark" onClick={this.handleFormSubmit}>Save</button>
                         </form>
-                        <button id="admin-createCategoryBtn" className="btn btn-outline-dark" onClick={this.handleFormSubmit}>Create</button>
+
 
                     </div>
                     {this.state.showExistingTargets ?
