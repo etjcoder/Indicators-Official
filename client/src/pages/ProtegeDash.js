@@ -744,7 +744,7 @@ class ProtegeDash extends Component {
                                 <div id="note-container">
                                     <div className="row">
                                         <div className="col card" style={{ padding: '50px', backgroundColor: 'rgba(77,160,255,0.80)', color: 'whitesmoke' }}>
-                                            <h2 style={{ textAlign: 'center', padding: '20px', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px', borderRadius: '10px' }}>Notes</h2>
+                                            <h2 style={{ textAlign: 'center', padding: '20px', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px', borderRadius: '10px' }}>N O T E S</h2>
                                             <NoteCreator
                                                 userData={this.state.userData}
                                                 userID={this.state.userData._id}

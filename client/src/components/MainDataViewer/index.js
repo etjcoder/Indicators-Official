@@ -1251,7 +1251,7 @@ class MainDataViewer extends Component {
             // <div className="card" id="main-analytics">
 
             <div className="container" style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '5%', borderRadius: '30px' }}>
-                <h1 style={{ textAlign: 'center', color: 'black' }}><u>Analytics</u></h1>
+                <h1 style={{ textAlign: 'center', color: 'black' }}>A N A L Y T I C S</h1>
                 <hr />
                 {/* <button style={{ width: '30%', float: 'left' }} className="btn btn-success" onClick={this.viewDialChart}>Dials: {this.props.dialData.length}</button>
                 <button style={{ width: '30%', float: 'left' }} className="btn btn-success" onClick={this.viewContactChart}>Contacts: {this.props.contactData.length}</button>
