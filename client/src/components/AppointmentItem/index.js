@@ -102,17 +102,32 @@ class AppointmentItem extends Component {
     render() {
         return (
             <div>
-                <div style={{ height: '200px', padding: '0 10% 0 10%', textAlign: 'left', backgroundColor: 'rgba(176,214,255,0.8)', overflow: 'auto', borderRadius: 5 }}>
-                    <hr></hr>
-                    <h4 style={{textAlign: 'center'}}><u>{this.state.apptname}:</u><span>
-                    <button value={this.props.id} onClick={this.prepEditModal} className="btn btn-outline-info btn-sm" style={{float: 'right'}}>Edit</button>
-                    <button value={this.props.id} onClick={this.deleteAppt} className="btn btn-outline-danger btn-sm" style={{float: 'right'}}>Delete</button>
-                    </span></h4>
-                    <p style={{fontSize: '11px'}}>{this.state.apptdate}</p>
+                <div style={{ height: '', padding: '0 10% 0 10%', textAlign: 'left', backgroundColor: 'rgba(255, 255, 255,0.75)', overflow: 'auto', borderRadius: 5 }}>
+                    <br />
+                    <h4 style={{ textAlign: 'center' }}>{this.state.apptname}</h4>
+                    <h6 style={{textAlign: 'center' }}>{this.state.apptdate}</h6>
+                    <hr /> <hr />
+
                     <p>Notes: {this.state.apptnotes}</p>
                     <p>Source: {this.state.apptsource}</p>
-                    <p>type: {this.props.type}</p>
-                    <hr></hr>
+                    <p>type:
+                    {this.props.type === "CPD" ? <p>Cashflow Prospect</p> : null}
+                        {this.props.type === "BPD" ? <p>Businessowner Prospect</p> : null}
+                        {this.props.type === "CCD" ? <p>Cashflow Delegated Client</p> : null}
+                        {this.props.type === "BCD" ? <p>Businessowner Delegated Client</p> : null}
+                        {this.props.type === "CND" ? <p>Cashflow Natural Market</p> : null}
+                        {this.props.type === "BND" ? <p>Businessowner Natural Market</p> : null}
+                        {this.props.type === "CSD" ? <p>Cashflow Vertical/Orphan</p> : null}
+                        {this.props.type === "BSD" ? <p>Businessowner Vertical/Orphan</p> : null}
+                        {this.props.type === "CRD" ? <p>Cashflow Referral</p> : null}
+                        {this.props.type === "BRD" ? <p>Businessowner Referral"</p> : null}
+                        {this.props.type === "CTD" ? <p>Cashflow Target Industry</p> : null}
+                        {this.props.type === "BTD" ? <p>Businessowner Target Industry</p> : null}
+                    </p>
+                    <hr />
+                    <button value={this.props.id} onClick={this.prepEditModal} className="btn btn-outline-info btn-sm" style={{ float: 'right' }}>Edit</button>
+                        <button value={this.props.id} onClick={this.deleteAppt} className="btn btn-outline-danger btn-sm" style={{ float: 'right' }}>Delete</button>
+                    
                 </div>
 
 

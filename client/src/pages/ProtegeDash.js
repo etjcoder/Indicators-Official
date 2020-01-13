@@ -72,10 +72,10 @@ class ProtegeDash extends Component {
         showNotes: false,
         // showCreate: false,
         showAnalytics: false,
-        showAppts: false,
+        showAppts: true,
         showSales: false,
         showNoteViewer: false,
-        showCreate: true
+        showCreate: false
     }
 
     componentDidMount = () => {
