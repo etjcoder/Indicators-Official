@@ -80,6 +80,7 @@ module.exports = {
             .find({ 
                 mentor: req.params.id
             })
+            .sort({date: -1})
             .then(dbSale => res.json(dbSale))
             .catch(err => res.status(422).json(err))
     },
@@ -89,6 +90,7 @@ module.exports = {
             .find({
                 mentor: req.params.id
             })
+            .sort({date: -1})
             .then(dbSale => res.json(dbSale))
             .catch(err => res.status(422).json(err))
     },

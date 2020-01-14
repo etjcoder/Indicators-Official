@@ -137,18 +137,18 @@ class AppointmentCreator extends Component {
 
                         <label>Type : </label>
                             <select id="mentorDropMenu" className="" value={this.state.type} onChange={this.handleInputChange} name="type" type="text">
-                                <option value="CPD">Standard Prospect</option>
-                                <option value="CCD">Standard Client</option>
-                                <option value="CND">Standard Natural</option>
-                                <option value="CSD">Standard Suspect</option>
-                                <option value="CRD">Standard Referral</option>
-                                <option value="CTD">Standard Target</option>
-                                <option value="BPD">Tier-1 Prospect</option>
-                                <option value="BCD">Tier-1 Client</option>
-                                <option value="BND">Tier-1 Natural</option>
-                                <option value="BSD">Tier-1 Suspect</option>
-                                <option value="BRD">Tier-1 Referral</option>
-                                <option value="BTD">Tier-1 Target</option>
+                                <option value="CPD">Standard/Cashflow Prospect</option>
+                                <option value="CCD">Standard/Cashflow Delegated Client</option>
+                                <option value="CND">Standard/Cashflow Natural</option>
+                                <option value="CSD">Standard/Cashflow Suspect</option>
+                                <option value="CRD">Standard/Cashflow Referral</option>
+                                <option value="CTD">Standard/Cashflow Target</option>
+                                <option value="BPD">Tier-1/Businessowner Prospect</option>
+                                <option value="BCD">Tier-1/Businessowner Delegated Client</option>
+                                <option value="BND">Tier-1/Businessowner Natural</option>
+                                <option value="BSD">Tier-1/Businessowner Suspect</option>
+                                <option value="BRD">Tier-1/Businessowner Referral</option>
+                                <option value="BTD">Tier-1/Businessowner Target</option>
                             </select>
                             <br />
                         {/* </div> */}

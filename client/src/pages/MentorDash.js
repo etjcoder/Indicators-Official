@@ -22,6 +22,7 @@ import AppointmentCreatorMentor from "../components/AppointmentCreatorMentor"
 import './Mentor.css'
 import SideNavPageMentor from "../components/SideNavPageMentor";
 import MainCalendar from "../components/MainCalendar"
+import AppointmentCreator from "../components/AppointmentCreator";
 
 class MentorDash extends Component {
 
@@ -59,7 +60,7 @@ class MentorDash extends Component {
         protegeSelected: "",
         taggedNotes: "",
         postedNotes: "",
-        viewMainData: false,
+        viewMainData: true,
         viewAppointments: false,
         viewNotes: false,
         viewSales: false
@@ -495,6 +496,19 @@ class MentorDash extends Component {
         }
     }
 
+    showApptViewer = () => {
+
+        if (!this.state.showApptViewer) {
+            this.setState({
+                showApptViewer: true
+            })
+        } else {
+            this.setState({
+                showApptViewer: false
+            })
+        }
+    }
+
 
 
     render() {
@@ -508,102 +522,259 @@ class MentorDash extends Component {
                 />
                 <div className="container">
                     {/* <Nav /> */}
+                    <div className="row">
+                        <div className="col">
 
-                    <div className="jumbotron" style={{ height: '200px', backgroundColor: 'rgba(0,0,0,0.5)' }}>
-                        <h3 style={{ textAlign: 'center', color: 'white' }}>You're on the Mentor Dashboard!</h3>
-                        {/* Mentor Header Here */}
-                        {/* Top Reader 8/12 Left (Sortable by Proteges, including Past)
+                            <div className="jumbotron" style={{ height: '200px', backgroundColor: 'rgba(0,0,0,0.5)' }}>
+                                <h3 style={{ textAlign: 'center', color: 'white' }}>You're on the Mentor Dashboard!</h3>
+                                {/* Mentor Header Here */}
+                                {/* Top Reader 8/12 Left (Sortable by Proteges, including Past)
                         --Contacts / Dials
                         --Appointments / Sales
                         --Sales / Appointment  
                     */}
-                        <form>
-                            {this.state.mentor ?
-                                <div style={{ width: '33%', marginLeft: '33%' }}>
-                                    <select id="protegeSelector" value={this.state.protegeSelected} onChange={this.handleInputChange} type="text" name="protegeSelected" className="form-control customDropMentor" placeholder="Choose your protege">
-                                        {this.state.mentor.proteges.map(protege => (
-                                            <option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>
-                                        ))} </select>
-                                    <button style={{ float: 'right' }} onClick={this.handleProtegeChange} className="btn btn-sm btn-outline-success">Search</button>
-                                </div> : null}
-                        </form>
-                    </div>
-                    <div className="row">
+                                <form>
+                                    {this.state.mentor ?
 
-                        {/*  ////////////////////////////////////////////////////////////////////////////////// */}
-                        {/*  ////////////////////////////////////////////////////////////////////////////////// */}
-                        {/*  /////////////////////////   Analytics Tool            /////////////////////////////// */}
-                        {/*  ////////////////////////////////////////////////////////////////////////////////// */}
-                        {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                                        <div style={{ width: '33%', marginLeft: '33%' }}>
+                                            <span>
+                                                <select style={{ float: 'left' }} id="protegeSelector" value={this.state.protegeSelected} onChange={this.handleInputChange} type="text" name="protegeSelected" className="customDropMentor" placeholder="Choose your protege">
+                                                    {this.state.mentor.proteges.map(protege => (
+                                                        <option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>
+                                                    ))} </select>
+                                                <button style={{ float: 'left' }} onClick={this.handleProtegeChange} className="btn btn-sm btn-outline-light">Search</button>
+                                            </span>
+                                            <br />
 
-
-                        {this.state.viewMainData ?
-                            <div className="mentor-data-viewer-container">
-                                <div className="row">
-                                    <div className="col-12">
-                                        <MentorDataViewer
-                                            protegeData={this.state.protegeData}
-                                            contactData={this.state.contactData}
-                                            dialData={this.state.dialData}
-                                            apptData={this.state.appointments}
-                                            CPAppts={this.state.CPAppts}
-                                            BPAppts={this.state.BPAppts}
-                                            CCAppts={this.state.CCAppts}
-                                            BCAppts={this.state.BCAppts}
-                                            CNAppts={this.state.CNAppts}
-                                            BNAppts={this.state.BNAppts}
-                                            CPDials={this.state.CPDials}
-                                            BPDials={this.state.BPDials}
-                                            CCDials={this.state.CCDials}
-                                            BCDials={this.state.BCDials}
-                                            CNDials={this.state.CNDials}
-                                            BNDials={this.state.BNDials}
-                                            CPContacts={this.state.CPContacts}
-                                            BPContacts={this.state.BPContacts}
-                                            CCContacts={this.state.CCContacts}
-                                            BCContacts={this.state.BCContacts}
-                                            CNContacts={this.state.CNContacts}
-                                            BNContacts={this.state.BNContacts}
-                                            CSDials={this.state.CSDials}
-                                            BSDials={this.state.BSDials}
-                                            CSContacts={this.state.CSContacts}
-                                            BSContacts={this.state.BSContacts}
-                                            CSAppts={this.state.CSAppts}
-                                            BSAppts={this.state.BSAppts}
-                                            CRDials={this.state.CRDials}
-                                            BRDials={this.state.BRDials}
-                                            CRContacts={this.state.CRContacts}
-                                            BRContacts={this.state.BRContacts}
-                                            CRAppts={this.state.CRAppts}
-                                            BRAppts={this.state.BRAppts}
-                                            CTDials={this.state.CTDials}
-                                            BTDials={this.state.BTDials}
-                                            CTContacts={this.state.CTContacts}
-                                            BTContacts={this.state.BTContacts}
-                                            CTAppts={this.state.CTAppts}
-                                            BTAppts={this.state.BTAppts}
-                                        />
-                                    </div>
-                                </div>
+                                        </div> : null}
+                                </form>
                             </div>
-                            : null}
 
-                        {/*  ////////////////////////////////////////////////////////////////////////////////// */}
-                        {/*  ////////////////////////////////////////////////////////////////////////////////// */}
-                        {/*  /////////////////////////   Appointments Tool            /////////////////////////////// */}
-                        {/*  ////////////////////////////////////////////////////////////////////////////////// */}
-                        {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                        </div>
+                    </div>
 
 
-                        {this.state.viewAppointments ?
-                            <div>
-                                <div className="col-12" style={{ zIndex: 0 }}>
-                                    <MainCalendar
-                                        appointments={this.state.appointments}
+
+
+                  
+
+
+                    <div className="row" style={{ marginTop: '20px', marginBottom: 200 }}>
+                        
+
+
+                        <div className="col-lg-8">
+
+                              {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                    {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                    {/*  /////////////////////////   Analytics Tool            /////////////////////////////// */}
+                    {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                    {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+
+
+                    {this.state.viewMainData ?
+                        <div className="mentor-data-viewer-container" style={{height: '1500px', overflow: 'auto'}}>
+                            <div className="row">
+                                <div className="col-lg-12">
+                                    <MentorDataViewer
+                                        protegeData={this.state.protegeData}
+                                        contactData={this.state.contactData}
+                                        dialData={this.state.dialData}
+                                        apptData={this.state.appointments}
+                                        CPAppts={this.state.CPAppts}
+                                        BPAppts={this.state.BPAppts}
+                                        CCAppts={this.state.CCAppts}
+                                        BCAppts={this.state.BCAppts}
+                                        CNAppts={this.state.CNAppts}
+                                        BNAppts={this.state.BNAppts}
+                                        CPDials={this.state.CPDials}
+                                        BPDials={this.state.BPDials}
+                                        CCDials={this.state.CCDials}
+                                        BCDials={this.state.BCDials}
+                                        CNDials={this.state.CNDials}
+                                        BNDials={this.state.BNDials}
+                                        CPContacts={this.state.CPContacts}
+                                        BPContacts={this.state.BPContacts}
+                                        CCContacts={this.state.CCContacts}
+                                        BCContacts={this.state.BCContacts}
+                                        CNContacts={this.state.CNContacts}
+                                        BNContacts={this.state.BNContacts}
+                                        CSDials={this.state.CSDials}
+                                        BSDials={this.state.BSDials}
+                                        CSContacts={this.state.CSContacts}
+                                        BSContacts={this.state.BSContacts}
+                                        CSAppts={this.state.CSAppts}
+                                        BSAppts={this.state.BSAppts}
+                                        CRDials={this.state.CRDials}
+                                        BRDials={this.state.BRDials}
+                                        CRContacts={this.state.CRContacts}
+                                        BRContacts={this.state.BRContacts}
+                                        CRAppts={this.state.CRAppts}
+                                        BRAppts={this.state.BRAppts}
+                                        CTDials={this.state.CTDials}
+                                        BTDials={this.state.BTDials}
+                                        CTContacts={this.state.CTContacts}
+                                        BTContacts={this.state.BTContacts}
+                                        CTAppts={this.state.CTAppts}
+                                        BTAppts={this.state.BTAppts}
                                     />
                                 </div>
+                            </div>
+                        </div>
+                        : null}
+                            {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                            {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                            {/*  /////////////////////////   Appointments Tool            /////////////////////////////// */}
+                            {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                            {/*  ////////////////////////////////////////////////////////////////////////////////// */}
 
-                                <div className="col-12">
+
+                            {this.state.viewAppointments ?
+                                <div className="row">
+                                    <div className="col-12" style={{ zIndex: 0 }} style={{ padding: '20px', backgroundColor: 'rgba(255,255,255,0.75)' }}>
+                                        <h4 style={{ textAlign: 'center' }}>Quickview Calendar</h4>
+                                        <MainCalendar
+                                            appointments={this.state.appointments}
+                                        />
+                                    </div>
+
+                                    <div className="col-12">
+                                        <p></p>
+                                        <AppointmentCreatorMentor
+                                            userID={this.state.mentor._id}
+                                            username={this.state.mentor.firstName + this.state.mentor.lastName}
+                                            rerender={this.gatherMentorAppts}
+                                            userData={this.state.mentor}
+                                            proteges={this.state.mentor.proteges}
+                                            protegeData={this.state.protegeData}
+                                        />
+                                    </div>
+                                    <div className="col-12">
+                                        <div className="card" style={{ marginBottom: '10px', marginTop: '10px', textAlign: "left", padding: 10, height: '', overflow: 'auto', backgroundColor: 'rgba(36,138,255,0.8)' }}>
+                                            <h4 style={{ textAlign: 'center', padding: '10%', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px' }}>Manage Your Appointments:</h4>
+                                            {this.state.mentorViewAppts ?
+                                                <div>
+                                                    <div style={{ height: '400px', overflow: 'auto' }}>
+                                                        {this.state.mentorViewAppts.map(appt => (
+                                                            <AppointmentItem
+                                                                key={appt._id}
+                                                                id={appt._id}
+                                                                apptname={appt.apptname}
+                                                                mentor={appt.mentor}
+                                                                type={appt.type}
+                                                                held={appt.held}
+                                                                sold={appt.sold}
+                                                                dialer={appt.protege}
+                                                                date={appt.date}
+                                                                source={appt.source}
+                                                                date={appt.date}
+                                                                notes={appt.notes}
+                                                                username={this.state.mentor.firstName + this.state.mentor.lastName}
+                                                                rerender={this.gatherMentorAppts}
+                                                                user={this.state.mentor}
+                                                                targetMarket={appt.targetMarket}
+                                                                mentors={this.state.mentor.proteges}
+                                                                proteges={this.state.mentor.proteges}
+
+                                                            />
+                                                        ))} </div>
+                                                </div>
+                                                : null}
+                                        </div>
+                                    </div>
+                                </div>
+                                : null}
+
+                            {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                            {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                            {/*  /////////////////////////   Notes Tool            /////////////////////////////// */}
+                            {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                            {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+
+                            {this.state.viewNotes ?
+                                <div id="mentor-note-container">
+                                    <div className="row" >
+                                        <div className="col card" style={{ padding: '50px', backgroundColor: 'rgba(77,160,255,0.8)', color: 'whitesmoke' }}>
+                                            <h2 style={{ textAlign: 'center', padding: '20px', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px', borderRadius: '10px' }}>N O T E S</h2>
+                                            <NoteCreatorMentor
+                                                userData={this.state.mentor}
+                                            />
+                                            <hr />
+                                            <div style={{ height: '50px', textAlign: 'center', color: 'white', backgroundColor: 'rgba(0,0,0,0.50)' }}>
+                                                <p style={{ textAlign: 'center', paddingTop: '5px' }}>Your Notes</p>
+                                            </div>
+
+                                            <NoteViewerMentor
+                                                fontSize={'20px'}
+                                                notes={this.state.notes}
+                                                rerender={this.getMentorNoteData}
+                                            />
+                                            <div style={{ height: '20px', color: 'black', backgroundColor: 'rgba(0,0,0,0.50)' }}>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                : null}
+
+
+                            {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                            {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                            {/*  /////////////////////////   Sales Tool            /////////////////////////////// */}
+                            {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                            {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+
+
+
+
+                            {this.state.viewSales ?
+                                <div id="sales-container">
+                                    <div className="col-12">
+                                        <SalesCreatorMentor
+                                            userID={this.state.mentor._id}
+                                            userData={this.state.mentor}
+                                            proteges={this.state.mentor.proteges}
+                                        />
+
+                                    </div>
+                                    <div className="col-12">
+                                        <div className="card" style={{ marginBottom: '10px', marginTop: '10px', textAlign: "left", padding: 10, height: '', overflow: 'auto', backgroundColor: 'rgba(36,138,255,0.8)' }}>
+                                            <h4 style={{ textAlign: 'center', padding: '10%', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px' }}>Your Sales</h4>
+                                            {this.state.salesData ? <div style={{ height: '400px', overflow: 'auto' }}>
+                                                {
+                                                    this.state.salesData.map(sale => (
+                                                        <SalesItemMentor
+                                                            key={sale._id}
+                                                            id={sale._id}
+                                                            saleType={sale.clientType}
+                                                            saleName={sale.saleName}
+                                                            saleSource={sale.leadSource}
+                                                            saleNotes={sale.saleNotes}
+                                                            saleDate={sale.saleDate}
+                                                            saleTargetMkt={sale.targetMarket}
+                                                            saleCommission={sale.commission}
+                                                            salePercentage={sale.percentageMentor}
+                                                            saleTaggedPercentage={sale.percentageProtege}
+                                                            saleProduct={sale.product}
+                                                            saleTagged={sale.protege}
+                                                            saleWriter={sale.mentor}
+                                                            proteges={this.state.mentor.proteges}
+                                                            userData={this.state.mentor}
+                                                        />
+                                                    ))
+                                                } </div>
+                                                : null}
+                                        </div>
+                                    </div>
+                                </div>
+                                : null}
+                        </div>
+
+
+
+                        <div className="col-lg-4">
+                            <div id="">
+                                <div className="row">
+                                    {/* <div style={{ width: '100%', marginBottom: '10px', }}> */}
                                     <AppointmentCreatorMentor
                                         userID={this.state.mentor._id}
                                         username={this.state.mentor.firstName + this.state.mentor.lastName}
@@ -612,53 +783,54 @@ class MentorDash extends Component {
                                         proteges={this.state.mentor.proteges}
                                         protegeData={this.state.protegeData}
                                     />
-                                </div>
-                                <div className="col-12">
-                                    <div className="card" style={{ textAlign: 'center', margin: 20, padding: 40, height: 1000, overflow: 'auto', backgroundColor: 'rgba(114,180,255,0.8)' }}>
-                                        <h4 style={{ color: 'whitesmoke' }}>Manage Your Appointments:</h4>
-                                        {this.state.mentorViewAppts ? <div>
-                                            {this.state.mentorViewAppts.map(appt => (
-                                                <AppointmentItem
-                                                    key={appt._id}
-                                                    id={appt._id}
-                                                    apptname={appt.apptname}
-                                                    type={appt.type}
-                                                    held={appt.held}
-                                                    sold={appt.sold}
-                                                    dialer={appt.protege}
-                                                    source={appt.source}
-                                                    date={appt.date}
-                                                    notes={appt.notes}
-                                                    username={this.state.mentor.firstName + this.state.mentor.lastName}
-                                                    rerender={this.gatherMentorAppts}
-                                                    user={this.state.mentor}
-                                                    targetMarket={appt.targetMarket}
-                                                    mentors={this.state.mentor.proteges}
-                                                    proteges={this.state.mentor.proteges}
+                                    {/* </div> */}
 
-                                                />
-                                            ))} </div>
+                                    <br />
+                                    <br />
+
+                                    <div className="card col-12" style={{ marginBottom: '10px', textAlign: 'left', padding: 10, height: '', overflow: 'auto', backgroundColor: 'rgba(36,138,255,0.8)' }}>
+
+                                        <h4 style={{ textAlign: 'center', padding: '10%', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px' }}>View/Edit Appointments <span button className="btn btn-sm btn-outline-dark" onClick={this.showApptViewer}>Show</span></h4>
+                                        {this.state.showApptViewer ?
+                                            <div>
+                                                {this.state.mentorViewAppts ?
+                                                    <div style={{ height: '400px', overflow: 'auto' }}>
+                                                        {this.state.mentorViewAppts.map(appt => (
+                                                            <AppointmentItem
+                                                                key={appt._id}
+                                                                id={appt._id}
+                                                                apptname={appt.apptname}
+                                                                mentor={appt.mentor}
+                                                                type={appt.type}
+                                                                held={appt.held}
+                                                                sold={appt.sold}
+                                                                dialer={appt.protege}
+                                                                date={appt.date}
+                                                                source={appt.source}
+                                                                date={appt.date}
+                                                                notes={appt.notes}
+                                                                username={this.state.mentor.firstName + this.state.mentor.lastName}
+                                                                rerender={this.gatherMentorAppts}
+                                                                user={this.state.mentor}
+                                                                targetMarket={appt.targetMarket}
+                                                                mentors={this.state.mentor.proteges}
+                                                                proteges={this.state.mentor.proteges}
+
+                                                            />
+                                                        ))}
+
+                                                    </div>
+                                                    : null}
+                                            </div>
                                             : null}
                                     </div>
-                                </div>
-                            </div>
-                            : null}
-
-                        {/*  ////////////////////////////////////////////////////////////////////////////////// */}
-                        {/*  ////////////////////////////////////////////////////////////////////////////////// */}
-                        {/*  /////////////////////////   Notes Tool            /////////////////////////////// */}
-                        {/*  ////////////////////////////////////////////////////////////////////////////////// */}
-                        {/*  ////////////////////////////////////////////////////////////////////////////////// */}
-
-                        {this.state.viewNotes ?
-                            <div id="mentor-note-container">
-                                <div className="row" >
-                                    <div className="col card" style={{ padding: '50px', backgroundColor: 'rgba(77,160,255,0.8)', color: 'whitesmoke' }}>
-                                        <h2 style={{ textAlign: 'center', padding: '20px', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px', borderRadius: '10px' }}>N O T E S</h2>
-                                        <NoteCreatorMentor
-                                            userData={this.state.mentor}
+                                    <div className="col-12" style={{ zIndex: 0 }} style={{ padding: '20px', backgroundColor: 'rgba(255,255,255,0.75)', height: '300px', overflow: 'auto' }}>
+                                        <h4 style={{ textAlign: 'center' }}>Quickview Calendar</h4>
+                                        <MainCalendar
+                                            appointments={this.state.appointments}
                                         />
-                                        <hr />
+                                    </div>
+                                    <div className="card col-12" style={{ zIndex: 0, marginBottom: '10px', textAlign: 'center', padding: 10, height: '350px', overflow: 'auto', backgroundColor: 'rgba(36,138,255,0.8', padding: '10px' }}>
                                         <div style={{ height: '50px', textAlign: 'center', color: 'white', backgroundColor: 'rgba(0,0,0,0.50)' }}>
                                             <p style={{ textAlign: 'center', paddingTop: '5px' }}>Your Notes</p>
                                         </div>
@@ -668,64 +840,23 @@ class MentorDash extends Component {
                                             notes={this.state.notes}
                                             rerender={this.getMentorNoteData}
                                         />
+
                                         <div style={{ height: '20px', color: 'black', backgroundColor: 'rgba(0,0,0,0.50)' }}>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            : null}
-                    </div>
 
-                    {/*  ////////////////////////////////////////////////////////////////////////////////// */}
-                    {/*  ////////////////////////////////////////////////////////////////////////////////// */}
-                    {/*  /////////////////////////   Sales Tool            /////////////////////////////// */}
-                    {/*  ////////////////////////////////////////////////////////////////////////////////// */}
-                    {/*  ////////////////////////////////////////////////////////////////////////////////// */}
-
-
-
-
-                    {this.state.viewSales ?
-                        <div id="sales-container">
-                            <div className="col-12">
-                                <SalesCreatorMentor
-                                    userID={this.state.mentor._id}
-                                    userData={this.state.mentor}
-                                    proteges={this.state.mentor.proteges}
-                                />
-
-                            </div>
-                            <div className="col-12">
-                                <div className="card" style={{ textAlign: "center", margin: 20, padding: 40, height: 1000, overflow: 'auto', backgroundColor: 'rgba(114,180,255,0.8)' }}>
-                                    <h4 style={{ color: 'whitesmoke' }}>Your Sales</h4>
-                                    {this.state.salesData ? <div>
-                                        {
-                                            this.state.salesData.map(sale => (
-                                                <SalesItemMentor
-                                                    key={sale._id}
-                                                    id={sale._id}
-                                                    saleType={sale.clientType}
-                                                    saleName={sale.saleName}
-                                                    saleSource={sale.leadSource}
-                                                    saleNotes={sale.saleNotes}
-                                                    saleDate={sale.saleDate}
-                                                    saleTargetMkt={sale.targetMarket}
-                                                    saleCommission={sale.commission}
-                                                    salePercentage={sale.percentageMentor}
-                                                    saleTaggedPercentage={sale.percentageProtege}
-                                                    saleProduct={sale.product}
-                                                    saleTagged={sale.protege}
-                                                    saleWriter={sale.mentor}
-                                                    proteges={this.state.mentor.proteges}
-                                                    userData={this.state.mentor}
-                                                />
-                                            ))
-                                        } </div>
-                                        : null}
+                                    <div className="card col-12" style={{ zIndex: 0, marginBottom: '10px', textAlign: 'center', padding: 10, height: '250px', overflow: 'auto', backgroundColor: 'rgba(36,138,255,0.8', padding: '10px' }}>
+                                        <NoteCreatorMentor
+                                            userData={this.state.mentor}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        : null}
+
+
+
+                    </div>
                 </div>
             </div >
 

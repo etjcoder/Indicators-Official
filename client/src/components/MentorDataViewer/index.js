@@ -1252,6 +1252,7 @@ class MentorDataViewer extends Component {
                                     <option value={"rData"}>New Referrals</option>
                                     <option value={"tData"}>Target Industries</option>
                                 </select>
+                                <br />
                                 <button className="btn-outline-dark btn-sm btn" onClick={this.showCategoryOption}>Generate</button>
                             </div>
                         </form>
@@ -1270,6 +1271,7 @@ class MentorDataViewer extends Component {
                                             <option value={source}>{source}</option>
                                         ))}
                                     </select>
+                                    <br />
                                     <button className="btn-outline-dark btn-sm btn" onClick={this.gatherSourceData}>Generate</button>
                                 </div>
                                 : null}
@@ -1286,7 +1288,9 @@ class MentorDataViewer extends Component {
                                         {this.props.protegeData.targetMarkets.map(target => (
                                             <option value={target}>{target}</option>
                                         ))}
-                                    </select> <button className="btn-outline-dark btn-sm btn" onClick={this.gatherTargetData}>Generate</button>
+                                    </select> 
+                                    <br />
+                                    <button className="btn-outline-dark btn-sm btn" onClick={this.gatherTargetData}>Generate</button>
                                 </div> : null}
                         </form>
                     </div>

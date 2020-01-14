@@ -134,18 +134,38 @@ class SalesItemMentor extends Component {
 
     render() {
         return (
-            <div>
-                <div style={{ height: '300px', padding: '0 10% 0 10%', textAlign: 'left', backgroundColor: 'rgba(176,214,255,0.8)', overflow: 'auto', borderRadius: '5px' }}>
-                    <hr></hr>
-                    <h4 style={{ textAlign: 'center' }}><u>{this.props.saleName}:</u> <span>
-                        <button value={this.props.id} onClick={this.prepEditModal} className="btn btn-info">Edit</button>
-                        <button value={this.props.id} onClick={this.deleteSale} className="btn btn-danger">Delete</button>
-                    </span></h4>
-                    <p>Notes: {this.props.saleNotes}</p>
-                    <p>Source: {this.props.saleSource}</p>
-                    <p>Commissions: ${this.props.saleCommission}</p>
-                    <p>Mentor (You) Percentage: {this.props.salePercentage * 100}% Payout: ${this.props.salePercentage * this.props.saleCommission}</p>
-                    <p>Protege Percentage: {this.props.saleTaggedPercentage * 100}% Payout: ${this.props.saleTaggedPercentage * this.props.saleCommission}</p>
+            <div className="container">
+                <div style={{ height: '', padding: '0 10% 0 10%', textAlign: 'left', backgroundColor: 'rgba(255,255,255,0.75)', overflow: 'auto', borderRadius: '5px' }}>
+                    <br />
+                    <h4 style={{ textAlign: 'center' }}><u>{this.props.saleName}:</u></h4>
+                    <hr />
+                    <hr />
+                    <button value={this.props.id} onClick={this.deleteSale} className="btn btn-danger btn-sm" style={{ float: 'right' }}>X</button>
+                    <button value={this.props.id} onClick={this.prepEditModal} className="btn btn-info btn-sm" style={{ float: 'right' }}>Edit</button>
+
+                    <div className="card bg-dark" style={{padding: '20px', clear:'both'}}>
+                       <p style={{color: 'white'}}>Notes: {this.props.saleNotes}</p> 
+                    </div>
+                    <div className="card" style={{padding: '20px'}}>
+                        <p style={{fontSize: '14px', float: 'right'}}>Type: 
+                        {this.props.saleType === "CPD" ? <span> Cashflow Prospect</span> : null}
+                            {this.props.saleType === "BPD" ? <span> Businessowner Prospect</span> : null}
+                            {this.props.saleType === "CCD" ? <span> Cashflow Delegated Client</span> : null}
+                            {this.props.saleType === "BCD" ? <span> Businessowner Delegated Client</span> : null}
+                            {this.props.saleType === "CND" ? <span> Cashflow Natural Market</span> : null}
+                            {this.props.saleType === "BND" ? <span> Businessowner Natural Market</span> : null}
+                            {this.props.saleType === "CSD" ? <span> Cashflow Vertical/Orphan</span> : null}
+                            {this.props.saleType === "BSD" ? <span> Businessowner Vertical/Orphan</span> : null}
+                            {this.props.saleType === "CRD" ? <span> Cashflow Referral</span> : null}
+                            {this.props.saleType === "BRD" ? <span> Businessowner Referral"</span> : null}
+                            {this.props.saleType === "CTD" ? <span> Cashflow Target Industry</span> : null}
+                            {this.props.saleType === "BTD" ? <span> Businessowner Target Industry</span> : null}
+                        </p>
+                        <p style={{ fontSize: '14px', width: '%', float: 'left' }}>Source: {this.props.saleSource}</p>
+                        <p style={{ fontSize: '14px', width: '%', float: 'left' }}>Commissions: ${this.props.saleCommission}</p>
+                        <p style={{ fontSize: '14px', width: '%', float: 'left' }}>Protege (You) Percentage: {this.props.salePercentage * 100}% Payout: ${this.props.salePercentage * this.props.saleCommission}</p>
+                        <p style={{ fontSize: '14px', width: '%', float: 'left' }}>Mentor Percentage: {this.props.saleTaggedPercentage * 100}% Payout: ${this.props.saleTaggedPercentage * this.props.saleCommission}</p>
+                    </div>
                     <hr></hr>
                 </div>
 

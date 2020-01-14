@@ -117,69 +117,77 @@ class AppointmentCreatorMentor extends Component {
 
     render() {
         return (
-            <div className="card" style={{ padding: '10%' }} id="appointment-creator-mentor">
-                <h4 style={{ color: 'whitesmoke' }}>Create appointment <span><button className="btn btn-sm btn-outline-light" onClick={this.showApptForm}>Show</button></span></h4>
+            <div className="card col-12" id="prospect" style={{ textAlign: 'left', backgroundColor: 'rgba(36,138,255,0.8)', padding: '0' }}>
+                <h4 style={{ textAlign: 'center', padding: '10%', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px' }}>Create appointment
+                <br />
+                    <span><button className="btn btn-sm btn-outline-dark" onClick={this.showApptForm}>Show</button></span></h4>
                 <hr />
                 {this.state.showAppt ?
-                    <form className="form-group">
-                        <label className="customLabel"><p style={{color: 'whitesmoke'}}>Type of Appointment</p></label>
-                        <select className="custom-select my-1 mr-sm-2" value={this.state.type} className="customDrop-Mentor" onChange={this.handleInputChange} name="type" type="text" placeholder="Choose an appointment type..">
-                            <option value="CPD">Cashflow Prospect</option>
-                            <option value="BPD">Businessowner Prospect</option>
-                            <option value="CCD">Cashflow Client</option>
-                            <option value="BCD">Businessowner Client</option>
-                            <option value="CND">Cashflow Natural Mkt</option>
-                            <option value="BND">Business Natural Mkt</option>
-                            <option value="CSD">Cashflow Suspect</option>
-                            <option value="BSD">Business Suspect</option>
-                            <option value="CRD">Cashflow Referral</option>
-                            <option value="BRD">Business Referral</option>
-                            <option value="CTD">Cashflow Target Market</option>
-                            <option value="BTD">Business Target Market</option>
-                        </select>
-                        <hr />
-
-                        <label><p style={{ color: 'whitesmoke' }}>Appointment Name:</p></label>
-                        <input id="apptname-input" className="form-control" value={this.state.apptname} onChange={this.handleInputChange} name="apptname" type="text" placeholder="Give your appointment a name!" />
-                        <hr />
-                        <label><p style={{ color: 'whitesmoke' }}>Date of Appointment:</p></label>
-                        <input id="date-input" className="form-control" value={this.state.apptdate} onChange={this.handleInputChange} name="apptdate" type="date" placeholder="Enter date for your appointment" />
-
-                        <label><p style={{ color: 'whitesmoke' }}>Protege Tagged</p></label>
-                        {this.props.userData.proteges ? <select id="mentorDropMenu" className="customDropMentor" value={this.props.apptTagged} onChange={this.handleInputChange} name="apptTagged">
-                            <option value={"none"}>--Tag Mentor--</option>
-                            {this.props.userData.proteges.map(protege => (
-                                <option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>
-                            ))}
-                        </select> : null}
-                        <hr />
-
-                        <label><p style={{ color: 'whitesmoke' }}>Lead Source:</p></label>
-                        {/* <input id="source-input" className="form-control" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource" type="text" placeholder="Source of Lead" /> */}
-                        {this.props.protegeData.sources ? <select className="customDropMentor" id="sourceDropMenu" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource">
-                            <option value={"none"}>No Lead Source Selected</option>
-                            {this.props.protegeData.sources.map(source => (
-                                <option value={source}>{source}</option>
-                            ))}
-                        </select> : <p style={{color: 'whitesmoke'}}>"No lead sources created yet"</p>}
+                    <div style={{ padding: '10px', height: '400px', overflow: 'auto' }}>
+                        <form style={{}}>
+                            <div style={{ backgroundColor: 'rgba(255,255,255,0.7)', color: 'black', padding: '20px', borderRadius: '30px' }}>
+                                <label className="customLabel"><p style={{ color: 'black' }}>Type :</p></label>
+                                <select className="custom-select my-1 mr-sm-2" value={this.state.type} className="customDrop-Mentor" onChange={this.handleInputChange} name="type" type="text" placeholder="Choose an appointment type..">
+                                    <option value="CPD">Standard/Cashflow Prospect</option>
+                                    <option value="CCD">Standard/Cashflow Delegated Client</option>
+                                    <option value="CND">Standard/Cashflow Natural Mkt</option>
+                                    <option value="CSD">Standard/Cashflow Suspect</option>
+                                    <option value="CRD">Standard/Cashflow Referral</option>
+                                    <option value="CTD">Standard/Cashflow Target Market</option>
+                                    <option value="BPD">Tier-1/Businessowner Prospect</option>
+                                    <option value="BCD">Tier-1/Businessowner Client</option>
+                                    <option value="BND">Tier-1/Businessowner Natural Mkt</option>
+                                    <option value="BSD">Tier-1/Businessowner Suspect</option>
+                                    <option value="BRD">Tier-1/Busienssowner Referral</option>
 
 
-                        <label><p style={{ color: 'whitesmoke' }}>Target Market:</p></label>
-                        {/* <input id="targetmkt-input" className="form-control" value={this.state.apptTargetMkt} onChange={this.handleInputChange} name="appttargetmkt" type="text" placeholder="Target Market goes here" /> */}
-                        {this.props.protegeData.targetMarkets ? <select className="customDropMentor" id="sourceDropMenu" value={this.state.appttargetmkt} onChange={this.handleInputChange} name="appttargetmkt">
-                            <option value={"none"}>No Target Market Selected</option>
-                            {this.props.protegeData.targetMarkets.map(target => (
-                                <option value={target}>{target}</option>
-                            ))}
-                        </select> : <p style={{color: 'whitesmoke'}}>"No target markets created yet"</p>}
+                                    <option value="BTD">Tier-1/Businessowner Target Market</option>
+                                </select>
+                                <br />
 
-                        <label><p style={{ color: 'whitesmoke' }}>Appointment Notes:</p></label>
-                        <input id="note-input" className="form-control" value={this.state.apptnotes} onChange={this.handleInputChange} name="apptnotes" type="text" placeholder="Enter any notes..." />
-                        <br />
-                        <button id="appt-input-btn" className="btn-success form-control" onClick={this.handleApptSubmit}>Submit Appointment</button>
+                                <label>Name:</label>
+                                <input id="apptname-input" className="form-control" value={this.state.apptname} onChange={this.handleInputChange} name="apptname" type="text" placeholder="Give your appointment a name!" />
+                                <br />
+                                <label>Date:</label>
+                                <input id="date-input" className="form-control" value={this.state.apptdate} onChange={this.handleInputChange} name="apptdate" type="date" placeholder="Enter date for your appointment" />
+                                <br />
+                                <label>Protege:</label>
+                                {this.props.userData.proteges ? <select id="mentorDropMenu" className="" value={this.props.apptTagged} onChange={this.handleInputChange} name="apptTagged">
+                                    <option value={"none"}>--Tag Mentor--</option>
+                                    {this.props.userData.proteges.map(protege => (
+                                        <option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>
+                                    ))}
+                                </select> : null}
+                                <br />
 
-                    </form>
-                : null}
+                                <label>Lead Source:</label>
+                                {/* <input id="source-input" className="form-control" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource" type="text" placeholder="Source of Lead" /> */}
+                                {this.props.protegeData.sources ? <select className="" id="sourceDropMenu" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource">
+                                    <option value={"none"}>No Lead Source Selected</option>
+                                    {this.props.protegeData.sources.map(source => (
+                                        <option value={source}>{source}</option>
+                                    ))}
+                                </select> : <p style={{ color: '' }}>"No lead sources created yet"</p>}
+                                <br />
+
+                                <label>Industry :</label>
+                                {/* <input id="targetmkt-input" className="form-control" value={this.state.apptTargetMkt} onChange={this.handleInputChange} name="appttargetmkt" type="text" placeholder="Target Market goes here" /> */}
+                                {this.props.protegeData.targetMarkets ? <select className="" id="sourceDropMenu" value={this.state.appttargetmkt} onChange={this.handleInputChange} name="appttargetmkt">
+                                    <option value={"none"}>No Target Market Selected</option>
+                                    {this.props.protegeData.targetMarkets.map(target => (
+                                        <option value={target}>{target}</option>
+                                    ))}
+                                </select> : <p style={{ color: '' }}>"No target markets created yet"</p>}
+                                <br />
+
+                                <label>Notes:</label>
+                                <input id="note-input" className="form-control" value={this.state.apptnotes} onChange={this.handleInputChange} name="apptnotes" type="text" placeholder="Enter any notes..." />
+                                <br />
+                                <button id="appt-input-btn" className="btn-success form-control" onClick={this.handleApptSubmit}>Submit Appointment</button>
+                            </div>
+                        </form>
+                    </div>
+                    : null}
             </div>
         )
 
