@@ -98,7 +98,7 @@ class MentorDash extends Component {
         API.getMentorNotes(this.state.mentor._id)
             .then(res =>
                 this.setState({
-                    taggedNotes: res.data
+                    notes: res.data
                 })
             )
             .catch(err => {
@@ -648,15 +648,25 @@ class MentorDash extends Component {
 
                         {this.state.viewNotes ?
                             <div id="mentor-note-container">
-                                <div className="col-12 card" style={{ padding: '50px', backgroundColor: 'rgba(77,160,255,0.8)', color: 'whitesmoke' }}>
-                                    <h1 style={{ textAlign: 'center' }}>Notes</h1>
-                                    <NoteCreatorMentor
-                                        userData={this.state.mentor}
-                                    />
-                                    <NoteViewerMentor
-                                        tagNotes={this.state.taggedNotes}
-                                        postNotes={this.state.mentor.notes}
-                                    />
+                                <div className="row" >
+                                    <div className="col card" style={{ padding: '50px', backgroundColor: 'rgba(77,160,255,0.8)', color: 'whitesmoke' }}>
+                                        <h2 style={{ textAlign: 'center', padding: '20px', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px', borderRadius: '10px' }}>N O T E S</h2>
+                                        <NoteCreatorMentor
+                                            userData={this.state.mentor}
+                                        />
+                                        <hr />
+                                        <div style={{ height: '50px', textAlign: 'center', color: 'white', backgroundColor: 'rgba(0,0,0,0.50)' }}>
+                                            <p style={{ textAlign: 'center', paddingTop: '5px' }}>Your Notes</p>
+                                        </div>
+
+                                        <NoteViewerMentor
+                                            fontSize={'20px'}
+                                            notes={this.state.notes}
+                                            rerender={this.getMentorNoteData}
+                                        />
+                                        <div style={{ height: '20px', color: 'black', backgroundColor: 'rgba(0,0,0,0.50)' }}>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             : null}
@@ -683,7 +693,7 @@ class MentorDash extends Component {
                             </div>
                             <div className="col-12">
                                 <div className="card" style={{ textAlign: "center", margin: 20, padding: 40, height: 1000, overflow: 'auto', backgroundColor: 'rgba(114,180,255,0.8)' }}>
-                                    <h4 style={{color: 'whitesmoke'}}>Your Sales</h4>
+                                    <h4 style={{ color: 'whitesmoke' }}>Your Sales</h4>
                                     {this.state.salesData ? <div>
                                         {
                                             this.state.salesData.map(sale => (

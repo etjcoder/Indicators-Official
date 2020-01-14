@@ -42,8 +42,10 @@ class NoteViewerMentor extends Component {
             noteAuthor: this.props.userID,
             noteTagged: this.state.noteTagged,
             completed: false
-        }).then(res =>
+        }).then(res => {
             cogoToast.info("Saved Note!")
+            this.props.rerender()
+        }
         ).catch(err => console.log(err))
 
         // setTimeout(() => {
@@ -59,8 +61,10 @@ class NoteViewerMentor extends Component {
 
         API.completeNote(id, {
             completed: true
-        }).then(res =>
+        }).then(res =>{ 
             cogoToast.info("Checked Box")
+            this.props.rerender()
+        }
         ).catch(err => console.log(err))
     }
 
@@ -68,8 +72,10 @@ class NoteViewerMentor extends Component {
         console.log("Marked note incomplete: " + id)
         API.uncompleteNote(id, {
             completed: false
-        }).then(res =>
+        }).then(res =>{ 
             cogoToast.info("Unchecked Box")
+            this.props.rerender()
+        }
         ).catch(err => console.log(err))
     }
 
@@ -78,6 +84,7 @@ class NoteViewerMentor extends Component {
         API.deleteNote(id)
             .then(res => {
                 cogoToast.error("Deleted Note")
+                this.props.rerender()
             })
             .catch(err => console.log(err))
     }
@@ -86,43 +93,45 @@ class NoteViewerMentor extends Component {
 
     render() {
         return (
-            <div className="row" id="note-view-container-2" style={{ color: 'darkslategrey', height: 500, overflow: 'auto' }}>
-                <div className="" id="note-viewer-1-mentor" style={{ padding: '10px', width: '100%', marginBottom: '-20px' }}>
-                    <div className="">
+            <div className="" id="note-view-container-2" style={{ color: 'black', height: 500, overflow: 'auto', borderWidth: '1px', borderColor: 'black', backgroundColor: 'rgba(0,0,0,0.3)' }}>
+
+                <div className="" id="note-viewer-1-mentor" style={{ padding: '', width: '', marginBottom: '10px' }}>
+
+                    {/* <div className="">
                         <div id="note-welcome" div className="card-title">
-                            {/* <h4><u>View Notes Your Tagged In</u></h4> */}
-                        </div>
-                        <div className="">
+                            <h4><u>View Notes Your Tagged In</u></h4>
+                        </div> */}
 
-                            {this.props.tagNotes ?
+                    <div className="">
 
-                                this.props.tagNotes.map(note => (
-                                    <div style={{ background: 'rgba(255,255,255,0.8)', marginBottom: '0', padding: '10px' }}>
+                        {this.props.notes ?
 
-                                        <p>||: {note.noteText} <span>
-                                            <button value={this.props.id} onClick={() => this.deleteNote(note._id)} style={{ float: 'right' }} className="btn btn-danger">X</button>
-                                            {note.completed ?
-                                                <button value={this.props.id} onClick={() => this.uncompleteNote(note._id)} style={{ float: 'right' }} className="btn btn-success">√</button>
-                                                : <button value={this.props.id} onClick={() => this.completeNote(note._id)} style={{ float: 'right' }} className="btn btn-success"><i class="far fa-square"></i></button>
-                                            }
-                                        </span></p>
-                                        <p style={{ fontSize: '8px' }}>
-                                            By: {note.noteTagged}
-                                        </p>
+                            this.props.notes.map(note => (
+                                <div style={{ background: 'rgba(255,255,255,0.75)', padding: '20px', color: 'black', borderRadius: '30px', margin: 10 }}>
 
-                                        <hr />
-                                    </div>
-                                ))
+                                    <p><span>
+                                        <button value={this.props.id} onClick={() => this.deleteNote(note._id)} style={{ float: 'right' }} className="btn btn-outline-danger">X</button>
+                                        {note.completed ?
+                                            <button value={this.props.id} onClick={() => this.uncompleteNote(note._id)} style={{ float: 'right' }} className="btn btn-outline-dark">√</button>
+                                            : <button value={this.props.id} onClick={() => this.completeNote(note._id)} style={{ float: 'right' }} className="btn btn-outline-dark"><i class="far fa-square"></i></button>
+                                        }
+                                    </span></p>
+                                    <p style={{ fontSize: this.props.fontSize }}> {note.noteText}</p>
+                                    <p style={{ fontSize: '14px' }}>By: {note.noteAuthorName}</p>
 
-                                : <p style={{ color: 'whitesmoke', textAlign: 'center' }}>No Notes Yet!</p>}
-                        </div>
+
+                                    <hr />
+                                </div>
+                            ))
+
+                            : <p style={{ color: 'whitesmoke', textAlign: 'center' }}>No notes yet!</p>}
                     </div>
                 </div>
 
-                <div className="" id="note-viewer-2-mentor" style={{ padding: '10px', width: '100%' }}>
+                {/* <div className="" id="note-viewer-2-mentor" style={{ padding: '10px', width: '100%' }}>
                     <div className="">
                         <div id="note-welcome" className="">
-                            {/* <h4><u>View Notes You Made</u></h4> */}
+                            <h4><u>View Notes You Made</u></h4>
                         </div>
                         <div className="">
 
@@ -151,7 +160,7 @@ class NoteViewerMentor extends Component {
                                 : <p style={{color: 'whitesmoke', textAlign: 'center'}}>No Notes Yet!</p>}
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         )
     }

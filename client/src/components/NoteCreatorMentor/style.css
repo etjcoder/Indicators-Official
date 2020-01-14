@@ -15,7 +15,8 @@
     text-align: center;
   } 
 
-#noteTextAreaMentor {
+
+  #noteTextArea {
     width: 300px;
     font-size: 18px;
     line-height: 18px;
