@@ -1212,102 +1212,102 @@ class MentorDataViewer extends Component {
 
     render() {
         return (
-            <div className="container" id="mentor-analytics">
-                <h1 style={{ textAlign: 'center', color: 'whitesmoke' }}><u>Analytics</u></h1>
-                <div className="">
+            // <div className="container" id="mentor-analytics">
+            <div className="container" style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '5%', borderRadius: '30px' }}>
+                <h1 style={{ textAlign: 'center', color: 'black' }}>A N A L Y T I C S</h1>
+                <hr />
 
-                    {/* <button style={{ marginLeft: "auto", marginRight: 'auto' }} className="btn btn-success" onClick={this.viewDialChart}>Dials: {this.props.dialData.length}</button>
-                    <button style={{ marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewContactChart}>Contacts: {this.props.contactData.length}</button>
-                    <button style={{ marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewApptChart}>Appointments: {this.props.apptData.length}</button>
-                    <button style={{ marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewCFDialChart}>Cashflow Dials Only</button>
-                    <button style={{ marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewCFContactChart}>Cashflow Contacts Only</button>
-                    <button style={{ marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewCFApptChart}>Cashflow Appts Only</button>
-                    <button style={{ marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewBODialChart}>Businessowner Dials Only</button>
-                    <button style={{ marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewBOContactChart}>Businessowner Appts Only</button>
-                    <button style={{ marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewBOApptChart}>Businessowner Appts Only</button>
-                    <button style={{ marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewProspectPerformance}>Prospect Call Performance</button>
-                    <button style={{ marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewClientPerformance}>Existing Client Call Performance</button>
-                    <button style={{ marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewNaturalPerformance}>Natural Market Call Performance</button>
-                    <button style={{ marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewSuspectPerformance}>Suspect Call Performance</button>
-                    <button style={{ marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewReferralPerformance}>Referral Call Performance</button>
-                    <button style={{ marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewTargetPerformance}>Target Market Call Performance</button> */}
-
-                    <form>
-                        <div>
-                            <select id="sourceDropMenu" className="customDropDownMentor" value={this.state.dataOption} onChange={this.handleInputChange} name="dataOption">
-                                <option value={"none"}>--Choose a Type of Call--</option>
-                                <option value={"genDials"}>Dial Data</option>
-                                <option value={"genContacts"}>Contact Data</option>
-                                <option value={"genAppts"}>Appointment Data</option>
-                                <option value={"cfDials"}>Cashflow Dial Data</option>
-                                <option value={"cfContacts"}>Cashflow Contact Data</option>
-                                <option value={"cfAppts"}>Cashflow Appointment Data</option>
-                                <option value={"boDials"}>Businessowner Dial Data</option>
-                                <option value={"boContacts"}>Businessowner Contact Data</option>
-                                <option value={"boAppts"}>Businessowner Appointment Data</option>
-                            </select>
-                            <button className="btn-outline-light btn-sm btn" onClick={this.showDataOption}>Get Performance Data</button>
-                        </div>
-                    </form>
-
-                    <form>
-                        <div>
-                            <select id="sourceDropMenu" className="customDropDownMentor" value={this.state.categoryOption} onChange={this.handleInputChange} name="categoryOption">
-                                <option value={"none"}>--Choose a Category--</option>
-                                <option value={"pData"}>Prospects Call Data</option>
-                                <option value={"cData"}>Clients Call Data</option>
-                                <option value={"nData"}>Natural Market Call Data</option>
-                                <option value={"sData"}>Suspect Call Data</option>
-                                <option value={"rData"}>Referral Call Data</option>
-                                <option value={"tData"}>Target Market Call Data</option>
-                            </select>
-                            <button className="btn-outline-light btn-sm btn" onClick={this.showCategoryOption}>Get Performance Data</button>
-                        </div>
-                    </form>
-
-                    <form>
-                        {this.props.protegeData.sources ?
-                            <div>
-                                <select id="sourceDropMenu" className="customDropDownMentor" value={this.state.leadSource} onChange={this.handleInputChange} name="leadSource">
-                                    <option value={"none"}>No Lead Source Selected</option>
-                                    {this.props.protegeData.sources.map(source => (
-                                        <option value={source}>{source}</option>
-                                    ))}
+                <div className="row">
+                    <div className="col-lg-6">
+                        <form>
+                            <div style={{ textAlign: 'center' }}>
+                                <p style={{ textAlign: 'center' }}>View Types of Calls Made</p>
+                                <select id="sourceDropMenu" className="" value={this.state.dataOption} onChange={this.handleInputChange} name="dataOption">
+                                    <option value={"none"}>------------------------</option>
+                                    <option value={"genDials"}>Dial Data</option>
+                                    <option value={"genContacts"}>Contact Data</option>
+                                    <option value={"genAppts"}>Appointment Data</option>
+                                    <option value={"cfDials"}>Standard/Cashflow Dial Data</option>
+                                    <option value={"cfContacts"}>Standard/Cashflow Contact Data</option>
+                                    <option value={"cfAppts"}>Standard/Cashflow Appointment Data</option>
+                                    <option value={"boDials"}>Tier-1/Businessowner Dial Data</option>
+                                    <option value={"boContacts"}>Tier-1/Businessowner Contact Data</option>
+                                    <option value={"boAppts"}>Tier-1/Businessowner Appointment Data</option>
                                 </select>
-                                <button className="btn-outline-light btn-sm btn" onClick={this.gatherSourceData}>Get Lead Source Data</button>
+                                <button className="btn-outline-dark btn-sm btn" onClick={this.showDataOption}>Generate</button>
                             </div>
-                            : null}
-                    </form>
+                        </form>
+                    </div>
 
-                    <form>
-                        {this.props.protegeData.targetMarkets ?
-                            <div>
-                                <select id="sourceDropMenu" value={this.state.targetMarket} className="customDropDownMentor" onChange={this.handleInputChange} name="targetMarket">
-                                    <option value={"none"}>No Target Market Selected</option>
-                                    {this.props.protegeData.targetMarkets.map(target => (
-                                        <option value={target}>{target}</option>
-                                    ))}
-                                </select> <button className="btn-outline-light btn-sm btn" onClick={this.gatherTargetData}>Get Target Market Data</button>
-                            </div> : null}
-                    </form>
+                    <div className="col-lg-6">
+                        <form>
+                            <div style={{ textAlign: 'center' }}>
+                                <p style={{ textAlign: 'center' }}>View Performance by Type</p>
+                                <select id="sourceDropMenu" className="" value={this.state.categoryOption} onChange={this.handleInputChange} name="categoryOption">
+                                    <option value={"none"}>-------------------------------</option>
+                                    <option value={"pData"}>Warm Leads / Prospects</option>
+                                    <option value={"cData"}>Delegated Clients</option>
+                                    <option value={"nData"}>Natural Market</option>
+                                    <option value={"sData"}>Verticals / Orphans</option>
+                                    <option value={"rData"}>New Referrals</option>
+                                    <option value={"tData"}>Target Industries</option>
+                                </select>
+                                <button className="btn-outline-dark btn-sm btn" onClick={this.showCategoryOption}>Generate</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div className="row">
+                    <div className="col-lg-6">
+                        <form>
+                            {this.props.protegeData.sources ?
+                                <div style={{ textAlign: 'center' }}>
+                                    <p style={{ textAlign: 'center' }}>View Performance by Referral Source</p>
+                                    <select id="sourceDropMenu" className="" value={this.state.leadSource} onChange={this.handleInputChange} name="leadSource">
+                                        <option value={"none"}>----------------------------------</option>
+                                        {this.props.protegeData.sources.map(source => (
+                                            <option value={source}>{source}</option>
+                                        ))}
+                                    </select>
+                                    <button className="btn-outline-dark btn-sm btn" onClick={this.gatherSourceData}>Generate</button>
+                                </div>
+                                : null}
+                        </form>
+                    </div>
+
+                    <div className="col-lg-6">
+                        <form>
+                            {this.props.protegeData.targetMarkets ?
+                                <div style={{ textAlign: 'center' }}>
+                                    <p style={{ textAlign: 'center' }}>View Performance by Target Industry</p>
+                                    <select id="sourceDropMenu" value={this.state.targetMarket} className="" onChange={this.handleInputChange} name="targetMarket">
+                                        <option value={"none"}>---------------------------------</option>
+                                        {this.props.protegeData.targetMarkets.map(target => (
+                                            <option value={target}>{target}</option>
+                                        ))}
+                                    </select> <button className="btn-outline-dark btn-sm btn" onClick={this.gatherTargetData}>Generate</button>
+                                </div> : null}
+                        </form>
+                    </div>
                     {/* <button style={{ width: '33%', marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewReferralPerformance}>Referral Call Performance</button>
                         <button style={{ width: '33%', marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewTargetPerformance}>Target Market Call Performance</button> */}
 
+
                 </div>
 
+                <div className="" style={{ textAlign: 'center' }}>
+                    <h3><u>Protege: {this.props.protegeData.firstName} {this.props.protegeData.lastName} </u></h3>
+                    <hr />
+                </div>
                 {this.state.showDialChart ?
-                    <div style={{ color: 'whitesmoke' }}>
-                        <div className="">
-                            <div className="" style={{ textAlign: 'center' }}>
-                                <h3><u>Protege: {this.props.protegeData.firstName} {this.props.protegeData.lastName} </u></h3>
-                                <hr />
-                                <h4>Total Dials: {this.props.dialData.length}</h4>
-                            </div>
-                        </div>
-
+                    <div style={{ color: 'center', color: 'black' }}>
+                        <p style={{ textAlign: 'center' }}>Total Dials: {this.props.dialData.length}</p>
 
                         <div className="row">
-                            <div className="card col-lg-6" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                            <div style={{ backgroundColor: 'rgba(0,0,0,0)' }} className="card col-lg-2"></div>
+
+                            <div className="card col-lg-8" style={{ backgroundColor: 'rgba(255,255,255,0.9)', padding: '10px', margin: 0 }}>
                                 <Bar data={{
                                     labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                                     datasets: [{
@@ -1323,56 +1323,50 @@ class MentorDataViewer extends Component {
                                             this.props.CTDials + this.props.BTDials],
                                     }]
                                 }}
-                                // options={{
-                                //     legend: {
-                                //         display: false
-                                //     }}}
+                                    options={{
+                                        legend: {
+                                            display: false
+                                        }
+                                    }}
                                 />
                             </div>
-                            <div className="card col-lg-6" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                            <div style={{ backgroundColor: 'rgba(0,0,0,0)' }} className="card col-lg-2"></div>
+
+                            <div style={{ backgroundColor: 'rgba(0,0,0,0)' }} className="card col-lg-2"></div>
+                            <div className="card col-lg-8" style={{ backgroundColor: 'rgba(255,255,255,0.9)', padding: '10px', margin: 0 }}>
                                 <Pie data={{
                                     labels: [
-                                        "Cashflow Prospect",
-                                        "Business Prospect",
-                                        "Cashflow Client",
-                                        "Business Client",
-                                        "Cashflow Natural Market",
-                                        "Business Natural Market",
-                                        "Cashflow Suspect",
-                                        "Business Suspect",
-                                        "Cashflow Referral",
-                                        "Business Referral",
-                                        "Cashflow Target Market",
-                                        "Business Target Market"],
+                                        "Prospects",
+                                        "Delegated Client",
+                                        "Natural Market",
+                                        "Suspects/Orphans",
+                                        "Referrals",
+                                        "Target Markets"],
                                     datasets: [{
                                         data: [
-                                            this.props.CPDials,
-                                            this.props.BPDials,
-                                            this.props.CCDials,
-                                            this.props.BCDials,
-                                            this.props.CNDials,
-                                            this.props.BNDials,
-                                            this.props.CSDials,
-                                            this.props.BSDials,
-                                            this.props.CRDials,
-                                            this.props.BRDials,
-                                            this.props.CTDials,
-                                            this.props.BTDials
+                                            this.props.CPDials + this.props.BPDials,
+                                            this.props.CCDials + this.props.BCDials,
+                                            this.props.CNDials + this.props.BNDials,
+                                            this.props.CSDials + this.props.BSDials,
+                                            this.props.CRDials + this.props.BRDials,
+                                            this.props.CTDials + this.props.BTDials
                                         ],
                                         backgroundColor: [
                                             "#3ac178",
-                                            "#443959",
                                             "#f99b17",
-                                            "#a2e505",
-                                            "#c9917f",
-                                            "#8d044b",
-                                            "#d2d93b",
-                                            "#dd4417",
                                             "#5191d9",
                                             "#483d28",
                                             "#51aef7",
                                             "#25517b"
-                                        ]
+                                        ],
+                                        borderColor: [
+                                            "#3ac178",
+                                            "#f99b17",
+                                            "#5191d9",
+                                            "#483d28",
+                                            "#51aef7",
+                                            "#25517b"
+                                        ],
                                     }]
                                 }} options={{
                                     legend: {
@@ -1381,15 +1375,24 @@ class MentorDataViewer extends Component {
                                             boxWidth: 10
                                         }
                                     }
-                                }} /> </div> </div> </div> : null
+                                }} />
+                            </div>
+                            <div style={{ backgroundColor: 'rgba(0,0,0,0)' }} className="card col-lg-2"></div>
+
+
+                        </div>
+                    </div>
+                    : null
                 }
 
                 {this.state.showContactChart ?
                     <div>
+
+                        <hr />
                         <div className="row">
                             <div className="col" style={{ textAlign: 'center' }}>
                                 <hr />
-                                <h4 style={{ color: 'whitesmoke' }}>Total Contacts: {this.props.contactData.length}</h4>
+                                <p style={{textAlign: 'center', color: 'black' }}>Total Contacts: {this.props.contactData.length}</p>
                             </div>
                         </div>
                         {/* <ul>
@@ -1402,7 +1405,9 @@ class MentorDataViewer extends Component {
                 </ul> */}
 
                         <div className="row">
-                            <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                            <div style={{ backgroundColor: 'rgba(0,0,0,0)' }} className="card col-lg-2"></div>
+
+                            <div className="card col-lg-8" style={{ backgroundColor: 'rgba(255,255,255,0.9)', padding: '10px', margin: 0 }}>
                                 <Bar data={{
                                     labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                                     datasets: [{
@@ -1419,45 +1424,31 @@ class MentorDataViewer extends Component {
                                     }]
                                 }} />
                             </div>
-                            <div className="col-lg-6" card style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                            <div style={{ backgroundColor: 'rgba(0,0,0,0)' }} className="card col-lg-2"></div>
+
+                            <div style={{ backgroundColor: 'rgba(0,0,0,0)' }} className="card col-lg-2"></div>
+
+                            <div className="card col-lg-8" style={{ backgroundColor: 'rgba(255,255,255,0.9)', padding: '10px', margin: 0 }}>
                                 <Pie data={{
                                     labels: [
-                                        "Cashflow Prospect",
-                                        "Business Prospect",
-                                        "Cashflow Client",
-                                        "Business Client",
-                                        "Cashflow Natural Market",
-                                        "Business Natural Market",
-                                        "Cashflow Suspect",
-                                        "Business Suspect",
-                                        "Cashflow Referral",
-                                        "Business Referral",
-                                        "Cashflow Target Market",
-                                        "Business Target Market"],
+                                        "Warm Lead/Prospect",
+                                        "Delegated Client",
+                                        "Natural Market",
+                                        "Vertical / Orphan",
+                                        "New Referral",
+                                        "Targeted Industry"],
                                     datasets: [{
                                         data: [
-                                            this.props.CPContacts,
-                                            this.props.BPContacts,
-                                            this.props.CCContacts,
-                                            this.props.BCContacts,
-                                            this.props.CNContacts,
-                                            this.props.BNContacts,
-                                            this.props.CSContacts,
-                                            this.props.BSContacts,
-                                            this.props.CRContacts,
-                                            this.props.BRContacts,
-                                            this.props.CTContacts,
-                                            this.props.BTContacts
+                                            this.props.CPContacts + this.props.BPContacts,
+                                            this.props.CCContacts + this.props.BCContacts,
+                                            this.props.CNContacts + this.props.BNContacts,
+                                            this.props.CSContacts + this.props.BSContacts,
+                                            this.props.CRContacts + this.props.BRContacts,
+                                            this.props.CTContacts + this.props.BTContacts
                                         ],
                                         backgroundColor: [
                                             "#3ac178",
-                                            "#443959",
                                             "#f99b17",
-                                            "#a2e505",
-                                            "#c9917f",
-                                            "#8d044b",
-                                            "#d2d93b",
-                                            "#dd4417",
                                             "#5191d9",
                                             "#483d28",
                                             "#51aef7",
@@ -1474,6 +1465,9 @@ class MentorDataViewer extends Component {
                                         }
                                     }}
                                 /> </div>
+                            <div style={{ backgroundColor: 'rgba(0,0,0,0)' }} className="card col-lg-2"></div>
+
+
 
                         </div> </div> : null
                 }
@@ -1482,15 +1476,18 @@ class MentorDataViewer extends Component {
                 {
                     this.state.showApptChart ?
                         <div>
+
+                            <hr />
                             <div className="row">
                                 <div className="col" style={{ textAlign: 'center' }}>
-                                    <hr />
-                                    <h4 style={{ color: 'whitesmoke' }}>Total Appointments: {this.props.apptData.length} </h4>
+                                    <p style={{ color: 'black', textAlign: 'center' }}>Total Appointments: {this.props.apptData.length} </p>
                                 </div>
                             </div>
 
                             <div className="row">
-                                <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                                <div style={{ backgroundColor: 'rgba(0,0,0,0)' }} className="card col-lg-2"></div>
+
+                                <div className="card col-lg-8" style={{ backgroundColor: 'rgba(255,255,255,0.9)', padding: '10px', margin: 0 }}>
                                     <Bar data={{
                                         labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                                         datasets: [{
@@ -1507,45 +1504,31 @@ class MentorDataViewer extends Component {
                                         }]
                                     }} />
                                 </div>
-                                <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                                <div style={{ backgroundColor: 'rgba(0,0,0,0)' }} className="card col-lg-2"></div>
+
+                                <div style={{ backgroundColor: 'rgba(0,0,0,0)' }} className="card col-lg-2"></div>
+
+                                <div className="card col-lg-8" style={{ backgroundColor: 'rgba(255,255,255,0.9)', padding: '10px', margin: 0 }}>
                                     <Pie data={{
                                         labels: [
-                                            "Cashflow Prospect",
-                                            "Business Prospect",
-                                            "Cashflow Client",
-                                            "Business Client",
-                                            "Cashflow Natural Market",
-                                            "Business Natural Market",
-                                            "Cashflow Suspect",
-                                            "Business Suspect",
-                                            "Cashflow Referral",
-                                            "Business Referral",
-                                            "Cashflow Target Market",
-                                            "Business Target Market"],
+                                            "Warm Lead/Prospect",
+                                            "Delegated Client",
+                                            "Natural Market",
+                                            "Vertical / Orphan",
+                                            "New Referral",
+                                            "Targeted Industry"],
                                         datasets: [{
                                             data: [
-                                                this.props.CPAppts,
-                                                this.props.BPAppts,
-                                                this.props.CCAppts,
-                                                this.props.BCAppts,
-                                                this.props.CNAppts,
-                                                this.props.BNAppts,
-                                                this.props.CSAppts,
-                                                this.props.BSAppts,
-                                                this.props.CRAppts,
-                                                this.props.BRAppts,
-                                                this.props.CTAppts,
-                                                this.props.BTAppts
+                                                this.props.CPAppts + this.props.BPAppts,
+                                                this.props.CCAppts + this.props.BCAppts,
+                                                this.props.CNAppts + this.props.BNAppts,
+                                                this.props.CSAppts + this.props.BSAppts,
+                                                this.props.CRAppts + this.props.BRAppts,
+                                                this.props.CTAppts + this.props.BTAppts
                                             ],
                                             backgroundColor: [
                                                 "#3ac178",
-                                                "#443959",
                                                 "#f99b17",
-                                                "#a2e505",
-                                                "#c9917f",
-                                                "#8d044b",
-                                                "#d2d93b",
-                                                "#dd4417",
                                                 "#5191d9",
                                                 "#483d28",
                                                 "#51aef7",
@@ -1561,7 +1544,8 @@ class MentorDataViewer extends Component {
                                                 }
                                             }
                                         }} />
-                                </div> </div> </div> : null
+                                </div><div style={{ backgroundColor: 'rgba(0,0,0,0)' }} className="card col-lg-2"></div>
+                            </div> </div> : null
                 }
 
                 <hr />
@@ -1573,16 +1557,23 @@ class MentorDataViewer extends Component {
                 {this.state.showCashflowDials ?
                     <div>
                         <div className="row">
-                            <div className="col" style={{ textAlign: 'center', color: 'whitesmoke' }}>
+                            <div className="col" style={{ textAlign: 'center', color: 'black' }}>
                                 <hr />
-                                <h4>Cashflow Dials Data:</h4>
+                                <h4>Cashflow Dials made:
+                                {this.props.CPDials +
+                                        this.props.CCDials +
+                                        this.props.CNDials +
+                                        this.props.CRDials +
+                                        this.props.CSDials +
+                                        this.props.CTDials}
+                                </h4>
                             </div>
                         </div>
 
                         <div className="row">
 
 
-                            <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                            <div className="card col-lg-6" style={{ backgroundColor: 'rgba(255,255,255,0.9)', padding: '10px', margin: 0 }}>
                                 <Bar data={{
                                     labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                                     datasets: [{
@@ -1600,7 +1591,7 @@ class MentorDataViewer extends Component {
                                     }]
                                 }} />
                             </div>
-                            <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                            <div className="card col-lg-6" style={{ backgroundColor: 'rgba(255,255,255,0.9)', padding: '10px', margin: 0 }}>
                                 <Pie data={{
                                     labels: [
                                         "Cashflow Prospect",
@@ -1646,13 +1637,20 @@ class MentorDataViewer extends Component {
 
                 {this.state.showCashflowContacts ?
                     <div>
-                        <div className="row" style={{ textAlign: 'center', color: 'whitesmoke' }}>
+                        <div className="row" style={{ textAlign: 'center', color: 'black' }}>
                             <div className="col">
-                                <h4>Contact Data:</h4>
+                                <h4>Cashflow Contacts made:
+                                {this.props.CPContacts +
+                                        this.props.CCContacts +
+                                        this.props.CNContacts +
+                                        this.props.CRContacts +
+                                        this.props.CSContacts +
+                                        this.props.CTContacts}
+                                </h4>
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                            <div className="card col-lg-6" style={{ backgroundColor: 'rgba(255,255,255,0.9)', padding: '10px', margin: 0 }}>
                                 <Bar data={{
                                     labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                                     datasets: [{
@@ -1670,7 +1668,7 @@ class MentorDataViewer extends Component {
                                     }]
                                 }} />
                             </div>
-                            <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                            <div className="card col-lg-6" style={{ backgroundColor: 'rgba(255,255,255,0.9)', padding: '10px', margin: 0 }}>
                                 <Pie data={{
                                     labels: [
                                         "Cashflow Prospect",
@@ -1719,14 +1717,21 @@ class MentorDataViewer extends Component {
                 <br />
                 {this.state.showCashflowAppts ?
                     <div>
-                        <div className="row" style={{ textAlign: 'center', color: 'whitesmoke' }}>
+                        <div className="row" style={{ textAlign: 'center', color: 'black' }}>
                             <div className="col">
-                                <h4>Appointment Data:</h4>
+                                <h4>Cashflow Appointments made:
+                                {this.props.CPAppts +
+                                        this.props.CCAppts +
+                                        this.props.CNAppts +
+                                        this.props.CRAppts +
+                                        this.props.CSAppts +
+                                        this.props.CTAppts}
+                                </h4>
                             </div>
                         </div>
 
                         <div className="row">
-                            <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                            <div className="card col-lg-6" style={{ backgroundColor: 'rgba(255,255,255,0.9)', padding: '10px', margin: 0 }}>
                                 <Bar data={{
                                     labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                                     datasets: [{
@@ -1744,7 +1749,7 @@ class MentorDataViewer extends Component {
                                     }]
                                 }} />
                             </div>
-                            <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                            <div className="card col-lg-6" style={{ backgroundColor: 'rgba(255,255,255,0.9)', padding: '10px', margin: 0 }}>
                                 <Pie data={{
                                     labels: [
                                         "Cashflow Prospect",
@@ -1789,13 +1794,20 @@ class MentorDataViewer extends Component {
 
                 {this.state.showBusinessDials ?
                     <div>
-                        <div className="row" style={{ textAlign: 'center', color: 'whitesmoke' }}>
+                        <div className="row" style={{ textAlign: 'center', color: 'black' }}>
                             <div className="col">
-                                <h4>Dial Data:</h4>
+                                <h4>Tier-1/Businessowner Dials made:
+                                {this.props.BPDials +
+                                        this.props.BCDials +
+                                        this.props.BNDials +
+                                        this.props.BRDials +
+                                        this.props.BSDials +
+                                        this.props.BTDials}
+                                </h4>
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                            <div className="card col-lg-6" style={{ backgroundColor: 'rgba(255,255,255,0.9)', padding: '10px', margin: 0 }}>
                                 <Bar data={{
                                     labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                                     datasets: [{
@@ -1812,7 +1824,7 @@ class MentorDataViewer extends Component {
                                     }]
                                 }} />
                             </div>
-                            <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                            <div className="card col-lg-6" style={{ backgroundColor: 'rgba(255,255,255,0.9)', padding: '10px', margin: 0 }}>
                                 <Pie data={{
                                     labels: [
                                         "Business Prospect",
@@ -1855,13 +1867,20 @@ class MentorDataViewer extends Component {
 
                 {this.state.showBusinessContacts ?
                     <div>
-                        <div className="row">
-                            <div className="col" style={{ color: 'whitesmoke' }}>
-                                <h4>Contact Data:</h4>
+                        <div className="row" style={{ textAlign: 'center', color: 'black' }}>
+                            <div className="col">
+                                <h4>Tier-1/Businessowner Contacts made:
+                                {this.props.BPContacts +
+                                        this.props.BCContacts +
+                                        this.props.BNContacts +
+                                        this.props.BRContacts +
+                                        this.props.BSContacts +
+                                        this.props.BTContacts}
+                                </h4>
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                            <div className="card col-lg-6" style={{ backgroundColor: 'rgba(255,255,255,0.9)', padding: '10px', margin: 0 }}>
                                 <Bar data={{
                                     labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                                     datasets: [{
@@ -1879,7 +1898,7 @@ class MentorDataViewer extends Component {
                                 }}
                                 />
                             </div>
-                            <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                            <div className="card col-lg-6" style={{ backgroundColor: 'rgba(255,255,255,0.9)', padding: '10px', margin: 0 }}>
                                 <Pie data={{
                                     labels: [
                                         "Business Prospect",
@@ -1925,13 +1944,20 @@ class MentorDataViewer extends Component {
 
                 {this.state.showBusinessAppts ?
                     <div>
-                        <div className="row">
-                            <div className="col"></div>
-                            <h3 style={{ color: 'whitesmoke' }}><u>Appointment Data:</u></h3>
+                        <div className="row" style={{ textAlign: 'center', color: 'black' }}>
+                            <div className="col">
+                                <h4 style={{ color: 'black' }}>Tier-1/Businessowner Appointments made:
+                            {this.props.BPAppts +
+                                        this.props.BCAppts +
+                                        this.props.BNAppts +
+                                        this.props.BRAppts +
+                                        this.props.BSAppts +
+                                        this.props.BTAppts}</h4>
+                            </div>
                         </div>
 
                         <div className="row">
-                            <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                            <div className="card col-lg-6" style={{ backgroundColor: 'rgba(255,255,255,0.9)', padding: '10px', margin: 0 }}>
                                 <Bar data={{
                                     labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                                     datasets: [{
@@ -1947,7 +1973,7 @@ class MentorDataViewer extends Component {
                                             this.props.BTAppts],
                                     }]
                                 }} /> </div>
-                            <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
+                            <div className="card col-lg-6" style={{ backgroundColor: 'rgba(255,255,255,0.9)', padding: '10px', margin: 0 }}>
                                 <Pie data={{
                                     labels: [
                                         "Business Prospect",
@@ -1992,15 +2018,15 @@ class MentorDataViewer extends Component {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                 {this.state.showProspectPerformance ?
-                    <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
+                    <div className="card" style={{ textAlign: 'center', color: 'black' }}>
 
-                        <h3>Prospect Calling Performance:</h3>
+                        <h3>Prospect Calling Analytics:</h3>
+                        <hr />
                         <div className="row" style={{ textAlign: 'center' }}>
 
                             <div className="col-lg-4">
                                 <h6>Dials to Contact Ratio</h6>
-                                <h6>Total Prospect Dials: {this.props.CPDials + this.props.BPDials}</h6>
-                                <h6>Contact Ratio: {Math.round((this.props.CPContacts + this.props.BPContacts) / (this.props.CPDials + this.props.BPDials) * 100)}%</h6>
+                                <br />
                                 <Pie data={{
                                     labels: [
                                         "Prospect Dials without contacts",
@@ -2023,12 +2049,15 @@ class MentorDataViewer extends Component {
                                         }
                                     }}
                                 />
+                                <br />
+                                <h6>Contacted a Prospect on</h6>
+                                <h6> {Math.round((this.props.CPContacts + this.props.BPContacts) / (this.props.CPDials + this.props.BPDials) * 100)}% of dials</h6>
+
                             </div>
 
                             <div className="col-lg-4">
                                 <h6>Contacts to Appointment Ratio</h6>
-                                <h6>Total Prospect Contacts: {this.props.CPContacts + this.props.BPContacts}</h6>
-                                <h6>Appointment per Contact Ratio: {Math.round((this.props.CPAppts + this.props.BPAppts) / (this.props.CPContacts + this.props.BPContacts) * 100)}%</h6>
+                                <br />
                                 <Pie data={{
                                     labels: [
                                         "Prospect Contacts without appointments",
@@ -2051,12 +2080,16 @@ class MentorDataViewer extends Component {
                                         }
                                     }}
                                 />
+                                <br />
+
+                                <h6>Scheduled an appointment on:</h6>
+                                <h6>{Math.round((this.props.CPAppts + this.props.BPAppts) / (this.props.CPContacts + this.props.BPContacts) * 100)}% of contacts</h6>
+
                             </div>
 
                             <div className="col-lg-4">
                                 <h6>Dials to Appointment Ratio</h6>
-                                <h6>Total Prospect Dials: {this.props.CPDials + this.props.BPDials}</h6>
-                                <h6>Appointment per Dial Ratio: {Math.round((this.props.CPAppts + this.props.BPAppts) / (this.props.CPDials + this.props.BPDials) * 100)}%</h6>
+                                <br />
                                 <Pie data={{
                                     labels: [
                                         "Prospect Dials without appointments",
@@ -2079,6 +2112,10 @@ class MentorDataViewer extends Component {
                                         }
                                     }}
                                 />
+                                <br />
+                                <h6>Scheduled an appointment on:</h6>
+                                <h6> {Math.round((this.props.CPAppts + this.props.BPAppts) / (this.props.CPDials + this.props.BPDials) * 100)}% of dials</h6>
+
                             </div>
 
 
@@ -2092,15 +2129,14 @@ class MentorDataViewer extends Component {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                 {this.state.showClientPerformance ?
-                    <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
+                    <div className="card" style={{ textAlign: 'center', color: 'black' }}>
 
-                        <h3>Client Calling Performance:</h3>
+                        <h3>Delegated Client Calling Analytics:</h3>
                         <div className="row" style={{ textAlign: 'center' }}>
 
                             <div className="col-lg-4">
                                 <h6>Dials to Contact Ratio</h6>
-                                <h6>Total Client Dials: {this.props.CCDials + this.props.BCDials}</h6>
-                                <h6>Contact Ratio: {Math.round((this.props.CCContacts + this.props.BCContacts) / (this.props.CCDials + this.props.BCDials) * 100)}%</h6>
+                                <br />
                                 <Pie data={{
                                     labels: [
                                         "Client Dials without contacts",
@@ -2123,12 +2159,16 @@ class MentorDataViewer extends Component {
                                         }
                                     }}
                                 />
+                                <br />
+
+                                <h6>Made contact on :</h6>
+                                <h6>{Math.round((this.props.CCContacts + this.props.BCContacts) / (this.props.CCDials + this.props.BCDials) * 100)}% of dials</h6>
+
                             </div>
 
                             <div className="col-lg-4">
                                 <h6>Contacts to Appointment Ratio</h6>
-                                <h6>Total Client Contacts: {this.props.CCContacts + this.props.BCContacts}</h6>
-                                <h6>Appointment per Contact Ratio: {Math.round((this.props.CCAppts + this.props.BCAppts) / (this.props.CCContacts + this.props.BCContacts) * 100)}%</h6>
+                                <br />
                                 <Pie data={{
                                     labels: [
                                         "Client Contacts without appointment",
@@ -2151,12 +2191,16 @@ class MentorDataViewer extends Component {
                                         }
                                     }}
                                 />
+                                <br />
+
+                                <h6>Scheduled an appointment on:</h6>
+                                <h6>{Math.round((this.props.CCAppts + this.props.BCAppts) / (this.props.CCContacts + this.props.BCContacts) * 100)}% of contacts</h6>
+
                             </div>
 
                             <div className="col-lg-4">
                                 <h6>Dials to Appointment Ratio</h6>
-                                <h6>Total Client Dials: {this.props.CCDials + this.props.BCDials}</h6>
-                                <h6>Appointment per Dial Ratio: {Math.round((this.props.CCAppts + this.props.BCAppts) / (this.props.CCDials + this.props.BCDials) * 100)}%</h6>
+                                <br />
                                 <Pie data={{
                                     labels: [
                                         "Client Dials without appointment",
@@ -2179,6 +2223,10 @@ class MentorDataViewer extends Component {
                                         }
                                     }}
                                 />
+                                <br />
+                                <h6>Scheduled an appointment on: </h6>
+                                <h6>{Math.round((this.props.CCAppts + this.props.BCAppts) / (this.props.CCDials + this.props.BCDials) * 100)}% of dials</h6>
+
                             </div>
 
 
@@ -2193,15 +2241,14 @@ class MentorDataViewer extends Component {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                 {this.state.showNaturalPerformance ?
-                    <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
+                    <div className="card" style={{ textAlign: 'center', color: 'black' }}>
 
                         <h3>Natural Market Calling Performance:</h3>
                         <div className="row" style={{ textAlign: 'center' }}>
 
                             <div className="col-lg-4">
                                 <h6>Dials to Contact Ratio</h6>
-                                <h6>Total Natural Market Dials: {this.props.CNDials + this.props.BNDials}</h6>
-                                <h6>Contact Ratio: {Math.round((this.props.CNContacts + this.props.BNContacts) / (this.props.CNDials + this.props.BNDials) * 100)}%</h6>
+                                <br />
                                 <Pie data={{
                                     labels: [
                                         "Natural Market Dials without contact",
@@ -2224,12 +2271,14 @@ class MentorDataViewer extends Component {
                                         }
                                     }}
                                 />
+                                <h6>Made contact on:</h6>
+                                <h6> {Math.round((this.props.CNContacts + this.props.BNContacts) / (this.props.CNDials + this.props.BNDials) * 100)}% of dials</h6>
+
                             </div>
 
                             <div className="col-lg-4">
                                 <h6>Contacts to Appointment Ratio</h6>
-                                <h6>Total Natural Market Contacts: {this.props.CNContacts + this.props.BNContacts}</h6>
-                                <h6>Appointment per Contact Ratio: {Math.round((this.props.CNAppts + this.props.BNAppts) / (this.props.CNContacts + this.props.BNContacts) * 100)}%</h6>
+                                <br />
                                 <Pie data={{
                                     labels: [
                                         "Natural Market Contacts without appointment",
@@ -2252,12 +2301,14 @@ class MentorDataViewer extends Component {
                                         }
                                     }}
                                 />
+                                <h6>Scheduled an appointment on: </h6>
+                                <h6>{Math.round((this.props.CNAppts + this.props.BNAppts) / (this.props.CNContacts + this.props.BNContacts) * 100)}% of contacts</h6>
+
                             </div>
 
                             <div className="col-lg-4">
                                 <h6>Dials to Appointment Ratio</h6>
-                                <h6>Total Natural Market Dials: {this.props.CNDials + this.props.BNDials}</h6>
-                                <h6>Appointment per Dial Ratio: {Math.round((this.props.CNAppts + this.props.BNAppts) / (this.props.CNDials + this.props.BNDials) * 100)}%</h6>
+                                <br />
                                 <Pie data={{
                                     labels: [
                                         "Natural Market Dials without appointment",
@@ -2280,6 +2331,9 @@ class MentorDataViewer extends Component {
                                         }
                                     }}
                                 />
+                                <h6>Scheduled an appointment on: </h6>
+                                <h6>{Math.round((this.props.CNAppts + this.props.BNAppts) / (this.props.CNDials + this.props.BNDials) * 100)}% of your dials</h6>
+
                             </div>
 
 
@@ -2293,15 +2347,14 @@ class MentorDataViewer extends Component {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                 {this.state.showSuspectPerformance ?
-                    <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
+                    <div className="card" style={{ textAlign: 'center', color: 'black' }}>
 
                         <h3>Suspect Calling Performance:</h3>
                         <div className="row" style={{ textAlign: 'center' }}>
 
                             <div className="col-lg-4">
                                 <h6>Dials to Contact Ratio</h6>
-                                <h6>Total Suspect Dials: {this.props.CSDials + this.props.BSDials}</h6>
-                                <h6>Contact Ratio: {Math.round((this.props.CSContacts + this.props.BSContacts) / (this.props.CSDials + this.props.BSDials) * 100)}%</h6>
+                                <br />
                                 <Pie data={{
                                     labels: [
                                         "Suspect Dials without contact",
@@ -2324,12 +2377,15 @@ class MentorDataViewer extends Component {
                                         }
                                     }}
                                 />
+                                <br />
+                                <h6>Made contact on </h6>
+                                <h6>{Math.round((this.props.CSContacts + this.props.BSContacts) / (this.props.CSDials + this.props.BSDials) * 100)}% of dials</h6>
+
                             </div>
 
                             <div className="col-lg-4">
                                 <h6>Contacts to Appointment Ratio</h6>
-                                <h6>Total Suspect Contacts: {this.props.CSContacts + this.props.BSContacts}</h6>
-                                <h6>Appointment per Contact Ratio: {Math.round((this.props.CSAppts + this.props.BSAppts) / (this.props.CSContacts + this.props.BSContacts) * 100)}%</h6>
+                                <br />
                                 <Pie data={{
                                     labels: [
                                         "Suspect Contacts without appointment",
@@ -2352,12 +2408,15 @@ class MentorDataViewer extends Component {
                                         }
                                     }}
                                 />
+                                <br />
+                                <h6>Scheduled an appointment on: </h6>
+                                <h6>{Math.round((this.props.CSAppts + this.props.BSAppts) / (this.props.CSContacts + this.props.BSContacts) * 100)}% of contacts</h6>
+
                             </div>
 
                             <div className="col-lg-4">
                                 <h6>Dials to Appointment Ratio</h6>
-                                <h6>Total Suspect Dials: {this.props.CSDials + this.props.BSDials}</h6>
-                                <h6>Appointment per Dial Ratio: {Math.round((this.props.CSAppts + this.props.BSAppts) / (this.props.CSDials + this.props.BSDials) * 100)}%</h6>
+                                <br />
                                 <Pie data={{
                                     labels: [
                                         "Suspect Dials without appointment",
@@ -2380,9 +2439,11 @@ class MentorDataViewer extends Component {
                                         }
                                     }}
                                 />
+                                <br />
+                                <h6>Scheduled an appointment on:</h6>
+                                <h6>{Math.round((this.props.CSAppts + this.props.BSAppts) / (this.props.CSDials + this.props.BSDials) * 100)}% of dials</h6>
+
                             </div>
-
-
                         </div>
 
                     </div>
@@ -2393,15 +2454,14 @@ class MentorDataViewer extends Component {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                 {this.state.showReferralPerformance ?
-                    <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
+                    <div className="card" style={{ textAlign: 'center', color: 'black' }}>
 
                         <h3>Referral Calling Performance:</h3>
                         <div className="row" style={{ textAlign: 'center' }}>
 
                             <div className="col-lg-4">
                                 <h6>Dials to Contact Ratio</h6>
-                                <h6>Total Referral Dials: {this.props.CRDials + this.props.BRDials}</h6>
-                                <h6>Contact Ratio: {Math.round((this.props.CRContacts + this.props.BRContacts) / (this.props.CRDials + this.props.BRDials) * 100)}%</h6>
+                                <br />
                                 <Pie data={{
                                     labels: [
                                         "Referral Dials without contact",
@@ -2424,12 +2484,15 @@ class MentorDataViewer extends Component {
                                         }
                                     }}
                                 />
+                                <br />
+                                <h6>Made Contact on:</h6>
+                                <h6>{Math.round((this.props.CRContacts + this.props.BRContacts) / (this.props.CRDials + this.props.BRDials) * 100)}% of dials</h6>
+
                             </div>
 
                             <div className="col-lg-4">
                                 <h6>Contacts to Appointment Ratio</h6>
-                                <h6>Total Referral Contacts: {this.props.CRContacts + this.props.BRContacts}</h6>
-                                <h6>Appointment per Contact Ratio: {Math.round((this.props.CRAppts + this.props.BRAppts) / (this.props.CRContacts + this.props.BRContacts) * 100)}%</h6>
+                                <br />
                                 <Pie data={{
                                     labels: [
                                         "Referral Contacts without appointment",
@@ -2452,12 +2515,15 @@ class MentorDataViewer extends Component {
                                         }
                                     }}
                                 />
+                                <br />
+                                <h6>Made appointments on: </h6>
+                                <h6>{Math.round((this.props.CRAppts + this.props.BRAppts) / (this.props.CRContacts + this.props.BRContacts) * 100)}% of contacts</h6>
+
                             </div>
 
                             <div className="col-lg-4">
                                 <h6>Dials to Appointment Ratio</h6>
-                                <h6>Total Referral Dials: {this.props.CRDials + this.props.BRDials}</h6>
-                                <h6>Appointment per Dial Ratio: {Math.round((this.props.CRAppts + this.props.BRAppts) / (this.props.CRDials + this.props.BRDials) * 100)}%</h6>
+                                <br />
                                 <Pie data={{
                                     labels: [
                                         "Referral Dials without appointment",
@@ -2480,6 +2546,10 @@ class MentorDataViewer extends Component {
                                         }
                                     }}
                                 />
+                                <br />
+                                <h6>Scheduled appointments on: </h6>
+                                <h6>{Math.round((this.props.CRAppts + this.props.BRAppts) / (this.props.CRDials + this.props.BRDials) * 100)}% of dials</h6>
+
                             </div>
 
 
@@ -2493,15 +2563,14 @@ class MentorDataViewer extends Component {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                 {this.state.showTargetPerformance ?
-                    <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
+                    <div className="card" style={{ textAlign: 'center', color: 'black' }}>
 
                         <h3>Target Market Calling Performance:</h3>
                         <div className="row" style={{ textAlign: 'center' }}>
 
                             <div className="col-lg-4">
                                 <h6>Dials to Contact Ratio</h6>
-                                <h6>Total Target Market Dials: {this.props.CTDials + this.props.BTDials}</h6>
-                                <h6>Contact Ratio: {Math.round((this.props.CTContacts + this.props.BTContacts) / (this.props.CTDials + this.props.BTDials) * 100)}%</h6>
+                                <br />
                                 <Pie data={{
                                     labels: [
                                         "Target Market Dials without contact",
@@ -2523,12 +2592,15 @@ class MentorDataViewer extends Component {
                                             display: false
                                         }
                                     }} />
+                                <br />
+                                <h6>Made Contact on: </h6>
+                                <h6>{Math.round((this.props.CTContacts + this.props.BTContacts) / (this.props.CTDials + this.props.BTDials) * 100)}% of dials</h6>
+
                             </div>
 
                             <div className="col-lg-4">
                                 <h6>Contacts to Appointment Ratio</h6>
-                                <h6>Total Target Market Contacts: {this.props.CTContacts + this.props.BTContacts}</h6>
-                                <h6>Appointment per Contact Ratio: {Math.round((this.props.CTAppts + this.props.BTAppts) / (this.props.CTContacts + this.props.BTContacts) * 100)}%</h6>
+                                <br />
                                 <Pie data={{
                                     labels: [
                                         "Target Market Contacts without appointment",
@@ -2550,12 +2622,16 @@ class MentorDataViewer extends Component {
                                             display: false
                                         }
                                     }} />
+                                <br />
+                                <h6>Made appointments on: </h6>
+                                <h6>{Math.round((this.props.CTAppts + this.props.BTAppts) / (this.props.CTContacts + this.props.BTContacts) * 100)}% of contacts</h6>
+
                             </div>
 
                             <div className="col-lg-4">
                                 <h6>Dials to Appointment Ratio</h6>
-                                <h6>Total Target Market Dials: {this.props.CTDials + this.props.BTDials}</h6>
-                                <h6>Appointment per Dial Ratio: {Math.round((this.props.CTAppts + this.props.BTAppts) / (this.props.CTDials + this.props.BTDials) * 100)}%</h6>
+                                <br />
+
                                 <Pie data={{
                                     labels: [
                                         "Target Market Dials without scheduling",
@@ -2577,8 +2653,11 @@ class MentorDataViewer extends Component {
                                             display: false
                                         }
                                     }} />
-                            </div>
+                                <br />
+                                <h6>Made appointments on: </h6>
+                                <h6>{Math.round((this.props.CTAppts + this.props.BTAppts) / (this.props.CTDials + this.props.BTDials) * 100)}% of dials</h6>
 
+                            </div>
 
                         </div>
 
@@ -2592,9 +2671,9 @@ class MentorDataViewer extends Component {
                 {this.state.showSourcePerformance ?
                     <div style={{ textAlign: 'center' }}>
 
-                        <div style={{ color: 'whitesmoke' }}>
+                        <div style={{ color: 'black' }}>
                             <h3><u>{this.state.leadSource} Types of Calls</u></h3>
-                            <p>Dials: {this.state.sourceDialData.length}</p>
+
                             {/* <Bar data={{
                                 labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                                 datasets: [{
@@ -2610,49 +2689,31 @@ class MentorDataViewer extends Component {
                                         this.state.SCTDials + this.state.SBTDials],
                                 }]
                             }} /> */}
-                            <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
+                            <div className="card" style={{ backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                                <h4 style={{ textAlign: 'center' }}>Dials: {this.state.sourceDialData.length}</h4>
                                 <Pie data={{
                                     labels: [
-                                        "Cashflow Prospect",
-                                        "Business Prospect",
-                                        "Cashflow Client",
-                                        "Business Client",
-                                        "Cashflow Natural Market",
-                                        "Business Natural Market",
-                                        "Cashflow Suspect",
-                                        "Business Suspect",
-                                        "Cashflow Referral",
-                                        "Business Referral",
-                                        "Cashflow Target Market",
-                                        "Business Target Market"],
+                                        "Standard/Cashflow",
+                                        "Tier-1/Businessowner"],
                                     datasets: [{
                                         data: [
-                                            this.state.SCPDials,
-                                            this.state.SBPDials,
-                                            this.state.SCCDials,
-                                            this.state.SBCDials,
-                                            this.state.SCNDials,
-                                            this.state.SBNDials,
-                                            this.state.SCSDials,
-                                            this.state.SBSDials,
-                                            this.state.SCRDials,
-                                            this.state.SBRDials,
+                                            this.state.SCPDials +
+                                            this.state.SCCDials +
+                                            this.state.SCNDials +
+                                            this.state.SCSDials +
+                                            this.state.SCRDials +
                                             this.state.SCTDials,
-                                            this.state.SBTDials
+                                            this.state.SBTDials +
+                                            this.state.SBPDials +
+                                            this.state.SBCDials +
+                                            this.state.SBNDials +
+                                            this.state.SBSDials +
+                                            this.state.SBRDials
                                         ],
                                         backgroundColor: [
                                             "#3ac178",
-                                            "#443959",
-                                            "#f99b17",
-                                            "#a2e505",
-                                            "#c9917f",
-                                            "#8d044b",
-                                            "#d2d93b",
-                                            "#dd4417",
-                                            "#5191d9",
-                                            "#483d28",
-                                            "#51aef7",
-                                            "#25517b"
+                                            "#483d28"
+
                                         ]
                                     }]
                                 }}
@@ -2672,7 +2733,7 @@ class MentorDataViewer extends Component {
                         /////// SOURCE PIE CHARTS BELOW ////////////
                         ///////////////////////////////////////////
                         /////////////////////////////////////////// */}
-                        <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%'}}>
+                        <div className="card" style={{ backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
                             <h3>{this.state.leadSource} Lead Performance:</h3>
                             <div className="row" style={{ textAlign: 'center' }}>
 
@@ -2680,11 +2741,10 @@ class MentorDataViewer extends Component {
                                     <hr />
                                     <h5>Contacts/Dial Ratio</h5>
                                     <h6>Total Dials: {this.state.SourceDials}</h6>
-                                    <h6>Contact Ratio: {Math.round((this.state.SourceContacts / this.state.SourceDials) * 100)}%</h6>
                                     <Pie data={{
                                         labels: [
-                                            `${this.state.leadSource} Lead Missed Calls`,
-                                            `${this.state.leadSource} Lead Contacts`,
+                                            `Missed Calls`,
+                                            `Contacts`,
                                         ],
                                         datasets: [{
                                             data: [
@@ -2699,24 +2759,23 @@ class MentorDataViewer extends Component {
                                     }}
                                         options={{
                                             legend: {
-                                                position: 'bottom',
-                                                labels: {
-                                                    boxWidth: 10
-                                                }
+                                                display: false
                                             }
                                         }}
                                     />
+                                    <br />
+                                    <h6>Made Contact on:</h6>
+                                    <h6> {Math.round((this.state.SourceContacts / this.state.SourceDials) * 100)}% of dials</h6>
                                 </div>
 
                                 <div className="col-lg-4">
                                     <hr />
                                     <h5>Appointment / Contact Ratio</h5>
                                     <h6>Total Contacts: {this.state.SourceContacts}</h6>
-                                    <h6>Appointment Ratio: {Math.round((this.state.SourceAppts / this.state.SourceContacts) * 100)}%</h6>
                                     <Pie data={{
                                         labels: [
-                                            `${this.state.leadSource} Lead Contacts without Scheduling`,
-                                            `${this.state.leadSource} Lead Appointments`,
+                                            `Contacts without Scheduling`,
+                                            `Scheduled`,
                                         ],
                                         datasets: [{
                                             data: [
@@ -2731,24 +2790,24 @@ class MentorDataViewer extends Component {
                                     }}
                                         options={{
                                             legend: {
-                                                position: 'bottom',
-                                                labels: {
-                                                    boxWidth: 10
-                                                }
+                                                display: false
                                             }
                                         }}
+
                                     />
+                                    <h6>Scheduled Appointments on:</h6>
+                                    <h6> {Math.round((this.state.SourceAppts / this.state.SourceContacts) * 100)}% of contacts</h6>
+
                                 </div>
 
                                 <div className="col-lg-4">
                                     <hr />
                                     <h5>Appointment / Dial Ratio</h5>
                                     <h6>Total Appointments: {this.state.SourceAppts}</h6>
-                                    <h6>Appointment Ratio: {Math.round((this.state.SourceAppts / this.state.SourceDials) * 100)}%</h6>
                                     <Pie data={{
                                         labels: [
-                                            `${this.state.leadSource} Lead Calls without Scheduling`,
-                                            `${this.state.leadSource} Lead Calls Scheduled`,
+                                            `Dials without Scheduling`,
+                                            `Dials Scheduled`,
                                         ],
                                         datasets: [{
                                             data: [
@@ -2763,13 +2822,13 @@ class MentorDataViewer extends Component {
                                     }}
                                         options={{
                                             legend: {
-                                                position: 'bottom',
-                                                labels: {
-                                                    boxWidth: 10
-                                                }
+                                                display: false
                                             }
                                         }}
                                     />
+                                    <h6>Scheduled Appointments on:</h6>
+                                    <h6>{Math.round((this.state.SourceAppts / this.state.SourceDials) * 100)}% of dials</h6>
+
                                 </div>
 
 
@@ -2787,10 +2846,10 @@ class MentorDataViewer extends Component {
                 {this.state.showSelectedTargetPerformance ?
                     <div style={{ textAlign: 'center' }}>
 
-                        <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
+                        <div className="card" style={{ backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
                             <div>
-                                <h3><u>{this.state.targetMarket} Types of Leads</u></h3>
-                                <p>Total Dials: {this.state.targetDialData.length}</p>
+                                <h3><u>{this.state.targetMarket} Market</u></h3>
+                                <p style={{ textAlign: 'center' }}>Total Dials: {this.state.targetDialData.length}</p>
                                 {/* <Bar data={{
                                 labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                                 datasets: [{
@@ -2808,57 +2867,38 @@ class MentorDataViewer extends Component {
                             }} /> */}
                                 <Pie data={{
                                     labels: [
-                                        "Cashflow Prospect",
-                                        "Business Prospect",
-                                        "Cashflow Client",
-                                        "Business Client",
-                                        "Cashflow Natural Market",
-                                        "Business Natural Market",
-                                        "Cashflow Suspect",
-                                        "Business Suspect",
-                                        "Cashflow Referral",
-                                        "Business Referral",
-                                        "Cashflow Target Market",
-                                        "Business Target Market"],
+                                        "Standard/Cashflow",
+                                        "Tier-1/Businessowner"],
                                     datasets: [{
                                         data: [
-                                            this.state.TCPDials,
-                                            this.state.TBPDials,
-                                            this.state.TCCDials,
-                                            this.state.TBCDials,
-                                            this.state.TCNDials,
-                                            this.state.TBNDials,
-                                            this.state.TCSDials,
-                                            this.state.TBSDials,
-                                            this.state.TCRDials,
-                                            this.state.TBRDials,
+                                            this.state.TCPDials +
+                                            this.state.TCCDials +
+                                            this.state.TCNDials +
+                                            this.state.TCSDials +
+                                            this.state.TCRDials +
                                             this.state.TCTDials,
-                                            this.state.TBTDials
+
+                                            this.state.TBTDials +
+                                            this.state.TBPDials +
+                                            this.state.TBCDials +
+                                            this.state.TBNDials +
+                                            this.state.TBSDials +
+                                            this.state.TBRDials
                                         ],
                                         backgroundColor: [
                                             "#3ac178",
-                                            "#443959",
-                                            "#f99b17",
-                                            "#a2e505",
-                                            "#c9917f",
-                                            "#8d044b",
-                                            "#d2d93b",
-                                            "#dd4417",
-                                            "#5191d9",
-                                            "#483d28",
-                                            "#51aef7",
-                                            "#25517b"
+                                            "#483d28"
                                         ]
                                     }]
                                 }}
-                                options={{
-                                    legend: {
-                                        position: 'left',
-                                        labels: {
-                                            boxWidth: 10
+                                    options={{
+                                        legend: {
+                                            position: 'left',
+                                            labels: {
+                                                boxWidth: 10
+                                            }
                                         }
-                                    }
-                                }} 
+                                    }}
                                 /> </div>
                         </div>
                         <br />
@@ -2868,108 +2908,102 @@ class MentorDataViewer extends Component {
                         /////// SOURCE PIE CHARTS BELOW ////////////
                         ///////////////////////////////////////////
                         /////////////////////////////////////////// */}
-                        <div className="card" style={{backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%'}}>
-                        <h3>{this.state.targetMarket} Calls Performance:</h3>
-                        <div className="row" style={{ textAlign: 'center' }}>
+                        <div className="card" style={{ backgroundColor: 'rgba(255,255,255,0.8)', padding: '5%' }}>
+                            <h3>{this.state.targetMarket} Market Dialing Performance:</h3>
+                            <div className="row" style={{ textAlign: 'center' }}>
 
-                            <div className="col-lg-4">
-                                <hr />
-                                <h5>Contact / Dial Ratio</h5>
-                                <h6>Total Dials: {this.state.TargetDials}</h6>
-                                <h6>Contact Ratio: {Math.round((this.state.TargetContacts / this.state.TargetDials) * 100)}%</h6>
-                                <Pie data={{
-                                    labels: [
-                                        `${this.state.targetMarket} Missed Calls`,
-                                        `${this.state.targetMarket} Contacts`,
-                                    ],
-                                    datasets: [{
-                                        data: [
-                                            this.state.TargetDials - this.state.TargetContacts,
-                                            this.state.TargetContacts
+                                <div className="col-lg-4">
+                                    <hr />
+                                    <h5>Contact / Dial Ratio</h5>
+                                    <Pie data={{
+                                        labels: [
+                                            `${this.state.targetMarket} Missed Calls`,
+                                            `${this.state.targetMarket} Contacts`,
                                         ],
-                                        backgroundColor: [
-                                            "#51aef7",
-                                            "#25517b"
-                                        ]
-                                    }]
-                                }}
-                                options={{
-                                    legend: {
-                                        position: 'bottom',
-                                        labels: {
-                                            boxWidth: 10
-                                        }
-                                    }
-                                }}
-                                />
-                            </div>
+                                        datasets: [{
+                                            data: [
+                                                this.state.TargetDials - this.state.TargetContacts,
+                                                this.state.TargetContacts
+                                            ],
+                                            backgroundColor: [
+                                                "#51aef7",
+                                                "#25517b"
+                                            ]
+                                        }]
+                                    }}
+                                        options={{
+                                            legend: {
+                                                display: false
+                                            }
+                                        }}
+                                    />
+                                    <h6>Made contact on: </h6>
+                                    <h6>{Math.round((this.state.TargetContacts / this.state.TargetDials) * 100)}% of dials </h6>
 
-                            <div className="col-lg-4">
-                                <hr />
-                                <h5>Appointment / Contact Ratio</h5>
-                                <h6>Total Contacts: {this.state.TargetContacts}</h6>
-                                <h6>Appointment Ratio: {Math.round((this.state.TargetAppts / this.state.TargetContacts) * 100)}%</h6>
-                                <Pie data={{
-                                    labels: [
-                                        `${this.state.targetMarket} calls without Scheduling`,
-                                        `${this.state.targetMarket} calls Scheduled`,
-                                    ],
-                                    datasets: [{
-                                        data: [
-                                            this.state.TargetContacts - this.state.TargetAppts,
-                                            this.state.TargetAppts
+                                </div>
+
+                                <div className="col-lg-4">
+                                    <hr />
+                                    <h5>Appointment / Contact Ratio</h5>
+                                    <Pie data={{
+                                        labels: [
+                                            `${this.state.targetMarket} calls without Scheduling`,
+                                            `${this.state.targetMarket} calls Scheduled`,
                                         ],
-                                        backgroundColor: [
-                                            "#51aef7",
-                                            "#25517b"
-                                        ]
-                                    }]
-                                }}
-                                options={{
-                                    legend: {
-                                        position: 'bottom',
-                                        labels: {
-                                            boxWidth: 10
-                                        }
-                                    }
-                                }}
-                                />
-                            </div>
+                                        datasets: [{
+                                            data: [
+                                                this.state.TargetContacts - this.state.TargetAppts,
+                                                this.state.TargetAppts
+                                            ],
+                                            backgroundColor: [
+                                                "#51aef7",
+                                                "#25517b"
+                                            ]
+                                        }]
+                                    }}
+                                        options={{
+                                            legend: {
+                                                display: false
+                                            }
+                                        }}
+                                    />
+                                    <h6>Scheduled appointment on: </h6>
+                                    <h6>{Math.round((this.state.TargetAppts / this.state.TargetContacts) * 100)}% of contacts</h6>
 
-                            <div className="col-lg-4">
-                                <hr />
-                                <h5>Appointment / Dials Ratio</h5>
-                                <h6>Total Appointments {this.state.TargetAppts}</h6>
-                                <h6>Appointment Ratio: {Math.round((this.state.TargetAppts / this.state.TargetDials) * 100)}%</h6>
-                                <Pie data={{
-                                    labels: [
-                                        `${this.state.targetMarket} calls without Scheduling`,
-                                        `${this.state.targetMarket} calls Scheduled`,
-                                    ],
-                                    datasets: [{
-                                        data: [
-                                            this.state.TargetDials - this.state.TargetAppts,
-                                            this.state.TargetAppts
+                                </div>
+
+                                <div className="col-lg-4">
+                                    <hr />
+                                    <h5>Appointment / Dials Ratio</h5>
+                                    <Pie data={{
+                                        labels: [
+                                            `${this.state.targetMarket} calls without Scheduling`,
+                                            `${this.state.targetMarket} calls Scheduled`,
                                         ],
-                                        backgroundColor: [
-                                            "#51aef7",
-                                            "#25517b"
-                                        ]
-                                    }]
-                                }}
-                                options={{
-                                    legend: {
-                                        position: 'bottom',
-                                        labels: {
-                                            boxWidth: 10
-                                        }
-                                    }
-                                }}
-                                />
+                                        datasets: [{
+                                            data: [
+                                                this.state.TargetDials - this.state.TargetAppts,
+                                                this.state.TargetAppts
+                                            ],
+                                            backgroundColor: [
+                                                "#51aef7",
+                                                "#25517b"
+                                            ]
+                                        }]
+                                    }}
+                                        options={{
+                                            legend: {
+                                                display: false
+                                            }
+                                        }}
+                                    />
+                                    <h6>Scheduled an appointment on: </h6>
+                                    <h6>{Math.round((this.state.TargetAppts / this.state.TargetDials) * 100)}% of dials</h6>
+
+                                </div>
+
+
                             </div>
-
-
-                        </div>
                         </div>
                     </div>
                     : null}

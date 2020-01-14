@@ -538,49 +538,53 @@ class MentorDash extends Component {
 
 
                         {this.state.viewMainData ?
-                            <div className="col-12">
-                                <MentorDataViewer
-                                    protegeData={this.state.protegeData}
-                                    contactData={this.state.contactData}
-                                    dialData={this.state.dialData}
-                                    apptData={this.state.appointments}
-                                    CPAppts={this.state.CPAppts}
-                                    BPAppts={this.state.BPAppts}
-                                    CCAppts={this.state.CCAppts}
-                                    BCAppts={this.state.BCAppts}
-                                    CNAppts={this.state.CNAppts}
-                                    BNAppts={this.state.BNAppts}
-                                    CPDials={this.state.CPDials}
-                                    BPDials={this.state.BPDials}
-                                    CCDials={this.state.CCDials}
-                                    BCDials={this.state.BCDials}
-                                    CNDials={this.state.CNDials}
-                                    BNDials={this.state.BNDials}
-                                    CPContacts={this.state.CPContacts}
-                                    BPContacts={this.state.BPContacts}
-                                    CCContacts={this.state.CCContacts}
-                                    BCContacts={this.state.BCContacts}
-                                    CNContacts={this.state.CNContacts}
-                                    BNContacts={this.state.BNContacts}
-                                    CSDials={this.state.CSDials}
-                                    BSDials={this.state.BSDials}
-                                    CSContacts={this.state.CSContacts}
-                                    BSContacts={this.state.BSContacts}
-                                    CSAppts={this.state.CSAppts}
-                                    BSAppts={this.state.BSAppts}
-                                    CRDials={this.state.CRDials}
-                                    BRDials={this.state.BRDials}
-                                    CRContacts={this.state.CRContacts}
-                                    BRContacts={this.state.BRContacts}
-                                    CRAppts={this.state.CRAppts}
-                                    BRAppts={this.state.BRAppts}
-                                    CTDials={this.state.CTDials}
-                                    BTDials={this.state.BTDials}
-                                    CTContacts={this.state.CTContacts}
-                                    BTContacts={this.state.BTContacts}
-                                    CTAppts={this.state.CTAppts}
-                                    BTAppts={this.state.BTAppts}
-                                />
+                            <div className="mentor-data-viewer-container">
+                                <div className="row">
+                                    <div className="col-12">
+                                        <MentorDataViewer
+                                            protegeData={this.state.protegeData}
+                                            contactData={this.state.contactData}
+                                            dialData={this.state.dialData}
+                                            apptData={this.state.appointments}
+                                            CPAppts={this.state.CPAppts}
+                                            BPAppts={this.state.BPAppts}
+                                            CCAppts={this.state.CCAppts}
+                                            BCAppts={this.state.BCAppts}
+                                            CNAppts={this.state.CNAppts}
+                                            BNAppts={this.state.BNAppts}
+                                            CPDials={this.state.CPDials}
+                                            BPDials={this.state.BPDials}
+                                            CCDials={this.state.CCDials}
+                                            BCDials={this.state.BCDials}
+                                            CNDials={this.state.CNDials}
+                                            BNDials={this.state.BNDials}
+                                            CPContacts={this.state.CPContacts}
+                                            BPContacts={this.state.BPContacts}
+                                            CCContacts={this.state.CCContacts}
+                                            BCContacts={this.state.BCContacts}
+                                            CNContacts={this.state.CNContacts}
+                                            BNContacts={this.state.BNContacts}
+                                            CSDials={this.state.CSDials}
+                                            BSDials={this.state.BSDials}
+                                            CSContacts={this.state.CSContacts}
+                                            BSContacts={this.state.BSContacts}
+                                            CSAppts={this.state.CSAppts}
+                                            BSAppts={this.state.BSAppts}
+                                            CRDials={this.state.CRDials}
+                                            BRDials={this.state.BRDials}
+                                            CRContacts={this.state.CRContacts}
+                                            BRContacts={this.state.BRContacts}
+                                            CRAppts={this.state.CRAppts}
+                                            BRAppts={this.state.BRAppts}
+                                            CTDials={this.state.CTDials}
+                                            BTDials={this.state.BTDials}
+                                            CTContacts={this.state.CTContacts}
+                                            BTContacts={this.state.BTContacts}
+                                            CTAppts={this.state.CTAppts}
+                                            BTAppts={this.state.BTAppts}
+                                        />
+                                    </div>
+                                </div>
                             </div>
                             : null}
 
