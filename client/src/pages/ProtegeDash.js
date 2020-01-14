@@ -68,13 +68,13 @@ class ProtegeDash extends Component {
         BTAppts: 0,
         leadSource: "none",
         targetMarket: "none",
-        showDials: false,
+        showDials: true,
         showNotes: false,
         // showCreate: false,
         showAnalytics: false,
-        showAppts: true,
+        showAppts: false,
         showSales: false,
-        showNoteViewer: false,
+        showNoteViewer: true,
         showCreate: false
     }
 
@@ -825,7 +825,7 @@ class ProtegeDash extends Component {
                             {/*  ////////////////////////////////////////////////////////////////////////////////// */}
                             {/*  ////////////////////////////////////////////////////////////////////////////////// */}
 
-                            {this.state.showAnalytics ?
+                            {this.state.showAnalyticsMini ?
                                 <div id="protege-data-viewer-container">
                                     <div className="row">
                                         <div className="col-12">
@@ -890,7 +890,8 @@ class ProtegeDash extends Component {
 
                                 <div id="appointments-container">
                                     <div className="row">
-                                        <div className="col-12" style={{ zIndex: 0 }}>
+                                        <div className="card col-12" style={{ zIndex: 0, padding: '20px' }}>
+                                            <h4 style={{textAlign: 'center'}}>Quickview Calendar</h4>
                                             <MainCalendar
                                                 appointments={this.state.appointments}
                                             />
@@ -903,7 +904,6 @@ class ProtegeDash extends Component {
                                                 rerender={this.gatherAppointments}
                                                 userData={this.state.userData}
                                                 mentors={this.state.mentors}
-
                                             />
                                         </div>
                                         <div className="col-12">
@@ -1060,12 +1060,12 @@ class ProtegeDash extends Component {
                                         />
                                     </div>
                                     <br />
-                                    <div className="col-12" style={{ padding: 10, height: '', overflow: 'auto' }}>
+                                    <div className="col-12" style={{ padding: 10, height: '', overflow: 'auto', textAlign: 'center' }}>
                                         <div className="container card">
                                             <SourceCreator userData={this.state.userData} />
                                         </div>
                                     </div>
-                                    <div className="col-12" style={{ padding: 10, height: '', overflow: 'auto' }}>
+                                    <div className="col-12" style={{ padding: 10, height: '', overflow: 'auto', textAlign: 'center' }}>
                                         <div className="contianer card">
                                             <TargetMarketCreator userData={this.state.userData} />
                                         </div>
@@ -1106,7 +1106,7 @@ class ProtegeDash extends Component {
 
                                     <div className="card col-12" style={{ marginBottom: '10px', textAlign: "left", padding: 10, height: '', overflow: 'auto', backgroundColor: 'rgba(36,138,255,0.8)' }}>
 
-                                        <h4 style={{ textAlign: 'center', padding: '10%', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px' }}>View/Edit Appointments <span button className="btn btn-sm btn-outline-dark" onClick={this.showApptViewer}>Quick Show</span><span button className="btn btn-sm btn-outline-dark" onClick={this.showApptForm}>Show Full</span></h4>
+                                        <p style={{ textAlign: 'center', padding: '10%', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px' }}>View/Edit Appointments <span button className="btn btn-sm btn-outline-dark" onClick={this.showApptViewer}>Quick Show</span><span button className="btn btn-sm btn-outline-dark" onClick={this.showApptForm}>Show Full</span></p>
 
                                         {this.state.showApptViewer ?
                                             <div>

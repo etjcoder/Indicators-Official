@@ -44,7 +44,7 @@ class DataViewerSuspectPerformance extends Component {
 
     render() {
         return (
-            <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
+            <div style={{ textAlign: 'center', color: '' }}>
 
                 <h3>Suspect Calling Performance:</h3>
                 <div className="row" style={{ textAlign: 'center' }}>

@@ -44,7 +44,7 @@ class DataViewerNaturalPerformance extends Component {
 
     render() {
         return (
-            <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
+            <div style={{ textAlign: 'center', color: '' }}>
 
                 <h3>Natural Market Calling Performance:</h3>
                 <div className="row" style={{ textAlign: 'center' }}>

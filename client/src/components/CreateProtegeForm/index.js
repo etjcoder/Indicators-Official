@@ -56,28 +56,37 @@ class CreateProtegeForm extends Component {
     render() {
         return (
             <div className="login-form">
-                <div id="login-welcome">
+                {/* <div id="login-welcome">
                     Create a User Below.
-      </div>
-                <form>
-                    <br />
-                    <input value={this.state.email} onChange={this.handleInputChange} type="email" name="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-                    <br />
-                    <input value={this.state.password} onChange={this.handleInputChange} type="password" name="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
-                    {/* <button type="submit" onClick={this.login} className="btn">Login</button> */}
+      </div> */}
+                <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30p' }}>
+                    <h5 style={{textAlign: 'center'}}>Create Protege Form</h5>
+                    <form>
+                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}>
+                            <label>First Name</label>
+                            <input value={this.state.firstName} onChange={this.handleInputChange} type="text" name="firstName" className="form-control" placeholder="First name" />
+                            <br />
+                            <label>Last Name</label>
+                            <input value={this.state.lastName} onChange={this.handleInputChange} type="text" name="lastName" className="form-control" placeholder="Last name" />
+                            <br />
+                            <label>E-mail</label>
+                            <input value={this.state.email} onChange={this.handleInputChange} type="email" name="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+                            <br />
+                            <label>Password</label>
+                            <input value={this.state.password} onChange={this.handleInputChange} type="password" name="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
+                            {/* <button type="submit" onClick={this.login} className="btn">Login</button> */}
+                            <br />
+                            <label>Mentor</label>
+                            <input value={this.state.mentor} onChange={this.handleInputChange} type="text" name="mentor" className="form-control" placeholder="Mentor" />
+                            <br />
+                            <label>Manager</label>
+                            <input value={this.state.manager} onChange={this.handleInputChange} type="text" name="manager" className="form-control" placeholder="Manager" />
 
-                    <br />
-                    <input value={this.state.firstName} onChange={this.handleInputChange} type="text" name="firstName" className="form-control" placeholder="First name" />
-                    <br />
-                    <input value={this.state.lastName} onChange={this.handleInputChange} type="text" name="lastName" className="form-control" placeholder="Last name" />
-                    <br />
-                    <input value={this.state.mentor} onChange={this.handleInputChange} type="text" name="mentor" className="form-control" placeholder="Mentor" />
-                    <br />
-                    <input value={this.state.manager} onChange={this.handleInputChange} type="text" name="manager" className="form-control" placeholder="Manager" />
-
-                    <button onClick={this.signup} className="btn btn-outline-info">Create User</button>
-                    {/* <button onClick={this.logOut} style={{ marginTop: '5px', marginLeft: '25px' }} className="btn btn-danger">Logout</button> */}
-                </form>
+                            <button onClick={this.signup} className="btn btn-info">Create User</button>
+                            {/* <button onClick={this.logOut} style={{ marginTop: '5px', marginLeft: '25px' }} className="btn btn-danger">Logout</button> */}
+                        </div>
+                    </form>
+                </div>
             </div>
         )
     }

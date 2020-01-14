@@ -46,13 +46,13 @@ class DataViewerBOContactChart extends Component {
         return (
             <div>
                 <div className="row">
-                    <div className="col" style={{ color: 'whitesmoke' }}>
-                        <h4>Businessowner Contact Data:</h4>
+                <div className="col-12 card" style={{ padding: '50px', backgroundColor: 'rgba(255,255,255,0.9)', color: 'black', textAlign: 'left' }}>
+                                    <h4>Businessowner Contact Data:</h4>
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
-                        <Bar data={{
+                <div className="col-12 card" style={{ padding: '10px', backgroundColor: 'rgba(255,255,255,0.9)', color: 'black', textAlign: 'left' }}>
+                                   <Bar data={{
                             labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                             datasets: [{
                                 label: "Contacts",
@@ -69,8 +69,8 @@ class DataViewerBOContactChart extends Component {
                         }}
                         />
                     </div>
-                    <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
-                        <Pie data={{
+                    <div className="col-12 card" style={{ padding: '10px', backgroundColor: 'rgba(255,255,255,0.9)', color: 'black', textAlign: 'left' }}>
+                                    <Pie data={{
                             labels: [
                                 "Business Prospect",
                                 "Business Client",

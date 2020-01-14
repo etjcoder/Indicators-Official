@@ -47,15 +47,15 @@ class DataViewerAppointmentChart extends Component {
 
             <div>
                 <div className="row">
-                    <div className="col" style={{ textAlign: 'center' }}>
-                        <hr />
+                <div className="col-12 card" style={{ padding: '50px', backgroundColor: 'rgba(255,255,255,0.9)', color: 'black', textAlign: 'left' }}>
+                                    <hr />
                         <h4 style={{ color: 'whitesmoke' }}>Total Appointments: {this.props.appointments.length} </h4>
                     </div>
                 </div>
 
                 <div className="row">
-                    <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
-                        <Bar data={{
+                <div className="col-12 card" style={{ padding: '10px', backgroundColor: 'rgba(255,255,255,0.9)', color: 'black', textAlign: 'left' }}>
+                                    <Bar data={{
                             labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                             datasets: [{
                                 label: "Appointments",
@@ -71,8 +71,8 @@ class DataViewerAppointmentChart extends Component {
                             }]
                         }} />
                     </div>
-                    <div className="col-lg-6 card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
-                        <Pie data={{
+                    <div className="col-12 card" style={{ padding: '10px', backgroundColor: 'rgba(255,255,255,0.9)', color: 'black', textAlign: 'left' }}>
+                                    <Pie data={{
                             labels: [
                                 "Cashflow Prospect",
                                 "Business Prospect",

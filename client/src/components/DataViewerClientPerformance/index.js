@@ -44,7 +44,7 @@ class DataViewerClientPerformance extends Component {
 
     render() {
         return (
-            <div style={{ textAlign: 'center', color: 'whitesmoke' }}>
+            <div style={{ textAlign: 'center', color: '' }}>
 
                 <h3>Client Calling Performance:</h3>
                 <div className="row" style={{ textAlign: 'center' }}>

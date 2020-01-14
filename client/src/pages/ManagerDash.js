@@ -197,10 +197,34 @@ class ManagerDash extends Component {
 
     showAnalytics = () => {
         console.log("Showing Analytics tools")
+        if(this.state.showAnalyticsTools === true) {
+            this.setState({
+                showAnalyticsTool: false
+            }) 
+        } else {
+            this.setState({
+                showCreateTool: false,
+                showAnalyticsTool: true,
+                showReportsTool: false,
+                showSalesTool: false
+            })
+        }
     }
 
     showReports = () => {
         console.log("Showing Reports tools")
+        if(this.state.showAnalyticsTools === true) {
+            this.setState({
+                showAnalyticsTool: false
+            }) 
+        } else {
+            this.setState({
+                showCreateTool: false,
+                showAnalyticsTool: true,
+                showReportsTool: false,
+                showSalesTool: false
+            })
+        }
     }
 
     showSales = () => {
@@ -253,17 +277,20 @@ class ManagerDash extends Component {
 
                     </div>
                     {this.state.showCreateTool ?
-                        <div>
+                        <div className="card" style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)', padding: '50px' }}>
+                            <h2 style={{ textAlign: 'center', padding: '20px', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px', borderRadius: '10px' }}>C R E A T E</h2>
+
 
                             <div className="row">
-                                <div className="col-12 card" style={{ color: 'white', textAlign: 'center', margin: 0, padding: 40, overflow: 'auto', backgroundColor: 'rgba(114,180,255,0.8)' }}>
-                                    <h3>Create New Protege<span><button className="btn btn-sm btn-outline-light" onClick={this.showCreateProtegeFormFN}>Show</button></span></h3>
+                                <div className="col-12 card" style={{ textAlign: 'left', backgroundColor: 'rgba(36,138,255,0.8)', padding: '0' }}>
+                                    <h4 style={{ textAlign: 'center', padding: '10%', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px' }}>Create Protege<span><button className="btn btn-sm btn-outline-dark" onClick={this.showCreateProtegeFormFN}>Show</button></span></h4>
                                     {this.state.showCreateProtegeForm ?
                                         <CreateProtegeForm />
                                         : null}
                                 </div>
-                                <div className="col-12 card" style={{ color: 'white', textAlign: 'center', margin: 0, padding: 40, overflow: 'auto', backgroundColor: 'rgba(114,180,255,0.8)' }}>
-                                    <h3>Create New Mentor<span><button className="btn btn-sm btn-outline-light" onClick={this.showCreateMentorFormFN}>Show</button></span></h3>
+
+                                <div className="col-12 card" style={{ textAlign: 'left', backgroundColor: 'rgba(36,138,255,0.8)', padding: '0' }}>
+                                    <h4 style={{ textAlign: 'center', padding: '10%', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px' }}>Create New Mentor<span><button className="btn btn-sm btn-outline-dark" onClick={this.showCreateMentorFormFN}>Show</button></span></h4>
                                     {this.state.showCreateMentorForm ?
                                         <CreateMentorForm proteges={this.state.proteges} />
                                         : null}
@@ -272,8 +299,8 @@ class ManagerDash extends Component {
                             <br />
                             <div className="row">
                                 <br />
-                                <div className="col-12 card" style={{ color: 'white', textAlign: 'center', margin: 0, padding: 40, overflow: 'auto', backgroundColor: 'rgba(114,180,255,0.8)' }}>
-                                    <h3>Update Mentor </h3>
+                                <div className="col-12 card" style={{ color: 'black', textAlign: 'center', margin: 0, padding: 40, overflow: 'auto', backgroundColor: 'rgba(255,255,255,0.8)' }}>
+                                    <h4>Update Mentor </h4>
                                     <p style={{ textAlign: 'center' }}>(Choose a Mentor to begin)</p>
                                     {this.state.mentors ?
                                         <select value={this.state.mentorSelected} onChange={this.handleMentorSelection} name="mentorSelected">
@@ -286,10 +313,12 @@ class ManagerDash extends Component {
                                     {this.state.mentorSelectedData ?
                                         <div><h5>Current Proteges:</h5>
 
-                                            <div style={{ textAlign: 'center' }}>
-                                                {this.state.editMentorDataProteges.map(protege => (
-                                                    <h5>{protege.firstName} {protege.lastName} <span></span></h5>
-                                                ))}
+                                            <div style={{ textAlign: 'left' }}>
+                                                <ul>
+                                                    {this.state.editMentorDataProteges.map(protege => (
+                                                        <li>{protege.firstName} {protege.lastName} <span></span></li>
+                                                    ))}
+                                                </ul>
                                             </div>
 
                                             <form>
@@ -317,8 +346,8 @@ class ManagerDash extends Component {
                                 </div>
 
                                 <br />
-                                <div className="col-12 card" style={{ color: 'white', textAlign: 'center', margin: 0, padding: 40, overflow: 'auto', backgroundColor: 'rgba(114,180,255,0.8)' }}>
-                                    <h3>Update Protege </h3>
+                                <div className="col-12 card" style={{ color: 'black', textAlign: 'center', margin: 0, padding: 40, overflow: 'auto', backgroundColor: 'rgba(255,255,255,0.8)' }}>
+                                    <h4>Update Protege </h4>
                                     <p style={{ textAlign: 'center' }}>(Choose a Protege to begin)</p>
                                     {this.state.proteges ?
                                         <select value={this.state.protegeSelected} onChange={this.handleProtegeSelection} name="protegeSelected">
@@ -333,10 +362,12 @@ class ManagerDash extends Component {
                                         {/* {this.state.protegeSelectedData.mentor} */}
                                         </h5>
 
-                                            <div style={{ textAlign: 'center' }}>
-                                                {this.state.editProtegeDataMentors.map(mentor => (
-                                                    <h6 key={mentor._id}>{mentor.firstName} {mentor.lastName} <span></span></h6>
-                                                ))}
+                                            <div style={{ textAlign: 'left' }}>
+                                                <ul>
+                                                    {this.state.editProtegeDataMentors.map(mentor => (
+                                                        <li key={mentor._id}>{mentor.firstName} {mentor.lastName} <span></span></li>
+                                                    ))}
+                                                </ul>
                                             </div>
 
                                             <form>
@@ -347,7 +378,6 @@ class ManagerDash extends Component {
                                                             <option value="none">--Select a Mentor--</option>
                                                             {this.state.mentors.map(mentor => (<option key={mentor._id} value={mentor._id}>{mentor.firstName} {mentor.lastName}</option>))}
                                                         </select>
-                                                        <button>Placeholder</button>
                                                         <button onClick={this.addMentorToProtege} className="btn btn-outline-dark btn-sm">Assign Mentor</button>
                                                         <button onClick={this.removeMentorFromProtege} className="btn btn-outline-danger btn-sm">Remove Mentor</button>
                                                     </div>
@@ -362,16 +392,16 @@ class ManagerDash extends Component {
                                 </div>
                             </div>
                         </div>
-                    : null}
+                        : null}
 
                     {this.state.showAnalyticsTool ?
-                        <ManagerDataViewer 
+                        <ManagerDataViewer
                             allMentorData={this.state.mentors}
                             allProtegeData={this.state.proteges}
                             mentors={this.state.mentors}
                             proteges={this.state.proteges}
                         />
-                    : null}
+                        : null}
 
                 </div>
 

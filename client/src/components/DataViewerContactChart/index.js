@@ -45,18 +45,18 @@ class DataViewerContactChart extends Component {
     render() {
         return (
             <div>
-                <div style={{ color: 'whitesmoke' }}>
+                <div style={{ color: '' }}>
                     <div className="row">
-                        <div className="col" style={{ textAlign: 'center' }}>
-                            <hr />
-                            <h4 style={{ color: 'whitesmoke' }}>Total Contacts: {this.props.contactData.length}</h4>
+                    <div className="col-12 card" style={{ padding: '50px', backgroundColor: 'rgba(255,255,255,0.9)', color: 'black', textAlign: 'left' }}>
+                                     <hr />
+                            <h4 style={{ color: '' }}>Total Contacts: {this.props.contactData.length}</h4>
                         </div>
                     </div>
 
 
                     <div className="row">
-                        <div className="card col-lg-6" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
-                            <Bar data={{
+                    <div className="col-12 card" style={{ padding: '10px', backgroundColor: 'rgba(255,255,255,0.9)', color: 'black', textAlign: 'left' }}>
+                                     <Bar data={{
                                 labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                                 datasets: [{
                                     label: "Dials",
@@ -77,8 +77,8 @@ class DataViewerContactChart extends Component {
                             //     }}}
                             />
                         </div>
-                        <div className="card col-lg-6" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
-                            <Pie data={{
+                        <div className="col-12 card" style={{ padding: '10px', backgroundColor: 'rgba(255,255,255,0.9)', color: 'black', textAlign: 'left' }}>
+                                    <Pie data={{
                                 labels: [
                                     "Cashflow Prospect",
                                     "Business Prospect",

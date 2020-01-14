@@ -45,7 +45,7 @@ class DataViewerDialChart extends Component {
     render() {
         return (
             <div>
-                <div style={{ color: 'whitesmoke' }}>
+                <div className="col-12 card" style={{ padding: '50px', backgroundColor: 'rgba(255,255,255,0.9)', color: 'black', textAlign: 'left' }}>
                     <div className="">
                         <div className="" style={{ textAlign: 'center' }}>
                             <h3><u>Protege: {this.props.activeProtegeData.firstName} {this.props.activeProtegeData.lastName} </u></h3>
@@ -56,8 +56,8 @@ class DataViewerDialChart extends Component {
 
 
                     <div className="row">
-                        <div className="card col-lg-6" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
-                            <Bar data={{
+                    <div className="col-12 card" style={{ padding: '10px', backgroundColor: 'rgba(255,255,255,0.9)', color: 'black', textAlign: 'left' }}>
+                                   <Bar data={{
                                 labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                                 datasets: [{
                                     label: "Dials",
@@ -78,8 +78,8 @@ class DataViewerDialChart extends Component {
                             //     }}}
                             />
                         </div>
-                        <div className="card col-lg-6" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '0', margin: 0 }}>
-                            <Pie data={{
+                        <div className="col-12 card" style={{ padding: '10px', backgroundColor: 'rgba(255,255,255,0.9)', color: 'black', textAlign: 'left' }}>
+                                   <Pie data={{
                                 labels: [
                                     "Cashflow Prospect",
                                     "Business Prospect",

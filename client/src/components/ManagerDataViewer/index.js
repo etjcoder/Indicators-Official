@@ -2425,14 +2425,17 @@ class ManagerDataViewer extends Component {
 
     render() {
         return (
-            <div className="container" id="mentor-analytics">
-                <h1 style={{ textAlign: 'center', color: 'whitesmoke' }}><u>Analytics</u></h1>
+            <div className="col card" style={{ padding: '50px', backgroundColor: 'rgba(77,160,255,0.80)', color: 'whitesmoke' }}>
+                <h2 style={{ textAlign: 'center', padding: '20px', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px', borderRadius: '10px' }}>A N A L Y T I C S</h2>
 
                 <div className="row">
-                    <div className="col-12 card bg-primary" style={{ color: 'whitesmoke' }}>
-                        <h4>Review Proteges <button className="btn btn-outline-light" onClick={this.showProtegeAnalytics}>Show/Hide</button></h4>
-                        <h4>Review Mentors <button className="btn btn-outline-light" onClick={this.showMentorAnalytics}>Show/Hide</button></h4>
-                        <h4>Review Global <button className="btn btn-outline-light" onClick={this.showGlobalAnalytics}>Show/Hide</button></h4>
+                    <div className="col-12 card" style={{ padding: '50px', backgroundColor: 'rgba(255,255,255,0.9)', color: 'black', textAlign: 'left' }}>
+                        <h4 style={{ textAlign: 'center' }}>Select an Option</h4>
+                        <ul>
+                            <li><p>Review Proteges <button className="btn btn-outline-dark" onClick={this.showProtegeAnalytics}>Show/Hide</button></p></li>
+                            <li><p>Review Mentors <button className="btn btn-outline-dark" onClick={this.showMentorAnalytics}>Show/Hide</button></p></li>
+                            <li><p>Review Global <button className="btn btn-outline-dark" onClick={this.showGlobalAnalytics}>Show/Hide</button></p></li>
+                        </ul>
                     </div>
 
                     <br />
@@ -2444,18 +2447,20 @@ class ManagerDataViewer extends Component {
                     {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                     {this.state.showProtegeAnalyticsViewer ?
-                        <div className="col-12 card bg-primary" style={{ color: 'whitesmoke' }}>
+                        <div className="col-12 card" style={{ padding: '50px', backgroundColor: 'rgba(255,255,255,0.9)', color: 'black', textAlign: 'left' }}>
                             <h4 style={{ textAlign: 'center' }}>Select a Protege</h4>
                             {this.props.allProtegeData ?
-                                <div>
-                                    <select id="mentorsDropDownMenu" value={this.state.protegeToView} onChange={this.handleInputChange} name="protegeToView">
-                                        <option value="none">--Select a Protege--</option>
-                                        {this.props.allProtegeData.map(protege => (<option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>))}
-                                    </select>
-                                    {/* <button>Placeholder</button> */}
-                                    <button onClick={this.viewProtegeData} className="btn btn-outline-light btn-sm">View/Change</button>
-                                    {/* <button onClick={this.removeMentorFromProtege} className="btn btn-outline-danger btn-sm">Remove Mentor</button> */}
-                                </div>
+                                <ul>
+                                    <li>
+                                        <select id="mentorsDropDownMenu" value={this.state.protegeToView} onChange={this.handleInputChange} name="protegeToView">
+                                            <option value="none">--Select a Protege--</option>
+                                            {this.props.allProtegeData.map(protege => (<option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>))}
+                                        </select>
+                                        {/* <button>Placeholder</button> */}
+                                        <button onClick={this.viewProtegeData} className="btn btn-outline-dark btn-sm">View/Change</button>
+                                        {/* <button onClick={this.removeMentorFromProtege} className="btn btn-outline-danger btn-sm">Remove Mentor</button> */}
+                                    </li>
+                                </ul>
                                 : null}
                         </div>
                         : null}
@@ -2463,23 +2468,23 @@ class ManagerDataViewer extends Component {
                     {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                     {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                     {this.state.activeProtegeDataPopulated ?
-                        <div className="col-12 card bg-primary" style={{ color: 'whitesmoke' }}>
-                            <h4 style={{ textAlign: 'center' }}>Select what you'd like to view</h4>
+                        <div className="col-12 card" style={{ padding: '50px', backgroundColor: 'rgba(255,255,255,0.9)', color: 'black', textAlign: 'left' }}>
+                        <h4 style={{ textAlign: 'center' }}>Select what you'd like to view</h4>
 
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
-                            <button className="btn btn-info" onClick={this.viewProtegeCallData}>View Call Data</button>
+                            <button className="btn btn-outline-dark" onClick={this.viewProtegeCallData}>View Call Data</button>
                             {this.state.viewProtegeCallData ?
-                                <div className="col-12 card bg-primary" style={{ color: 'whitesmoke' }}>
-                                    <h4 style={{ textAlign: 'center' }}>Protege Call Data:</h4>
+                                <div className="col-12 card" style={{ padding: '50px', backgroundColor: 'rgba(255,255,255,0.9)', color: 'black', textAlign: 'left' }}>
+                                <h4 style={{ textAlign: 'center' }}>Protege Call Data:</h4>
 
                                     {/* Type of Call Breakdown */}
 
                                     <form>
                                         <div>
-                                            <select id="sourceDropMenu" className="customDropDownMentor" value={this.state.dataOption} onChange={this.handleInputChange} name="dataOption">
+                                            <select id="sourceDropMenu" className="" value={this.state.dataOption} onChange={this.handleInputChange} name="dataOption">
                                                 <option value={"none"}>--Choose a Type of Call--</option>
                                                 <option value={"genDials"}>Dial Data</option>
                                                 <option value={"genContacts"}>Contact Data</option>
@@ -2487,11 +2492,11 @@ class ManagerDataViewer extends Component {
                                                 <option value={"cfDials"}>Cashflow Dial Data</option>
                                                 <option value={"cfContacts"}>Cashflow Contact Data</option>
                                                 <option value={"cfAppts"}>Cashflow Appointment Data</option>
-                                                <option value={"boDials"}>Businessowner Dial Data</option>
-                                                <option value={"boContacts"}>Businessowner Contact Data</option>
-                                                <option value={"boAppts"}>Businessowner Appointment Data</option>
+                                                <option value={"boDials"}>Tier Dial Data</option>
+                                                <option value={"boContacts"}>Tier-1 Contact Data</option>
+                                                <option value={"boAppts"}>Tier-1 Appointment Data</option>
                                             </select>
-                                            <button className="btn-outline-light btn-sm btn" onClick={this.showDataOption}>Get Performance Data</button>
+                                            <button className="btn-outline-dark btn-sm btn" onClick={this.showDataOption}>Get Data</button>
                                         </div>
                                     </form>
 
@@ -2499,7 +2504,7 @@ class ManagerDataViewer extends Component {
 
                                     <form>
                                         <div>
-                                            <select id="sourceDropMenu" className="customDropDownMentor" value={this.state.categoryOption} onChange={this.handleInputChange} name="categoryOption">
+                                            <select id="sourceDropMenu" className="" value={this.state.categoryOption} onChange={this.handleInputChange} name="categoryOption">
                                                 <option value={"none"}>--Choose a Category--</option>
                                                 <option value={"pData"}>Prospects Call Data</option>
                                                 <option value={"cData"}>Clients Call Data</option>
@@ -2508,20 +2513,20 @@ class ManagerDataViewer extends Component {
                                                 <option value={"rData"}>Referral Call Data</option>
                                                 <option value={"tData"}>Target Market Call Data</option>
                                             </select>
-                                            <button className="btn-outline-light btn-sm btn" onClick={this.showCategoryOption}>Get Performance Data</button>
+                                            <button className="btn-outline-dark btn-sm btn" onClick={this.showCategoryOption}>Get Data</button>
                                         </div>
                                     </form>
 
                                     <form>
                                         {this.state.activeProtegeData.sources ?
                                             <div>
-                                                <select id="sourceDropMenu" className="customDropDownMentor" value={this.state.leadSource} onChange={this.handleSourceChange} name="leadSource">
+                                                <select id="sourceDropMenu" className="" value={this.state.leadSource} onChange={this.handleSourceChange} name="leadSource">
                                                     <option value={"none"}>No Lead Source Selected</option>
                                                     {this.state.activeProtegeData.sources.map(source => (
                                                         <option value={source}>{source}</option>
                                                     ))}
                                                 </select>
-                                                <button className="btn-outline-light btn-sm btn" onClick={this.gatherSourceData}>Generate Data</button>
+                                                <button className="btn-outline-dark btn-sm btn" onClick={this.gatherSourceData}>Get Data</button>
                                                 {/* <button className="btn-outline-light btn-sm btn" onClick={this.changeSourceData}>Change Source</button> */}
                                             </div>
                                             : null}
@@ -2530,12 +2535,12 @@ class ManagerDataViewer extends Component {
                                     <form>
                                         {this.state.activeProtegeData.targetMarkets ?
                                             <div>
-                                                <select id="sourceDropMenu" value={this.state.targetMarket} className="customDropDownMentor" onChange={this.handleTargetChange} name="targetMarket">
+                                                <select id="sourceDropMenu" value={this.state.targetMarket} className="" onChange={this.handleTargetChange} name="targetMarket">
                                                     <option value={"none"}>No Target Market Selected</option>
                                                     {this.state.activeProtegeData.targetMarkets.map(target => (
                                                         <option value={target}>{target}</option>
                                                     ))}
-                                                </select> <button className="btn-outline-light btn-sm btn" onClick={this.gatherTargetData}>Get Target Market Data</button>
+                                                </select> <button className="btn-outline-dark btn-sm btn" onClick={this.gatherTargetData}>Get Data</button>
                                             </div>
                                             : null}
                                     </form>
@@ -4459,53 +4464,35 @@ class ManagerDataViewer extends Component {
                                     {this.state.showSourcePerformance ?
                                         <div style={{ textAlign: 'center' }}>
 
-                                            <div style={{ color: 'whitesmoke' }}>
-                                                <h3><u>{this.state.leadSource} Types of Leads</u></h3>
+                                            <div style={{ color: 'black' }}>
+                                                <h4><u>{this.state.leadSource} Types of Leads</u></h4>
                                                 <p>Total Dials: {this.state.sourceDialData.length}</p>
 
-                                                <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
+                                                <div className="card" style={{ backgroundColor: 'rgba(255,255,255,0.8)', padding: '5%' }}>
                                                     <Pie data={{
                                                         labels: [
-                                                            "Cashflow Prospect",
-                                                            "Business Prospect",
-                                                            "Cashflow Client",
-                                                            "Business Client",
-                                                            "Cashflow Natural Market",
-                                                            "Business Natural Market",
-                                                            "Cashflow Suspect",
-                                                            "Business Suspect",
-                                                            "Cashflow Referral",
-                                                            "Business Referral",
-                                                            "Cashflow Target Market",
-                                                            "Business Target Market"],
+                                                            "Standard/Cashflow",
+                                                            "Tier-1/Businessowner"],
                                                         datasets: [{
                                                             data: [
-                                                                this.state.SCPDials,
-                                                                this.state.SBPDials,
-                                                                this.state.SCCDials,
-                                                                this.state.SBCDials,
-                                                                this.state.SCNDials,
-                                                                this.state.SBNDials,
-                                                                this.state.SCSDials,
-                                                                this.state.SBSDials,
-                                                                this.state.SCRDials,
-                                                                this.state.SBRDials,
+                                                                this.state.SCPDials+
+                                                                this.state.SCCDials+
+                                                                this.state.SCNDials+
+                                                                this.state.SCSDials+
+                                                                this.state.SCRDials+
                                                                 this.state.SCTDials,
+
+
+                                                                this.state.SBRDials+
+                                                                this.state.SBSDials+
+                                                                this.state.SBNDials+
+                                                                this.state.SBCDials+
+                                                                this.state.SBPDials+
                                                                 this.state.SBTDials
                                                             ],
                                                             backgroundColor: [
                                                                 "#3ac178",
-                                                                "#443959",
-                                                                "#f99b17",
-                                                                "#a2e505",
-                                                                "#c9917f",
-                                                                "#8d044b",
-                                                                "#d2d93b",
-                                                                "#dd4417",
-                                                                "#5191d9",
-                                                                "#483d28",
-                                                                "#51aef7",
-                                                                "#25517b"
+                                                                "#443959"
                                                             ]
                                                         }]
                                                     }}
@@ -4526,8 +4513,8 @@ class ManagerDataViewer extends Component {
                                             ///////////////////////////////////////////
                                             /////////////////////////////////////////// */}
 
-                                            <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
-                                                <h3>{this.state.leadSource} Lead Performance:</h3>
+                                            <div className="card" style={{ backgroundColor: 'rgba(255,255,255,0.8)', padding: '5%' }}>
+                                                <h4>{this.state.leadSource} Lead Performance:</h4>
                                                 <div className="row" style={{ textAlign: 'center' }}>
 
                                                     <div className="col-lg-4">
@@ -4642,53 +4629,35 @@ class ManagerDataViewer extends Component {
                                     {this.state.showSelectedTargetPerformance ?
                                         <div style={{ textAlign: 'center' }}>
 
-                                            <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
-                                                <div style={{ color: 'whitesmoke' }}>
-                                                    <h3><u>{this.state.targetMarket} Types of Leads</u></h3>
+                                            <div className="card" style={{ backgroundColor: 'rgba(255,255,255,0.8)', padding: '5%' }}>
+                                                <div style={{ color: 'black' }}>
+                                                    <h4><u>{this.state.targetMarket} Market</u></h4>
                                                     <p>Total Dials: {this.state.targetDialData.length}</p>
 
                                                     <Pie data={{
                                                         labels: [
-                                                            "Cashflow Prospect",
-                                                            "Business Prospect",
-                                                            "Cashflow Client",
-                                                            "Business Client",
-                                                            "Cashflow Natural Market",
-                                                            "Business Natural Market",
-                                                            "Cashflow Suspect",
-                                                            "Business Suspect",
-                                                            "Cashflow Referral",
-                                                            "Business Referral",
-                                                            "Cashflow Target Market",
-                                                            "Business Target Market"],
+                                                            "Standard/Cashflow", 
+                                                            "Tier-1/Businessowner"],
                                                         datasets: [{
                                                             data: [
-                                                                this.state.TCPDials,
-                                                                this.state.TBPDials,
-                                                                this.state.TCCDials,
-                                                                this.state.TBCDials,
-                                                                this.state.TCNDials,
-                                                                this.state.TBNDials,
-                                                                this.state.TCSDials,
-                                                                this.state.TBSDials,
-                                                                this.state.TCRDials,
-                                                                this.state.TBRDials,
+                                                                this.state.TCPDials+
+                                                                this.state.TCCDials+
+                                                                this.state.TCNDials+
+                                                                this.state.TCSDials+
+                                                                this.state.TCRDials+
                                                                 this.state.TCTDials,
+
+
+                                                                this.state.TBRDials+
+                                                                this.state.TBSDials+
+                                                                this.state.TBNDials+
+                                                                this.state.TBCDials+
+                                                                this.state.TBPDials+
                                                                 this.state.TBTDials
                                                             ],
                                                             backgroundColor: [
                                                                 "#3ac178",
-                                                                "#443959",
-                                                                "#f99b17",
-                                                                "#a2e505",
-                                                                "#c9917f",
-                                                                "#8d044b",
-                                                                "#d2d93b",
-                                                                "#dd4417",
-                                                                "#5191d9",
-                                                                "#483d28",
-                                                                "#51aef7",
-                                                                "#25517b"
+                                                                "#443959"
                                                             ]
                                                         }]
                                                     }}
@@ -4709,8 +4678,8 @@ class ManagerDataViewer extends Component {
                                             /////// SOURCE PIE CHARTS BELOW ////////////
                                             ///////////////////////////////////////////
                                             /////////////////////////////////////////// */}
-                                            <div className="card" style={{ backgroundColor: 'rgba(114,180,255,0.8)', padding: '5%' }}>
-                                                <h3>{this.state.targetMarket} Calls Performance:</h3>
+                                            <div className="card" style={{ backgroundColor: 'rgba(255,255,255,0.8)', padding: '5%' }}>
+                                                <h4>{this.state.targetMarket} Calls Performance:</h4>
                                                 <div className="row" style={{ textAlign: 'center' }}>
 
                                                     <div className="col-lg-4">
@@ -4825,7 +4794,7 @@ class ManagerDataViewer extends Component {
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
-                            <button className="btn btn-info" onClick={this.viewProtegeSchedule}>View Schedule</button>
+                            <button className="btn btn-outline-dark" onClick={this.viewProtegeSchedule}>View Schedule</button>
                             {this.state.viewProtegeSchedule ?
                                 <div className="col-12 card bg-primary" style={{ color: 'darkslategrey' }}>
                                     <h4 style={{ textAlign: 'center', color: 'whitesmoke' }}>Protege Schedule:</h4>
@@ -4838,7 +4807,7 @@ class ManagerDataViewer extends Component {
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
-                            <button className="btn btn-info" onClick={this.viewProtegeAppointments}>View Appointments</button>
+                            <button className="btn btn-outline-dark" onClick={this.viewProtegeAppointments}>View Appointments</button>
                             {this.state.viewProtegeAppointments ?
                                 <div className="col-12 card bg-primary" style={{ color: 'whitesmoke' }}>
                                     <h4 style={{ textAlign: 'center' }}>Protege Appointments:</h4>
@@ -4878,7 +4847,7 @@ class ManagerDataViewer extends Component {
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
-                            <button className="btn btn-info" onClick={this.viewProtegeSales}>View Sales</button>
+                            <button className="btn btn-outline-dark" onClick={this.viewProtegeSales}>View Sales</button>
                             {this.state.viewProtegeSales ?
                                 <div className="col-12 card bg-primary" style={{ color: 'whitesmoke' }}>
                                     <h4 style={{ textAlign: 'center' }}>Protege Sales:</h4>
@@ -4916,7 +4885,7 @@ class ManagerDataViewer extends Component {
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
-                            <button className="btn btn-info" onClick={this.viewProtegeNotes}>View Notes</button>
+                            <button className="btn btn-outline-dark" onClick={this.viewProtegeNotes}>View Notes</button>
                             {this.state.viewProtegeNotes ?
                                 <div className="col-12 card bg-primary" style={{ color: 'whitesmoke' }}>
                                     <h4 style={{ textAlign: 'center' }}>Protege Notes:</h4>
@@ -4948,7 +4917,7 @@ class ManagerDataViewer extends Component {
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
-                            <button className="btn btn-info" onClick={this.viewProtegeProfile}>View Profile</button>
+                            <button className="btn btn-outline-dark" onClick={this.viewProtegeProfile}>View Profile</button>
                             {this.state.viewProtegeProfile ?
                                 <div className="col-12 card bg-primary" style={{ color: 'whitesmoke' }}>
                                     <h4 style={{ textAlign: 'center' }}>Protege Profile:</h4>
@@ -4958,7 +4927,7 @@ class ManagerDataViewer extends Component {
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
-                            <button className="btn btn-info" onClick={this.viewProtegeWeeklyReport}>View Weekly Report</button>
+                            <button className="btn btn-outline-dark" onClick={this.viewProtegeWeeklyReport}>View Weekly Report</button>
                             {this.state.viewProtegeWeeklyReport ?
                                 <div className="col-12 card bg-primary" style={{ color: 'whitesmoke' }}>
                                     <h4 style={{ textAlign: 'center' }}>Protege Weekly Report:</h4>
@@ -4968,7 +4937,7 @@ class ManagerDataViewer extends Component {
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
-                            <button className="btn btn-info" onClick={this.viewProtegeMonthlyReport}>View Monthly Report</button>
+                            <button className="btn btn-outline-dark" onClick={this.viewProtegeMonthlyReport}>View Monthly Report</button>
                             {this.state.viewProtegeMonthlyReport ?
                                 <div className="col-12 card bg-primary" style={{ color: 'whitesmoke' }}>
                                     <h4 style={{ textAlign: 'center' }}>Protege Monthly Report:</h4>
@@ -4978,7 +4947,7 @@ class ManagerDataViewer extends Component {
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                             {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
-                            <button className="btn btn-info" onClick={this.viewProtegeBenchmarkReport}>View Benchmark Report</button>
+                            <button className="btn btn-outline-dark" onClick={this.viewProtegeBenchmarkReport}>View Benchmark Report</button>
                             {this.state.viewProtegeBenchmarkReport ?
                                 <div className="col-12 card bg-primary" style={{ color: 'whitesmoke' }}>
                                     <h4 style={{ textAlign: 'center' }}>Protege Benchmark Report:</h4>
