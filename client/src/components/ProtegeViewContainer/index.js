@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Bar, Pie } from 'react-chartjs-2';
+// import { Pie } from 'react-chartjs-2';
 import "./style.css"
 import API from "../../utils/API";
 
@@ -220,15 +220,15 @@ class ManagerDataViewer extends Component {
         return (
 
             <div className="card bg-dark" style={{ padding: '10%', borderRadius: '5px' }}>
-                <div class="card-body">
-                    <h5 class="card-title" style={{color: 'white'}}>{this.props.protege.firstName} {this.props.protege.lastName}</h5>
+                <div className="card-body">
+                    <h5 className="card-title" style={{color: 'white'}}>{this.props.protege.firstName} {this.props.protege.lastName}</h5>
                     {/* <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
                 </div>
                 {/* <p></p> */}
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Dials:{this.props.protege.dials.length}</li>
-                    <li class="list-group-item">Contacts: </li>
-                    <li class="list-group-item">Appointments:{this.props.protege.appointments.length}</li>
+                <ul className="list-group list-group-flush">
+                    <li className="list-group-item">Dials:{this.props.protege.dials.length}</li>
+                    <li className="list-group-item">Contacts: </li>
+                    <li className="list-group-item">Appointments:{this.props.protege.appointments.length}</li>
                 </ul>
             </div>
 

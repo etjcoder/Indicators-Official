@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Home.css";
-import Nav from "../components/Nav";
+// import Nav from "../components/Nav";
 import API from "../utils/API";
 import MentorDataViewer from "../components/MentorDataViewer"
 // import NoteViewer from "../components/NoteViewer";
@@ -22,7 +22,7 @@ import AppointmentCreatorMentor from "../components/AppointmentCreatorMentor"
 import './Mentor.css'
 import SideNavPageMentor from "../components/SideNavPageMentor";
 import MainCalendar from "../components/MainCalendar"
-import AppointmentCreator from "../components/AppointmentCreator";
+// import AppointmentCreator from "../components/AppointmentCreator";
 
 class MentorDash extends Component {
 

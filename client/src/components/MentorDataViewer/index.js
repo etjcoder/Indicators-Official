@@ -1194,6 +1194,7 @@ class MentorDataViewer extends Component {
                 break;
             case "sData":
                 this.viewSuspectPerformance()
+                break;
             case "nData":
                 this.viewNaturalPerformance()
                 break;
@@ -1305,7 +1306,7 @@ class MentorDataViewer extends Component {
                     <hr />
                 </div>
                 {this.state.showDialChart ?
-                    <div style={{ color: 'center', color: 'black' }}>
+                    <div style={{color: 'black' }}>
                         <p style={{ textAlign: 'center' }}>Total Dials: {this.props.dialData.length}</p>
 
                         <div className="row">

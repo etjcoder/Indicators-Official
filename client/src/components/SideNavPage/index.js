@@ -11,37 +11,37 @@ export default props => {
           Home
       </a>
 
-      <a className="menu-item" onClick={props.dialOption}>
+      <a className="menu-item" href="/" onClick={props.dialOption}>
       <i class="fa fa-phone"></i>&nbsp;
           Dialing Tool
       </a>
 
-      <a className="menu-item" onClick={props.noteOption}>
+      <a className="menu-item" href="/" onClick={props.noteOption}>
         <i class="fa fa-pencil"></i>&nbsp;
           Notes
       </a>
 
-      <a className="menu-item" onClick={props.createOption}>
+      <a className="menu-item" href="/" onClick={props.createOption}>
         <i class="fa fa-paper-plane"></i>&nbsp;
           Creation Tool
       </a>
 
-      <a className="menu-item" onClick={props.analyzeOption}>
+      <a className="menu-item" href="/" onClick={props.analyzeOption}>
         <i class="fa fa-area-chart"></i>&nbsp;
           Analytics
       </a>
 
-      <a className="menu-item" onClick={props.scheduleOption}>
+      <a className="menu-item" href="/" onClick={props.scheduleOption}>
         <i class="fa fa-address-book"></i>&nbsp;
           Schedule
       </a>
 
-      <a className="menu-item" onClick={props.salesOption}>
+      <a className="menu-item" href="/" onClick={props.salesOption}>
       <i class="fa fa-trophy"></i>&nbsp;
         Sales
       </a>
 
-      <a className="menu-item" onClick={props.logOut}>
+      <a className="menu-item" href="/"  onClick={props.logOut}>
         <i class="fa fa-sign-out"></i>&nbsp;
           Logout
       </a>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import API from "../../utils/API";
 import cogoToast from "cogo-toast";
-import { Button, FormTextarea } from 'shards-react';
+import { FormTextarea } from 'shards-react';
 
 import "./style.css"
 

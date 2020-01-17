@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Input } from "../Form";
+// import { Input } from "../Form";
 import API from "../../utils/API";
 import cogoToast from "cogo-toast"
 import "./style.css";

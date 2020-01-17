@@ -1230,6 +1230,7 @@ class MainDataViewer extends Component {
                 break;
             case "sData":
                 this.viewSuspectPerformance()
+                break;
             case "nData":
                 this.viewNaturalPerformance()
                 break;

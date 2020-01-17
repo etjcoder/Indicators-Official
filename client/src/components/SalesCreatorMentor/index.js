@@ -139,7 +139,7 @@ class SalesCreatorMentor extends Component {
                         <form className="form-group">
                             <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}>
                                 <label>Type:</label>
-                                <select className="custom-select my-1 mr-sm-2" className="" value={this.state.saleType} onChange={this.handleInputChange} name="saleType" type="text" placeholder="Choose Client type">
+                                <select className="custom-select my-1 mr-sm-2" value={this.state.saleType} onChange={this.handleInputChange} name="saleType" type="text" placeholder="Choose Client type">
                                     <option value="CPD">Cashflow Prospect</option>
                                     <option value="BPD">Businessowner Prospect</option>
                                     <option value="CCD">Cashflow Client</option>

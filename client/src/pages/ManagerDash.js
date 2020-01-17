@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import "./Home.css";
-import Nav from "../components/Nav";
+// import Nav from "../components/Nav";
 // import LoginForm from "../components/CreateProtegeForm"
 import CreateProtegeForm from "../components/CreateProtegeForm";
 import CreateMentorForm from "../components/CreateMentorForm";
 import API from "../utils/API";
-import SideNavPageManager from "../components/SideNavPageManager";
+// import SideNavPageManager from "../components/SideNavPageManager";
 import ManagerDataViewer from "../components/ManagerDataViewer";
 import ProtegeViewContainer from "../components/ProtegeViewContainer";
 
@@ -303,31 +303,31 @@ class ManagerDash extends Component {
 <div className="row">
                         <div className="col-12">
     
-                            <nav class="navbar navbar-expand-lg navbar-light bg-light" style={{ padding: '30px', marginBottom: '50px' }}>
-                                <a class="navbar-brand" href="#">Manager Dashboard</a>
-                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                    <span class="navbar-toggler-icon"></span>
+                            <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{ padding: '30px', marginBottom: '50px' }}>
+                                <a className="navbar-brand" href="#">Manager Dashboard</a>
+                                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span className="navbar-toggler-icon"></span>
                                 </button>
 
-                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                    <ul class="navbar-nav mr-auto">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/">Home</a>
+                                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                                    <ul className="navbar-nav mr-auto">
+                                        <li className="nav-item">
+                                            <a className="nav-link" href="/">Home</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" onClick={this.showCreate}>Create User</a>
+                                        <li className="nav-item">
+                                            <a className="nav-link" onClick={this.showCreate}>Create User</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" onClick={this.showActivityTracker}>Session Tracker</a>
+                                        <li className="nav-item">
+                                            <a className="nav-link" onClick={this.showActivityTracker}>Session Tracker</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" onClick={this.showAnalytics}>View Analytics</a>
+                                        <li className="nav-item">
+                                            <a className="nav-link" onClick={this.showAnalytics}>View Analytics</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" onClick={this.showSales}>View Sales</a>
+                                        <li className="nav-item">
+                                            <a className="nav-link" onClick={this.showSales}>View Sales</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" onClick={this.showReports}>View Reports</a>
+                                        <li className="nav-item">
+                                            <a className="nav-link" onClick={this.showReports}>View Reports</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -341,7 +341,7 @@ class ManagerDash extends Component {
                             {this.state.proteges ?
                                 <div className="row">
                                     {this.state.proteges.map(protege => (
-                                        <div className="col-lg-4">
+                                        <div key={protege._id} className="col-lg-4">
                                             <ProtegeViewContainer
                                                 key={protege._id}
                                                 protege={protege}

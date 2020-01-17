@@ -20,7 +20,7 @@ export default props => {
           Dialing Tool
       </a> */}
 
-            <a className="menu-item" onClick={props.createOption}>
+            <a className="menu-item" href="/"  onClick={props.createOption}>
                 <i class="fa fa-pencil"></i>&nbsp;
                   Create
       </a>
@@ -30,22 +30,22 @@ export default props => {
           Creation Tool
       </a> */}
 
-            <a className="menu-item" onClick={props.analyticsOption}>
+            <a className="menu-item" href="/" onClick={props.analyticsOption}>
                 <i class="fa fa-area-chart"></i>&nbsp;
                   Analytics
       </a>
 
-            <a className="menu-item" onClick={props.salesOption}>
+            <a className="menu-item" href="/" onClick={props.salesOption}>
                 <i class="fa fa-trophy"></i>&nbsp;
                   Sales
       </a>
 
-      <a className="menu-item" onClick={props.reportsOption}>
+      <a className="menu-item" href="/" onClick={props.reportsOption}>
                 <i class="fa fa-area-chart"></i>&nbsp;
                   Reports
       </a>
 
-            <a className="menu-item">
+            <a className="menu-item" href="/" >
                 <i class="fa fa-sign-out"></i>&nbsp;
                   Logout
       </a>

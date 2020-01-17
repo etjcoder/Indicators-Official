@@ -127,7 +127,7 @@ class AppointmentCreatorMentor extends Component {
                         <form style={{}}>
                             <div style={{ backgroundColor: 'rgba(255,255,255,0.7)', color: 'black', padding: '20px', borderRadius: '30px' }}>
                                 <label className="customLabel"><p style={{ color: 'black' }}>Type :</p></label>
-                                <select className="custom-select my-1 mr-sm-2" value={this.state.type} className="customDrop-Mentor" onChange={this.handleInputChange} name="type" type="text" placeholder="Choose an appointment type..">
+                                <select className="custom-select my-1 mr-sm-2 customDrop-Mentor" value={this.state.type} onChange={this.handleInputChange} name="type" type="text" placeholder="Choose an appointment type..">
                                     <option value="CPD">Standard/Cashflow Prospect</option>
                                     <option value="CCD">Standard/Cashflow Delegated Client</option>
                                     <option value="CND">Standard/Cashflow Natural Mkt</option>

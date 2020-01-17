@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import API from "../../utils/API";
 // import cogoToast from "cogo-toast";
 // import Modal from "react-modal";
-import { Bar, Pie } from 'react-chartjs-2';
+import { Pie } from 'react-chartjs-2';
 
 
 

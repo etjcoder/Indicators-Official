@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import API from "../../utils/API";
 import cogoToast from "cogo-toast";
-import { Card, CardBody } from 'shards-react';
+// import { Card, CardBody } from 'shards-react';
 import './style.css'
 
 class NoteViewer extends Component {
