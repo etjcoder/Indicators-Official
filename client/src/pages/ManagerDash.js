@@ -7,6 +7,7 @@ import CreateMentorForm from "../components/CreateMentorForm";
 import API from "../utils/API";
 import SideNavPageManager from "../components/SideNavPageManager";
 import ManagerDataViewer from "../components/ManagerDataViewer";
+import ProtegeViewContainer from "../components/ProtegeViewContainer";
 
 
 class ManagerDash extends Component {
@@ -24,9 +25,10 @@ class ManagerDash extends Component {
         showCreateMentorForm: false,
         showCreateProtegeForm: false,
         showCreateTool: false,
-        showAnalyticsTool: true,
+        showAnalyticsTool: false,
         showReportsTool: false,
         showSalesTool: false,
+        showProtegeActivity: true,
         mentorSelected: "none",
         mentorToAdd: "none",
         protegeToAdd: 'none',
@@ -197,10 +199,10 @@ class ManagerDash extends Component {
 
     showAnalytics = () => {
         console.log("Showing Analytics tools")
-        if(this.state.showAnalyticsTools === true) {
+        if (this.state.showAnalyticsTools === true) {
             this.setState({
                 showAnalyticsTool: false
-            }) 
+            })
         } else {
             this.setState({
                 showCreateTool: false,
@@ -213,10 +215,10 @@ class ManagerDash extends Component {
 
     showReports = () => {
         console.log("Showing Reports tools")
-        if(this.state.showAnalyticsTools === true) {
+        if (this.state.showAnalyticsTools === true) {
             this.setState({
                 showAnalyticsTool: false
-            }) 
+            })
         } else {
             this.setState({
                 showCreateTool: false,
@@ -276,6 +278,35 @@ class ManagerDash extends Component {
                         <h3 style={{ textAlign: 'center', color: 'white' }}>You're on the Mentor Dashboard!</h3>
 
                     </div>
+
+                    {this.state.showProtegeActivity ?
+                        <div>
+                            {this.state.proteges ?
+                                <div className="row">
+                                    {this.state.proteges.map(protege => (
+                                        <div className="col-lg-4">
+                                            <ProtegeViewContainer
+                                                key={protege._id}
+                                                protege={protege}
+                                                rerender={this.gatherProteges}
+                                            />
+                                        </div>
+                                        // <div key={protege._id} className="col-md-4">
+                                        //     <p>{protege.firstName} {protege.lastName}</p>
+                                        //     <p>Dials:{protege.dials.length}</p>
+                                        //     <p>Contacts:    </p>
+                                        //     <p>Appointments:{protege.appointments.length}</p>
+                                        // </div>
+                                    ))
+                                    }
+                                </div>
+                                : null}
+                        </div>
+
+
+                        : null}
+
+
                     {this.state.showCreateTool ?
                         <div className="card" style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)', padding: '50px' }}>
                             <h2 style={{ textAlign: 'center', padding: '20px', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px', borderRadius: '10px' }}>C R E A T E</h2>

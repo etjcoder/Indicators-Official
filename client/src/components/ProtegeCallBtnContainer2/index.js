@@ -483,12 +483,12 @@ class ProtegeCallBtnContainer extends Component {
     render() {
         return (
             <div className="row">
-                <div className="card col-12" id="prospect" style={{ textAlign: 'left', backgroundColor: 'rgba(36,138,255,0.8)' }}>
+                <div className="card col-12" id="prospect" style={{ textAlign: 'left', backgroundColor: 'rgba(255,255,255,0.95)' }}>
                     <form>
-                        <h2 style={{ textAlign: 'center', padding: '20px', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', borderRadius: '10px' }}>I N D I C A T O R S</h2>
+                        <p id="indicators-tag" style={{ textAlign: 'center', padding: '20px', backgroundColor: 'rgba(200,200,200,0.75)', color: 'black', borderRadius: '10px', fontSize: '20px' }}>I N D I C A T O R S</p>
                         <hr />
                         <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '', border: 'none' }}>
-                            <label style={{ float: 'left', textAlign: 'right', marginRight: '15px', width: '200px' }}>Type of Call <span style={{ fontSize: 10 }}>(required)  </span>  </label>
+                            <label style={{ float: 'left', textAlign: '', marginRight: '15px', width: '200px' }}>Type of Call <span style={{ fontSize: 10 }}>(required)  </span>  </label>
                             <select style={{ marginLeft: 'auto' }} id="" className="" value={this.state.levelofDial} onChange={this.handleInputChange} name="levelOfDial">
                                 <option value="none">Select Type 1</option>
                                 <option value="cashflow">Standard / Cashflow</option>
@@ -512,7 +512,7 @@ class ProtegeCallBtnContainer extends Component {
                             {/* </div> */}
                             <hr />
                             {/* <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '100px' }}> */}
-                            <label style={{ float: 'left', textAlign: 'right', marginRight: '15px', width: '200px', border: 'none' }}>Tag a Mentor <span style={{ fontSize: 10 }}>(optional)</span></label>
+                            <label style={{ float: 'left', textAlign: 'left', marginRight: '15px', width: '200px', border: 'none' }}>Tag a Mentor <span style={{ fontSize: 10 }}>(optional)</span></label>
                             {this.props.userData.allMentors ? <select id="" className="" value={this.state.mentorTagged} onChange={this.handleInputChange} name="mentorTagged">
                                 <option value="none">--------------------</option>
                                 {this.props.userData.allMentors.map(mentor => (
@@ -532,7 +532,7 @@ class ProtegeCallBtnContainer extends Component {
                             {/* </div> */}
                             <hr />
                             {/* <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '100px' }}> */}
-                            <label style={{ float: 'left', textAlign: 'right', marginRight: '15px', width: '200px', border: 'none' }}>Call Result <span style={{ fontSize: 10 }}>(required)</span></label>
+                            <label style={{ float: 'left', textAlign: 'left', marginRight: '15px', width: '200px', border: 'none' }}>Call Result <span style={{ fontSize: 10 }}>(required)</span></label>
                             <select id="" className="" value={this.state.callResult} onChange={this.handleInputChange} name="callResult">
                                 <option value="none">Select a Result</option>
                                 <option value="MissedCall">No Answer</option>

@@ -1,0 +1,21 @@
+/* .nav-btn-custom {
+  background-color: 'rgba(255,255,255,0.95)' !important;
+  padding: 0;
+  margin: 0;
+  color: black
+} */
+
+.nav-btn-custom:hover {
+    background: 'black';
+    /* color: 'whitesmoke'; */
+}
+
+/* .nav-btn-custom:active {
+    background-color: 'rgba(0,0,0,0.95)' !important;
+    color: 'white';
+} */
+
+.jumbotron-custom-p {
+    padding: 0 !important;
+    margin: 0 !important;
+}

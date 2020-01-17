@@ -80,6 +80,13 @@ class BasicLogin extends Component {
                     <button onClick={this.login} className="btn btn-outline-info">Log in</button>
                     {/* <button onClick={this.logOut} style={{ marginTop: '5px', marginLeft: '25px' }} className="btn btn-danger">Logout</button> */}
                 </form>
+
+                <br />
+                {/* <form>
+                    <input value={this.state.testemail} onChange={this.handleInputChange} type="email" name="email" className="form-control" id
+
+
+                </form> */}
             </div>
         )
     }
