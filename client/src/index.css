@@ -3,8 +3,8 @@ body {
   padding: 0;
   font-family: sans-serif;
     /* background: url("./assets/img/sean-pollock-PhYq704ffdA-unsplash.jpg")no-repeat center center fixed; */
-    background: rgb(255,255,255);
-    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(0,0,255,0.5760679271708684) 100%);   
+    background: rgb(173, 216, 230);
+    /* background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(0,0,255,0.5760679271708684) 100%);    */
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

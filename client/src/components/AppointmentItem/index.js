@@ -134,23 +134,24 @@ class AppointmentItem extends Component {
 
     render() {
         return (
-            <div className="container">
-                <div style={{ height: '', padding: '0 10% 0 10%', textAlign: 'left', backgroundColor: 'rgba(255, 255, 255,0.75)', overflow: 'auto', borderRadius: 5 }}>
-                    <br />
-                    <h4 style={{ textAlign: 'center' }}>{this.state.apptname}</h4>
-                    <h6 style={{ textAlign: 'center' }}>{this.state.apptdate}</h6>
-                    <hr /> <hr />
+            <>
+                <div className="card bg-light">
 
-                    <button value={this.props.id} onClick={this.deleteAppt} className="btn btn-danger btn-sm" style={{ float: 'right' }}>X</button>
-                    <button value={this.props.id} onClick={this.prepEditModal} className="btn btn-info btn-sm" style={{ float: 'right' }}>Edit</button>
-                    <br />
-
-                    <div className="card bg-dark" style={{ padding: '20px', clear: 'both' }}>
-                        <p style={{ color: 'white' }}>Notes: {this.state.apptnotes}</p>
+                    <div className="card-header">
+                        <div
+                        // style={{ height: '', padding: '0 10% 0 10%', textAlign: 'left', backgroundColor: 'rgba(255, 255, 255,0.75)', overflow: 'auto', borderRadius: 5 }}
+                        >
+                            <p style={{ textAlign: 'center', fontSize: this.props.headerFont }}>{this.state.apptname}</p>
+                            <p style={{ textAlign: 'center', fontSize: this.props.headerFont }}>{this.state.apptdate}</p>
+                        </div>
                     </div>
-                    <div className="card" style={{ padding: '20px' }}>
-                        <p style={{ fontSize: '14px', width: '50%', float: 'left' }}>Mentor: {this.state.mentorTagged}</p>
-                        <p style={{ fontSize: '14px', width: '50%', float: 'right' }}>Type:
+
+                    <div className="card-body" style={{ padding: '5px', clear: 'both' }}>
+                        <p style={{ color: '', fontSize: this.props.textFont }}>Note: {this.state.apptnotes}</p>
+                    </div>
+                    <div className="card-body" style={{ padding: '5px' }}>
+                        <p style={{ fontSize: this.props.textFont, width: '', float: '' }}>Mentor: {this.state.mentorTagged}</p>
+                        <p style={{ fontSize: this.props.textFont, width: '', float: '' }}>Type:
                     {this.props.type === "CPD" ? <span> Cashflow Prospect</span> : null}
                             {this.props.type === "BPD" ? <span> Businessowner Prospect</span> : null}
                             {this.props.type === "CCD" ? <span> Cashflow Delegated Client</span> : null}
@@ -165,7 +166,11 @@ class AppointmentItem extends Component {
                             {this.props.type === "BTD" ? <span> Businessowner Target Industry</span> : null}
                         </p>
                     </div>
-                    <hr />
+
+                    <div className="card-footer" style={{textAlign: 'center'}}>
+                        <button value={this.props.id} onClick={this.prepEditModal} className="btn btn-info btn-sm" style={{ width: '33%' }}>Edit</button>
+                        <button value={this.props.id} onClick={this.deleteAppt} className="btn btn-danger btn-sm" style={{ width: '33%' }}>X</button>
+                    </div>
 
                 </div>
 
@@ -209,7 +214,8 @@ class AppointmentItem extends Component {
                     </Modal>
                 </div>
 
-            </div>
+
+            </>
         )
     }
 }

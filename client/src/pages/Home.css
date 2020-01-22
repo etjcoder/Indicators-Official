@@ -5,6 +5,29 @@
   color: black
 } */
 
+.jumbotron {
+    height: 400px
+}
+
+
+@media only screen and (max-width: 999px) {
+    .jumbotron {
+        height: 300px
+    }
+}
+
+@media only screen and (max-width: 760px) {
+    .jumbotron {
+        height: 200px
+    }
+}
+
+@media only screen and (max-width: 456px) {
+    .jumbotron {
+        height: 150px
+    }
+}
+
 .nav-btn-custom:hover {
     background: 'black';
     /* color: 'whitesmoke'; */

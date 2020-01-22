@@ -75,7 +75,8 @@ class ProtegeDash extends Component {
         showAppts: false,
         showSales: false,
         showNoteViewer: true,
-        showCreate: false
+        showCreate: false,
+        showSideBars: true
     }
 
     componentDidMount = () => {
@@ -476,7 +477,9 @@ class ProtegeDash extends Component {
                 showNotes: false,
                 showCreate: false,
                 showAnalytics: false,
-                showAppts: false
+                showAppts: false,
+                showSales: false,
+                showSideBars: true
             })
         }
     }
@@ -492,7 +495,9 @@ class ProtegeDash extends Component {
                 showNotes: true,
                 showCreate: false,
                 showAnalytics: false,
-                showAppts: false
+                showAppts: false,
+                showSales: false,
+                showSideBars: true
             })
         }
     }
@@ -508,7 +513,9 @@ class ProtegeDash extends Component {
                 showNotes: false,
                 showCreate: true,
                 showAnalytics: false,
-                showAppts: false
+                showAppts: false,
+                showSales: false,
+                showSideBars: true
             })
         }
     }
@@ -516,7 +523,8 @@ class ProtegeDash extends Component {
     showAnalytics = () => {
         if (this.state.showAnalytics === true) {
             this.setState({
-                showAnalytics: false
+                showAnalytics: false,
+                showSideBars: true
             })
         } else {
             this.setState({
@@ -524,7 +532,9 @@ class ProtegeDash extends Component {
                 showNotes: false,
                 showCreate: false,
                 showAnalytics: true,
-                showAppts: false
+                showAppts: false,
+                showSales: false,
+                showSideBars: false
             })
         }
     }
@@ -541,7 +551,8 @@ class ProtegeDash extends Component {
                 showCreate: false,
                 showAnalytics: false,
                 showAppts: true,
-                showSales: false
+                showSales: false,
+                showSideBars: true
             })
         }
     }
@@ -563,6 +574,18 @@ class ProtegeDash extends Component {
         }
     }
 
+    showSalesViewer = () => {
+        if (this.state.showSaleViewer === true) {
+            this.setState({
+                showSaleViewer: false
+            })
+        } else {
+            this.setState({
+                showSaleViewer: true
+            })
+        }
+    }
+
 
 
 
@@ -577,6 +600,35 @@ class ProtegeDash extends Component {
                     scheduleOption={this.showAppts}
                     salesOption={this.showSales}
                 /> */}
+                <nav className="navbar navbar-expand-lg navbar-dark bg-dark" style={{ padding: '30px' }}>
+                    <a className="navbar-brand" href="#">{this.state.userData.firstName} {this.state.userData.lastName} Dashboard</a>
+                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul className="navbar-nav mr-auto">
+                            <li className="nav-item">
+                                <a className="nav-link" onClick={this.showDials}>Home</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" onClick={this.showDials}>Dialing Tool</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" onClick={this.showAnalytics}>Analytics</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" onClick={this.showNotes}>Notes</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" onClick={this.showAppts}>Schedule</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" onClick={this.showSales}>Sales</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
                 <div className="container" style={{ backgroundColor: 'transparent' }}>
                     <div className="row">
                         <div className="col-12">
@@ -591,40 +643,6 @@ class ProtegeDash extends Component {
                                     </div>
                                 </div>
                             </div> */}
-
-                            <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{ padding: '30px' }}>
-                                <a className="navbar-brand" href="#">{this.state.userData.firstName} {this.state.userData.lastName} Dashboard</a>
-                                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                    <span className="navbar-toggler-icon"></span>
-                                </button>
-
-                                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                                    <ul className="navbar-nav mr-auto">
-                                        <li className="nav-item">
-                                            <a className="nav-link" onClick={this.showDials}>Home</a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a className="nav-link" onClick={this.showDials}>Dial</a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a className="nav-link" onClick={this.showAnalytics}>Analytics</a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a className="nav-link" onClick={this.showNotes}>Notes</a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a className="nav-link" onClick={this.showAppts}>Schedule</a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a className="nav-link" onClick={this.showSales}>Sales</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </nav>
-
-
-
-
 
                             {/* <div className="row" style={{ height: '20%', marginLeft: '-15px', marginLeft: '-15px' }}>
                                 <div className="col" style={{ textAlign: 'center', padding: 0, margin: 0, backgroundColor: 'whitesmoke', height: '100%' }}>
@@ -764,7 +782,7 @@ class ProtegeDash extends Component {
                             }
 
 
-                            <div className="row" style={{ marginTop: '20px', marginBottom: 200 }}>
+                            <div className="row" style={{ marginTop: '20px' }}>
                                 <div className="col-lg-6">
                                     {/*  ////////////////////////////////////////////////////////////////////////////////// */}
                                     {/*  ////////////////////////////////////////////////////////////////////////////////// */}
@@ -779,6 +797,7 @@ class ProtegeDash extends Component {
                                                 <div className="col-lg-12">
                                                     <div className="row">
                                                         <div className="col">
+
                                                             <ProtegeCallBtnContainer2
                                                                 rerender={this.getUserData}
                                                                 user={this.state.userData}
@@ -789,26 +808,25 @@ class ProtegeDash extends Component {
                                                                 setParentState={this.setParentState}
                                                                 setParentStateTargetMkt={this.setParentStateTargetMkt}
                                                                 username={this.state.user}
-                                                                rerender={this.gatherAppointments}
+                                                                rerender={this.getUserData}
+                                                                userID={this.props.user.uid}
                                                                 mentors={this.state.mentors}
                                                             />
-                                                            {/* <div className="row">
-                            <div className="col-6">
-                                <SourceSelector userData={this.state.userData} setParentState={this.setParentState} />
-                            </div>
 
-                            <AppointmentCreator
-                                                userID={this.state.userData._id}
-                                                username={this.state.user}
-                                                rerender={this.gatherAppointments}
-                                                userData={this.state.userData}
-                                                mentors={this.state.mentors}
-
-                                            />
-                            <div className="col-6">
-                                <TargetMarketSelector userData={this.state.userData} setParentState={this.setParentStateTargetMkt} />
-                            </div>
-                        </div> */}
+                                                        </div>
+                                                    </div>
+                                                    <br />
+                                                    <div className="row">
+                                                        <div className="col-6" style={{ height: '', overflow: 'auto', textAlign: 'center' }}>
+                                                            <div className="card">
+                                                                <SourceCreator userData={this.state.userData} />
+                                                            </div>
+                                                        </div>
+                                                        <br />
+                                                        <div className="col-6" style={{ height: '', overflow: 'auto', textAlign: 'center' }}>
+                                                            <div className="card">
+                                                                <TargetMarketCreator userData={this.state.userData} />
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -973,12 +991,16 @@ class ProtegeDash extends Component {
 
                                         <div id="appointments-container">
                                             <div className="row">
-                                                <div className="card col-12" style={{ zIndex: 0, padding: '20px' }}>
-                                                    <h4 style={{ textAlign: 'center' }}>Quickview Calendar</h4>
-                                                    <MainCalendar
-                                                        appointments={this.state.appointments}
-                                                    />
+                                                <div className="col-12" style={{ zIndex: 0, padding: '20px' }}>
+                                                    <div className="card">
+                                                        <h4 style={{ textAlign: 'center' }}>Quickview Calendar</h4>
+                                                        <MainCalendar
+                                                            appointments={this.state.appointments}
+                                                        />
+                                                    </div>
                                                 </div>
+                                            </div>
+                                            <div className="row">
                                                 <div className="col-12">
                                                     <p></p>
                                                     <AppointmentCreator
@@ -989,44 +1011,55 @@ class ProtegeDash extends Component {
                                                         mentors={this.state.mentors}
                                                     />
                                                 </div>
+                                            </div>
+                                            <br />
+                                            <div className="row">
                                                 <div className="col-12">
-                                                    <div className="card" style={{ marginBottom: '10px', marginTop: '10px', textAlign: "left", padding: 10, height: '', overflow: 'auto', backgroundColor: 'rgba(36,138,255,0.8)' }}>
+                                                    <div style={{ width: '100%' }}
+                                                    // className="card" style={{ marginBottom: '10px', marginTop: '10px', textAlign: "left", padding: 10, height: '', overflow: 'auto', backgroundColor: 'rgba(36,138,255,0.8)' }}
+                                                    >
+                                                        <div className="card bg-light">
+                                                            <div className="card-header">
+                                                                <h4 style={{ textAlign: 'center', padding: '10%', color: 'black', margin: '20px' }}>Appointment Manager
+                                                                <br />
 
-                                                        <h4 style={{ textAlign: 'center', padding: '10%', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px' }}>Appointment Manager
-                                                <br />
-                                                            <span button className="btn btn-sm btn-outline-dark" onClick={this.showApptViewer}>Show</span></h4>
+                                                                    <span button className="btn btn-sm btn-outline-dark" onClick={this.showApptViewer}>Show</span></h4>
+                                                            </div>
+                                                            {this.state.showApptViewer ?
+                                                                <div className="card-body">
+                                                                    {
+                                                                        this.state.appointments ?
+                                                                            <div style={{ height: '400px', overflow: 'auto' }}>
+                                                                                {
+                                                                                    this.state.appointments.map(appt => (
+                                                                                        <AppointmentItem
+                                                                                            key={appt._id}
+                                                                                            id={appt._id}
+                                                                                            apptname={appt.apptname}
+                                                                                            mentor={appt.mentor}
+                                                                                            type={appt.type}
+                                                                                            held={appt.held}
+                                                                                            sold={appt.sold}
+                                                                                            dialer={appt.dialer}
+                                                                                            source={appt.source}
+                                                                                            date={appt.date}
+                                                                                            notes={appt.notes}
+                                                                                            username={this.state.user}
+                                                                                            rerender={this.gatherAppointments}
+                                                                                            user={this.state.userData}
+                                                                                            targetMarket={appt.targetMarket}
+                                                                                            mentors={this.state.mentors}
+                                                                                            headerFont={'20px'}
+                                                                                            textFont={'14px'}
+                                                                                        />
+                                                                                    ))
+                                                                                }
+                                                                            </div>
+                                                                            : null
+                                                                    }
+                                                                </div> : null}
 
-                                                        {this.state.showApptViewer ?
-                                                            <div>
-                                                                {
-                                                                    this.state.appointments ?
-                                                                        <div style={{ height: '400px', overflow: 'auto' }}>
-                                                                            {
-                                                                                this.state.appointments.map(appt => (
-                                                                                    <AppointmentItem
-                                                                                        key={appt._id}
-                                                                                        id={appt._id}
-                                                                                        apptname={appt.apptname}
-                                                                                        mentor={appt.mentor}
-                                                                                        type={appt.type}
-                                                                                        held={appt.held}
-                                                                                        sold={appt.sold}
-                                                                                        dialer={appt.dialer}
-                                                                                        source={appt.source}
-                                                                                        date={appt.date}
-                                                                                        notes={appt.notes}
-                                                                                        username={this.state.user}
-                                                                                        rerender={this.gatherAppointments}
-                                                                                        user={this.state.userData}
-                                                                                        targetMarket={appt.targetMarket}
-                                                                                        mentors={this.state.mentors}
-                                                                                    />
-                                                                                ))
-                                                                            }
-                                                                        </div>
-                                                                        : null
-                                                                }
-                                                            </div> : null}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1042,44 +1075,60 @@ class ProtegeDash extends Component {
                                     {this.state.showSales ?
                                         <div id="sales-container">
                                             <div className="row">
-                                                <div className="col-12">
-                                                    <p></p>
-                                                    <SalesCreator
-                                                        userID={this.state.userData._id}
-                                                        username={this.state.user}
-                                                        // rerender={this.gatherSales}
-                                                        userData={this.state.userData}
-                                                        mentors={this.state.mentors}
-                                                    />
-                                                </div>
+                                                {/* <div className="col-12"> */}
 
+                                                <SalesCreator
+                                                    userID={this.state.userData._id}
+                                                    username={this.state.user}
+                                                    // rerender={this.gatherSales}
+                                                    userData={this.state.userData}
+                                                    mentors={this.state.mentors}
+                                                />
+                                                {/* </div> */}
+                                            </div>
+                                            <br />
+                                            <br />
+
+                                            <div className="row">
                                                 <div className="col-12">
-                                                    <div className="card" style={{ marginBottom: '10px', marginTop: '10px', textAlign: "left", padding: 10, height: '', overflow: 'auto', backgroundColor: 'rgba(36,138,255,0.8)' }}>
-                                                        <h4 style={{ textAlign: 'center', padding: '10%', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px' }}>Your Sales</h4>
-                                                        {this.state.sales ?
-                                                            <div style={{ height: '400px', overflow: 'auto' }}>
-                                                                {this.state.sales.map(sale => (
-                                                                    <SalesItem
-                                                                        key={sale._id}
-                                                                        id={sale._id}
-                                                                        saleType={sale.clientType}
-                                                                        saleName={sale.saleName}
-                                                                        saleSource={sale.leadSource}
-                                                                        saleNotes={sale.saleNotes}
-                                                                        saleDate={sale.saleDate}
-                                                                        saleTargetMkt={sale.targetMarket}
-                                                                        saleCommission={sale.commission}
-                                                                        salePercentage={sale.percentageProtege}
-                                                                        saleTaggedPercentage={sale.percentageMentor}
-                                                                        saleProduct={sale.product}
-                                                                        saleWriter={sale.protege}
-                                                                        saleTagged={sale.mentor}
-                                                                        mentors={this.state.mentors}
-                                                                        userData={this.state.userData}
-                                                                    />
-                                                                ))
-                                                                } </div>
-                                                            : null}
+                                                    <div style={{ width: '%' }}>
+
+                                                        {/* <div className="card" style={{ marginBottom: '10px', marginTop: '10px', textAlign: "left", padding: 10, height: '', overflow: 'auto', backgroundColor: 'rgba(36,138,255,0.8)' }}> */}
+                                                        <div className="card">
+                                                            <div className="card-header">
+                                                                <h4 style={{ textAlign: 'center', padding: '10%', backgroundColor: '', color: 'black' }}>Your Sales<br /><span><button className="btn btn-outline-dark" onClick={this.showSalesViewer}>Show</button></span></h4>
+                                                            </div>
+                                                            {this.state.showSaleViewer ?
+                                                                <div>
+                                                                    {this.state.sales ?
+                                                                        <div className="card-body">
+                                                                            <div style={{ height: '400px', overflow: 'auto' }}>
+                                                                                {this.state.sales.map(sale => (
+                                                                                    <SalesItem
+                                                                                        key={sale._id}
+                                                                                        id={sale._id}
+                                                                                        saleType={sale.clientType}
+                                                                                        saleName={sale.saleName}
+                                                                                        saleSource={sale.leadSource}
+                                                                                        saleNotes={sale.saleNotes}
+                                                                                        saleDate={sale.saleDate}
+                                                                                        saleTargetMkt={sale.targetMarket}
+                                                                                        saleCommission={sale.commission}
+                                                                                        salePercentage={sale.percentageProtege}
+                                                                                        saleTaggedPercentage={sale.percentageMentor}
+                                                                                        saleProduct={sale.product}
+                                                                                        saleWriter={sale.protege}
+                                                                                        saleTagged={sale.mentor}
+                                                                                        mentors={this.state.mentors}
+                                                                                        userData={this.state.userData}
+                                                                                    />
+                                                                                ))
+                                                                                } </div>
+                                                                        </div>
+                                                                        : null}
+                                                                </div>
+                                                                : null}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1088,181 +1137,216 @@ class ProtegeDash extends Component {
 
                                 </div>
 
-                                <div className="col-lg-3">
+                                {this.state.showSideBars ?
 
-                                    {/*  ////////////////////////////////////////////////////////////////////////////////// */}
-                                    {/*  ////////////////////////////////////////////////////////////////////////////////// */}
-                                    {/*  /////////////////////////    Middle Quick Data Viewer       ////////////////////// */}
-                                    {/*  ////////////////////////////////////////////////////////////////////////////////// */}
-                                    {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                                    <div className="col-lg-6">
 
-                                    <div className="side-date-container">
                                         <div className="row">
-                                            <div className="col-12">
-                                                <DialDataSide
-                                                    userID={this.state.userData._id}
-                                                    contactData={this.state.contactData}
-                                                    dialData={this.state.dialData}
-                                                    apptData={this.state.appointments}
-                                                    CPAppts={this.state.CPAppts}
-                                                    BPAppts={this.state.BPAppts}
-                                                    CCAppts={this.state.CCAppts}
-                                                    BCAppts={this.state.BCAppts}
-                                                    CNAppts={this.state.CNAppts}
-                                                    BNAppts={this.state.BNAppts}
-                                                    CPDials={this.state.CPDials}
-                                                    BPDials={this.state.BPDials}
-                                                    CCDials={this.state.CCDials}
-                                                    BCDials={this.state.BCDials}
-                                                    CNDials={this.state.CNDials}
-                                                    BNDials={this.state.BNDials}
-                                                    CPContacts={this.state.CPContacts}
-                                                    BPContacts={this.state.BPContacts}
-                                                    CCContacts={this.state.CCContacts}
-                                                    BCContacts={this.state.BCContacts}
-                                                    CNContacts={this.state.CNContacts}
-                                                    BNContacts={this.state.BNContacts}
-                                                    CSDials={this.state.CSDials}
-                                                    BSDials={this.state.BSDials}
-                                                    CSContacts={this.state.CSContacts}
-                                                    BSContacts={this.state.BSContacts}
-                                                    CSAppts={this.state.CSAppts}
-                                                    BSAppts={this.state.BSAppts}
-                                                    CRDials={this.state.CRDials}
-                                                    BRDials={this.state.BRDials}
-                                                    CRContacts={this.state.CRContacts}
-                                                    BRContacts={this.state.BRContacts}
-                                                    CRAppts={this.state.CRAppts}
-                                                    BRAppts={this.state.BRAppts}
-                                                    CTDials={this.state.CTDials}
-                                                    BTDials={this.state.BTDials}
-                                                    CTContacts={this.state.CTContacts}
-                                                    BTContacts={this.state.BTContacts}
-                                                    CTAppts={this.state.CTAppts}
-                                                    BTAppts={this.state.BTAppts}
-                                                />
-                                            </div>
-                                            <br />
-                                            <div className="col-12" style={{ padding: 10, height: '', overflow: 'auto', textAlign: 'center' }}>
-                                                <div className="container card">
-                                                    <SourceCreator userData={this.state.userData} />
-                                                </div>
-                                            </div>
-                                            <div className="col-12" style={{ padding: 10, height: '', overflow: 'auto', textAlign: 'center' }}>
-                                                <div className="contianer card">
-                                                    <TargetMarketCreator userData={this.state.userData} />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                            <div className="col-md-6">
 
+                                                {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                                                {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                                                {/*  /////////////////////////    Middle Quick Data Viewer       ////////////////////// */}
+                                                {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                                                {/*  ////////////////////////////////////////////////////////////////////////////////// */}
 
-
-                                {/*  ////////////////////////////////////////////////////////////////////////////////// */}
-                                {/*  ////////////////////////////////////////////////////////////////////////////////// */}
-                                {/*  /////////////////////////    Side Data Tools      /////////////////////////////// */}
-                                {/*  ////////////////////////////////////////////////////////////////////////////////// */}
-                                {/*  ////////////////////////////////////////////////////////////////////////////////// */}
-
-
-                                <div className="col-lg-3">
-                                    <div id="">
-                                        <div className="row">
-
-                                            {/* <div className="col-12"> */}
-                                            <div style={{ width: '100%', marginBottom: '10px' }}>
-                                                <AppointmentCreator
-                                                    userID={this.state.userData._id}
-                                                    username={this.state.user}
-                                                    rerender={this.gatherAppointments}
-                                                    userData={this.state.userData}
-                                                    mentors={this.state.mentors}
-
-                                                />
-                                            </div>
-                                            {/* </div> */}
-                                            <br />
-                                            <br />
-
-                                            {/* <div className="col-12"> */}
-
-                                            <div className="card col-12" style={{ marginBottom: '10px', textAlign: "left", padding: 10, height: '', overflow: 'auto', backgroundColor: 'rgba(36,138,255,0.8)' }}>
-
-                                                <p style={{ textAlign: 'center', padding: '10%', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px' }}>View/Edit Appointments <span button className="btn btn-sm btn-outline-dark" onClick={this.showApptViewer}>Quick Show</span><span button className="btn btn-sm btn-outline-dark" onClick={this.showApptForm}>Show Full</span></p>
-
-                                                {this.state.showApptViewer ?
-                                                    <div>
-                                                        {
-                                                            this.state.appointments ?
-                                                                <div style={{ height: '400px', overflow: 'auto' }}>
-                                                                    {
-                                                                        this.state.appointments.map(appt => (
-                                                                            <AppointmentItem
-                                                                                key={appt._id}
-                                                                                id={appt._id}
-                                                                                apptname={appt.apptname}
-                                                                                type={appt.type}
-                                                                                held={appt.held}
-                                                                                sold={appt.sold}
-                                                                                dialer={appt.dialer}
-                                                                                source={appt.source}
-                                                                                date={appt.date}
-                                                                                notes={appt.notes}
-                                                                                username={this.state.user}
-                                                                                rerender={this.gatherAppointments}
-                                                                                user={this.state.userData}
-                                                                                targetMarket={appt.targetMarket}
-                                                                                mentors={this.state.mentors}
-                                                                            />
-                                                                        ))
-                                                                    }
+                                                <div className="side-date-container">
+                                                    <div className="row">
+                                                        <div className="col-12">
+                                                            <DialDataSide
+                                                                userID={this.state.userData._id}
+                                                                contactData={this.state.contactData}
+                                                                dialData={this.state.dialData}
+                                                                apptData={this.state.appointments}
+                                                                CPAppts={this.state.CPAppts}
+                                                                BPAppts={this.state.BPAppts}
+                                                                CCAppts={this.state.CCAppts}
+                                                                BCAppts={this.state.BCAppts}
+                                                                CNAppts={this.state.CNAppts}
+                                                                BNAppts={this.state.BNAppts}
+                                                                CPDials={this.state.CPDials}
+                                                                BPDials={this.state.BPDials}
+                                                                CCDials={this.state.CCDials}
+                                                                BCDials={this.state.BCDials}
+                                                                CNDials={this.state.CNDials}
+                                                                BNDials={this.state.BNDials}
+                                                                CPContacts={this.state.CPContacts}
+                                                                BPContacts={this.state.BPContacts}
+                                                                CCContacts={this.state.CCContacts}
+                                                                BCContacts={this.state.BCContacts}
+                                                                CNContacts={this.state.CNContacts}
+                                                                BNContacts={this.state.BNContacts}
+                                                                CSDials={this.state.CSDials}
+                                                                BSDials={this.state.BSDials}
+                                                                CSContacts={this.state.CSContacts}
+                                                                BSContacts={this.state.BSContacts}
+                                                                CSAppts={this.state.CSAppts}
+                                                                BSAppts={this.state.BSAppts}
+                                                                CRDials={this.state.CRDials}
+                                                                BRDials={this.state.BRDials}
+                                                                CRContacts={this.state.CRContacts}
+                                                                BRContacts={this.state.BRContacts}
+                                                                CRAppts={this.state.CRAppts}
+                                                                BRAppts={this.state.BRAppts}
+                                                                CTDials={this.state.CTDials}
+                                                                BTDials={this.state.BTDials}
+                                                                CTContacts={this.state.CTContacts}
+                                                                BTContacts={this.state.BTContacts}
+                                                                CTAppts={this.state.CTAppts}
+                                                                BTAppts={this.state.BTAppts}
+                                                            />
+                                                        </div>
+                                                        <br />
+                                                        <br />
+                                                        {this.state.showDials ?
+                                                            <div></div>
+                                                            :
+                                                            <div className="row" style={{ padding: '10px' }}>
+                                                                <div className="col-12" style={{ height: '', textAlign: 'center' }}>
+                                                                    <div className="card">
+                                                                        <SourceCreator userData={this.state.userData} />
+                                                                    </div>
                                                                 </div>
-                                                                : null
+                                                                <br />
+                                                                <br />
+                                                                <div className="col-12" style={{ height: '', textAlign: 'center' }}>
+                                                                    <div className="card">
+                                                                        <TargetMarketCreator userData={this.state.userData} />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
                                                         }
-                                                    </div> : null}
+                                                    </div>
+                                                </div>
                                             </div>
 
-                                            {/* </div> */}
-                                            {/* <div className="col-12" style={{ zIndex: 0 }}> */}
-                                            <div className="card col-12" style={{ zIndex: 0, marginBottom: '10px', textAlign: 'center', padding: 10, height: '350px', overflow: 'auto', backgroundColor: 'rgba(36,138,255,0.8', padding: '10px' }}>
-                                                <div style={{ height: '50px', textAlign: 'center', color: 'white', backgroundColor: 'rgba(0,0,0,0.50)' }}>
-                                                    <p style={{ textAlign: 'center', paddingTop: '5px' }}>Your Notes</p>
-                                                </div>
-                                                {this.state.showNoteViewer ?
-                                                    <div style={{ fontSize: '12px' }}>
-                                                        <NoteViewer
+
+
+                                            {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                                            {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                                            {/*  /////////////////////////    Side Data Tools      /////////////////////////////// */}
+                                            {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+                                            {/*  ////////////////////////////////////////////////////////////////////////////////// */}
+
+                                            <br />
+                                            <br />
+                                            <div className="col-md-6">
+                                                <div id="">
+                                                    <div className="row">
+
+                                                        {/* <div className="col-12"> */}
+                                                        <div style={{ width: '100%', marginBottom: '10px' }}>
+                                                            <AppointmentCreator
+                                                                userID={this.state.userData._id}
+                                                                username={this.state.user}
+                                                                rerender={this.gatherAppointments}
+                                                                userData={this.state.userData}
+                                                                mentors={this.state.mentors}
+
+                                                            />
+                                                        </div>
+                                                        {/* </div> */}
+                                                        <br />
+                                                        <br />
+                                                    </div>
+
+                                                    <div className="row">
+                                                        {/* <div className="col-12"> */}
+
+                                                        <div style={{ width: '100%', marginBottom: '10px' }}
+                                                        // style={{ marginBottom: '10px', textAlign: "left", padding: 10, height: '', overflow: 'auto' }}
+                                                        >
+                                                            <div className="card bg-secondary">
+                                                                <div className="card-header">
+                                                                    <h4 style={{ textAlign: 'center', padding: '10% 10% 0 10%', color: 'white', margin: '0px' }}>View Appointments
+                                                                    <br />
+                                                                        <span button className="btn btn-sm btn-light" onClick={this.showApptViewer}>Quick Show</span><span button className="btn btn-sm btn-light" onClick={this.showAppts}>Show Full</span></h4>
+                                                                </div>
+
+                                                                {/* <div className="card-body"> */}
+                                                                {this.state.showApptViewer ?
+                                                                    <div className="card-body">
+                                                                        {
+                                                                            this.state.appointments ?
+                                                                                <div style={{ height: '400px', overflow: 'auto' }}>
+                                                                                    {
+                                                                                        this.state.appointments.map(appt => (
+                                                                                            <AppointmentItem
+                                                                                                key={appt._id}
+                                                                                                id={appt._id}
+                                                                                                apptname={appt.apptname}
+                                                                                                type={appt.type}
+                                                                                                held={appt.held}
+                                                                                                sold={appt.sold}
+                                                                                                dialer={appt.dialer}
+                                                                                                source={appt.source}
+                                                                                                date={appt.date}
+                                                                                                notes={appt.notes}
+                                                                                                username={this.state.user}
+                                                                                                rerender={this.gatherAppointments}
+                                                                                                user={this.state.userData}
+                                                                                                targetMarket={appt.targetMarket}
+                                                                                                mentors={this.state.mentors}
+                                                                                            />
+                                                                                        ))
+                                                                                    }
+                                                                                </div>
+                                                                                : null
+                                                                        }
+                                                                    </div> : null}
+                                                                {/* </div> */}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    {/* </div> */}
+                                                    {/* <div className="col-12" style={{ zIndex: 0 }}> */}
+                                                    <div className="card col-12" style={{ zIndex: 0, marginBottom: '10px', textAlign: 'center', padding: 10, height: '350px', overflow: 'auto', backgroundColor: 'rgba(36,138,255,0.8', padding: '10px' }}>
+                                                        <div style={{ height: '50px', textAlign: 'center', color: 'white', backgroundColor: 'rgba(0,0,0,0.50)' }}>
+                                                            <p style={{ textAlign: 'center', paddingTop: '5px' }}>Your Notes</p>
+                                                        </div>
+                                                        {this.state.showNoteViewer ?
+                                                            <div style={{ fontSize: '12px' }}>
+                                                                <NoteViewer
+                                                                    userData={this.state.userData}
+                                                                    userID={this.state.userData._id}
+                                                                    proteges={this.state.proteges}
+                                                                    mentors={this.state.mentors}
+                                                                    taggedNotes={this.state.notes}
+                                                                    rerender={this.getProtegeNoteData}
+                                                                    fontSize={'14px'}
+                                                                />
+                                                            </div>
+                                                            : null}
+                                                        <div style={{ height: '20px', color: 'black', backgroundColor: 'rgba(0,0,0,0.50)' }}>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="card col-12" style={{ zIndex: 0, marginBottom: '10px', textAlign: 'center', padding: 10, height: '250px', overflow: 'auto', backgroundColor: 'rgba(36,138,255,0.8', padding: '10px' }}>
+                                                        <NoteCreator
                                                             userData={this.state.userData}
                                                             userID={this.state.userData._id}
                                                             proteges={this.state.proteges}
                                                             mentors={this.state.mentors}
-                                                            taggedNotes={this.state.notes}
                                                             rerender={this.getProtegeNoteData}
-                                                            fontSize={'14px'}
                                                         />
                                                     </div>
-                                                    : null}
-                                                <div style={{ height: '20px', color: 'black', backgroundColor: 'rgba(0,0,0,0.50)' }}>
+                                                    {/* </div> */}
                                                 </div>
                                             </div>
-
-                                            <div className="card col-12" style={{ zIndex: 0, marginBottom: '10px', textAlign: 'center', padding: 10, height: '250px', overflow: 'auto', backgroundColor: 'rgba(36,138,255,0.8', padding: '10px' }}>
-                                                <NoteCreator
-                                                    userData={this.state.userData}
-                                                    userID={this.state.userData._id}
-                                                    proteges={this.state.proteges}
-                                                    mentors={this.state.mentors}
-                                                />
-                                            </div>
-                                            {/* </div> */}
                                         </div>
+                                        {/*  */}
                                     </div>
-                                </div>
+
+                                    : null}
+                                {/* </div> */}
                             </div>
                         </div >
                     </div >
                 </div>
-            </div>
+            </div >
 
         )
     }

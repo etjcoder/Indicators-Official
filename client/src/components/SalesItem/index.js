@@ -19,7 +19,7 @@ class SalesItem extends Component {
         saleCommission: 0,
         salePercentage: 0,
         saleTaggedPercentage: 0,
-        saleProduct: "", 
+        saleProduct: "",
         mentorTagged: ""
     }
 
@@ -42,7 +42,7 @@ class SalesItem extends Component {
         })
 
         setTimeout(() => { this.setMentorName() }, 1000);
-        
+
 
     }
 
@@ -157,20 +157,23 @@ class SalesItem extends Component {
 
     render() {
         return (
-            <div className="container">
-                <div style={{ height: '', padding: '0 10% 0 10%', textAlign: 'left', backgroundColor: 'rgba(255,255,255,0.75)', overflow: 'auto', borderRadius: 5 }}>
-                    <br />
+            <div className="card bg-light">
+
+                <div className="card-header">
                     <h4 style={{ textAlign: 'center' }}><u>{this.props.saleName}:</u></h4>
-                    <hr /> <hr />
-                    <button value={this.props.id} onClick={this.deleteSale} className="btn btn-danger btn-sm" style={{ float: 'right' }}>X</button>
-                    <button value={this.props.id} onClick={this.prepEditModal} className="btn btn-info btn-sm" style={{ float: 'right' }}>Edit</button>
+                </div>
+
+                <div
+                // style={{ height: '', padding: '0 10% 0 10%', textAlign: 'left', backgroundColor: 'rgba(255,255,255,0.75)', overflow: 'auto', borderRadius: 5 }}
+                >
+
 
 
                     {/* <p style={{ fontSize: '11px' }}>{this.props.saleDate}</p> */}
-                    <div className="card bg-dark" style={{ padding: '20px', clear: 'both' }}>
-                        <p style={{ color: 'white' }}>Notes: {this.props.saleNotes}</p>
+                    <div className="card-body" style={{ padding: '5px', clear: 'both' }}>
+                        <p style={{ color: '' }}>Note: {this.props.saleNotes}</p>
                     </div>
-                    <div className="card" style={{ padding: '20px' }}>
+                    <div className="card-body" style={{ padding: '20px' }}>
                         <p style={{ fontSize: '14px', float: 'right' }}>Type:
                     {this.props.saleType === "CPD" ? <span> Cashflow Prospect</span> : null}
                             {this.props.saleType === "BPD" ? <span> Businessowner Prospect</span> : null}
@@ -190,7 +193,11 @@ class SalesItem extends Component {
                         <p style={{ fontSize: '14px', width: '%', float: 'left' }}>Protege (You) Percentage: {this.props.salePercentage * 100}% Payout: ${this.props.salePercentage * this.props.saleCommission}</p>
                         <p style={{ fontSize: '14px', width: '%', float: 'left' }}>Mentor Percentage: {this.props.saleTaggedPercentage * 100}% Payout: ${this.props.saleTaggedPercentage * this.props.saleCommission}</p>
                     </div>
-                    <hr></hr>
+
+                    <div className="card-footer" style={{ textAlign: 'center' }}>
+                        <button value={this.props.id} onClick={this.prepEditModal} className="btn btn-info btn-sm" style={{ width: '33%' }}>Edit</button>
+                        <button value={this.props.id} onClick={this.deleteSale} className="btn btn-danger btn-sm" style={{ width: '33%' }}>X</button>
+                    </div>
                 </div>
 
 

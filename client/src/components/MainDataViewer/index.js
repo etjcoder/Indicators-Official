@@ -1251,10 +1251,11 @@ class MainDataViewer extends Component {
         return (
             // <div className="card" id="main-analytics">
 
-            <div className="container" style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '5%', borderRadius: '30px' }}>
-                <h1 style={{ textAlign: 'center', color: 'black' }}>A N A L Y T I C S</h1>
-                <hr />
-                {/* <button style={{ width: '30%', float: 'left' }} className="btn btn-success" onClick={this.viewDialChart}>Dials: {this.props.dialData.length}</button>
+            <div className="card bg-light" style={{ color: 'black', borderRadius: '30px' }}>
+                <div className="card-header">
+                    <h1 style={{ textAlign: 'center', color: 'black' }}>A N A L Y T I C S</h1>
+                    <hr />
+                    {/* <button style={{ width: '30%', float: 'left' }} className="btn btn-success" onClick={this.viewDialChart}>Dials: {this.props.dialData.length}</button>
                 <button style={{ width: '30%', float: 'left' }} className="btn btn-success" onClick={this.viewContactChart}>Contacts: {this.props.contactData.length}</button>
                 <button style={{ width: '30%', float: 'left' }} className="btn btn-success" onClick={this.viewApptChart}>Appointments: {this.props.apptData.length}</button>
                 <button style={{ width: '33%', marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewCFDialChart}>Cashflow Dials Only</button>
@@ -1269,85 +1270,86 @@ class MainDataViewer extends Component {
                 <button style={{ width: '33%', marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewSuspectPerformance}>Suspect Call Performance</button>
                 <button style={{ width: '33%', marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewReferralPerformance}>Referral Call Performance</button>
                 <button style={{ width: '33%', marginLeft: 'auto', marginRight: 'auto' }} className="btn btn-success" onClick={this.viewTargetPerformance}>Target Market Call Performance</button> */}
-                <div className="row">
-                    <div className="col-lg-6">
-                        <form>
-                            <div style={{ textAlign: 'center' }}>
-                                <p style={{ textAlign: 'center' }}>View Types of Calls Made</p>
-                                <select id="sourceDropMenu" className="" value={this.state.dataOption} onChange={this.handleInputChange} name="dataOption">
-                                    <option value={"none"}>------------------------------------------------------------</option>
-                                    <option value={"genDials"}>Dials</option>
-                                    <option value={"genContacts"}>Contacts</option>
-                                    <option value={"genAppts"}>Appointments</option>
-                                    <option value={"cfDials"}>Standard Dials Data</option>
-                                    <option value={"cfContacts"}>Standard Contact Data</option>
-                                    <option value={"cfAppts"}>Standard Appointment Data</option>
-                                    <option value={"boDials"}>Tier-1 Dial Data</option>
-                                    <option value={"boContacts"}>Tier-1 Contact Data</option>
-                                    <option value={"boAppts"}>Tier-1 Appointment Data</option>
-                                </select>
-                                <button className="btn-outline-dark btn-sm btn" onClick={this.showDataOption}>Generate</button>
-
-                            </div>
-
-                        </form>
-                    </div>
-
-                    <div className="col-lg-6">
-                        <form>
-                            <div style={{ textAlign: 'center' }}>
-                                <p style={{ textAlign: 'center' }}>View Performance by Type of Call</p>
-                                <select id="sourceDropMenu" className="" value={this.state.categoryOption} onChange={this.handleInputChange} name="categoryOption">
-                                    <option value={"none"}>------------------------------------------------------------</option>
-                                    <option value={"pData"}>Warm Leads/ Prospects</option>
-                                    <option value={"cData"}>Delegated Clients</option>
-                                    <option value={"nData"}>Natural Market</option>
-                                    <option value={"sData"}>Verticals / Orphans</option>
-                                    <option value={"rData"}>New Referrals</option>
-                                    <option value={"tData"}>Targeted Industries</option>
-                                </select>
-                                <button className="btn-outline-dark btn-sm btn" onClick={this.showCategoryOption}>Generate</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                {/* Target Market and Lead Source Selectors */}
-                <div className="row">
-                    <div className="col-lg-6">
-                        <form>
-                            {this.props.userData.sources ?
+                    <div className="row">
+                        <div className="col-lg-6">
+                            <form>
                                 <div style={{ textAlign: 'center' }}>
-                                    <p style={{ textAlign: 'center' }}> View Performance by Referral Source</p>
-                                    <select id="sourceDropMenu" className="" value={this.state.leadSource} onChange={this.handleInputChange} name="leadSource">
+                                    <p style={{ textAlign: 'center' }}>View Types of Calls Made</p>
+                                    <select id="sourceDropMenu" className="" value={this.state.dataOption} onChange={this.handleInputChange} name="dataOption">
                                         <option value={"none"}>------------------------------------------------------------</option>
-                                        {this.props.userData.sources.map(source => (
-                                            <option key={source} value={source}>{source}</option>
-                                        ))}
+                                        <option value={"genDials"}>Dials</option>
+                                        <option value={"genContacts"}>Contacts</option>
+                                        <option value={"genAppts"}>Appointments</option>
+                                        <option value={"cfDials"}>Standard Dials Data</option>
+                                        <option value={"cfContacts"}>Standard Contact Data</option>
+                                        <option value={"cfAppts"}>Standard Appointment Data</option>
+                                        <option value={"boDials"}>Tier-1 Dial Data</option>
+                                        <option value={"boContacts"}>Tier-1 Contact Data</option>
+                                        <option value={"boAppts"}>Tier-1 Appointment Data</option>
                                     </select>
-                                    <button className="btn-outline-dark btn-sm btn" onClick={this.gatherSourceData}>Generate</button>
+                                    <button className="btn-outline-dark btn-sm btn" onClick={this.showDataOption}>Generate</button>
+
                                 </div>
-                                : null}
-                        </form>
+
+                            </form>
+                        </div>
+
+                        <div className="col-lg-6">
+                            <form>
+                                <div style={{ textAlign: 'center' }}>
+                                    <p style={{ textAlign: 'center' }}>View Performance by Type of Call</p>
+                                    <select id="sourceDropMenu" className="" value={this.state.categoryOption} onChange={this.handleInputChange} name="categoryOption">
+                                        <option value={"none"}>------------------------------------------------------------</option>
+                                        <option value={"pData"}>Warm Leads/ Prospects</option>
+                                        <option value={"cData"}>Delegated Clients</option>
+                                        <option value={"nData"}>Natural Market</option>
+                                        <option value={"sData"}>Verticals / Orphans</option>
+                                        <option value={"rData"}>New Referrals</option>
+                                        <option value={"tData"}>Targeted Industries</option>
+                                    </select>
+                                    <button className="btn-outline-dark btn-sm btn" onClick={this.showCategoryOption}>Generate</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
 
-                    <div className="col-lg-6">
-                        <form>
-                            {this.props.userData.targetMarkets ?
-                                <div style={{ textAlign: 'center' }}>
-                                    <p style={{ textAlign: 'center' }}> View Performance by Target Industry</p>
-                                    <select id="sourceDropMenu" className="" value={this.state.targetMarket} onChange={this.handleInputChange} name="targetMarket">
-                                        <option value={"none"}>------------------------------------------------------------</option>
-                                        {this.props.userData.targetMarkets.map(target => (
-                                            <option key={target} value={target}>{target}</option>
-                                        ))}
-                                    </select> <button className="btn-outline-dark btn-sm btn" onClick={this.gatherTargetData}>Generate</button>
-                                </div> : null}
-                        </form>
+                    {/* Target Market and Lead Source Selectors */}
+                    <div className="row">
+                        <div className="col-lg-6">
+                            <form>
+                                {this.props.userData.sources ?
+                                    <div style={{ textAlign: 'center' }}>
+                                        <p style={{ textAlign: 'center' }}> View Performance by Referral Source</p>
+                                        <select id="sourceDropMenu" className="" value={this.state.leadSource} onChange={this.handleInputChange} name="leadSource">
+                                            <option value={"none"}>------------------------------------------------------------</option>
+                                            {this.props.userData.sources.map(source => (
+                                                <option key={source} value={source}>{source}</option>
+                                            ))}
+                                        </select>
+                                        <button className="btn-outline-dark btn-sm btn" onClick={this.gatherSourceData}>Generate</button>
+                                    </div>
+                                    : null}
+                            </form>
+                        </div>
+
+                        <div className="col-lg-6">
+                            <form>
+                                {this.props.userData.targetMarkets ?
+                                    <div style={{ textAlign: 'center' }}>
+                                        <p style={{ textAlign: 'center' }}> View Performance by Target Industry</p>
+                                        <select id="sourceDropMenu" className="" value={this.state.targetMarket} onChange={this.handleInputChange} name="targetMarket">
+                                            <option value={"none"}>------------------------------------------------------------</option>
+                                            {this.props.userData.targetMarkets.map(target => (
+                                                <option key={target} value={target}>{target}</option>
+                                            ))}
+                                        </select> <button className="btn-outline-dark btn-sm btn" onClick={this.gatherTargetData}>Generate</button>
+                                    </div> : null}
+                            </form>
+                        </div>
                     </div>
                 </div>
 
-
+                <div className="card-body">
                 {/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
@@ -1355,7 +1357,7 @@ class MainDataViewer extends Component {
                     this.state.showDialChart ?
                         <div style={{ textAlign: 'center', color: 'black' }}>
                             <p style={{ textAlign: 'center' }}>Total Dials: {this.props.dialData.length}</p>
-                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%', margin: 0 }}>
+                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(0,0,0,0.1)', padding: '5%', margin: 0 }}>
                                 <Bar data={{
                                     labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                                     datasets: [{
@@ -1386,7 +1388,7 @@ class MainDataViewer extends Component {
                                     }]
                                 }} />
                             </div>
-                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%', margin: 0 }}>
+                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(0,0,0,0.1)', padding: '5%', margin: 0 }}>
                                 <Pie data={{
                                     labels: [
                                         "Warm Lead/Prospect",
@@ -1437,7 +1439,7 @@ class MainDataViewer extends Component {
                         <div style={{ textAlign: 'center', color: 'black' }}>
                             <h3><u>Contact Data: </u></h3>
                             <p style={{ textAlign: 'center' }}>Total Contacts: {this.props.contactData.length}</p>
-                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(0,0,0,0.1)', padding: '5%' }}>
                                 <Bar data={{
                                     labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                                     datasets: [{
@@ -1468,7 +1470,7 @@ class MainDataViewer extends Component {
                                     }]
                                 }} /> </div>
                             <br />
-                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(0,0,0,0.1)', padding: '5%' }}>
                                 <Pie data={{
                                     labels: [
                                         "Warm Lead/Prospect",
@@ -1518,7 +1520,7 @@ class MainDataViewer extends Component {
                             <h3><u>Appointment Data:</u></h3>
                             <p>Total Appointments: {this.props.apptData.length}</p>
 
-                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(0,0,0,0.1)', padding: '5%' }}>
                                 <Bar data={{
                                     labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                                     datasets: [{
@@ -1549,7 +1551,7 @@ class MainDataViewer extends Component {
                                     }]
                                 }} /> </div>
                             <br />
-                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(0,0,0,0.1)', padding: '5%' }}>
                                 <Pie data={{
                                     labels: [
                                         "Warm Lead/Prospect",
@@ -1595,7 +1597,7 @@ class MainDataViewer extends Component {
                         <div style={{ textAlign: 'center', color: 'black' }}>
                             <h3><u>Cashflow Dials Data:</u></h3>
 
-                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(0,0,0,0.1)', padding: '5%' }}>
                                 <Bar data={{
                                     labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                                     datasets: [{
@@ -1627,7 +1629,7 @@ class MainDataViewer extends Component {
                                     }]
                                 }} /> </div>
                             <br />
-                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(0,0,0,0.1)', padding: '5%' }}>
                                 <Pie data={{
                                     labels: [
                                         "Cashflow Prospect",
@@ -1675,7 +1677,7 @@ class MainDataViewer extends Component {
                     this.state.showCashflowContacts ?
                         <div style={{ textAlign: 'center', color: 'black' }}>
                             <h3><u>Contact Data: </u></h3>
-                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(0,0,0,0.1)', padding: '5%' }}>
                                 <Bar data={{
                                     labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                                     datasets: [{
@@ -1708,7 +1710,7 @@ class MainDataViewer extends Component {
                                 }} />
                             </div>
                             <br />
-                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(0,0,0,0.1)', padding: '5%' }}>
                                 <Pie data={{
                                     labels: [
                                         "Cashflow Prospect",
@@ -1759,7 +1761,7 @@ class MainDataViewer extends Component {
                         <div style={{ textAlign: 'center', color: 'black' }}>
                             <h3><u>Appointment Data:</u></h3>
 
-                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(0,0,0,0.1)', padding: '5%' }}>
                                 <Bar data={{
                                     labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                                     datasets: [{
@@ -1791,7 +1793,7 @@ class MainDataViewer extends Component {
                                     }]
                                 }} /> </div>
                             <br />
-                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(0,0,0,0.1)', padding: '5%' }}>
                                 <Pie data={{
                                     labels: [
                                         "Cashflow Prospect",
@@ -1839,7 +1841,7 @@ class MainDataViewer extends Component {
                     this.state.showBusinessDials ?
                         <div style={{ textAlign: 'center', color: 'black' }}>
                             <h3><u>Dial Data:</u></h3>
-                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(0,0,0,0.1)', padding: '5%' }}>
                                 <Bar data={{
                                     labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                                     datasets: [{
@@ -1870,7 +1872,7 @@ class MainDataViewer extends Component {
                                     }]
                                 }} /> </div>
                             <br />
-                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(0,0,0,0.1)', padding: '5%' }}>
                                 <Pie data={{
                                     labels: [
                                         "Business Prospect",
@@ -1916,7 +1918,7 @@ class MainDataViewer extends Component {
                     this.state.showBusinessContacts ?
                         <div style={{ textAlign: 'center', color: 'black' }}>
                             <h3><u>Contact Data:</u></h3>
-                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(0,0,0,0.1)', padding: '5%' }}>
                                 <Bar data={{
                                     labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                                     datasets: [{
@@ -1947,7 +1949,7 @@ class MainDataViewer extends Component {
                                     }]
                                 }} /> </div>
                             <br />
-                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(0,0,0,0.1)', padding: '5%' }}>
                                 <Pie data={{
                                     labels: [
                                         "Business Prospect",
@@ -1994,7 +1996,7 @@ class MainDataViewer extends Component {
                     this.state.showBusinessAppts ?
                         <div style={{ textAlign: 'center', color: 'black' }}>
                             <h3><u>Appointment Data:</u></h3>
-                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(0,0,0,0.1)', padding: '5%' }}>
                                 <Bar data={{
                                     labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
                                     datasets: [{
@@ -2025,7 +2027,7 @@ class MainDataViewer extends Component {
                                     }]
                                 }} /> </div>
                             <br />
-                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                            <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(0,0,0,0.1)', padding: '5%' }}>
                                 <Pie data={{
                                     labels: [
                                         "Business Prospect",
@@ -2595,7 +2597,7 @@ class MainDataViewer extends Component {
                                         this.state.SCTDials + this.state.SBTDials],
                                 }]
                             }} /> */}
-                                <div className="card" style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                                <div className="card" style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(0,0,0,0.1)', padding: '5%' }}>
                                     <p style={{ textAlign: 'center' }}>Total Dials: {this.state.sourceDialData.length}</p>
                                     <Pie data={{
                                         labels: [
@@ -2638,7 +2640,7 @@ class MainDataViewer extends Component {
                         ///////////////////////////////////////////
                         /////////////////////////////////////////// */}
                             <br />
-                            <div className="card" style={{ backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                            <div className="card" style={{ backgroundColor: 'rgba(0,0,0,0.1)', padding: '5%' }}>
                                 <h3>{this.state.leadSource} Lead Performance:</h3>
                                 <div className="row" style={{ textAlign: 'center' }}>
 
@@ -2748,7 +2750,7 @@ class MainDataViewer extends Component {
                     this.state.showSelectedTargetPerformance ?
                         <div style={{ textAlign: 'center' }}>
                             <h3><u>{this.state.targetMarket} Types of Calls</u></h3>
-                            <div className="card" style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                            <div className="card" style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(0,0,0,0.1)', padding: '5%' }}>
                                 <div>
                                     <p style={{ textAlign: 'center' }}>Total Dials: {this.state.targetDialData.length}</p>
                                     {/* <Bar data={{
@@ -2807,7 +2809,7 @@ class MainDataViewer extends Component {
                         /////// SOURCE PIE CHARTS BELOW ////////////
                         ///////////////////////////////////////////
                         /////////////////////////////////////////// */}
-                            <div className="card" style={{ backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                            <div className="card" style={{ backgroundColor: 'rgba(0,0,0,0.1)', padding: '5%' }}>
                                 <h3>{this.state.targetMarket} Calls Performance:</h3>
                                 <div className="row" style={{ textAlign: 'center' }}>
 
@@ -2907,12 +2909,9 @@ class MainDataViewer extends Component {
                             </div> </div>
                         : null
                 }
-                <hr />
 
 
-                <ul>
-
-                </ul>
+                </div>
             </div >
 
         )

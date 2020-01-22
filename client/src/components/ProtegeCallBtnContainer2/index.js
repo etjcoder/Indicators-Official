@@ -35,7 +35,8 @@ class ProtegeCallBtnContainer extends Component {
                 transform: 'translate(-50%, -50%)',
                 backgroundColor: 'rgba(0,0,0,0.75)'
             }
-        }
+        },
+        setCount: 0
     }
 
     componentDidMount() {
@@ -471,7 +472,8 @@ class ProtegeCallBtnContainer extends Component {
                 }
 
             }
-
+            // this.updateCount()
+            // this.props.rerender(this.props.userID)
         }, 500)
         //     <option value="MissedCall">No Answer</option>
         // <option value="Contacted">Contact, not scheduled</option>
@@ -479,72 +481,96 @@ class ProtegeCallBtnContainer extends Component {
 
     }
 
+    // updateCount = () => {
+
+    //     if (this.state.setCount === 4) {
+    //         this.props.rerender(this.props.userID)
+    //         this.setState({
+    //             setCount: 0
+    //         })
+    //     } else {
+    //         this.setState({
+    //             setCount: this.state.setCount++
+    //         })
+    //     }
+    // }
+
 
     render() {
         return (
             <div className="row">
-                <div className="card col-12" id="prospect" style={{ textAlign: 'left', backgroundColor: 'rgba(255,255,255,0.95)' }}>
-                    <form>
-                        <p id="indicators-tag" style={{ textAlign: 'center', padding: '20px', backgroundColor: 'rgba(200,200,200,0.75)', color: 'black', borderRadius: '10px', fontSize: '20px' }}>I N D I C A T O R S</p>
-                        <hr />
-                        <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '', border: 'none' }}>
-                            <label style={{ float: 'left', textAlign: '', marginRight: '15px', width: '200px' }}>Type of Call <span style={{ fontSize: 10 }}>(required)  </span>  </label>
-                            <select style={{ marginLeft: 'auto' }} id="" className="" value={this.state.levelofDial} onChange={this.handleInputChange} name="levelOfDial">
-                                <option value="none">Select Type 1</option>
-                                <option value="cashflow">Standard / Cashflow</option>
-                                <option value="business">Tier-1 / Businessowner</option>
-                            </select>
-                            <select style={{ marginLeft: 'auto' }} id="" className="" value={this.state.typeOfCall} onChange={this.handleInputChange} name="typeOfCall">
-                                <option value="none">Select Type 2</option>
-                                <option value="prospect">Warm Lead/Prospect</option>
-                                <option value="client">Delegated Client</option>
-                                <option value="natural">Natural Market</option>
-                                <option value="suspect">Vertical / Orphan</option>
-                                <option value="referral">New Referral</option>
-                                <option value="target">Targeted Industry</option>
-                                {/* <option value="BPD">Warm Lead/Prospect</option>
+                <div className="col-12" id="prospect" style={{ textAlign: 'left' }}>
+                    <div className="card bg-light text-dark">
+                        <div className="card-header">
+                            <p id="indicators-tag" style={{ textAlign: 'center', padding: '20px 0px 0px 0px', color: '', borderRadius: '10px', fontSize: '20px' }}>D I A L S</p>
+                        </div>
+                        <form>
+                         
+                            <div 
+                            style={{color: '', padding: '10px', borderRadius: '0px', height: '', border: 'none' }}
+                            >
+                                <label style={{ float: 'left', textAlign: '', marginRight: '15px', width: '200px' }}>Type of Call <span style={{ fontSize: 10 }}>(required)  </span>  </label>
+                                {/* <br /> */}
+                                <select style={{ marginLeft: 'auto' }} id="" className="" value={this.state.levelofDial} onChange={this.handleInputChange} name="levelOfDial">
+                                    <option value="none">Select Type 1</option>
+                                    <option value="cashflow">Standard / Cashflow</option>
+                                    <option value="business">Tier-1/Business</option>
+                                </select>
+                                <select style={{ marginLeft: 'auto' }} id="" className="" value={this.state.typeOfCall} onChange={this.handleInputChange} name="typeOfCall">
+                                    <option value="none">Select Type 2</option>
+                                    <option value="prospect">Warm Lead/Prospect</option>
+                                    <option value="client">Delegated Client</option>
+                                    <option value="natural">Natural Market</option>
+                                    <option value="suspect">Vertical / Orphan</option>
+                                    <option value="referral">New Referral</option>
+                                    <option value="target">Targeted Industry</option>
+                                    {/* <option value="BPD">Warm Lead/Prospect</option>
                             <option value="BCD">Tier-1 Delegated Client</option>
                             <option value="BND">Tier-1 Natural Market</option>
                             <option value="BSD">Tier-1 Vertical / Orphan</option>
                             <option value="BRD">Tier-1 New Referral</option>
                             <option value="BTD">Tier-1 Targeted Industry</option> */}
-                            </select>
-                            {/* </div> */}
-                            <hr />
-                            {/* <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '100px' }}> */}
-                            <label style={{ float: 'left', textAlign: 'left', marginRight: '15px', width: '200px', border: 'none' }}>Tag a Mentor <span style={{ fontSize: 10 }}>(optional)</span></label>
-                            {this.props.userData.allMentors ? <select id="" className="" value={this.state.mentorTagged} onChange={this.handleInputChange} name="mentorTagged">
-                                <option value="none">--------------------</option>
-                                {this.props.userData.allMentors.map(mentor => (
-                                    <option key={mentor._id} value={mentor._id}>{mentor.firstName} {mentor.lastName}</option>
-                                ))}
-                            </select>
-                                : <p style={{ fontSize: '8px' }}>You have note been assigned a Mentor yet!</p>}
-                            {/* </div> */}
-                            <hr />
-                            {/* <hr /> */}
-                            {/* <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '100px' }}> */}
-                            <SourceSelector userData={this.props.userData} setParentState={this.props.setParentState} />
-                            {/* </div> */}
-                            <hr />
-                            {/* <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '100px' }}> */}
-                            <TargetMarketSelector userData={this.props.userData} setParentState={this.props.setParentStateTargetMkt} />
-                            {/* </div> */}
-                            <hr />
-                            {/* <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '100px' }}> */}
-                            <label style={{ float: 'left', textAlign: 'left', marginRight: '15px', width: '200px', border: 'none' }}>Call Result <span style={{ fontSize: 10 }}>(required)</span></label>
-                            <select id="" className="" value={this.state.callResult} onChange={this.handleInputChange} name="callResult">
-                                <option value="none">Select a Result</option>
-                                <option value="MissedCall">No Answer</option>
-                                <option value="Contacted">Contact, not scheduled</option>
-                                <option value="Scheduled">Contacted, scheduled</option>
-                            </select>
+                                </select>
+                                {/* </div> */}
+                                <hr />
+                                {/* <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '100px' }}> */}
+                                <label style={{ float: 'left', textAlign: 'left', marginRight: '15px', width: '200px', border: 'none' }}>Tag a Mentor <span style={{ fontSize: 10 }}>(optional)</span></label>
+                                {this.props.userData.allMentors ? <select id="" className="" value={this.state.mentorTagged} onChange={this.handleInputChange} name="mentorTagged">
+                                    <option value="none">--------------------</option>
+                                    {this.props.userData.allMentors.map(mentor => (
+                                        <option key={mentor._id} value={mentor._id}>{mentor.firstName} {mentor.lastName}</option>
+                                    ))}
+                                </select>
+                                    : <p style={{ fontSize: '8px' }}>You have note been assigned a Mentor yet!</p>}
+                                {/* </div> */}
+                                <hr />
+                                {/* <hr /> */}
+                                {/* <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '100px' }}> */}
+                                <SourceSelector userData={this.props.userData} setParentState={this.props.setParentState} />
+                                {/* </div> */}
+                                <hr />
+                                {/* <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '100px' }}> */}
+                                <TargetMarketSelector userData={this.props.userData} setParentState={this.props.setParentStateTargetMkt} />
+                                {/* </div> */}
+                                <hr />
+                                {/* <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '100px' }}> */}
+                                <label style={{ float: 'left', textAlign: 'left', marginRight: '15px', width: '200px', border: 'none' }}>Call Result <span style={{ fontSize: 10 }}>(required)</span></label>
+                                <select id="" className="" value={this.state.callResult} onChange={this.handleInputChange} name="callResult">
+                                    <option value="none">Select a Result</option>
+                                    <option value="MissedCall">No Answer</option>
+                                    <option value="Contacted">Contact, not scheduled</option>
+                                    <option value="Scheduled">Contacted, scheduled</option>
+                                </select>
 
 
-                        </div>
-                        <button style={{ float: 'right' }} className="btn btn-success" onClick={this.handleCallSubmit}>Log Call</button>
-                        <hr />
-                    </form>
+                            </div>
+                            <hr />
+                            <div style={{textAlign: 'center'}}>
+                            <button style={{ width: '50%', textAlign: '' }} className="btn btn-success" onClick={this.handleCallSubmit}>Log Call</button>
+                            </div>
+                            <hr />
+                        </form>
+                    </div>
                 </div>
 
 

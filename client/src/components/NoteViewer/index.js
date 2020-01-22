@@ -103,19 +103,21 @@ class NoteViewer extends Component {
                         {this.props.taggedNotes ?
 
                             this.props.taggedNotes.map(note => (
-                                <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', margin: 10 }}>
+                                <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '0px 0px 0px 5px', borderRadius: '0', margin: 10 }}>
                                     {/* <Card className="note-card" key={note._id}>
                                             <CardBody> */}
-                                    <p><span>
-                                        <button value={this.props.id} onClick={() => this.deleteNote(note._id)} style={{ float: 'right' }} className="btn btn-outline-danger">X</button>
+                                    <p><>
+                                        <div value={this.props.id} onClick={() => this.deleteNote(note._id)} style={{ float: 'right', height: '20px', width: '30px', color: 'red' }} className="">X</div>
                                         {note.completed ?
-                                            <button value={this.props.id} onClick={() => this.uncompleteNote(note._id)} style={{ float: 'right' }} className="btn btn-outline-dark">√</button>
-                                            : <button value={this.props.id} onClick={() => this.completeNote(note._id)} style={{ float: 'right' }} className="btn btn-outline-dark"><i class="far fa-square"></i></button>
+                                            <div value={this.props.id} onClick={() => this.uncompleteNote(note._id)} style={{ float: 'right', height: '20px', width: '30px', padding: '0' }} className="">√</div>
+                                            : <div value={this.props.id} onClick={() => this.completeNote(note._id)} style={{ float: 'right', height: '20px', width: '30px', padding: '0' }} className=""><i class="far fa-square"></i></div>
                                         }
 
-                                    </span></p>
+                                    </></p>
+                                    <br />
+
+                                    <p style={{ fontSize: '10px' }}>By: {note.noteAuthorName}</p>
                                     <p style={{fontSize: this.props.fontSize}}> {note.noteText} </p>
-                                    <p style={{ fontSize: '14px' }}>By: {note.noteAuthorName}</p>
 
                                     <hr />
                                 </div>

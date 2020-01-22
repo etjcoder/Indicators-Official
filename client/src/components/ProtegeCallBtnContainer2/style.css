@@ -50,7 +50,7 @@ a {
 
 /* Custom CSS Below */
 
-
+/* 
 #prospect-label {
     background-color: rgba(236,240,247,0.8);
     border-color: rgba(236,240,247,0.8)
@@ -71,7 +71,6 @@ a {
 }
 
 #prospect {
-    /* background-color: white */
     background-color: rgba(236,240,247,0.8);
     padding: 50px
 }
@@ -143,3 +142,4 @@ a {
     padding: 50px;
     color: white
 }
+  */

@@ -66,13 +66,12 @@ class BasicLogin extends Component {
     render() {
         return (
             <div className="login-form">
-                <div id="login-welcome">
-                    Create a User Below.
-      </div>
                 <form>
                     <br />
+                    <label>Enter E-mail:</label>
                     <input value={this.state.email} onChange={this.handleInputChange} type="email" name="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
                     <br />
+                    <label>Enter Password:</label>
                     <input value={this.state.password} onChange={this.handleInputChange} type="password" name="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
                     {/* <button type="submit" onClick={this.login} className="btn">Login</button> */}
 

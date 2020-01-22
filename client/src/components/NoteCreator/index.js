@@ -44,8 +44,10 @@ class NoteCreator extends Component {
             noteAuthorName: this.props.userData.firstName + " " + this.props.userData.lastName,
             noteTagged: this.state.noteTagged,
             completed: false
-        }).then(res =>
+        }).then(res => {
             cogoToast.info("Saved Note!")
+            this.props.rerender();
+        }
         ).catch(err => console.log(err))
 
         // setTimeout(() => {
@@ -84,7 +86,7 @@ class NoteCreator extends Component {
 
 
 
-                    <button outline onClick={this.handleNoteSubmit} style={{float:' right'}} className="btn btn-outline-dark">Create Note</button>
+                    <button outline onClick={this.handleNoteSubmit} style={{ float: ' right' }} className="btn btn-outline-dark">Create Note</button>
                     {/* <button onClick={this.logOut} style={{ marginTop: '5px', marginLeft: '25px' }} className="btn btn-danger">Logout</button> */}
                 </form>
             </div>

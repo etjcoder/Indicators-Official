@@ -37,7 +37,7 @@ export default class DemoApp extends React.Component {
 
     render() {
         return (
-            <div className="card bg-light" style={{height: '600px'}}>
+            <div className="card bg-light" style={{height: '420px'}}>
             <FullCalendar
                 defaultView="dayGridMonth" 
                 plugins={[dayGridPlugin]}

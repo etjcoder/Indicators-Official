@@ -63,19 +63,27 @@ class SourceCreator extends Component {
 
     render() {
         return (
-            <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '' }}>
+            <div style={{}}>
                 {/* {this.state.showCreateSource ? */}
                 <div>
-                    <div className="input-group">
+                    {/* <div className="input-group"> */}
 
-                    <label style={{}}><u>Lead Sources:</u></label>
-                        <form style={{width: '', margin: '0'}}>
-                            <input value={this.state.source} onChange={this.handleInputChange} className="input-group" name="source" placeholder="Referrer/Source" />
-                            <button style={{}} id="admin-createCategoryBtn" className="btn-outline-dark btn btn-sm" onClick={this.handleFormSubmit}>Save</button>
-                        </form>
-                    </div>
+                        <div className="card-header">
+                            <p style={{}}><>Create Lead Source:</></p>
+                        </div>
+                        <div className="card-body">
+                            <form style={{ width: '', margin: '0' }}>
+                                <label>Enter Source:</label>
+                                <input value={this.state.source} onChange={this.handleInputChange} className="input-group" name="source" placeholder="" />
+                                <button style={{}} id="admin-createCategoryBtn" className="btn-outline-dark btn btn-sm" onClick={this.handleFormSubmit}>Save</button>
+                            </form>
+                        </div>
+                    {/* </div> */}
+
+
+
                     {/* List of Existing Sources */}
-                    {this.state.showExistingSources ?
+                    {/* {this.state.showExistingSources ?
                         <div>
                             <br />
                             <h6 id="admin-requestHeadCat">Existing Sources: </h6>
@@ -86,7 +94,7 @@ class SourceCreator extends Component {
                                 ))}
                             </div>
                         </div>
-                        : null}
+                        : null} */}
                 </div>
                 {/* : null} */}
             </div>

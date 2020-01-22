@@ -64,34 +64,23 @@ class TargetMarketCreator extends Component {
 
     render() {
         return (
-            <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '' }}>
+            <div style={{}}>
                 {/* <h4 id="admin-requestHeadCat" style={{ color: 'whitesmoke' }}>Create Target Market<span><button className="btn btn-sm btn-outline-light" onClick={this.showTargetCreate} >Show</button></span></h4>
                 {this.state.showTarget ? */}
-                <div className="">
-                    <div style={{textAlign: 'center' }} className="input-group">
-                        <label style={{}}><u>Target Industries</u></label>
-                        <form>
-                            <input value={this.state.targetMarket} onChange={this.handleInputChange} className="input-group" name="targetMarket" placeholder="Target Industry" />
+                <div className="card-header">
+
+                    <p style={{}}><u>Create Target Industries</u></p>
+
+                </div>
+
+                <div className="card-body">
+                        <form style={{margin: 0}}>
+                            <label>Enter Industry:</label>
+                            <input value={this.state.targetMarket} onChange={this.handleInputChange} className="input-group" name="targetMarket" placeholder="" />
                             <button id="admin-createCategoryBtn" className="btn btn-sm btn-outline-dark" onClick={this.handleFormSubmit}>Save</button>
                         </form>
-
-
-                    </div>
-                    {this.state.showExistingTargets ?
-                        <div style={{ color: 'whitesmoke' }}>
-                            <br />
-                            <h6 id="admin-requestHeadCat">Existing Target Markets: </h6>
-                            <div style={{ height: '150px', padding: 15, overflow: 'auto' }}>
-
-                                {this.props.userData.targetMarkets.map(targetMarket => (
-                                    <p key={targetMarket}>>> {targetMarket}<span><button className="btn btn-outline-danger btn-sm" style={{ float: 'right' }}>X</button></span></p>
-                                ))}
-
-                            </div>
-                        </div>
-                        : null}
+       
                 </div>
-                {/* : null} */}
             </div>
         )
     }
