@@ -94,7 +94,7 @@ class NoteViewer extends Component {
 
     render() {
         return (
-            <div className="" id="note-view-container-1" style={{ color: 'black', height: 500, overflow: 'auto', borderWidth: '1px', borderColor: 'black', backgroundColor: 'rgba(0,0,0,0.3)' }}>
+            <div className="" id="note-view-container-1" style={{ color: 'black', height: 300, overflow: 'auto', borderWidth: '1px', borderColor: 'black', backgroundColor: 'rgba(0,0,0,0.1)' }}>
 
                 <div id="note-viewer-1" style={{ padding: '', width: '', marginBottom: '10px' }}>
 
@@ -103,21 +103,29 @@ class NoteViewer extends Component {
                         {this.props.taggedNotes ?
 
                             this.props.taggedNotes.map(note => (
-                                <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '0px 0px 0px 5px', borderRadius: '0', margin: 10 }}>
+                                <div className="card"
+                                    style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '0px 0px 0px 5px', borderRadius: '0', margin: 10 }}
+                                >
                                     {/* <Card className="note-card" key={note._id}>
                                             <CardBody> */}
-                                    <p><>
-                                        <div value={this.props.id} onClick={() => this.deleteNote(note._id)} style={{ float: 'right', height: '20px', width: '30px', color: 'red' }} className="">X</div>
-                                        {note.completed ?
-                                            <div value={this.props.id} onClick={() => this.uncompleteNote(note._id)} style={{ float: 'right', height: '20px', width: '30px', padding: '0' }} className="">√</div>
-                                            : <div value={this.props.id} onClick={() => this.completeNote(note._id)} style={{ float: 'right', height: '20px', width: '30px', padding: '0' }} className=""><i class="far fa-square"></i></div>
-                                        }
 
-                                    </></p>
-                                    <br />
+                                    {/* <br /> */}
 
-                                    <p style={{ fontSize: '10px' }}>By: {note.noteAuthorName}</p>
-                                    <p style={{fontSize: this.props.fontSize}}> {note.noteText} </p>
+                                    <div className="card-header">
+                                        <p><>
+                                            <div value={this.props.id} onClick={() => this.deleteNote(note._id)} style={{ float: 'right', height: '20px', width: '30px', color: 'red' }} className="">X</div>
+                                            {note.completed ?
+                                                <div value={this.props.id} onClick={() => this.uncompleteNote(note._id)} style={{ float: 'right', height: '20px', width: '30px', padding: '0' }} className="">√</div>
+                                                : <div value={this.props.id} onClick={() => this.completeNote(note._id)} style={{ float: 'right', height: '20px', width: '30px', padding: '0' }} className=""><i class="far fa-square"></i></div>
+                                            }
+
+                                        </></p>
+                                        <br />
+                                        <p style={{ fontSize: '10px' }}>By: {note.noteAuthorName}</p>
+                                    </div>
+                                    <div className="card-body">
+                                        <p style={{ fontSize: this.props.fontSize }}> {note.noteText} </p>
+                                    </div>
 
                                     <hr />
                                 </div>
