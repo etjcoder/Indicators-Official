@@ -10,7 +10,8 @@ class NoteCreator extends Component {
         this.state = {
             noteText: "",
             noteAuthor: "",
-            noteTagged: ""
+            noteTagged: "",
+            showNoteForm: false
         }
     }
 
@@ -73,21 +74,21 @@ class NoteCreator extends Component {
         return (
             // <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}>
             <div className="col-12" style={{ textAlign: 'left', padding: '0' }}>
-                <div className="card bg-light" style={{ color: 'black', borderRadius: '10px' }}>
+                <div className="card bg-light" style={{ color: 'black' }}>
                     <div className="card-header">
                         <h4
                             style={{ textAlign: 'center', padding: '10% 10% 0 10%', color: 'black', margin: '' }}
                         >
                             Create Note
                             <br />
-                            {/* <span button className="btn btn-sm btn-outline-dark" onClick={this.showNoteForm}>Show</span> */}
+                            <span button className="btn btn-sm btn-outline-dark" onClick={this.showNoteForm}>Show</span>
                         </h4>
                     </div>
 
-                    {/* {this.state.showNoteForm ? */}
+                    {this.state.showNoteForm ?
                         <div className="card-body" style={{ padding: '10px', height: '', oveflow: 'auto' }}>
                             <form>
-                                <div style={{ color: 'black', padding: '20px', borderRadius: '30px' }}>
+                                <div style={{ color: 'black', padding: '20px' }}>
                                     {this.props.mentors ? <select id="" value={this.state.noteTagged} onChange={this.handleInputChange} name="noteTagged">
                                         <option value={"none"}>--Tag Mentor--</option>
                                         {this.props.mentors.map(mentor => (
@@ -101,7 +102,7 @@ class NoteCreator extends Component {
                                 </div>
                             </form>
                         </div>
-                        {/* : null} */}
+                         : null} 
                 </div>
             </div>
         )

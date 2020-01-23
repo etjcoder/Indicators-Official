@@ -20,7 +20,7 @@ class Home extends Component {
         return (
             <div className="container">
                 <Nav />
-                <div className="jumbotron" style={{ backgroundSize: 'cover', backgroundImage: 'url(../../CFGBanner.png)'}}>
+                {/* <div className="jumbotron" style={{ backgroundSize: 'cover', backgroundImage: 'url(../../CFGBanner.png)'}}> */}
                     {/* <h1>You're on the Home Page!</h1> */}
                     {/* Header Component, Basically a nice Jumbotron */}
                     {/* <HomePageHeader /> */}
@@ -28,8 +28,8 @@ class Home extends Component {
                     {/* Sign In on Right Component */}
                     {/* Demo below */}
                     {/* Contact Form */}
-                </div>
-                <div className="row">
+                {/* </div> */}
+                <div className="row" style={{marginTop: '200px'}}>
                     <div className="col-md-6">
                         <div className="card">
                             <div class="card-header">

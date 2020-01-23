@@ -69,7 +69,7 @@ class TargetMarketCreator extends Component {
                 {this.state.showTarget ? */}
                 <div className="card-header">
 
-                    <p style={{}}><u>Create Target Industries</u></p>
+                    <p style={{}}>Create Target Industries</p>
 
                 </div>
 

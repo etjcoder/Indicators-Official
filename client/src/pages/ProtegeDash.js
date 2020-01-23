@@ -843,32 +843,41 @@ class ProtegeDash extends Component {
                                     {this.state.showNotes ?
                                         <div id="note-container">
                                             <div className="row">
-                                                <div className="col card" style={{ padding: '50px', backgroundColor: 'rgba(77,160,255,0.80)', color: 'whitesmoke' }}>
-                                                    <h2 style={{ textAlign: 'center', padding: '20px', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px', borderRadius: '10px' }}>N O T E S</h2>
-                                                    <NoteCreator
-                                                        userData={this.state.userData}
-                                                        userID={this.state.userData._id}
-                                                        proteges={this.state.proteges}
-                                                        mentors={this.state.mentors}
-                                                    />
-                                                    <hr />
-                                                    <div style={{ height: '50px', textAlign: 'center', color: 'white', backgroundColor: 'rgba(0,0,0,0.50)' }}>
-                                                        <p style={{ textAlign: 'center', paddingTop: '5px' }}>Your Notes</p>
+                                                {/* <div className="card" style={{ padding: '50px', backgroundColor: 'rgba(77,160,255,0.80)', color: 'whitesmoke' }}>
+                                                    <h2 style={{ textAlign: 'center', padding: '20px', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px', borderRadius: '10px' }}>N O T E S</h2> */}
+                                                <NoteCreator
+                                                    userData={this.state.userData}
+                                                    userID={this.state.userData._id}
+                                                    proteges={this.state.proteges}
+                                                    mentors={this.state.mentors}
+                                                />
+                                                {/* <hr /> */}
+                                                <br />
+                                                <br />
+                                                <div className="card bg-light" style={{ marginTop: '15px' }}>
+
+                                                    <div className="card-header">
+                                                        <h4 style={{ textAlign: 'center', paddingTop: '5px' }}>Your Notes</h4>
                                                     </div>
-                                                    {this.state.showNoteViewer ?
-                                                        <NoteViewer
-                                                            userData={this.state.userData}
-                                                            userID={this.state.userData._id}
-                                                            proteges={this.state.proteges}
-                                                            mentors={this.state.mentors}
-                                                            taggedNotes={this.state.notes}
-                                                            rerender={this.getProtegeNoteData}
-                                                            fontSize={'20px'}
-                                                        />
-                                                        : null}
-                                                    <div style={{ height: '20px', color: 'black', backgroundColor: 'rgba(0,0,0,0.50)' }}>
+
+                                                    <div className="card-body bg-info" style={{ padding: '0px 10px 0px 10px', marginBottom: '20px' }}>
+                                                        {this.state.showNoteViewer ?
+                                                            <NoteViewer
+                                                                userData={this.state.userData}
+                                                                userID={this.state.userData._id}
+                                                                proteges={this.state.proteges}
+                                                                mentors={this.state.mentors}
+                                                                taggedNotes={this.state.notes}
+                                                                rerender={this.getProtegeNoteData}
+                                                                fontSize={'20px'}
+                                                                height={'800px'}
+                                                            />
+                                                            : null}
                                                     </div>
+                                                    {/* <div style={{ height: '20px', color: 'black', backgroundColor: 'rgba(0,0,0,0.50)' }}>
+                                                    </div> */}
                                                 </div>
+                                                {/* </div> */}
                                             </div>
                                         </div>
                                         : null}
@@ -1026,10 +1035,10 @@ class ProtegeDash extends Component {
                                                                     <span button className="btn btn-sm btn-outline-dark" onClick={this.showApptViewer}>Show</span></h4>
                                                             </div>
                                                             {this.state.showApptViewer ?
-                                                                <div className="card-body">
+                                                                <div className="card-body bg-info" style={{ padding: '0px 10px 0px 10px', marginBottom: '20px' }}>
                                                                     {
                                                                         this.state.appointments ?
-                                                                            <div style={{ height: '400px', overflow: 'auto' }}>
+                                                                            <div style={{ height: '800px', overflow: 'auto' }}>
                                                                                 {
                                                                                     this.state.appointments.map(appt => (
                                                                                         <AppointmentItem
@@ -1258,16 +1267,18 @@ class ProtegeDash extends Component {
                                                         <div style={{ width: '100%', marginBottom: '10px' }}
                                                         // style={{ marginBottom: '10px', textAlign: "left", padding: 10, height: '', overflow: 'auto' }}
                                                         >
-                                                            <div className="card bg-secondary">
+                                                            <div className="card bg-light">
                                                                 <div className="card-header">
-                                                                    <h4 style={{ textAlign: 'center', padding: '10% 10% 0 10%', color: 'white', margin: '0px' }}>View Appointments
+                                                                    <h4 style={{ textAlign: 'center', padding: '10% 10% 0 10%', color: 'black', margin: '0px' }}>View Appointments
                                                                     <br />
-                                                                        <span button className="btn btn-sm btn-light" onClick={this.showApptViewer}>Quick Show</span><span button className="btn btn-sm btn-light" onClick={this.showAppts}>Show Full</span></h4>
+                                                                        <span button className="btn btn-sm btn-outline-dark" onClick={this.showApptViewer}>Show</span>
+                                                                        {/* <span button className="btn btn-sm btn-outline-dark" onClick={this.showAppts}>Show Full</span> */}
+                                                                    </h4>
                                                                 </div>
 
                                                                 {/* <div className="card-body"> */}
                                                                 {this.state.showApptViewer ?
-                                                                    <div className="card-body">
+                                                                    <div className="card-body bg-info" style={{ padding: '0px 5px 0px 5px' }}>
                                                                         {
                                                                             this.state.appointments ?
                                                                                 <div style={{ height: '400px', overflow: 'auto' }}>
@@ -1304,40 +1315,7 @@ class ProtegeDash extends Component {
                                                     {/* </div> */}
                                                     {/* <div className="col-12" style={{ zIndex: 0 }}> */}
                                                     {/* <div className="card col-12" style={{ zIndex: 0, marginBottom: '10px', textAlign: 'center', padding: 10, height: '350px', overflow: 'auto', backgroundColor: 'rgba(36,138,255,0.8', padding: '10px' }}> */}
-                                                    <div className="row">
-                                                        {/* <div style={{ height: '50px', textAlign: 'center', color: 'white', backgroundColor: 'rgba(0,0,0,0.50)' }}> */}
-                                                        {/* <p style={{ textAlign: 'center', paddingTop: '5px' }}>Your Notes</p> */}
-                                                        {/* </div> */}
-
-                                                        <div className="card bg-secondary" style={{marginBottom: '10px'}}>
-                                                            <div className="card-header">
-                                                                <h4 style={{ textAlign: 'center', padding: '10% 10% 0 10%', color: 'white', margin: '0px' }}>
-
-                                                                    Your Notes:
-                                                                    </h4>
-                                                            </div>
-
-                                                            {this.state.showNoteViewer ?
-                                                                <div className="card-body">
-                                                                    <div style={{ fontSize: '12px' }}>
-                                                                        <NoteViewer
-                                                                            userData={this.state.userData}
-                                                                            userID={this.state.userData._id}
-                                                                            proteges={this.state.proteges}
-                                                                            mentors={this.state.mentors}
-                                                                            taggedNotes={this.state.notes}
-                                                                            rerender={this.getProtegeNoteData}
-                                                                            fontSize={'14px'}
-                                                                        />
-                                                                    </div>
-                                                                </div>
-                                                                : null}
-
-                                                            {/* <div style={{ height: '20px', color: 'black', backgroundColor: 'rgba(0,0,0,0)' }}> */}
-                                                            {/* </div> */}
-                                                        </div>
-                                                    </div>
-                                                    <div className="row">
+                                                    <div className="row" style={{ marginBottom: '10px' }}>
                                                         {/* <div className="col-12" style={{ zIndex: 0, marginBottom: '10px', textAlign: 'center', padding: 10, height: '250px', overflow: 'auto', backgroundColor: 'rgba(36,138,255,0.8', padding: '10px' }}> */}
                                                         <NoteCreator
                                                             userData={this.state.userData}
@@ -1348,6 +1326,42 @@ class ProtegeDash extends Component {
                                                         />
                                                         {/* </div> */}
                                                     </div>
+
+                                                    <div className="row">
+                                                        {/* <div style={{ height: '50px', textAlign: 'center', color: 'white', backgroundColor: 'rgba(0,0,0,0.50)' }}> */}
+                                                        {/* <p style={{ textAlign: 'center', paddingTop: '5px' }}>Your Notes</p> */}
+                                                        {/* </div> */}
+
+                                                        <div className="card bg-light" style={{ marginBottom: '10px', width: '100%' }}>
+                                                            <div className="card-header">
+                                                                <h4 style={{ textAlign: 'center', padding: '10% 10% 0 10%', color: 'black', margin: '0px' }}>
+
+                                                                    Your Notes:
+                                                                    </h4>
+                                                            </div>
+
+                                                            {this.state.showNoteViewer ?
+                                                                <div className="card-body bg-info" style={{ padding: '0px 5px 0px 5px' }}>
+                                                                    <div style={{ fontSize: '12px' }}>
+                                                                        <NoteViewer
+                                                                            userData={this.state.userData}
+                                                                            userID={this.state.userData._id}
+                                                                            proteges={this.state.proteges}
+                                                                            mentors={this.state.mentors}
+                                                                            taggedNotes={this.state.notes}
+                                                                            rerender={this.getProtegeNoteData}
+                                                                            fontSize={'14px'}
+                                                                            height={"300px"}
+                                                                        />
+                                                                    </div>
+                                                                </div>
+                                                                : null}
+
+                                                            {/* <div style={{ height: '20px', color: 'black', backgroundColor: 'rgba(0,0,0,0)' }}> */}
+                                                            {/* </div> */}
+                                                        </div>
+                                                    </div>
+
                                                     {/* </div> */}
                                                 </div>
                                             </div>

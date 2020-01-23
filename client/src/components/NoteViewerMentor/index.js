@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import API from "../../utils/API";
 import cogoToast from "cogo-toast";
+import Moment from 'react-moment'
 
 class NoteViewerMentor extends Component {
     constructor(props) {
@@ -61,7 +62,7 @@ class NoteViewerMentor extends Component {
 
         API.completeNote(id, {
             completed: true
-        }).then(res =>{ 
+        }).then(res => {
             cogoToast.info("Checked Box")
             this.props.rerender()
         }
@@ -72,7 +73,7 @@ class NoteViewerMentor extends Component {
         console.log("Marked note incomplete: " + id)
         API.uncompleteNote(id, {
             completed: false
-        }).then(res =>{ 
+        }).then(res => {
             cogoToast.info("Unchecked Box")
             this.props.rerender()
         }
@@ -93,7 +94,7 @@ class NoteViewerMentor extends Component {
 
     render() {
         return (
-            <div className="" id="note-view-container-2" style={{ color: 'black', height: 500, overflow: 'auto', borderWidth: '1px', borderColor: 'black', backgroundColor: 'rgba(0,0,0,0.3)' }}>
+            <div className="" id="note-view-container-2" style={{ color: 'black', height: 400, overflow: 'auto'}}>
 
                 <div className="" id="note-viewer-1-mentor" style={{ padding: '', width: '', marginBottom: '10px' }}>
 
@@ -107,28 +108,43 @@ class NoteViewerMentor extends Component {
                         {this.props.notes ?
 
                             this.props.notes.map(note => (
-                                <div style={{ background: 'rgba(255,255,255,0.75)', padding: '20px', color: 'black', borderRadius: '30px', margin: 10 }}>
 
-                                    <p><span>
-                                        <button value={this.props.id} onClick={() => this.deleteNote(note._id)} style={{ float: 'right' }} className="btn btn-outline-danger">X</button>
-                                        {note.completed ?
-                                            <button value={this.props.id} onClick={() => this.uncompleteNote(note._id)} style={{ float: 'right' }} className="btn btn-outline-dark">√</button>
-                                            : <button value={this.props.id} onClick={() => this.completeNote(note._id)} style={{ float: 'right' }} className="btn btn-outline-dark"><i class="far fa-square"></i></button>
-                                        }
-                                    </span></p>
-                                    <p style={{ fontSize: this.props.fontSize }}> {note.noteText}</p>
-                                    <p style={{ fontSize: '14px' }}>By: {note.noteAuthorName}</p>
+                                <div className="card bg-light"
+                                    style={{ padding: '0px 0px 0px 0px', color: 'black', borderRadius: '5px', margin: 10 }}>
 
+                                    <div className="card-header" style={{ padding: '5px 5px 0px 5px' }}>
+                                        <p><>
+                                            <div value={this.props.id} onClick={() => this.deleteNote(note._id)} style={{ float: 'right', height: '5px', width: '20px', color: 'red' }} className="">X</div>
+                                            {note.completed ?
+                                                <div value={this.props.id} onClick={() => this.uncompleteNote(note._id)} style={{ float: 'right', height: '5px', width: '20px', padding: '0' }} className="">√</div>
+                                                : <div value={this.props.id} onClick={() => this.completeNote(note._id)} style={{ float: 'right', height: '5px', width: '20px', padding: '0' }} className=""><i class="far fa-square"></i></div>
+                                            }
+                                        </></p>
 
-                                    <hr />
+                                        <p style={{ fontSize: '10px' }}>By: {note.noteAuthorName}</p>
+                                    </div>
+
+                                    <div className="card-body" style={{ padding: '15px 15px 0px 5px', margin: '0px 0px 0px 0px' }}>
+                                        <p style={{ fontSize: this.props.fontSize, textIndent: '50px' }}> {note.noteText} </p>
+                                    </div>
+
+                                    <div className="card-footer">
+                                        <p style={{ fontSize: '12px' }}>
+                                            Posted: <Moment format="MM-DD HH:mm">{note.created_at}</Moment>
+                                            <br />
+                                            <Moment date={note.created_at} durationFromNow /> ago
+                                        </p>
+                                    </div>
                                 </div>
+
                             ))
 
                             : <p style={{ color: 'whitesmoke', textAlign: 'center' }}>No notes yet!</p>}
+                        {/* </div> */}
+                        {/* // </div> */}
                     </div>
-                </div>
 
-                {/* <div className="" id="note-viewer-2-mentor" style={{ padding: '10px', width: '100%' }}>
+                    {/* <div className="" id="note-viewer-2-mentor" style={{ padding: '10px', width: '100%' }}>
                     <div className="">
                         <div id="note-welcome" className="">
                             <h4><u>View Notes You Made</u></h4>
@@ -161,6 +177,7 @@ class NoteViewerMentor extends Component {
                         </div>
                     </div>
                 </div> */}
+                </div>
             </div>
         )
     }

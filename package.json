@@ -39,6 +39,7 @@
     "react-chartjs-2": "^2.8.0",
     "react-dom": "^16.12.0",
     "react-modal": "^3.11.1",
+    "react-moment": "^0.9.7",
     "react-onsenui": "^1.11.2",
     "react-router-dom": "^5.1.2",
     "shards-react": "^1.0.3"

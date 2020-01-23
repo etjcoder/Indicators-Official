@@ -170,12 +170,12 @@ class SalesItem extends Component {
 
 
                     {/* <p style={{ fontSize: '11px' }}>{this.props.saleDate}</p> */}
-                    <div className="card-body" style={{ padding: '5px', clear: 'both' }}>
-                        <p style={{ color: '' }}>Note: {this.props.saleNotes}</p>
-                    </div>
+
                     <div className="card-body" style={{ padding: '20px' }}>
+                        <div></div>
+                        {this.props.saleNotes ? <p style={{ color: '' }}>Notes: {this.props.saleNotes}</p> : null}
                         <p style={{ fontSize: '14px', float: 'right' }}>Type:
-                    {this.props.saleType === "CPD" ? <span> Cashflow Prospect</span> : null}
+                            {this.props.saleType === "CPD" ? <span> Cashflow Prospect</span> : null}
                             {this.props.saleType === "BPD" ? <span> Businessowner Prospect</span> : null}
                             {this.props.saleType === "CCD" ? <span> Cashflow Delegated Client</span> : null}
                             {this.props.saleType === "BCD" ? <span> Businessowner Delegated Client</span> : null}
@@ -188,15 +188,17 @@ class SalesItem extends Component {
                             {this.props.saleType === "CTD" ? <span> Cashflow Target Industry</span> : null}
                             {this.props.saleType === "BTD" ? <span> Businessowner Target Industry</span> : null}
                         </p>
-                        <p style={{ fontSize: '14px', width: '%', float: 'left' }}>Source: {this.props.saleSource}</p>
                         <p style={{ fontSize: '14px', width: '%', float: 'left' }}>Commissions: ${this.props.saleCommission}</p>
                         <p style={{ fontSize: '14px', width: '%', float: 'left' }}>Protege (You) Percentage: {this.props.salePercentage * 100}% Payout: ${this.props.salePercentage * this.props.saleCommission}</p>
                         <p style={{ fontSize: '14px', width: '%', float: 'left' }}>Mentor Percentage: {this.props.saleTaggedPercentage * 100}% Payout: ${this.props.saleTaggedPercentage * this.props.saleCommission}</p>
                     </div>
 
-                    <div className="card-footer" style={{ textAlign: 'center' }}>
+                    {/* <div className="card-footer" style={{ textAlign: 'center' }}> */}
+                 
+                    <div style={{ clear: 'both', textAlign: 'center' }}>
                         <button value={this.props.id} onClick={this.prepEditModal} className="btn btn-info btn-sm" style={{ width: '33%' }}>Edit</button>
                         <button value={this.props.id} onClick={this.deleteSale} className="btn btn-danger btn-sm" style={{ width: '33%' }}>X</button>
+                        {/* </div> */}
                     </div>
                 </div>
 

@@ -20,24 +20,23 @@ export default class DemoApp extends React.Component {
         for (var i = 0; i < this.props.appointments.length; i++) {
 
             event = {
-                title: this.props.appointments[i].apptname,
+                title: this.props.appointments[i].time,
                 date: this.props.appointments[i].date
             }
 
             apptArray.push(event)
 
         }
-
-        setTimeout(() => {
+        // setTimeout(() => {
             this.setState({
                 events: apptArray
             })
-        }, 1000)
+        // }, 1000)
     }
 
     render() {
         return (
-            <div className="card bg-light" style={{height: '420px'}}>
+            <div className="card" style={{height: '420px', width: '400px'}}>
             <FullCalendar
                 defaultView="dayGridMonth" 
                 plugins={[dayGridPlugin]}

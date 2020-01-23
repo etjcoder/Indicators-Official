@@ -23,8 +23,7 @@ var AppointmentSchema = new Schema({
     },
     dialer: {
         type: String,
-        required: true,
-        default: "none"
+        required: false
     },
     protege: {
         type: String,
@@ -33,17 +32,19 @@ var AppointmentSchema = new Schema({
     },
     mentor: {
         type: String,
-        required: true,
-        default: "none"
+        required: false
     },
     source: {
         type: String,
-        required: true,
-        default: "none"
+        required: false
     },
     date: {
         type: String,
-        required: true
+        required: false
+    },
+    time: {
+        type: String,
+        required: false
     },
     notes: {
         type: String,
@@ -51,8 +52,7 @@ var AppointmentSchema = new Schema({
     },
     targetMarket: {
         type: String,
-        required: true,
-        default: "none"
+        required: false
     }
 }, {
     timestamps: {

@@ -11,7 +11,8 @@ class NoteCreatorMentor extends Component {
         this.state = {
             noteText: "",
             noteAuthor: "",
-            noteTagged: ""
+            noteTagged: "",
+            showNoteForm: false
         }
     }
 
@@ -55,40 +56,58 @@ class NoteCreatorMentor extends Component {
         // }, 1000)
 
     }
-
+    showNoteForm = () => {
+        if (this.state.showNoteForm != true) {
+            this.setState({
+                showNoteForm: true
+            })
+        } else {
+            this.setState({
+                showNoteForm: false
+            })
+        }
+    }
 
 
     render() {
         return (
-            <div style={{backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}>
-                <div id="note-welcome">
-                    <h4>Create a Note.</h4>
-                </div>
-                <form>
-                    {this.props.userData.proteges ? <select id="" value={this.state.noteTagged} onChange={this.handleInputChange} name="noteTagged">
-                        <option value={"none"}>--Tag Mentor--</option>
-                        {this.props.userData.proteges.map(protege => (
-                            <option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>
-                        ))}
-                    </select> : null}
-                    <FormTextarea id="noteTextArea" value={this.state.noteText} onChange={this.handleInputChange} type="text" name="noteText" className="form-control" id="noteTextInput" aria-describedby="" placeholder="Enter note here" />
+            // <div style={{backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}>
+            <div className="col-12" style={{ textAlign: 'left', padding: '0' }}>
+                <div className="card bg-light" style={{ color: 'black' }}>
+                    <div className="card-header">
+                        <h4
+                            style={{ textAlign: 'center', padding: '10% 10% 0 10%', color: 'black', margin: '' }}
+                        >Create Note
+                        <br />
+                            <span button className="btn btn-sm btn-outline-dark" onClick={this.showNoteForm}>Show</span>
 
-                    {/* <input value={this.state.protege} onChange={this.handleInputChange} type="text" name="proteges" className="form-control" placeholder="Protege" />
-                    {this.props.proteges ? <select id="protegeDropMenu" value={this.state.protege} onChange={this.handleArrayChange} name="protege">
-                        {this.props.proteges.map(protege => (
-                            <option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>
-                        ))}
-                    </select> : null} */}
-                    {/* <input value={this.state.noteTagged} onChange={this.handleInputChange} type="text" name="noteTagged" className="form-control" placeholder="Tag a Mentor" /> */}
-                    {/* {this.props.userData.proteges ? <select id="mentorDropMenu" value={this.state.noteTagged} onChange={this.handleInputChange} name="noteTagged">
-                        <option value={"none"}>--Tag Mentor--</option>
-                        {this.props.userData.proteges.map(protege => (
-                            <option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>
-                        ))}
-                    </select> : null} */}
-                    <button outline onClick={this.handleNoteSubmit} style={{float: 'right'}} className="btn btn-outline-dark">Create Note</button>
-                    {/* <button onClick={this.logOut} style={{ marginTop: '5px', marginLeft: '25px' }} className="btn btn-danger">Logout</button> */}
-                </form>
+                        </h4>
+                    </div>
+
+                    {this.state.showNoteForm ?
+
+                        <div className="card-body" style={{ padding: '10px', overflow: 'auto' }}>
+
+                            <form>
+                                <div style={{ color: 'black', padding: '20px' }}>
+                                    {this.props.userData.proteges ? <select id="" value={this.state.noteTagged} onChange={this.handleInputChange} name="noteTagged">
+                                        <option value={"none"}>--Tag Mentor--</option>
+                                        {this.props.userData.proteges.map(protege => (
+                                            <option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>
+                                        ))}
+                                    </select> : null}
+                                    <br />
+
+                                    <FormTextarea id="noteTextArea" value={this.state.noteText} onChange={this.handleInputChange} type="text" name="noteText" className="form-control" id="noteTextInput" aria-describedby="" placeholder="Enter note here" />
+
+                                    <button outline onClick={this.handleNoteSubmit} style={{ float: 'right' }} className="btn btn-outline-dark">Create Note</button>
+                                </div>
+                            </form>
+
+                        </div>
+
+                        : null}
+                </div>
             </div>
         )
     }

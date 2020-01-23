@@ -14,6 +14,7 @@ class AppointmentCreator extends Component {
         apptdate: "",
         appttargetmkt: "",
         apptTagged: "",
+        apptTime: "",
         showAppt: false
     }
 
@@ -76,7 +77,8 @@ class AppointmentCreator extends Component {
             date: this.state.apptdate,
             dialer: this.props.userID,
             type: this.state.type,
-            targetMarket: this.state.appttargetmkt
+            targetMarket: this.state.appttargetmkt,
+            time: this.state.apptTime
         }
 
         console.log(ApptData)
@@ -92,7 +94,8 @@ class AppointmentCreator extends Component {
             dialer: this.props.userID,
             targetMarket: this.state.appttargetmkt,
             protege: this.props.userID,
-            mentor: this.state.apptTagged
+            mentor: this.state.apptTagged,
+            time: this.state.apptTime
         }).then(res =>
             cogoToast.info("Saved Appt!")
         ).catch(err => console.log(err))
@@ -169,6 +172,9 @@ class AppointmentCreator extends Component {
                                     <label>Date :</label>
                                     <input id="date-input" className="form-control" value={this.state.apptdate} onChange={this.handleInputChange} name="apptdate" type="date" placeholder="Enter date for your appointment" />
                                     {/* </div> */}
+                                    <br />
+                                    <label>Time :</label>
+                                    <input className="form-control" value={this.state.apptTime} onChange={this.handleInputChange} name="apptTime" type="time" />
                                     <br />
                                     {/* <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}> */}
                                     <label>Mentor : </label>
