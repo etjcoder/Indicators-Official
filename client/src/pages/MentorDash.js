@@ -510,6 +510,18 @@ class MentorDash extends Component {
         }
     }
 
+    showNoteViewer = () => {
+        if (!this.state.showNoteViewer) {
+            this.setState({
+                showNoteViewer: true
+            })
+        } else {
+            this.setState({
+                showNoteViewer: false
+            })
+        }
+    }
+
 
 
     render() {
@@ -886,6 +898,8 @@ class MentorDash extends Component {
                                                 <h4 style={{ textAlign: 'center', padding: '10% 10% 0 20%', color: 'black', margin: '0px' }}>
 
                                                     Your Notes:
+                                                    <br />
+                                                    <span><button className="btn btn-sm btn-outline-dark" onClick={this.showNoteViewer}>Show</button></span>
                                                 </h4>
                                             </div>
 

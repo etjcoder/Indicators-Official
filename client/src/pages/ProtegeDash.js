@@ -74,7 +74,7 @@ class ProtegeDash extends Component {
         showAnalytics: false,
         showAppts: false,
         showSales: false,
-        showNoteViewer: true,
+        showNoteViewer: false,
         showCreate: false,
         showSideBars: true
     }
@@ -586,6 +586,18 @@ class ProtegeDash extends Component {
         }
     }
 
+    showNoteViewer = () => {
+        if (this.state.showNoteViewer === true) {
+            this.setState({
+                showNoteViewer: false
+            })
+        } else {
+            this.setState({
+                showNoteViewer: true
+            })
+        }
+    }
+
 
 
 
@@ -728,9 +740,10 @@ class ProtegeDash extends Component {
 
                             {
                                 this.state.showAnalytics ?
-                                    <div id="protege-data-viewer-container">
+                                    <div id="protege-data-viewer-container" style={{marginTop: '50px'}}>
                                         <div className="row">
-                                            <div className="col-12">
+                                            <div className="col-1"></div>
+                                            <div className="col-10">
                                                 <MainDataViewer
                                                     userID={this.state.userData._id}
                                                     contactData={this.state.contactData}
@@ -776,6 +789,7 @@ class ProtegeDash extends Component {
                                                 // sources={this.state.leadSource}
                                                 />
                                             </div>
+                                            <div className="col-1"></div>
                                         </div>
                                     </div>
                                     : null
@@ -1336,7 +1350,10 @@ class ProtegeDash extends Component {
                                                             <div className="card-header">
                                                                 <h4 style={{ textAlign: 'center', padding: '10% 10% 0 10%', color: 'black', margin: '0px' }}>
 
-                                                                    Your Notes:
+                                                                    View Notes
+                                                                    <br />
+                                                                    <span button className="btn btn-sm btn-outline-dark" onClick={this.showNoteViewer}>Show</span>
+                                                                       
                                                                     </h4>
                                                             </div>
 
@@ -1355,7 +1372,7 @@ class ProtegeDash extends Component {
                                                                         />
                                                                     </div>
                                                                 </div>
-                                                                : null}
+                                                                : <div style={{height: '20px'}}></div> }
 
                                                             {/* <div style={{ height: '20px', color: 'black', backgroundColor: 'rgba(0,0,0,0)' }}> */}
                                                             {/* </div> */}

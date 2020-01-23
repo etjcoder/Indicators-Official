@@ -42,7 +42,11 @@ var DialSchema = new Schema({
         required: true,
         default: "none"
     }
-})
+}, {
+    timestamps: {
+        createdAt: 'created_at'
+    }
+});
 
 var Dial = mongoose.model("Dial", DialSchema)
 
