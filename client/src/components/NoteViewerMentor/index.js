@@ -94,7 +94,7 @@ class NoteViewerMentor extends Component {
 
     render() {
         return (
-            <div className="" id="note-view-container-2" style={{ color: 'black', height: 400, overflow: 'auto'}}>
+            <div className="" id="note-view-container-2" style={{ color: 'black', height: this.props.height, overflow: 'auto'}}>
 
                 <div className="" id="note-viewer-1-mentor" style={{ padding: '', width: '', marginBottom: '10px' }}>
 

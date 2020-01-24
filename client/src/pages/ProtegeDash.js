@@ -1260,7 +1260,7 @@ class ProtegeDash extends Component {
                                                     <div className="row">
 
                                                         {/* <div className="col-12"> */}
-                                                        <div style={{ width: '100%', marginBottom: '10px' }}>
+                                                        <div style={{ width: '100%', marginBottom: '' }}>
                                                             <AppointmentCreator
                                                                 userID={this.state.userData._id}
                                                                 username={this.state.user}
@@ -1295,7 +1295,7 @@ class ProtegeDash extends Component {
                                                                     <div className="card-body bg-info" style={{ padding: '0px 5px 0px 5px' }}>
                                                                         {
                                                                             this.state.appointments ?
-                                                                                <div style={{ height: '400px', overflow: 'auto' }}>
+                                                                                <div style={{ height: '400px', overflow: 'auto', marginTop: '5px' }}>
                                                                                     {
                                                                                         this.state.appointments.map(appt => (
                                                                                             <AppointmentItem

@@ -12,7 +12,7 @@ class NoteCreatorMentor extends Component {
             noteText: "",
             noteAuthor: "",
             noteTagged: "",
-            showNoteForm: false
+            showNoteForm: true
         }
     }
 
@@ -72,8 +72,8 @@ class NoteCreatorMentor extends Component {
     render() {
         return (
             // <div style={{backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}>
-            <div className="col-12" style={{ textAlign: 'left', padding: '0' }}>
-                <div className="card bg-light" style={{ color: 'black' }}>
+            // <div className="col-12" style={{ textAlign: 'left', padding: '0' }}>
+                <div className="card bg-light" style={{ color: 'black', width: '100%' }}>
                     <div className="card-header">
                         <h4
                             style={{ textAlign: 'center', padding: '10% 10% 0 10%', color: 'black', margin: '' }}
@@ -91,7 +91,7 @@ class NoteCreatorMentor extends Component {
                             <form>
                                 <div style={{ color: 'black', padding: '20px' }}>
                                     {this.props.userData.proteges ? <select id="" value={this.state.noteTagged} onChange={this.handleInputChange} name="noteTagged">
-                                        <option value={"none"}>--Tag Mentor--</option>
+                                        <option value={"none"}>--Tag Protege--</option>
                                         {this.props.userData.proteges.map(protege => (
                                             <option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>
                                         ))}
@@ -108,7 +108,7 @@ class NoteCreatorMentor extends Component {
 
                         : null}
                 </div>
-            </div>
+            // </div>
         )
     }
 

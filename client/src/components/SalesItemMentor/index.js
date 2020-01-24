@@ -134,20 +134,21 @@ class SalesItemMentor extends Component {
 
     render() {
         return (
-            <div className="container">
-                <div style={{ height: '', padding: '0 10% 0 10%', textAlign: 'left', backgroundColor: 'rgba(255,255,255,0.75)', overflow: 'auto', borderRadius: '5px' }}>
-                    <br />
-                    <h4 style={{ textAlign: 'center' }}><u>{this.props.saleName}:</u></h4>
-                    <hr />
-                    <hr />
-                    <button value={this.props.id} onClick={this.deleteSale} className="btn btn-danger btn-sm" style={{ float: 'right' }}>X</button>
-                    <button value={this.props.id} onClick={this.prepEditModal} className="btn btn-info btn-sm" style={{ float: 'right' }}>Edit</button>
+            <div>
+                <div className="card bg-light">
+                    {/* <div style={{ height: '', padding: '0 10% 0 10%', textAlign: 'left', backgroundColor: 'rgba(255,255,255,0.75)', overflow: 'auto', borderRadius: '5px' }}> */}
 
-                    <div className="card bg-dark" style={{padding: '20px', clear:'both'}}>
-                       <p style={{color: 'white'}}>Notes: {this.props.saleNotes}</p> 
+                    <div className="card-header">
+                        <h4 style={{ textAlign: 'center' }}><u>{this.props.saleName}:</u></h4>
                     </div>
-                    <div className="card" style={{padding: '20px'}}>
-                        <p style={{fontSize: '14px', float: 'right'}}>Type: 
+                    {/* <hr /> */}
+                    {/* <hr /> */}
+
+                    <div className="card-body" style={{ padding: '20px' }}>
+
+                        <div></div>
+                        {this.props.saleNotes ? <p style={{ color: '' }}>Notes: {this.props.saleNotes}</p> : null}
+                        <p style={{ fontSize: '14px', float: 'right' }}>Type:
                         {this.props.saleType === "CPD" ? <span> Cashflow Prospect</span> : null}
                             {this.props.saleType === "BPD" ? <span> Businessowner Prospect</span> : null}
                             {this.props.saleType === "CCD" ? <span> Cashflow Delegated Client</span> : null}
@@ -166,7 +167,11 @@ class SalesItemMentor extends Component {
                         <p style={{ fontSize: '14px', width: '%', float: 'left' }}>Protege (You) Percentage: {this.props.salePercentage * 100}% Payout: ${this.props.salePercentage * this.props.saleCommission}</p>
                         <p style={{ fontSize: '14px', width: '%', float: 'left' }}>Mentor Percentage: {this.props.saleTaggedPercentage * 100}% Payout: ${this.props.saleTaggedPercentage * this.props.saleCommission}</p>
                     </div>
-                    <hr></hr>
+
+                    <div style={{ clear: 'both', textAlign: 'center' }}>
+                        <button value={this.props.id} onClick={this.prepEditModal} className="btn btn-info btn-sm" style={{ width: '33%' }}>Edit</button>
+                        <button value={this.props.id} onClick={this.deleteSale} className="btn btn-danger btn-sm" style={{ width: '33%' }}>X</button>
+                    </div>
                 </div>
 
 
@@ -223,7 +228,7 @@ class SalesItemMentor extends Component {
                     </Modal>
                 </div>
 
-            </div>
+            </div >
         )
     }
 }
