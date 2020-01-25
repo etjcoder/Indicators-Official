@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import "./style.css"
 import API from "../../utils/API";
 
-class ManagerDataViewer extends Component {
+class ProtegeViewContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -12,6 +12,7 @@ class ManagerDataViewer extends Component {
 
     componentDidMount = () => {
         this.runRefresh()
+        this.getContactData()
     }
 
     handleInputChange = event => {
@@ -55,8 +56,8 @@ class ManagerDataViewer extends Component {
 
     getContactData = () => {
         setTimeout(() => {
-            console.log("Searching contacts using: " + this.state.activeProtegeData._id)
-            API.getContacts(this.state.activeProtegeData._id)
+            // console.log("Searching contacts using: " + this.state.activeProtegeData._id)
+            API.getContacts(this.props.protege._id)
                 .then(res =>
                     this.setState({
                         contactData: res.data
@@ -64,7 +65,6 @@ class ManagerDataViewer extends Component {
                     setTimeout(() => { this.parseContacts() }, 500)
                 )
         }, 1000)
-
     }
 
     parseDials = () => {
@@ -208,7 +208,8 @@ class ManagerDataViewer extends Component {
             CRContacts: CRC,
             BRContacts: BRC,
             CTContacts: CTC,
-            BTContacts: BTC
+            BTContacts: BTC,
+            totalContacts: CPC + BPC + CCC + BCC + CNC + CSC + BSC + CRC + BRC + CTC + BTC
         })
     }
 
@@ -219,17 +220,60 @@ class ManagerDataViewer extends Component {
     render() {
         return (
 
-            <div className="card bg-dark" style={{ padding: '10%', borderRadius: '5px' }}>
+            <div className="card bg-light" style={{ padding: '', borderRadius: '5px', textAlign: 'center' }}>
                 <div className="card-body">
-                    <h5 className="card-title" style={{color: 'white'}}>{this.props.protege.firstName} {this.props.protege.lastName}</h5>
+                    <div className="card-header">
+                        <img class="rounded-circle z-depth-2" alt="100x100" src="https://www.mountaineers.org/images/placeholder-images/placeholder-contact-profile/image_preview" style={{ width: '100px', height: '100px' }} />
+                        <br />
+
+                        <h5 style={{ color: '' }}>{this.props.protege.firstName} {this.props.protege.lastName}</h5>
+                    </div>
+                    <div className="card-body">
+                        <ul className="list-group list-group-flush">
+                            <li className="list-group-item">Dials:<br /><h3>{this.props.protege.dials.length}</h3></li>
+                            <li className="list-group-item">Contacts:<br /> {this.state.CPContacts ?
+                                <div>
+                                    <h3>
+                                        {/* {
+                                        this.state.CPContacts +
+                                        this.state.BPContacts +
+                                        this.state.CCContacts +
+                                        this.state.BCContacts +
+                                        this.state.CNContacts +
+                                        this.state.BNContacts +
+                                        this.state.CSContacts +
+                                        this.state.BSContacts +
+                                        this.state.CRContacts +
+                                        this.state.BRContacts +
+                                        this.state.CTContacts +
+                                        this.state.BTContacts
+                                    }  */}
+                                        {this.state.totalContacts}
+                                    </h3>
+                                    <h6>Contact Ratio:  </h6>
+                                    <h5>{Math.trunc(this.state.totalContacts / this.props.protege.dials.length * 100)}%</h5>
+                                </div>
+
+                                : <h3>0</h3>}
+
+                            </li>
+                            <li className="list-group-item">Appointments: <br /><h3>{this.props.protege.appointments.length}</h3>
+
+                                {this.state.totalContacts ?
+                                    <div>
+                                        <h6>Appointment per Contact:</h6>
+                                        <h5>{Math.trunc(this.props.protege.appointments.length / this.state.totalContacts * 100)}%</h5>
+                                    </div>
+                                    : 0}
+                            </li>
+
+                        </ul>
+                    </div>
+
                     {/* <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
                 </div>
                 {/* <p></p> */}
-                <ul className="list-group list-group-flush">
-                    <li className="list-group-item">Dials:{this.props.protege.dials.length}</li>
-                    <li className="list-group-item">Contacts: </li>
-                    <li className="list-group-item">Appointments:{this.props.protege.appointments.length}</li>
-                </ul>
+
             </div>
 
         )
@@ -237,4 +281,4 @@ class ManagerDataViewer extends Component {
 
 }
 
-export default ManagerDataViewer
+export default ProtegeViewContainer
