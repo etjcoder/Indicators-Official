@@ -92,16 +92,16 @@ class CreateMentorForm extends Component {
                             <input value={this.state.password} onChange={this.handleInputChange} type="password" name="password" className="form-control" id="exampleInputPassword2" placeholder="Password" />
                             {/* <button type="submit" onClick={this.login} className="btn">Login</button> */}
                             <br />
-                            <label>Protege</label>
-                            <input value={this.state.protege} onChange={this.handleInputChange} type="text" name="proteges" className="form-control" placeholder="Protege" />
+                            <label>Assign a Protege</label>
+                            {/* <input value={this.state.protege} onChange={this.handleInputChange} type="text" name="proteges" className="form-control" placeholder="Protege" /> */}
                             {this.props.proteges ? <select id="protegeDropMenu" value={this.state.protege} onChange={this.handleArrayChange} name="protege">
                                 {this.props.proteges.map(protege => (
                                     <option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>
                                 ))}
                             </select> : null}
                             <br />
-                            <label>Manager</label>
-                            <input value={this.state.manager} onChange={this.handleInputChange} type="text" name="manager" className="form-control" placeholder="Manager" />
+                            {/* <label>Manager</label>
+                            <input value={this.state.manager} onChange={this.handleInputChange} type="text" name="manager" className="form-control" placeholder="Manager" /> */}
 
                             <button onClick={this.signup} className="btn btn-info">Create Mentor</button>
                             {/* <button onClick={this.logOut} style={{ marginTop: '5px', marginLeft: '25px' }} className="btn btn-danger">Logout</button> */}
