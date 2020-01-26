@@ -164,6 +164,7 @@ class SalesItemMentor extends Component {
                         </p>
                         <p style={{ fontSize: '14px', width: '%', float: 'left' }}>Source: {this.props.saleSource}</p>
                         <p style={{ fontSize: '14px', width: '%', float: 'left' }}>Commissions: ${this.props.saleCommission}</p>
+                        <br />
                         <p style={{ fontSize: '14px', width: '%', float: 'left' }}>Protege Percentage: {this.props.salePercentage * 100}% Payout: ${this.props.salePercentage * this.props.saleCommission}</p>
                         <p style={{ fontSize: '14px', width: '%', float: 'left' }}>Mentor (You) Percentage: {this.props.saleTaggedPercentage * 100}% Payout: ${this.props.saleTaggedPercentage * this.props.saleCommission}</p>
                     </div>

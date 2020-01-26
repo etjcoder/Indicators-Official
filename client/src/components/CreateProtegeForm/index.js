@@ -52,6 +52,23 @@ class CreateProtegeForm extends Component {
         });
     };
 
+    handleArrayChange = event => {
+        console.log(event.target.name)
+        console.log(event.target.value)
+        this.setState({
+            proteges: [event.target.value]
+        })
+    }
+
+    handleArrayAddition = event => {
+        console.log(event.target.name)
+        console.log(event.target.value)
+        this.setState({
+            proteges: [...this.state.proteges, event.target.value]
+        })
+
+    }
+
 
     render() {
         return (
@@ -76,8 +93,17 @@ class CreateProtegeForm extends Component {
                             <input value={this.state.password} onChange={this.handleInputChange} type="password" name="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
                             {/* <button type="submit" onClick={this.login} className="btn">Login</button> */}
                             <br />
-                            <label>Mentor</label>
+                            {/* <label>Mentor</label>
                             <input value={this.state.mentor} onChange={this.handleInputChange} type="text" name="mentor" className="form-control" placeholder="Mentor" />
+                            <br /> */}
+
+                            <label>Assign a Mentor</label>
+                            {/* <input value={this.state.protege} onChange={this.handleInputChange} type="text" name="proteges" className="form-control" placeholder="Protege" /> */}
+                            {this.props.mentors ? <select id="protegeDropMenu" value={this.state.mentor} onChange={this.handleInputChange} name="mentor">
+                                {this.props.mentors.map(mentor => (
+                                    <option key={mentor._id} value={mentor._id}>{mentor.firstName} {mentor.lastName}</option>
+                                ))}
+                            </select> : null}
                             <br />
                             <label>Manager</label>
                             <input value={this.state.manager} onChange={this.handleInputChange} type="text" name="manager" className="form-control" placeholder="Manager" />

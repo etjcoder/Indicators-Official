@@ -154,6 +154,7 @@ class ProtegeViewContainer extends Component {
         var BRC = 0;
         var CTC = 0;
         var BTC = 0;
+        if (this.state.contactData) { 
         for (var i = 0; i < this.state.contactData.length; i++) {
             switch (this.state.contactData[i].type) {
                 case "CPD":
@@ -196,6 +197,7 @@ class ProtegeViewContainer extends Component {
                     break;
             }
         }
+    }
         this.setState({
             CPContacts: CPC,
             BPContacts: BPC,

@@ -66,7 +66,9 @@ class ManagerDataViewer extends Component {
             showReferralPerformance: false,
             showTargetPerformance: false,
             showSourcePerformance: false,
-            showSelectedTargetPerformance: false
+            showSelectedTargetPerformance: false,
+            updatedProtegeFirstName: "",
+            updateProtegeLastName: ""
         }
     }
 
@@ -80,6 +82,7 @@ class ManagerDataViewer extends Component {
             [name]: value
         });
     };
+
 
     handleSourceChange = event => {
         const { name, value } = event.target;
@@ -294,12 +297,26 @@ class ManagerDataViewer extends Component {
                     this.getContactData(),
                     this.getProtegeNoteData(),
                     setTimeout(() => {
+                        this.assignProtegeFields()
+                    }, 500)
+                    ,
+                    setTimeout(() => {
                         this.parseDials()
                         this.parseAppointments()
                     }, 500)
                 )
 
         }
+    }
+
+    assignProtegeFields = () => {
+
+        this.setState({
+            updatedProtegeFirstName: this.state.activeProtegeData.firstName,
+            updatedProtegeLastName: this.state.activeProtegeData.lastName,
+            updatedProtegeCurrentMentors: this.state.activeProtegeData.allMentors,
+            updatedProtegesProfilePicture: ""
+        })
     }
 
     gatherSales = () => {
@@ -2482,6 +2499,12 @@ class ManagerDataViewer extends Component {
         })
     }
 
+    submitProtegeUpdate = () => {
+
+        console.log("New First Name: " + this.state.updatedProtegeFirstName)
+        console.log("New Last Name: " + this.state.updatedProtegeLastName)
+    }
+
 
     // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3884,8 +3907,23 @@ class ManagerDataViewer extends Component {
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                                 <button className="btn btn-outline-dark" onClick={this.viewProtegeProfile}>View Profile</button>
                                 {this.state.viewProtegeProfile ?
-                                    <div className="col-12 card bg-primary" style={{ color: 'whitesmoke' }}>
-                                        <h4 style={{ textAlign: 'center' }}>Protege Profile:</h4>
+                                    <div className="card bg-light" style={{ color: 'black' }}>
+                                        <div className="card-header">
+                                            <h4 style={{ textAlign: 'center' }}>{this.state.activeProtegeData.firstName + " " + this.state.activeProtegeData.lastName} Profile:</h4>
+                                        </div>
+                                        <br />
+                                        <div className="card-body">
+                                            <form>
+                                                <label>First Name</label>
+                                                {/* <p>{this.state.activeProtegeData.firstName}</p> */}
+                                                <input type="text" value={this.state.updatedProtegeFirstName} onChange={this.handleInputChange} name="updatedProtegeFirstName" />
+                                                <br />
+                                                <label>Last Name</label>
+                                                {/* <p>{this.state.activeProtegeData.lastName}</p> */}
+                                                <input type="text" value={this.state.updatedProtegeLastName} onChange={this.handleInputChange} name="updatedProtegeLastName" />
+                                            </form>
+                                            <button className="btn btn-outline-dark" onClick={this.submitProtegeUpdate}>Update Protege</button>
+                                        </div>
                                     </div>
                                     : null}
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}

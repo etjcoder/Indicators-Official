@@ -8,6 +8,7 @@ import API from "../utils/API";
 // import SideNavPageManager from "../components/SideNavPageManager";
 import ManagerDataViewer from "../components/ManagerDataViewer";
 import ProtegeViewContainer from "../components/ProtegeViewContainer";
+import cogoToast from "cogo-toast";
 
 
 class ManagerDash extends Component {
@@ -129,6 +130,8 @@ class ManagerDash extends Component {
             id: ProtegeID
         }).then(res => {
             console.log("Added Protege to Mentor")
+            cogoToast.success("Added Protege to Mentor")
+            this.gatherMentors()
         }).catch(err => {
             console.log("Unsuccssfully added Protege to Mentor")
         })
@@ -144,6 +147,8 @@ class ManagerDash extends Component {
             id: MentorID
         }).then(res => {
             console.log("Added Mentor to Protege")
+            cogoToast.success("Added Mentor to Protege!")
+            this.gatherProteges()
         }).catch(err => {
             console.log("Unsuccessful in adding Mentor to Protege")
         })
@@ -159,6 +164,8 @@ class ManagerDash extends Component {
             id: ProtegeID
         }).then(res => {
             console.log("Removed Protege from Mentor")
+            cogoToast.info("Removed Protege from Mentor")
+            this.gatherMentors()
         }).catch(err => {
             console.log("Unsuccessfully removed Protege from Mentor")
         })
@@ -175,6 +182,8 @@ class ManagerDash extends Component {
             id: MentorID
         }).then(res => {
             console.log("Removed Mentor from Protege")
+            cogoToast.info("Removed Mentor from Protege")
+            this.gatherProteges()
         }).catch(err => {
             console.log("Unsuccessful in removing Mentor from Protege")
         })
@@ -341,7 +350,10 @@ class ManagerDash extends Component {
                                     {this.state.proteges ?
                                         <div className="row">
                                             {this.state.proteges.map(protege => (
-                                                <div key={protege._id} className="col-lg-4">
+                                        
+                                            
+                                                <div key={protege._id} className="col-lg-4" style={{marginTop: '25px'}}>
+
                                                     <ProtegeViewContainer
                                                         key={protege._id}
                                                         protege={protege}
@@ -400,7 +412,7 @@ class ManagerDash extends Component {
 
                                                 {this.state.showCreateProtegeForm ?
                                                     <div className="card-body">
-                                                        <CreateProtegeForm />
+                                                        <CreateProtegeForm mentors={this.state.mentors}/>
                                                     </div>
                                                     : null}
 

@@ -594,7 +594,7 @@ class ProtegeCallBtnContainer extends Component {
 
 
                         <AppointmentCreator
-                            userID={this.props.userID}
+                            userID={this.props.user._id}
                             username={this.props.username}
                             rerender={this.props.rerender}
                             userData={this.props.userData}
