@@ -101,7 +101,8 @@ class ManagerDataViewer extends Component {
             this.setState({
                 showProtegeAnalyticsViewer: true,
                 showMentorAnalyticsViewer: false,
-                showGlobalAnalyticsViewer: false
+                showGlobalAnalyticsViewer: false,
+                activeMentorDataPopulated: false
             })
         } else {
             this.setState({
@@ -158,7 +159,8 @@ class ManagerDataViewer extends Component {
             this.setState({
                 showProtegeAnalyticsViewer: false,
                 showMentorAnalyticsViewer: true,
-                showGlobalAnalyticsViewer: false
+                showGlobalAnalyticsViewer: false,
+                activeProtegeDataPopulated: false
             })
         } else {
             this.setState({
@@ -2492,13 +2494,22 @@ class ManagerDataViewer extends Component {
                     <h2 style={{ textAlign: 'center', color: 'black', margin: '20px', borderRadius: '10px' }}>A N A L Y T I C S</h2>
 
                     <div className="row">
-                        <div className="col-12 card" style={{ padding: '50px', backgroundColor: 'rgba(255,255,255,0.9)', color: 'black', textAlign: 'left' }}>
-                            <h4 style={{ textAlign: 'center' }}>Select an Option</h4>
-                            <ul>
-                                <li><p>Review Proteges <button className="btn btn-outline-dark" onClick={this.showProtegeAnalytics}>Show/Hide</button></p></li>
-                                <li><p>Review Mentors <button className="btn btn-outline-dark" onClick={this.showMentorAnalytics}>Show/Hide</button></p></li>
-                                <li><p>Review Global <button className="btn btn-outline-dark" onClick={this.showGlobalAnalytics}>Show/Hide</button></p></li>
-                            </ul>
+                        <div className="col-12 card" style={{ padding: '50px', backgroundColor: '', color: 'black', textAlign: 'left' }}>
+                            <div className="card-header">
+                            <h3 style={{ textAlign: 'center' }}>Select an Option</h3>
+                            </div>
+                            {/* <br /> */}
+                            {/* <hr />
+                            <hr /> */}
+                            <div style={{textAlign: 'center'}}>
+                                <h4 style={{textAlign: 'center'}}>Review Proteges <br /><button className="btn btn-outline-dark" onClick={this.showProtegeAnalytics}>Show/Hide</button></h4>
+                                {/* <hr /> */}
+                                <br />
+                                <h4 style={{textAlign: 'center'}}>Review Mentors <br /><button className="btn btn-outline-dark" onClick={this.showMentorAnalytics}>Show/Hide</button></h4>
+                                {/* <br /> */}
+                                <br />
+                                <h4 style={{textAlign: 'center'}}>Review Global <br /><button className="btn btn-outline-dark" onClick={this.showGlobalAnalytics}>Show/Hide</button></h4>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -2513,23 +2524,24 @@ class ManagerDataViewer extends Component {
                         {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                         {this.state.showProtegeAnalyticsViewer ?
-                            <div className="card bg-light" style={{ padding: '50px', backgroundColor: 'rgba(255,255,255,0.9)', color: 'black', textAlign: 'left' }}>
+                            <div className="card bg-light" style={{ padding: '50px', backgroundColor: '', color: 'black', textAlign: 'left' }}>
                                 <div className="card-header">
                                     <h4 style={{ textAlign: 'center' }}>Select a Protege</h4>
                                 </div>
                                 {this.props.allProtegeData ?
                                     <div className="card-body">
-                                        <ul>
-                                            <li>
+                                        {/* <ul> */}
+                                            <p style={{textAlign: 'center'}}>
                                                 <select id="mentorsDropDownMenu" value={this.state.protegeToView} onChange={this.handleInputChange} name="protegeToView">
                                                     <option value="none">--Select a Protege--</option>
                                                     {this.props.allProtegeData.map(protege => (<option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>))}
                                                 </select>
                                                 {/* <button>Placeholder</button> */}
+                                                <br />
                                                 <button onClick={this.viewProtegeData} className="btn btn-outline-dark btn-sm">View/Change</button>
                                                 {/* <button onClick={this.removeMentorFromProtege} className="btn btn-outline-danger btn-sm">Remove Mentor</button> */}
-                                            </li>
-                                        </ul>
+                                            </p>
+                                        {/* </ul> */}
                                     </div>
                                     : null}
                             </div>
@@ -3901,67 +3913,172 @@ class ManagerDataViewer extends Component {
                         {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                         {this.state.showMentorAnalyticsViewer ?
-                            <div className="col-12 card bg-primary" style={{ color: 'whitesmoke' }}>
-                                <h4 style={{ textAlign: 'center' }}>Select a Mentor</h4>
-                                {this.props.allMentorData ?
-                                    <div>
-                                        <select id="mentorsDropDownMenu" value={this.state.mentorToView} onChange={this.handleInputChange} name="mentorToView">
-                                            <option value="none">--Select a Mentor--</option>
-                                            {this.props.allMentorData.map(mentor => (<option key={mentor._id} value={mentor._id}>{mentor.firstName} {mentor.lastName}</option>))}
-                                        </select>
-                                        {/* <button>Placeholder</button> */}
-                                        <button onClick={this.viewMentorData} className="btn btn-outline-light btn-sm">View/Change</button>
-                                        {/* <button onClick={this.removeMentorFromProtege} className="btn btn-outline-danger btn-sm">Remove Mentor</button> */}
-                                    </div>
-                                    : null}
+                            <div className="card bg-light" style={{ color: 'black' }}>
+                                <div className="card-header">
+                                    <h4 style={{ textAlign: 'center' }}>Select a Mentor</h4>
+                                </div>
+                                <div className="card-body">
+                                    {this.props.allMentorData ?
+                                        <div style={{textAlign: 'center'}}>
+                                            <select id="mentorsDropDownMenu" value={this.state.mentorToView} onChange={this.handleInputChange} name="mentorToView">
+                                                <option value="none">--Select a Mentor--</option>
+                                                {this.props.allMentorData.map(mentor => (<option key={mentor._id} value={mentor._id}>{mentor.firstName} {mentor.lastName}</option>))}
+                                            </select> 
+                                            <br />
+                                            {/* <button>Placeholder</button> */}
+                                            <button onClick={this.viewMentorData} className="btn btn-outline-dark btn-sm">View/Change</button>
+                                            {/* <button onClick={this.removeMentorFromProtege} className="btn btn-outline-danger btn-sm">Remove Mentor</button> */}
+                                        </div>
+                                        : null}
+                                </div>
                             </div>
                             : null}
                         <br />
 
                         {this.state.activeMentorDataPopulated ?
 
-                            <div className="col-12 card bg-primary" style={{ color: 'whitesmoke' }} >
-                                <h4 style={{ textAlign: 'center' }}>Choose Your Option:</h4>
-
+                            <div className="col-12 card bg-light" style={{ color: 'black' }} >
+                                <div className="card-header">
+                                    <h4 style={{ textAlign: 'center' }}>Choose Your Option:</h4>
+                                </div>
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
-                                <button className="btn btn-info" onClick={this.viewMentorsProtegeStatistics}>View Protege Statistics</button>
+                                <button className="btn btn-outline-dark" onClick={this.viewMentorsProtegeStatistics}>View Protege Statistics</button>
 
                                 {this.state.viewMentorsProtegeStatistics ?
-                                    <div className="col-12 card bg-primary" style={{ color: 'whitesmoke' }}>
+                                    <div className="col-12 card bg-light" style={{ color: 'black' }}>
+                                        <div className="card-header">
                                         <h4 style={{ textAlign: 'center' }}>Protege Statistics:</h4>
+                                        </div>
                                         {this.state.activeMentorDataPopulated ?
-                                            <div>
+                                            <div style={{textAlign: 'center'}}>
                                                 <select id="mentorsDropDownMenu" value={this.state.mentorsProtegeToView} onChange={this.handleInputChange} name="mentorsProtegeToView">
                                                     <option value="none">--Select a Protege--</option>
                                                     {this.state.activeMentorData.proteges.map(protege => (<option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>))}
                                                 </select>
+                                                <br />
                                                 {/* <button>Placeholder</button> */}
-                                                <button onClick={this.viewMentorsProtegeData} className="btn btn-outline-light btn-sm">View Data</button>
+                                                <button onClick={this.viewMentorsProtegeData} className="btn btn-outline-dark btn-sm">View Data</button>
                                                 {/* <button onClick={this.removeMentorFromProtege} className="btn btn-outline-danger btn-sm">Remove Mentor</button> */}
                                             </div>
                                             : null}
 
-                                        <ul>
-                                            <li>Dials:</li>
-                                            <li>Contacts:</li>
-                                            <li>Appointments:</li>
-                                            <li>Sales:</li>
-                                            <li>Sources</li>
-                                            <li>Target Markets</li>
-                                        </ul>
-                                        <ul>
-                                            <li>Types of Leads (Pie Chart)</li>
-                                            <li>Types of Appointments (Pie Chart)</li>
-                                        </ul>
-                                        <ul>
-                                            <li>Contact to Call Ratio</li>
-                                            <li>Appointment to Contact Ratio</li>
-                                            <li>Sales to Appointments Ratio</li>
-                                        </ul>
+                                        {this.state.activeMentorsProtegeDataPopulated ?
+                                            <>
+                                                <ul>
+                                                    <li>Dials: {this.state.activeMentorsProtegeData.dials.length} </li>
+                                                    <li>Contacts: {this.state.contactData.length}
+                                                        {/* {this.state.CPContacts + this.state.BPContacts + this.state.CCContacts + this.state.BCContacts + this.state.CNContacts + this.state.BNContacts + this.state.CSContacts + this.state.BSContacts + this.state.CRContacts + this.state.BRContacts + this.state.CTContacts + this.state.BTContacts } */}
+
+
+                                                    </li>
+                                                    <li>Appointments:{this.state.activeMentorsProtegeData.appointments.length}</li>
+                                                    <li>Sales:</li>
+                                                    {/* <li>Sources: {this.state.activeProtegeData.sources.length}</li> */}
+                                                    {/* <li>Target Markets{this.state.activeProtegeData.targetMarkets.length}</li> */}
+                                                </ul>
+                                                <ul>
+                                                    <li>Contact to Call Ratio: {Math.trunc((this.state.contactData.length / this.state.activeMentorsProtegeData.dials.length) * 100)}%</li>
+                                                    <li>Appointment to Contact Ratio: {Math.trunc((this.state.activeMentorsProtegeData.appointments.length / this.state.contactData.length) * 100)}%</li>
+                                                    <li>Appointments to Dial Ratio: {Math.trunc((this.state.activeMentorsProtegeData.appointments.length / this.state.activeMentorsProtegeData.dials.length) * 100)}%</li>
+                                                    <li>Sales to Appointment Ratio: </li>
+                                                </ul>
+                                                <ul>
+                                                    <li>Types of Leads (Pie Chart):
+                                                    <DataViewerDialChart
+                                                            activeProtegeData={this.state.activeMentorsProtegeData}
+                                                            dialData={this.state.dialData}
+                                                            BCAppts={this.state.BCAppts}
+                                                            BCContacts={this.state.BCContacts}
+                                                            BCDials={this.state.BCDials}
+                                                            BNAppts={this.state.BNAppts}
+                                                            BNContacts={this.state.BNContacts}
+                                                            BNDials={this.state.BNDials}
+                                                            BPAppts={this.state.BPAppts}
+                                                            BPContacts={this.state.BPContacts}
+                                                            BPDials={this.state.BPDials}
+                                                            BRAppts={this.state.BRAppts}
+                                                            BRContacts={this.state.BRContacts}
+                                                            BRDials={this.state.BRDials}
+                                                            BSAppts={this.state.BSAppts}
+                                                            BSContacts={this.state.BSContacts}
+                                                            BSDials={this.state.BSDials}
+                                                            BTAppts={this.state.BTAppts}
+                                                            BTContacts={this.state.BTContacts}
+                                                            BTDials={this.state.BTDials}
+                                                            CCAppts={this.state.CCAppts}
+                                                            CCContacts={this.state.CCContacts}
+                                                            CCDials={this.state.CCDials}
+                                                            CNAppts={this.state.CNAppts}
+                                                            CNContacts={this.state.CNContacts}
+                                                            CNDials={this.state.CNDials}
+                                                            CPAppts={this.state.CPAppts}
+                                                            CPContacts={this.state.CPContacts}
+                                                            CPDials={this.state.CPDials}
+                                                            CRAppts={this.state.CRAppts}
+                                                            CRContacts={this.state.CRContacts}
+                                                            CRDials={this.state.CRDials}
+                                                            CSAppts={this.state.CSAppts}
+                                                            CSContacts={this.state.CSContacts}
+                                                            CSDials={this.state.CSDials}
+                                                            CTAppts={this.state.CTAppts}
+                                                            CTContacts={this.state.CTContacts}
+                                                            CTDials={this.state.CTDials}
+                                                        />
+
+
+                                                    </li>
+
+                                                    <li>Types of Appointments (Pie Chart):
+                                                    <DataViewerAppointmentChart
+                                                            activeProtegeData={this.state.activeMentorsProtegeData}
+                                                            appointments={this.state.appointments}
+                                                            BCAppts={this.state.BCAppts}
+                                                            BCContacts={this.state.BCContacts}
+                                                            BCDials={this.state.BCDials}
+                                                            BNAppts={this.state.BNAppts}
+                                                            BNContacts={this.state.BNContacts}
+                                                            BNDials={this.state.BNDials}
+                                                            BPAppts={this.state.BPAppts}
+                                                            BPContacts={this.state.BPContacts}
+                                                            BPDials={this.state.BPDials}
+                                                            BRAppts={this.state.BRAppts}
+                                                            BRContacts={this.state.BRContacts}
+                                                            BRDials={this.state.BRDials}
+                                                            BSAppts={this.state.BSAppts}
+                                                            BSContacts={this.state.BSContacts}
+                                                            BSDials={this.state.BSDials}
+                                                            BTAppts={this.state.BTAppts}
+                                                            BTContacts={this.state.BTContacts}
+                                                            BTDials={this.state.BTDials}
+                                                            CCAppts={this.state.CCAppts}
+                                                            CCContacts={this.state.CCContacts}
+                                                            CCDials={this.state.CCDials}
+                                                            CNAppts={this.state.CNAppts}
+                                                            CNContacts={this.state.CNContacts}
+                                                            CNDials={this.state.CNDials}
+                                                            CPAppts={this.state.CPAppts}
+                                                            CPContacts={this.state.CPContacts}
+                                                            CPDials={this.state.CPDials}
+                                                            CRAppts={this.state.CRAppts}
+                                                            CRContacts={this.state.CRContacts}
+                                                            CRDials={this.state.CRDials}
+                                                            CSAppts={this.state.CSAppts}
+                                                            CSContacts={this.state.CSContacts}
+                                                            CSDials={this.state.CSDials}
+                                                            CTAppts={this.state.CTAppts}
+                                                            CTContacts={this.state.CTContacts}
+                                                            CTDials={this.state.CTDials}
+                                                        />
+                                                    </li>
+                                                </ul>
+
+
+                                            </>
+                                            : <p style={{textAlign: 'center'}}>Select a Protege to view Data!</p>}
                                     </div>
                                     : null}
 
@@ -3972,10 +4089,10 @@ class ManagerDataViewer extends Component {
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
-                                <button className="btn btn-info" onClick={this.viewMentorSchedule}>View Mentor Schedule</button>
+                                <button className="btn btn-outline-dark" onClick={this.viewMentorSchedule}>View Mentor Schedule</button>
                                 {this.state.viewMentorSchedule ?
 
-                                    <div className="col-12 card bg-primary" style={{ color: 'whitesmoke' }}>
+                                    <div className="col-12 card bg-light" style={{ color: 'black' }}>
                                         <h4 style={{ textAlign: 'center' }}>Mentor Schedule:</h4>
                                     </div>
 
@@ -3986,10 +4103,10 @@ class ManagerDataViewer extends Component {
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
-                                <button className="btn btn-info" onClick={this.viewMentorAppointments}>View Mentor Appointments</button>
+                                <button className="btn btn-outline-dark" onClick={this.viewMentorAppointments}>View Mentor Appointments</button>
                                 {this.state.viewMentorAppointments ?
 
-                                    <div className="col-12 card bg-primary" style={{ color: 'whitesmoke' }}>
+                                    <div className="col-12 card bg-light" style={{ color: 'black' }}>
                                         <h4 style={{ textAlign: 'center' }}>Mentor Appointments:</h4>
                                     </div>
 
@@ -4000,10 +4117,10 @@ class ManagerDataViewer extends Component {
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
-                                <button className="btn btn-info" onClick={this.viewMentorSales}>View Mentor Sales</button>
+                                <button className="btn btn-outline-dark" onClick={this.viewMentorSales}>View Mentor Sales</button>
                                 {this.state.viewMentorSales ?
 
-                                    <div className="col-12 card bg-primary" style={{ color: 'whitesmoke' }}>
+                                    <div className="col-12 card bg-light" style={{ color: 'black' }}>
                                         <h4 style={{ textAlign: 'center' }}>Mentor Sales:</h4>
                                     </div>
 
@@ -4014,10 +4131,10 @@ class ManagerDataViewer extends Component {
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
-                                <button className="btn btn-info" onClick={this.viewMentorWeeklyReport}>View Mentor Weekly Report</button>
+                                <button className="btn btn-outline-dark" onClick={this.viewMentorWeeklyReport}>View Mentor Weekly Report</button>
                                 {this.state.viewMentorWeeklyReport ?
 
-                                    <div className="col-12 card bg-primary" style={{ color: 'whitesmoke' }}>
+                                    <div className="col-12 card bg-light" style={{ color: 'black' }}>
                                         <h4 style={{ textAlign: 'center' }}>Mentor Weekly Report:</h4>
                                     </div>
 
@@ -4028,10 +4145,10 @@ class ManagerDataViewer extends Component {
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
-                                <button className="btn btn-info" onClick={this.viewMentorMonthlyReport}>View Mentor Monthly Report</button>
+                                <button className="btn btn-outline-dark" onClick={this.viewMentorMonthlyReport}>View Mentor Monthly Report</button>
                                 {this.state.viewMentorMonthlyReport ?
 
-                                    <div className="col-12 card bg-primary" style={{ color: 'whitesmoke' }}>
+                                    <div className="col-12 card bg-light" style={{ color: 'black' }}>
                                         <h4 style={{ textAlign: 'center' }}>Mentor Monthly Report:</h4>
                                     </div>
 
@@ -4042,10 +4159,10 @@ class ManagerDataViewer extends Component {
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
-                                <button className="btn btn-info" onClick={this.viewMentorBenchmarkReport}>View Mentor Benchmark Report</button>
+                                <button className="btn btn-outline-dark" onClick={this.viewMentorBenchmarkReport}>View Mentor Benchmark Report</button>
                                 {this.state.viewMentorBenchmarkReport ?
 
-                                    <div className="col-12 card bg-primary" style={{ color: 'whitesmoke' }}>
+                                    <div className="col-12 card bg-light" style={{ color: 'black' }}>
                                         <h4 style={{ textAlign: 'center' }}>Mentor Benchmark Report:</h4>
                                     </div>
 

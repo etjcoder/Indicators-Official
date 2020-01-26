@@ -47,9 +47,9 @@ class DataViewerAppointmentChart extends Component {
 
             <div>
                 <div className="row">
-                <div className="col-12 card" style={{ padding: '50px', backgroundColor: 'rgba(255,255,255,0.9)', color: 'black', textAlign: 'left' }}>
+                <div className="col-12 card" style={{ textAlign: 'center', padding: '50px', backgroundColor: 'rgba(255,255,255,0.9)', color: 'black', textAlign: 'left' }}>
                                     <hr />
-                        <h4 style={{ color: 'whitesmoke' }}>Total Appointments: {this.props.appointments.length} </h4>
+                        <h4 style={{ color: 'black', textAlign: 'center' }}>Total Appointments: {this.props.appointments.length} </h4>
                     </div>
                 </div>
 
