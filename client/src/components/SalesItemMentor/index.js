@@ -164,8 +164,8 @@ class SalesItemMentor extends Component {
                         </p>
                         <p style={{ fontSize: '14px', width: '%', float: 'left' }}>Source: {this.props.saleSource}</p>
                         <p style={{ fontSize: '14px', width: '%', float: 'left' }}>Commissions: ${this.props.saleCommission}</p>
-                        <p style={{ fontSize: '14px', width: '%', float: 'left' }}>Protege (You) Percentage: {this.props.salePercentage * 100}% Payout: ${this.props.salePercentage * this.props.saleCommission}</p>
-                        <p style={{ fontSize: '14px', width: '%', float: 'left' }}>Mentor Percentage: {this.props.saleTaggedPercentage * 100}% Payout: ${this.props.saleTaggedPercentage * this.props.saleCommission}</p>
+                        <p style={{ fontSize: '14px', width: '%', float: 'left' }}>Protege Percentage: {this.props.salePercentage * 100}% Payout: ${this.props.salePercentage * this.props.saleCommission}</p>
+                        <p style={{ fontSize: '14px', width: '%', float: 'left' }}>Mentor (You) Percentage: {this.props.saleTaggedPercentage * 100}% Payout: ${this.props.saleTaggedPercentage * this.props.saleCommission}</p>
                     </div>
 
                     <div style={{ clear: 'both', textAlign: 'center' }}>
@@ -210,7 +210,7 @@ class SalesItemMentor extends Component {
                             <label>Sales Commission [only enter numbers]</label>
                             <input id="saleCommission" className="form-control" value={this.state.saleCommission} onChange={this.handleInputChange} name="saleCommission" />
 
-                            <label>Your Percentage [only enter numbers]</label>
+                            <label>Protege Percentage [only enter numbers]</label>
                             <input id="salePercentage" className="form-control" value={this.state.salePercentage} onChange={this.handleInputChange} name="salePercentage" />
 
                             <label>Mentor Percentage [only enter numbers]</label>

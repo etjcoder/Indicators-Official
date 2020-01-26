@@ -5,6 +5,7 @@ import API from "../../utils/API";
 import MainCalendar from "../../components/MainCalendar"
 import AppointmentItem from "../../components/AppointmentItem"
 import SalesItem from "../../components/SalesItem"
+import SalesItemMentor from "../../components/SalesItemMentor"
 import NoteCreator from "../../components/NoteCreator"
 import NoteViewer from "../../components/NoteViewer"
 import DataViewerDialChart from "../DataViewerDialChart";
@@ -671,7 +672,10 @@ class ManagerDataViewer extends Component {
                         activeMentorData: res.data[0],
                         activeMentorDataPopulated: true
                     })
-                })
+
+                }, setTimeout(() => { this.getMentorAppointmentData() }, 500),
+                    setTimeout(() => { this.gatherMentorSales() }, 500)
+                )
 
         } else {
             this.setState({
@@ -718,6 +722,26 @@ class ManagerDataViewer extends Component {
                 CTDials: 0
             })
         }
+    }
+
+    getMentorAppointmentData = () => {
+        API.getMentorAppts(this.state.activeMentorData._id)
+            .then(res => {
+                console.log(res.data)
+                this.setState({
+                    mentorAppts: res.data
+                })
+            })
+    }
+
+    gatherMentorSales = () => {
+        API.getMentorSales(this.state.activeMentorData._id)
+            .then(res => {
+                this.setState({
+                    mentorSales: res.data
+                })
+            })
+
     }
 
     viewProtegeCallData = () => {
@@ -2496,19 +2520,19 @@ class ManagerDataViewer extends Component {
                     <div className="row">
                         <div className="col-12 card" style={{ padding: '50px', backgroundColor: '', color: 'black', textAlign: 'left' }}>
                             <div className="card-header">
-                            <h3 style={{ textAlign: 'center' }}>Select an Option</h3>
+                                <h3 style={{ textAlign: 'center' }}>Select an Option</h3>
                             </div>
                             {/* <br /> */}
                             {/* <hr />
                             <hr /> */}
-                            <div style={{textAlign: 'center'}}>
-                                <h4 style={{textAlign: 'center'}}>Review Proteges <br /><button className="btn btn-outline-dark" onClick={this.showProtegeAnalytics}>Show/Hide</button></h4>
+                            <div style={{ textAlign: 'center' }}>
+                                <h4 style={{ textAlign: 'center' }}>Review Proteges <br /><button className="btn btn-outline-dark" onClick={this.showProtegeAnalytics}>Show/Hide</button></h4>
                                 {/* <hr /> */}
                                 <br />
-                                <h4 style={{textAlign: 'center'}}>Review Mentors <br /><button className="btn btn-outline-dark" onClick={this.showMentorAnalytics}>Show/Hide</button></h4>
+                                <h4 style={{ textAlign: 'center' }}>Review Mentors <br /><button className="btn btn-outline-dark" onClick={this.showMentorAnalytics}>Show/Hide</button></h4>
                                 {/* <br /> */}
                                 <br />
-                                <h4 style={{textAlign: 'center'}}>Review Global <br /><button className="btn btn-outline-dark" onClick={this.showGlobalAnalytics}>Show/Hide</button></h4>
+                                <h4 style={{ textAlign: 'center' }}>Review Global <br /><button className="btn btn-outline-dark" onClick={this.showGlobalAnalytics}>Show/Hide</button></h4>
                             </div>
                         </div>
                     </div>
@@ -2531,16 +2555,16 @@ class ManagerDataViewer extends Component {
                                 {this.props.allProtegeData ?
                                     <div className="card-body">
                                         {/* <ul> */}
-                                            <p style={{textAlign: 'center'}}>
-                                                <select id="mentorsDropDownMenu" value={this.state.protegeToView} onChange={this.handleInputChange} name="protegeToView">
-                                                    <option value="none">--Select a Protege--</option>
-                                                    {this.props.allProtegeData.map(protege => (<option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>))}
-                                                </select>
-                                                {/* <button>Placeholder</button> */}
-                                                <br />
-                                                <button onClick={this.viewProtegeData} className="btn btn-outline-dark btn-sm">View/Change</button>
-                                                {/* <button onClick={this.removeMentorFromProtege} className="btn btn-outline-danger btn-sm">Remove Mentor</button> */}
-                                            </p>
+                                        <p style={{ textAlign: 'center' }}>
+                                            <select id="mentorsDropDownMenu" value={this.state.protegeToView} onChange={this.handleInputChange} name="protegeToView">
+                                                <option value="none">--Select a Protege--</option>
+                                                {this.props.allProtegeData.map(protege => (<option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>))}
+                                            </select>
+                                            {/* <button>Placeholder</button> */}
+                                            <br />
+                                            <button onClick={this.viewProtegeData} className="btn btn-outline-dark btn-sm">View/Change</button>
+                                            {/* <button onClick={this.removeMentorFromProtege} className="btn btn-outline-danger btn-sm">Remove Mentor</button> */}
+                                        </p>
                                         {/* </ul> */}
                                     </div>
                                     : null}
@@ -3719,11 +3743,11 @@ class ManagerDataViewer extends Component {
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                                 <button className="btn btn-outline-dark" onClick={this.viewProtegeAppointments}>View Appointments</button>
                                 {this.state.viewProtegeAppointments ?
-                                    <div className="card bg-light" style={{ color: 'whitesmoke' }}>
+                                    <div className="card bg-light" style={{ color: 'black' }}>
                                         {/* <h4 style={{ textAlign: 'center' }}>Protege Appointments:</h4> */}
                                         {/* <div className="col-12"> */}
                                         <div className="card bg-light" style={{ textAlign: "center", margin: 20, padding: 40, height: 1000, overflow: 'auto', backgroundColor: 'rgba(114,180,255,0.8)' }}>
-                                            <h4 style={{ color: 'whitesmoke' }}>View {this.state.activeProtegeData.firstName + " " + this.state.activeProtegeData.lastName}'s Appointments:</h4>
+                                            <h4 style={{ color: 'black' }}>View {this.state.activeProtegeData.firstName + " " + this.state.activeProtegeData.lastName}'s Appointments:</h4>
                                             {this.state.appointments ?
                                                 <div className="card-body bg-info" style={{ color: 'darkslategrey', padding: '0px 25px 0px 25px' }}>
                                                     {
@@ -3775,7 +3799,7 @@ class ManagerDataViewer extends Component {
                                             {this.state.sales ? <div className="card-body bg-info" style={{ padding: '0px 25px 0px 25px' }}>
                                                 {this.state.sales.map(sale => (
                                                     <div style={{ marginBottom: '15px' }}>
-                                                        <SalesItem
+                                                        <SalesItemMentor
                                                             key={sale._id}
                                                             id={sale._id}
                                                             saleType={sale.clientType}
@@ -3919,11 +3943,11 @@ class ManagerDataViewer extends Component {
                                 </div>
                                 <div className="card-body">
                                     {this.props.allMentorData ?
-                                        <div style={{textAlign: 'center'}}>
+                                        <div style={{ textAlign: 'center' }}>
                                             <select id="mentorsDropDownMenu" value={this.state.mentorToView} onChange={this.handleInputChange} name="mentorToView">
                                                 <option value="none">--Select a Mentor--</option>
                                                 {this.props.allMentorData.map(mentor => (<option key={mentor._id} value={mentor._id}>{mentor.firstName} {mentor.lastName}</option>))}
-                                            </select> 
+                                            </select>
                                             <br />
                                             {/* <button>Placeholder</button> */}
                                             <button onClick={this.viewMentorData} className="btn btn-outline-dark btn-sm">View/Change</button>
@@ -3951,10 +3975,10 @@ class ManagerDataViewer extends Component {
                                 {this.state.viewMentorsProtegeStatistics ?
                                     <div className="col-12 card bg-light" style={{ color: 'black' }}>
                                         <div className="card-header">
-                                        <h4 style={{ textAlign: 'center' }}>Protege Statistics:</h4>
+                                            <h4 style={{ textAlign: 'center' }}>Protege Statistics:</h4>
                                         </div>
                                         {this.state.activeMentorDataPopulated ?
-                                            <div style={{textAlign: 'center'}}>
+                                            <div style={{ textAlign: 'center' }}>
                                                 <select id="mentorsDropDownMenu" value={this.state.mentorsProtegeToView} onChange={this.handleInputChange} name="mentorsProtegeToView">
                                                     <option value="none">--Select a Protege--</option>
                                                     {this.state.activeMentorData.proteges.map(protege => (<option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>))}
@@ -4078,7 +4102,7 @@ class ManagerDataViewer extends Component {
 
 
                                             </>
-                                            : <p style={{textAlign: 'center'}}>Select a Protege to view Data!</p>}
+                                            : <p style={{ textAlign: 'center' }}>Select a Protege to view Data!</p>}
                                     </div>
                                     : null}
 
@@ -4092,8 +4116,17 @@ class ManagerDataViewer extends Component {
                                 <button className="btn btn-outline-dark" onClick={this.viewMentorSchedule}>View Mentor Schedule</button>
                                 {this.state.viewMentorSchedule ?
 
-                                    <div className="col-12 card bg-light" style={{ color: 'black' }}>
-                                        <h4 style={{ textAlign: 'center' }}>Mentor Schedule:</h4>
+                                    <div className="card bg-light" style={{ color: 'black' }}>
+                                        <div className="card-header">
+                                            <h4 style={{ textAlign: 'center' }}>Mentor Schedule:</h4>
+                                        </div>
+                                        <div className="card-body">
+
+                                            <MainCalendar
+                                                appointments={this.state.mentorAppts}
+                                            />
+
+                                        </div>
                                     </div>
 
                                     : null}
@@ -4106,8 +4139,51 @@ class ManagerDataViewer extends Component {
                                 <button className="btn btn-outline-dark" onClick={this.viewMentorAppointments}>View Mentor Appointments</button>
                                 {this.state.viewMentorAppointments ?
 
-                                    <div className="col-12 card bg-light" style={{ color: 'black' }}>
-                                        <h4 style={{ textAlign: 'center' }}>Mentor Appointments:</h4>
+                                    <div className="card bg-light"
+                                        style={{
+                                            textAlign: 'center',
+                                            margin: 20,
+                                            padding: 40,
+                                            height: 1000,
+                                            overflow: 'auto',
+                                            // backgroundColor: ''
+                                        }}>
+
+                                        <div className="card-header">
+                                            <h4 style={{ textAlign: 'center' }}>{this.state.activeMentorData.firstName + " " + this.state.activeMentorData.lastName} Appointments:</h4>
+                                        </div>
+
+                                        {this.state.mentorAppts ?
+                                            <div className="card-body bg-info"
+                                                style={{
+                                                    color: 'black',
+                                                    padding: '0px 25px 0px 25px'
+                                                }}>
+                                                {
+                                                    this.state.mentorAppts.map(appt => (
+                                                        <AppointmentItem
+                                                            key={appt._id}
+                                                            id={appt._id}
+                                                            apptname={appt.apptname}
+                                                            type={appt.type}
+                                                            held={appt.held}
+                                                            sold={appt.sold}
+                                                            dialer={appt.dialer}
+                                                            source={appt.source}
+                                                            date={appt.date}
+                                                            notes={appt.notes}
+                                                            // username={this.state.user}
+                                                            rerender={this.getMentorAppointmentData}
+                                                            user={this.state.activeMentorData}
+                                                            targetMarket={appt.targetMarket}
+                                                            mentors={this.props.mentors}
+                                                        />
+                                                    ))
+
+                                                }
+                                            </div>
+                                            : null}
+
                                     </div>
 
                                     : null}
@@ -4120,8 +4196,59 @@ class ManagerDataViewer extends Component {
                                 <button className="btn btn-outline-dark" onClick={this.viewMentorSales}>View Mentor Sales</button>
                                 {this.state.viewMentorSales ?
 
-                                    <div className="col-12 card bg-light" style={{ color: 'black' }}>
-                                        <h4 style={{ textAlign: 'center' }}>Mentor Sales:</h4>
+                                    <div className="col-12">
+                                        <div className="card bg-light"
+                                            style={{
+                                                textAlign: 'center',
+                                                margin: 20,
+                                                padding: 40,
+                                                height: 1000,
+                                                overflow: 'auto'
+                                            }}>
+
+                                            <div className="card-header">
+
+                                                <h4 style={{ textAlign: 'center' }}>{this.state.activeMentorData.firstName + " " + this.state.activeMentorData.lastName} Sales:</h4>
+                                            </div>
+
+                                            {this.state.mentorSales ?
+                                                <div className="card-body bg-info"
+                                                    style={{
+                                                        padding: '0px 25px 0px 25px'
+                                                    }}>
+                                                    <div style={{ marginBottom: '15px' }}>
+
+                                                        {this.state.mentorSales.map(sale => (
+                                                            <div style={{ marginBottom: '15px' }}>
+                                                                <SalesItemMentor
+                                                                    key={sale._id}
+                                                                    id={sale._id}
+                                                                    saleType={sale.clientType}
+                                                                    saleName={sale.saleName}
+                                                                    saleSource={sale.leadSource}
+                                                                    saleNotes={sale.saleNotes}
+                                                                    saleDate={sale.saleDate}
+                                                                    saleTargetMkt={sale.targetMarket}
+                                                                    saleCommission={sale.commission}
+                                                                    salePercentage={sale.percentageProtege}
+                                                                    saleTaggedPercentage={sale.percentageMentor}
+                                                                    saleProduct={sale.product}
+                                                                    saleWriter={sale.protege}
+                                                                    saleTagged={sale.mentor}
+                                                                    // mentors={this.state.mentors}
+                                                                    userData={this.state.activeMentorData}
+                                                                />
+
+                                                            </div>
+                                                        ))
+                                                        }
+
+                                                    </div>
+                                                </div>
+                                                : <p>No Sales for this Mentor yet!</p>}
+
+
+                                        </div>
                                     </div>
 
                                     : null}
