@@ -2782,7 +2782,10 @@ class MentorDataViewer extends Component {
                                         this.state.SCTDials + this.state.SBTDials],
                                 }]
                             }} /> */}
-                                    <div className="card" style={{ backgroundColor: 'rgba(255,255,255,0.9)', padding: '5%' }}>
+                                    <div className="card" 
+                                        style={{ 
+                                            backgroundColor: 'rgba(255,255,255,0.9)', 
+                                            padding: '5%' }}>
                                         <h4 style={{ textAlign: 'center' }}>Dials: {this.state.sourceDialData.length}</h4>
                                         <Pie data={{
                                             labels: [
