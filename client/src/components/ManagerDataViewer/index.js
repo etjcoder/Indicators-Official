@@ -287,8 +287,9 @@ class ManagerDataViewer extends Component {
                         appointments: res.data[0].appointments
                     })
                 },
-
+                    this.gatherSales(),
                     this.getContactData(),
+                    this.getProtegeNoteData(),
                     setTimeout(() => {
                         this.parseDials()
                         this.parseAppointments()
@@ -296,6 +297,41 @@ class ManagerDataViewer extends Component {
                 )
 
         }
+    }
+
+    gatherSales = () => {
+        setTimeout(() => {
+            API.getSales(this.state.protegeToView)
+                .then(res => {
+                    this.setState({
+                        sales: res.data
+                    })
+                })
+        })
+    }
+
+    gatherAppointments = () => {
+        API.getUserDataById(this.state.protegeToView)
+            .then(res => {
+                this.setState({
+                    appointments: res.data[0].appointments
+                })
+            })
+    }
+
+    getProtegeNoteData = () => {
+        // console.log(this.state.userData._id)
+
+        API.getProtegeNotes(this.state.protegeToView)
+            .then(res => {
+                console.log(res.data)
+                this.setState({
+                    notes: res.data
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     viewMentorsProtegeData = () => {
@@ -818,19 +854,19 @@ class ManagerDataViewer extends Component {
         }
     }
 
-    getProtegeNoteData = () => {
-        // console.log(this.state.userData._id)
+    // getProtegeNoteData = () => {
+    //     // console.log(this.state.userData._id)
 
-        API.getProtegeNotes(this.state.activeProtegeData._id)
-            .then(res =>
-                this.setState({
-                    taggedNotes: res.data
-                })
-            )
-            .catch(err => {
-                console.log(err)
-            })
-    }
+    //     API.getProtegeNotes(this.state.activeProtegeData._id)
+    //         .then(res =>
+    //             this.setState({
+    //                 taggedNotes: res.data
+    //             })
+    //         )
+    //         .catch(err => {
+    //             console.log(err)
+    //         })
+    // }
 
     viewProtegeProfile = () => {
         if (this.state.viewProtegeProfile === true) {
@@ -2453,7 +2489,7 @@ class ManagerDataViewer extends Component {
                 }}>
 
                 <div className="card-header">
-                    <h2 style={{ textAlign: 'center', padding: '20px', backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', margin: '20px', borderRadius: '10px' }}>A N A L Y T I C S</h2>
+                    <h2 style={{ textAlign: 'center', color: 'black', margin: '20px', borderRadius: '10px' }}>A N A L Y T I C S</h2>
 
                     <div className="row">
                         <div className="col-12 card" style={{ padding: '50px', backgroundColor: 'rgba(255,255,255,0.9)', color: 'black', textAlign: 'left' }}>
@@ -2477,20 +2513,24 @@ class ManagerDataViewer extends Component {
                         {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
                         {this.state.showProtegeAnalyticsViewer ?
-                            <div className="col-12 card" style={{ padding: '50px', backgroundColor: 'rgba(255,255,255,0.9)', color: 'black', textAlign: 'left' }}>
-                                <h4 style={{ textAlign: 'center' }}>Select a Protege</h4>
+                            <div className="card bg-light" style={{ padding: '50px', backgroundColor: 'rgba(255,255,255,0.9)', color: 'black', textAlign: 'left' }}>
+                                <div className="card-header">
+                                    <h4 style={{ textAlign: 'center' }}>Select a Protege</h4>
+                                </div>
                                 {this.props.allProtegeData ?
-                                    <ul>
-                                        <li>
-                                            <select id="mentorsDropDownMenu" value={this.state.protegeToView} onChange={this.handleInputChange} name="protegeToView">
-                                                <option value="none">--Select a Protege--</option>
-                                                {this.props.allProtegeData.map(protege => (<option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>))}
-                                            </select>
-                                            {/* <button>Placeholder</button> */}
-                                            <button onClick={this.viewProtegeData} className="btn btn-outline-dark btn-sm">View/Change</button>
-                                            {/* <button onClick={this.removeMentorFromProtege} className="btn btn-outline-danger btn-sm">Remove Mentor</button> */}
-                                        </li>
-                                    </ul>
+                                    <div className="card-body">
+                                        <ul>
+                                            <li>
+                                                <select id="mentorsDropDownMenu" value={this.state.protegeToView} onChange={this.handleInputChange} name="protegeToView">
+                                                    <option value="none">--Select a Protege--</option>
+                                                    {this.props.allProtegeData.map(protege => (<option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>))}
+                                                </select>
+                                                {/* <button>Placeholder</button> */}
+                                                <button onClick={this.viewProtegeData} className="btn btn-outline-dark btn-sm">View/Change</button>
+                                                {/* <button onClick={this.removeMentorFromProtege} className="btn btn-outline-danger btn-sm">Remove Mentor</button> */}
+                                            </li>
+                                        </ul>
+                                    </div>
                                     : null}
                             </div>
                             : null}
@@ -2498,9 +2538,10 @@ class ManagerDataViewer extends Component {
                         {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                         {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                         {this.state.activeProtegeDataPopulated ?
-                            <div className="col-12 card" style={{ padding: '50px', backgroundColor: 'rgba(255,255,255,0.9)', color: 'black', textAlign: 'left' }}>
-                                <h4 style={{ textAlign: 'center' }}>Select what you'd like to view</h4>
-
+                            <div className="card" style={{ color: 'black', textAlign: 'left' }}>
+                                <div className="card-header">
+                                    <h4 style={{ textAlign: 'center' }}>Select what you'd like to view</h4>
+                                </div>
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
@@ -3647,13 +3688,17 @@ class ManagerDataViewer extends Component {
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                                 <button className="btn btn-outline-dark" onClick={this.viewProtegeSchedule}>View Schedule</button>
                                 {this.state.viewProtegeSchedule ?
-                                    <div className="col-12">
-                                        <div className="card bg-light" style={{ color: 'darkslategrey' }}>
-                                            <h4 style={{ textAlign: 'center', color: '' }}>Protege Schedule:</h4>
-                                            <MainCalendar
-                                                appointments={this.state.appointments}
-                                            />
+                                    <div>
+                                        <div className="col-lg-3"></div>
+                                        <div className="col-lg-6">
+                                            <div className="card bg-light" style={{ color: 'darkslategrey' }}>
+                                                <h4 style={{ textAlign: 'center', color: '' }}>Protege Schedule:</h4>
+                                                <MainCalendar
+                                                    appointments={this.state.appointments}
+                                                />
+                                            </div>
                                         </div>
+                                        <div className="col-lg-3"></div>
                                     </div>
                                     : null}
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
@@ -3665,34 +3710,34 @@ class ManagerDataViewer extends Component {
                                     <div className="card bg-light" style={{ color: 'whitesmoke' }}>
                                         {/* <h4 style={{ textAlign: 'center' }}>Protege Appointments:</h4> */}
                                         {/* <div className="col-12"> */}
-                                            <div className="card bg-light" style={{ textAlign: "center", margin: 20, padding: 40, height: 1000, overflow: 'auto', backgroundColor: 'rgba(114,180,255,0.8)' }}>
-                                                <h4 style={{ color: 'whitesmoke' }}>View {this.state.activeProtegeData.firstName + " " + this.state.activeProtegeData.lastName}'s Appointments:</h4>
-                                                {this.state.appointments ?
-                                                    <div style={{ color: 'darkslategrey' }}>
-                                                        {
-                                                            this.state.appointments.map(appt => (
-                                                                <AppointmentItem
-                                                                    key={appt._id}
-                                                                    id={appt._id}
-                                                                    apptname={appt.apptname}
-                                                                    type={appt.type}
-                                                                    held={appt.held}
-                                                                    sold={appt.sold}
-                                                                    dialer={appt.dialer}
-                                                                    source={appt.source}
-                                                                    date={appt.date}
-                                                                    notes={appt.notes}
-                                                                    // username={this.state.user}
-                                                                    rerender={this.gatherAppointments}
-                                                                    user={this.state.activeProtegeData}
-                                                                    targetMarket={appt.targetMarket}
+                                        <div className="card bg-light" style={{ textAlign: "center", margin: 20, padding: 40, height: 1000, overflow: 'auto', backgroundColor: 'rgba(114,180,255,0.8)' }}>
+                                            <h4 style={{ color: 'whitesmoke' }}>View {this.state.activeProtegeData.firstName + " " + this.state.activeProtegeData.lastName}'s Appointments:</h4>
+                                            {this.state.appointments ?
+                                                <div className="card-body bg-info" style={{ color: 'darkslategrey', padding: '0px 25px 0px 25px' }}>
+                                                    {
+                                                        this.state.appointments.map(appt => (
+                                                            <AppointmentItem
+                                                                key={appt._id}
+                                                                id={appt._id}
+                                                                apptname={appt.apptname}
+                                                                type={appt.type}
+                                                                held={appt.held}
+                                                                sold={appt.sold}
+                                                                dialer={appt.dialer}
+                                                                source={appt.source}
+                                                                date={appt.date}
+                                                                notes={appt.notes}
+                                                                // username={this.state.user}
+                                                                rerender={this.gatherAppointments}
+                                                                user={this.state.activeProtegeData}
+                                                                targetMarket={appt.targetMarket}
                                                                 mentors={this.props.mentors}
-                                                                />
-                                                            ))
-                                                        }
-                                                    </div>
-                                                    : null}
-                                            </div>
+                                                            />
+                                                        ))
+                                                    }
+                                                </div>
+                                                : null}
+                                        </div>
                                         {/* </div> */}
                                     </div>
                                     : null}
@@ -3702,13 +3747,22 @@ class ManagerDataViewer extends Component {
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                                 <button className="btn btn-outline-dark" onClick={this.viewProtegeSales}>View Sales</button>
                                 {this.state.viewProtegeSales ?
-                                    <div className="col-12 card bg-primary" style={{ color: 'whitesmoke' }}>
-                                        <h4 style={{ textAlign: 'center' }}>Protege Sales:</h4>
-                                        <div className="col-12">
-                                            <div className="card" style={{ textAlign: "center", margin: 20, padding: 40, height: 1000, overflow: 'auto', backgroundColor: 'rgba(114,180,255,0.8)' }}>
-                                                <h4 style={{ color: 'whitesmoke' }}>Your Sales</h4>
-                                                {this.state.activeProtegeData.sales ? <div>
-                                                    {this.state.activeProtegeData.sales.map(sale => (
+                                    <div className="col-12">
+
+                                        <div className="card bg-light"
+                                            style={{
+                                                textAlign: "center",
+                                                margin: 20,
+                                                padding: 40,
+                                                height: 1000,
+                                                overflow: 'auto'
+                                            }}>
+                                            <div className="card-header">
+                                                <h4 style={{ color: '' }}>{this.state.activeProtegeData.firstName + " " + this.state.activeProtegeData.lastName}  Sales: </h4>
+                                            </div>
+                                            {this.state.sales ? <div className="card-body bg-info" style={{ padding: '0px 25px 0px 25px' }}>
+                                                {this.state.sales.map(sale => (
+                                                    <div style={{ marginBottom: '15px' }}>
                                                         <SalesItem
                                                             key={sale._id}
                                                             id={sale._id}
@@ -3727,11 +3781,13 @@ class ManagerDataViewer extends Component {
                                                             // mentors={this.state.mentors}
                                                             userData={this.state.activeProtegeData}
                                                         />
-                                                    ))
-                                                    } </div>
-                                                    : null}
-                                            </div>
+
+                                                    </div>
+                                                ))
+                                                } </div>
+                                                : null}
                                         </div>
+
                                     </div>
                                     : null}
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
@@ -3740,33 +3796,53 @@ class ManagerDataViewer extends Component {
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                                 <button className="btn btn-outline-dark" onClick={this.viewProtegeNotes}>View Notes</button>
                                 {this.state.viewProtegeNotes ?
-                                    <div className="col-12 card bg-primary" style={{ color: 'whitesmoke' }}>
-                                        <h4 style={{ textAlign: 'center' }}>Protege Notes:</h4>
-                                        <div id="note-container">
-                                            <div className="row">
-                                                <div className="col card" style={{ padding: '50px', backgroundColor: 'rgba(77,160,255,0.8)', color: 'whitesmoke' }}>
-                                                    <h1 style={{ textAlign: 'center' }}> Notes</h1>
-                                                    <NoteCreator
-                                                        userData={this.state.activeProtegeData}
-                                                        userID={this.state.activeProtegeData._id}
-                                                        proteges={this.props.proteges}
-                                                        mentors={this.props.mentors}
-                                                    />
-                                                    <hr />
-                                                    <NoteViewer
-                                                        userData={this.state.activeProtegeData}
-                                                        userID={this.state.activeProtegeData._id}
-                                                        proteges={this.props.proteges}
-                                                        mentors={this.props.mentors}
-                                                        tagNotes={this.state.taggedNotes}
-                                                        postNotes={this.state.activeProtegeData.notes}
-                                                    />
-                                                </div>
+                                    <div className="card bg-light" style={{ color: 'black' }}>
+                                        <div className="card-header">
+                                            <h4 style={{ textAlign: 'center' }}>Protege Notes:</h4>
+                                        </div>
+
+
+
+                                        <div className="card bg-light" style={{ padding: '50px', color: 'black', marginTop: '25px' }}>
+                                            {/* <div className="card-header">
+                                                <h1 style={{ textAlign: 'center' }}> Create Notes</h1>
+                                            </div> */}
+                                            <div className="card-body">
+                                                <NoteCreator
+                                                    userData={this.state.activeProtegeData}
+                                                    userID={this.state.activeProtegeData._id}
+                                                    proteges={this.props.proteges}
+                                                    mentors={this.props.mentors}
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="card bg-light" style={{ padding: '50px', color: 'black', marginTop: '25px' }}>
+                                            <div className="card-header">
+                                                <h3 style={{ textAlign: 'center' }}>{this.state.activeProtegeData.firstName + " " + this.state.activeProtegeData.lastName} Tagged Notes</h3>
+                                            </div>
+
+                                            <div className="card-body">
+
+                                                <NoteViewer
+                                                    userData={this.state.activeProtegeData}
+                                                    userID={this.state.activeProtegeData._id}
+                                                    proteges={this.props.proteges}
+                                                    mentors={this.props.mentors}
+                                                    taggedNotes={this.state.notes}
+                                                    postNotes={this.state.activeProtegeData.notes}
+                                                    height={'600px'}
+                                                />
+
                                             </div>
                                         </div>
                                     </div>
+
+
                                     : null}
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+
+
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}

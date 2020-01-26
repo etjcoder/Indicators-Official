@@ -138,7 +138,7 @@ class NoteViewer extends Component {
 
                             ))
 
-                            : <p style={{ color: 'whitesmoke', textAlign: 'center' }}>No notes yet!</p>}
+                            : <p style={{ color: 'black', textAlign: 'center' }}>No notes yet!</p>}
                     </div>
                 </div>
 
