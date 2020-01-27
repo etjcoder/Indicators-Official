@@ -7,6 +7,7 @@ router.route("/protege")
 
 router.route("/protege/:id")
     .get(supervisorController.findProtege)
+    .put(supervisorController.updateProtege)
 
 router.route("/user/:id")
     .get(supervisorController.findUser)

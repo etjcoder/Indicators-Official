@@ -98,6 +98,18 @@ module.exports = {
             .then(dbProtege => res.json(dbProtege))
             .catch(err => res.status(422).json(err))
     },
+    updateProtege: function (req, res) {
+        db.Protege
+            .findByIdAndUpdate({ _id: req.params.id}, {
+                imageURL: req.body.imageURL,
+                homeTown: req.body.homeTown,
+                almaMater: req.body.almaMater,
+                firstName: req.body.firstName,
+                lastName: req.body.lastName
+            })
+            .then(dbProtege => res.json(dbProtege))
+            .catch(err => res.status(422).json(err))
+    },
     findMentorNotes: function (req, res) {
         db.Note
             .find({$or: [{ noteTagged: req.params.id}, {noteAuthor: req.params.id}]})

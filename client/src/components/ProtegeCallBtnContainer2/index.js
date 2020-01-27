@@ -7,7 +7,7 @@ import "./style.css"
 import SourceSelector from '../SourceSelector';
 import TargetMarketSelector from '../TargetMarketSelector'
 import AppointmentCreator from '../AppointmentCreator'
-
+import moment from 'moment';
 
 class ProtegeCallBtnContainer extends Component {
 
@@ -41,6 +41,8 @@ class ProtegeCallBtnContainer extends Component {
 
     componentDidMount() {
         // console.log("Loaded Protege Page")
+        console.log("Current Date: " + moment(new Date()).format("YYYY-MM-DD"))
+        console.log("7 Days Prior: " + moment().subtract(6, 'd').format("YYYY-MM-DD"))
 
     }
 
@@ -302,7 +304,8 @@ class ProtegeCallBtnContainer extends Component {
             level: this.state.levelOfDial,
             source: this.props.source,
             targetMarket: this.props.targetMarket,
-            mentorTagged: this.state.mentorTagged
+            mentorTagged: this.state.mentorTagged,
+            dialDate: moment(new Date()).format("YYYY-MM-DD")
         }).then(res =>
             cogoToast.info("Logged call!")
         ).catch(err => console.log())

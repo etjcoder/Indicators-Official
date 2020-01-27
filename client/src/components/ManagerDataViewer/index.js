@@ -23,6 +23,8 @@ import DataViewerNaturalPerformance from '../DataViewerNaturalPerformance';
 import DataViewerSuspectPerformance from '../DataViewerSuspectPerformance';
 import DataViewerReferralPerformance from '../DataViewerReferralPerformance';
 import DataViewerTargetPerformance from '../DataViewerTargetPerformance';
+import moment from "moment";
+import cogoToast from 'cogo-toast';
 
 class ManagerDataViewer extends Component {
     constructor(props) {
@@ -73,6 +75,60 @@ class ManagerDataViewer extends Component {
     }
 
     componentDidMount = () => {
+        console.log("Current Date: " + moment(new Date()).format("YYYY-MM-DD"))
+        console.log("7 Days Prior: " + moment().subtract(6, 'd').format("YYYY-MM-DD"))
+    }
+
+    updateProtege = () => {
+        console.log(this.state.updatedProtegeFirstName);
+        console.log(this.state.updatedProtegeLastName)
+        console.log(this.state.updatedProtegeAlmaMater)
+        console.log(this.state.updatedProtegeHomeTown)
+        console.log(this.state.updatedProtegeProfilePicture)
+        console.log(this.state.activeProtegeData._id)
+
+
+
+    }
+
+    assignProtegeFields = () => {
+
+        this.setState({
+            updatedProtegeFirstName: this.state.activeProtegeData.firstName,
+            updatedProtegeLastName: this.state.activeProtegeData.lastName,
+            updatedProtegeProfilePicture: this.state.activeProtegeData.imageURL,
+            updatedProtegeAlmaMater: this.state.activeProtegeData.almaMater,
+            updatedProtegeHomeTown: this.state.activeProtegeData.homeTown,
+            updatedProtegeStartQuarter:
+                this.state.activeProtegeData.startQuarter
+        })
+
+    }
+
+    submitProtegeUpdate = () => {
+
+        console.log("New First Name: " + this.state.updatedProtegeFirstName)
+        console.log("New Last Name: " + this.state.updatedProtegeLastName)
+        console.log("New Profile Image: " + this.state.updatedProtegeProfilePicture)
+        console.log("New Protege Alma Mater: " + this.state.updatedProtegeAlmaMater)
+        console.log("New Protege Home Town: " + this.state.updatedProtegeHomeTown)
+
+        // this.updateProtege();
+
+        setTimeout(() => {
+
+            API.updateProtege(this.state.activeProtegeData._id, {
+                almaMater: this.state.updatedProtegeAlmaMater,
+                homeTown: this.state.updatedProtegeHomeTown,
+                imageURL: this.state.updatedProtegeProfilePicture,
+                firstName: this.state.updatedProtegeFirstName,
+                lastName: this.state.updatedProtegeLastName
+            }).then(res => {
+                cogoToast.info("Updated Protege!")
+                console.log("Completed Post")
+            }).catch(err => console.log(err))
+
+        }, 1000)
 
     }
 
@@ -240,6 +296,11 @@ class ManagerDataViewer extends Component {
             this.setState({
                 activeProtegeDataPopulated: false,
                 activeProtegeData: "",
+                updatedProtegeFirstName: "",
+                updatedProtegeLastName: "",
+                updatedProtegeProfilePicture: "",
+                updatedProfileHomeTown: "",
+                updatedProfileAlmaMater: "",
                 appointments: "",
                 contactData: "",
                 dialData: "",
@@ -309,15 +370,9 @@ class ManagerDataViewer extends Component {
         }
     }
 
-    assignProtegeFields = () => {
 
-        this.setState({
-            updatedProtegeFirstName: this.state.activeProtegeData.firstName,
-            updatedProtegeLastName: this.state.activeProtegeData.lastName,
-            updatedProtegeCurrentMentors: this.state.activeProtegeData.allMentors,
-            updatedProtegesProfilePicture: ""
-        })
-    }
+
+
 
     gatherSales = () => {
         setTimeout(() => {
@@ -2499,11 +2554,7 @@ class ManagerDataViewer extends Component {
         })
     }
 
-    submitProtegeUpdate = () => {
 
-        console.log("New First Name: " + this.state.updatedProtegeFirstName)
-        console.log("New Last Name: " + this.state.updatedProtegeLastName)
-    }
 
 
     // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3921,6 +3972,21 @@ class ManagerDataViewer extends Component {
                                                 <label>Last Name</label>
                                                 {/* <p>{this.state.activeProtegeData.lastName}</p> */}
                                                 <input type="text" value={this.state.updatedProtegeLastName} onChange={this.handleInputChange} name="updatedProtegeLastName" />
+                                                <br />
+                                                <label>Alma Mater</label>
+                                                <input type="text" value={this.state.updatedProtegeAlmaMater} onChange={this.handleInputChange} name="updatedProtegeAlmaMater" />
+                                                <br />
+                                                <label>Home Town</label>
+                                                <input type="text" value={this.state.updatedProtegeHomeTown} onChange={this.handleInputChange} name="updatedProtegeHomeTown" />
+                                                <br />
+                                                <label>Profile Image</label>
+                                                <input type="text" value={this.state.updatedProtegeProfilePicture} onChange={this.handleInputChange}
+                                                    name="updatedProtegeProfilePicture" />
+                                                <br />
+                                                {/* <label>Starting Quarter</label>
+                                                <input type="text" value={this.state.updatedProtegeStartQuarter}
+                                                name="updatedProtegeStartQuarter" />
+                                                <br /> */}
                                             </form>
                                             <button className="btn btn-outline-dark" onClick={this.submitProtegeUpdate}>Update Protege</button>
                                         </div>

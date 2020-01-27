@@ -50,6 +50,9 @@ export default {
     createUser: function(data) {
         return axios.post("/api/supervisor/protege", data)
     },
+    updateProtege: function(id, data) {
+        return axios.put("/api/supervisor/protege/" + id, data)
+    },
     createMentor: function(data) {
         return axios.post("/api/supervisor/mentor", data)
     },

@@ -14,6 +14,14 @@ var ProtegeSchema = new Schema({
         required: true,
         unique: true
     },
+    imageURL: {
+        type: String,
+        required: false
+    },
+    startQuarter: {
+        type: String,
+        required: false
+    },
     firstName: {
         type: String,
         required: false,

@@ -41,6 +41,10 @@ var DialSchema = new Schema({
         type: String,
         required: true,
         default: "none"
+    },
+    dialDate: {
+        type: Date,
+        required: false
     }
 }, {
     timestamps: {
