@@ -1,4 +1,5 @@
 const db = require("../models");
+var moment = require("moment");
 
 module.exports = {
 
@@ -6,6 +7,16 @@ module.exports = {
         console.log("Finding Dials...")
         db.Dial
             .find()
+            .then(dbDial => res.json(dbDial))
+            .catch(err => res.status(422).json(err))
+    },
+    findWeeklyDialsById: function(req, res) {
+        console.log("Finding weekly dials...")
+        db.Dial
+            .find({
+                dialer: req.params.id,
+                created_at: {$gt: moment().subtract(6, 'd').toISOString(), $lte: moment().toISOString() }
+            })
             .then(dbDial => res.json(dbDial))
             .catch(err => res.status(422).json(err))
     },

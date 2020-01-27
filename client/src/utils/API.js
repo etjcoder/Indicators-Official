@@ -8,6 +8,9 @@ export default {
     getDials: function() {
         return axios.get("/api/dials/session")
     },
+    getWeeklyDials: function(id) {
+        return axios.get("/api/dials/weekly/" + id)
+    },
     logCall: function(id, data) {
         return axios.post("/api/dials/session/" + id, data)
     },

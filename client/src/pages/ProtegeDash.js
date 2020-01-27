@@ -17,6 +17,7 @@ import SalesCreator from "../components/SalesCreator"
 import SalesItem from "../components/SalesItem"
 // import SideNavPage from "../components/SideNavPage"
 import MainCalendar from "../components/MainCalendar"
+import moment from 'moment'
 
 
 class ProtegeDash extends Component {
@@ -117,6 +118,24 @@ class ProtegeDash extends Component {
     //////////////////////    Data Querying Functions        //////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////
+
+    getWeeklyDials = () => {
+
+        API.getWeeklyDials(this.state.userData._id, {
+            todayDate: moment(new Date()).format("YYYY-MM-DD"),
+            weekPrior: moment().subtract(6, 'd').format("YYYY-MM-DD")
+        })
+            .then(res => {
+                console.log(res.data)
+                this.setState({
+                    weeklyDials: res.data
+                })
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
 
     getUserData = () => {
         // console.log(this.props.user.uid)
@@ -644,6 +663,8 @@ class ProtegeDash extends Component {
                 <div className="container" style={{ backgroundColor: 'transparent' }}>
                     <div className="row">
                         <div className="col-12">
+
+                            <button onClick={this.getWeeklyDials} className="btn btn-lg btn-warning">Get Weekly Dial Data</button>
                             {/* <div className="row" style={{ height: '80%' }}>
                                 <div className="col" style={{ textAlign: 'center', padding: '50px' }}>
                                     <div className="jumbotron-custom-p" style={{

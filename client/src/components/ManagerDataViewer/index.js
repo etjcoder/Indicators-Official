@@ -75,7 +75,7 @@ class ManagerDataViewer extends Component {
     }
 
     componentDidMount = () => {
-        console.log("Current Date: " + moment(new Date()).format("YYYY-MM-DD"))
+        console.log("Current Date: " + moment(new Date()).format())
         console.log("7 Days Prior: " + moment().subtract(6, 'd').format("YYYY-MM-DD"))
     }
 

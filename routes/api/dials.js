@@ -8,6 +8,9 @@ router.route("/session")
 router.route("/session/:id")
     .post(dialController.createDial)
 
+router.route("/weekly/:id")
+    .get(dialController.findWeeklyDialsById)
+
 router.route("/contacts/:id")
     .get(dialController.findContacts)
 
