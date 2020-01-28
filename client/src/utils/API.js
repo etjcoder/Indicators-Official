@@ -11,6 +11,15 @@ export default {
     getWeeklyDials: function(id) {
         return axios.get("/api/dials/weekly/" + id)
     },
+    getWeeklyAppts: function(id) {
+        return axios.get("/api/appointments/weekly/" + id)
+    },
+    getMonthlyDials: function(id) {
+        return axios.get("/api/dials/monthly/" + id)
+    },
+    getMonthlyAppts: function(id) {
+        return axios.get("/api/appointments/monthly/" + id)
+    },
     logCall: function(id, data) {
         return axios.post("/api/dials/session/" + id, data)
     },

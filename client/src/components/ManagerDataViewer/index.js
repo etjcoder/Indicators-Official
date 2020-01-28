@@ -370,7 +370,539 @@ class ManagerDataViewer extends Component {
         }
     }
 
+    handleScopeChange = (e) => {
+        e.preventDefault()
+        console.log(this.state.scopeSelected)
+        if (this.state.scopeSelected === "viewAll") {
+            this.parseDials()
+            this.parseContacts()
+            this.parseAppointments()
+        } else if (this.state.scopeSelected === "viewWeekly") {
+            this.getWeeklyDials()
+            this.getWeeklyAppts()
+        } else if (this.state.scopeSelected === "viewMonthly") {
+            this.getMonthlyDials()
+            this.getMonthlyAppts()
+        }
 
+    }
+
+
+
+    getWeeklyDials = () => {
+        API.getWeeklyDials(this.state.protegeToView)
+            .then(res => {
+                console.log(res.data)
+                this.setState({
+                    weeklyDials: res.data
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+            setTimeout(() => {
+                this.parseWeeklyDials()
+                this.parseWeeklyContacts()
+            }, 1000)
+    }
+
+    getMonthlyDials = () => {
+        API.getMonthlyDials(this.state.protegeToView)
+            .then(res => {
+                console.log(res.data)
+                this.setState({
+                    monthlyDials: res.data
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+            
+            setTimeout(() => {
+                this.parseMonthlyDials()
+                this.parseMonthlyContacts()
+            }, 1000)
+    }
+
+    getMonthlyAppts = () => {
+        API.getMonthlyAppts(this.state.protegeToView)
+            .then(res => {
+                console.log(res.data)
+                this.setState({
+                    monthlyAppts: res.data
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+            setTimeout(() => {
+                this.parseMonthlyAppts()
+            }, 1000)
+    }
+
+
+    getWeeklyAppts = () => {
+        API.getWeeklyAppts(this.state.protegeToView)
+            .then(res => {
+                this.setState({
+                    weeklyAppts: res.data
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+            setTimeout(() => {
+                this.parseWeeklyAppointments()
+            }, 1000)
+    }
+    
+    parseWeeklyDials = () => {
+        // console.log("Parsing Dials: " + this.state.dialData)
+        var wCPD = 0;
+        var wBPD = 0;
+        var wCCD = 0;
+        var wBCD = 0;
+        var wCND = 0;
+        var wBND = 0;
+        var wCSD = 0;
+        var wBSD = 0;
+        var wCRD = 0;
+        var wBRD = 0;
+        var wCTD = 0;
+        var wBTD = 0;
+        for (var i = 0; i < this.state.weeklyDials.length; i++) {
+            // console.log(this.state.dialData[i])
+            switch (this.state.weeklyDials[i].type) {
+                case "CPD":
+                    wCPD++
+                    break;
+                case "BPD":
+                    wBPD++
+                    break;
+                case "CCD":
+                    wCCD++
+                    break;
+                case "BCD":
+                    wBCD++
+                    break;
+                case "CND":
+                    wCND++
+                    break;
+                case "BND":
+                    wBND++
+                    break;
+                case "CSD":
+                    wCSD++
+                    break;
+                case "BSD":
+                    wBSD++
+                    break;
+                case "CRD":
+                    wCRD++
+                    break;
+                case "BRD":
+                    wBRD++
+                    break;
+                case "CTD":
+                    wCTD++
+                    break;
+                case "BTD":
+                    wBTD++
+                    break;
+                default:
+                    break;
+            }
+        }
+        this.setState({
+            CPDials: wCPD,
+            BPDials: wBPD,
+            CCDials: wCCD,
+            BCDials: wBCD,
+            CNDials: wCND,
+            BNDials: wBND,
+            CSDials: wCSD,
+            BSDials: wBSD,
+            CRDials: wCRD,
+            BRDials: wBRD,
+            CTDials: wCTD,
+            BTDials: wBTD
+        })
+    }
+
+    parseMonthlyDials = () => {
+        // console.log("Parsing Dials: " + this.state.dialData)
+        var wCPD = 0;
+        var wBPD = 0;
+        var wCCD = 0;
+        var wBCD = 0;
+        var wCND = 0;
+        var wBND = 0;
+        var wCSD = 0;
+        var wBSD = 0;
+        var wCRD = 0;
+        var wBRD = 0;
+        var wCTD = 0;
+        var wBTD = 0;
+        for (var i = 0; i < this.state.monthlyDials.length; i++) {
+            // console.log(this.state.dialData[i])
+            switch (this.state.monthlyDials[i].type) {
+                case "CPD":
+                    wCPD++
+                    break;
+                case "BPD":
+                    wBPD++
+                    break;
+                case "CCD":
+                    wCCD++
+                    break;
+                case "BCD":
+                    wBCD++
+                    break;
+                case "CND":
+                    wCND++
+                    break;
+                case "BND":
+                    wBND++
+                    break;
+                case "CSD":
+                    wCSD++
+                    break;
+                case "BSD":
+                    wBSD++
+                    break;
+                case "CRD":
+                    wCRD++
+                    break;
+                case "BRD":
+                    wBRD++
+                    break;
+                case "CTD":
+                    wCTD++
+                    break;
+                case "BTD":
+                    wBTD++
+                    break;
+                default:
+                    break;
+            }
+        }
+        this.setState({
+            CPDials: wCPD,
+            BPDials: wBPD,
+            CCDials: wCCD,
+            BCDials: wBCD,
+            CNDials: wCND,
+            BNDials: wBND,
+            CSDials: wCSD,
+            BSDials: wBSD,
+            CRDials: wCRD,
+            BRDials: wBRD,
+            CTDials: wCTD,
+            BTDials: wBTD
+        })
+    }
+
+
+
+
+    parseWeeklyContacts = () => {
+        // console.log("Parsing Contacts: " + this.state.contactData)
+        var wCPC = 0;
+        var wBPC = 0;
+        var wCCC = 0;
+        var wBCC = 0;
+        var wCNC = 0;
+        var wBNC = 0;
+        var wCSC = 0;
+        var wBSC = 0;
+        var wCRC = 0;
+        var wBRC = 0;
+        var wCTC = 0;
+        var wBTC = 0;
+        for (var i = 0; i < this.state.weeklyDials.length; i++) {
+
+            if (this.state.weeklyDials[i].contact === true) {
+            switch (this.state.weeklyDials[i].type) {
+                case "CPD":
+                    wCPC++
+                    break;
+                case "BPD":
+                    wBPC++
+                    break;
+                case "CCD":
+                    wCCC++
+                    break;
+                case "BCD":
+                    wBCC++
+                    break;
+                case "CND":
+                    wCNC++
+                    break;
+                case "BND":
+                    wBNC++
+                    break;
+                case "CSD":
+                    wCSC++
+                    break;
+                case "BSD":
+                    wBSC++
+                    break;
+                case "CRD":
+                    wCRC++
+                    break;
+                case "BRD":
+                    wBRC++
+                    break;
+                case "CTD":
+                    wCTC++
+                    break;
+                case "BTD":
+                    wBTC++
+                    break;
+                default:
+                    break;
+            }
+        } 
+        }
+        this.setState({
+            CPContacts: wCPC,
+            BPContacts: wBPC,
+            CCContacts: wCCC,
+            BCContacts: wBCC,
+            CNContacts: wCNC,
+            BNContacts: wBNC,
+            CSContacts: wCSC,
+            BSContacts: wBSC,
+            CRContacts: wCRC,
+            BRContacts: wBRC,
+            CTContacts: wCTC,
+            BTContacts: wBTC
+        })
+    }
+
+    parseMonthlyContacts = () => {
+        // console.log("Parsing Contacts: " + this.state.contactData)
+        var wCPC = 0;
+        var wBPC = 0;
+        var wCCC = 0;
+        var wBCC = 0;
+        var wCNC = 0;
+        var wBNC = 0;
+        var wCSC = 0;
+        var wBSC = 0;
+        var wCRC = 0;
+        var wBRC = 0;
+        var wCTC = 0;
+        var wBTC = 0;
+        for (var i = 0; i < this.state.monthlyDials.length; i++) {
+
+            if (this.state.monthlyDials[i].contact === true) {
+            switch (this.state.monthlyDials[i].type) {
+                case "CPD":
+                    wCPC++
+                    break;
+                case "BPD":
+                    wBPC++
+                    break;
+                case "CCD":
+                    wCCC++
+                    break;
+                case "BCD":
+                    wBCC++
+                    break;
+                case "CND":
+                    wCNC++
+                    break;
+                case "BND":
+                    wBNC++
+                    break;
+                case "CSD":
+                    wCSC++
+                    break;
+                case "BSD":
+                    wBSC++
+                    break;
+                case "CRD":
+                    wCRC++
+                    break;
+                case "BRD":
+                    wBRC++
+                    break;
+                case "CTD":
+                    wCTC++
+                    break;
+                case "BTD":
+                    wBTC++
+                    break;
+                default:
+                    break;
+            }
+        } 
+        }
+        this.setState({
+            CPContacts: wCPC,
+            BPContacts: wBPC,
+            CCContacts: wCCC,
+            BCContacts: wBCC,
+            CNContacts: wCNC,
+            BNContacts: wBNC,
+            CSContacts: wCSC,
+            BSContacts: wBSC,
+            CRContacts: wCRC,
+            BRContacts: wBRC,
+            CTContacts: wCTC,
+            BTContacts: wBTC
+        })
+    }
+
+    parseWeeklyAppointments = () => {
+        // console.log("Parsing appointments: " + this.state.appointments)
+        var wCPA = 0;
+        var wBPA = 0;
+        var wCCA = 0;
+        var wBCA = 0;
+        var wCNA = 0;
+        var wBNA = 0;
+        var wCSA = 0;
+        var wBSA = 0;
+        var wCRA = 0;
+        var wBRA = 0;
+        var wCTA = 0;
+        var wBTA = 0;
+        for (var i = 0; i < this.state.weeklyAppts.length; i++) {
+            // console.log(this.state.appointments[i])
+            switch (this.state.weeklyAppts[i].type) {
+                case "CPD":
+                    wCPA++
+                    break;
+                case "BPD":
+                    wBPA++
+                    break;
+                case "CCD":
+                    wCCA++
+                    break;
+                case "BCD":
+                    wBCA++
+                    break;
+                case "CND":
+                    wCNA++
+                    break;
+                case "BND":
+                    wBNA++
+                    break;
+                case "CSD":
+                    wCSA++
+                    break;
+                case "BSD":
+                    wBSA++
+                    break;
+                case "CRD":
+                    wCRA++
+                    break;
+                case "BRD":
+                    wBRA++
+                    break;
+                case "CTD":
+                    wCTA++
+                    break;
+                case "BTD":
+                    wBTA++
+                    break;
+                default:
+                    break;
+            }
+        }
+        this.setState({
+            CPAppts: wCPA,
+            BPAppts: wBPA,
+            CCAppts: wCCA,
+            BCAppts: wBCA,
+            CNAppts: wCNA,
+            BNAppts: wBNA,
+            CSAppts: wCSA,
+            BSAppts: wBSA,
+            CRAppts: wCRA,
+            BRAppts: wBRA,
+            CTAppts: wCTA,
+            BTAppts: wBTA
+        })
+    }
+
+    parseMonthlyAppts = () => {
+        // console.log("Parsing appointments: " + this.state.appointments)
+        var wCPA = 0;
+        var wBPA = 0;
+        var wCCA = 0;
+        var wBCA = 0;
+        var wCNA = 0;
+        var wBNA = 0;
+        var wCSA = 0;
+        var wBSA = 0;
+        var wCRA = 0;
+        var wBRA = 0;
+        var wCTA = 0;
+        var wBTA = 0;
+        for (var i = 0; i < this.state.monthlyAppts.length; i++) {
+            // console.log(this.state.appointments[i])
+            switch (this.state.monthlyAppts[i].type) {
+                case "CPD":
+                    wCPA++
+                    break;
+                case "BPD":
+                    wBPA++
+                    break;
+                case "CCD":
+                    wCCA++
+                    break;
+                case "BCD":
+                    wBCA++
+                    break;
+                case "CND":
+                    wCNA++
+                    break;
+                case "BND":
+                    wBNA++
+                    break;
+                case "CSD":
+                    wCSA++
+                    break;
+                case "BSD":
+                    wBSA++
+                    break;
+                case "CRD":
+                    wCRA++
+                    break;
+                case "BRD":
+                    wBRA++
+                    break;
+                case "CTD":
+                    wCTA++
+                    break;
+                case "BTD":
+                    wBTA++
+                    break;
+                default:
+                    break;
+            }
+        }
+        this.setState({
+            CPAppts: wCPA,
+            BPAppts: wBPA,
+            CCAppts: wCCA,
+            BCAppts: wBCA,
+            CNAppts: wCNA,
+            BNAppts: wBNA,
+            CSAppts: wCSA,
+            BSAppts: wBSA,
+            CRAppts: wCRA,
+            BRAppts: wBRA,
+            CTAppts: wCTA,
+            BTAppts: wBTA
+        })
+    }
 
 
 
@@ -2554,6 +3086,9 @@ class ManagerDataViewer extends Component {
         })
     }
 
+    
+
+
 
 
 
@@ -2649,6 +3184,8 @@ class ManagerDataViewer extends Component {
                         {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                         {this.state.activeProtegeDataPopulated ?
                             <div className="card" style={{ color: 'black', textAlign: 'left' }}>
+
+
                                 <div className="card-header">
                                     <h4 style={{ textAlign: 'center' }}>Select what you'd like to view</h4>
                                 </div>
@@ -2658,9 +3195,34 @@ class ManagerDataViewer extends Component {
                                 {/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                                 <button className="btn btn-outline-dark" onClick={this.viewProtegeCallData}>View Call Data</button>
                                 {this.state.viewProtegeCallData ?
-                                    <div className="col-12 card" style={{ padding: '50px', backgroundColor: 'rgba(255,255,255,0.9)', color: 'black', textAlign: 'left' }}>
-                                        <h4 style={{ textAlign: 'center' }}>Protege Call Data:</h4>
+                                    <div className="card" style={{ padding: '50px', backgroundColor: 'rgba(255,255,255,0.9)', color: 'black', textAlign: 'left' }}>
+                                        <div className="card-header">
+                                            <h4 style={{ textAlign: 'center' }}>Protege Call Data:</h4>
 
+
+                                            <h5 style={{ textAlign: 'center', color: 'black' }}> <i>Please select your Scope (Defaulted to All)</i></h5>
+
+                                            <form>
+
+                                                <hr />
+
+
+                                                <div style={{ width: '50%', marginLeft: 'auto', marginRight: 'auto', textAlign: 'center', backgroundColor: '' }}>
+
+                                                    <select style={{}} id="protegeSelector" value={this.state.scopeSelected} onChange={this.handleInputChange} type="text" name="scopeSelected" className="customDropManager" placeholder="Choose your protege">
+                                                        <option value={"none"}>---------------</option>
+                                                        <option value={"viewAll"}>All Data</option>
+                                                        <option value={"viewWeekly"}>Weekly Data</option>
+                                                        <option value={"viewMonthly"}>Monthly Data</option>
+                                                    </select>
+                                                    <br />
+                                                    <button style={{}} onClick={this.handleScopeChange} className="btn btn-sm btn-outline-dark">Apply</button>
+
+                                                    <br />
+
+                                                </div>
+                                            </form>
+                                        </div>
                                         {/* Type of Call Breakdown */}
 
                                         <form>
@@ -3471,7 +4033,7 @@ class ManagerDataViewer extends Component {
 
 
 
-                                                        <p style={{ textAlign: 'center' }}>Total Dials: {this.state.sourceDialData.length}</p>
+                                                        <p style={{ textAlign: 'center' }}>All Time Dials: {this.state.sourceDialData.length}</p>
 
                                                         {/* <div className="card" style={{ backgroundColor: 'rgba(255,255,255,0.8)', padding: '5%' }}> */}
                                                         <Pie data={{

@@ -7,13 +7,24 @@ class ProtegeViewContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            activeScope: "viewAll"
         }
     }
 
     componentDidMount = () => {
         this.runRefresh()
         this.getContactData()
+        this.setState({
+            allDials: this.props.protege.dials.length,
+            allAppts: this.props.protege.appointments.length
+        })
+        // this.getWeeklyAppts()
+        // this.getWeeklyDials()
+        // this.getMonthlyDials()
+        // this.getMonthlyAppts()
     }
+
+
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -23,7 +34,41 @@ class ProtegeViewContainer extends Component {
     };
 
     runRefresh = () => {
-        this.interval = setInterval(() => this.props.rerender(), 5000);
+        this.interval = setInterval(() => {
+            this.props.rerender()
+            if (this.props.scope === "viewWeekly" && this.state.activeScope !== "viewWeekly") {
+                this.getWeeklyAppts()
+                this.getWeeklyDials()
+                this.setState({
+                    activeScope: "viewWeekly",
+                    monthlyDials: "",
+                    monthlyAppts: ""
+                })
+            } else if (this.props.scope === "viewMonthly" && this.state.activeScope !== "viewMonthly") {
+                this.getMonthlyDials()
+                this.getMonthlyAppts()
+                this.setState({
+                    activeScope: "viewMonthly",
+                    weeklyDials: "",
+                    weeklyAppts: ""
+                })
+            } else if (this.props.scope === "viewAll" && this.state.activeScope !== "viewAll") {
+                this.setState({
+                    allDials: this.props.protege.dials.length,
+                    allAppts: this.props.protege.appointments.length,
+                    activeScope: "viewAll",
+                    weeklyAppts: "",
+                    weeklyDials: "",
+                    monthlyAppts: "",
+                    monthlyDials: ""
+                })
+            } else {
+                console.log("no change")
+            }
+
+        }, 5000);
+
+
     }
 
     componentWillUnmount = () => {
@@ -50,9 +95,187 @@ class ProtegeViewContainer extends Component {
     }
 
 
+
+
     ////////////////////////////////////////////////////////////////////////
     ///////////////////////Data Parsing ////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////
+
+    getWeeklyDials = () => {
+        API.getWeeklyDials(this.props.protege._id)
+            .then(res => {
+                this.setState({
+                    weeklyDials: res.data
+                })
+            })
+
+        setTimeout(() => { this.parseWeeklyContacts() }, 500)
+    }
+
+    getWeeklyAppts = () => {
+        API.getWeeklyAppts(this.props.protege._id)
+            .then(res => {
+                this.setState({
+                    weeklyAppts: res.data
+                })
+            })
+    }
+
+    parseWeeklyContacts = () => {
+        // console.log("Parsing Contacts: " + this.state.weeklyDials)
+        var wCPC = 0;
+        var wBPC = 0;
+        var wCCC = 0;
+        var wBCC = 0;
+        var wCNC = 0;
+        var wBNC = 0;
+        var wCSC = 0;
+        var wBSC = 0;
+        var wCRC = 0;
+        var wBRC = 0;
+        var wCTC = 0;
+        var wBTC = 0;
+        if (this.state.weeklyDials) {
+            for (var i = 0; i < this.state.weeklyDials.length; i++) {
+
+                if (this.state.weeklyDials[i].contact === true) {
+                    switch (this.state.weeklyDials[i].type) {
+                        case "CPD":
+                            wCPC++
+                            break;
+                        case "BPD":
+                            wBPC++
+                            break;
+                        case "CCD":
+                            wCCC++
+                            break;
+                        case "BCD":
+                            wBCC++
+                            break;
+                        case "CND":
+                            wCNC++
+                            break;
+                        case "BND":
+                            wBNC++
+                            break;
+                        case "CSD":
+                            wCSC++
+                            break;
+                        case "BSD":
+                            wBSC++
+                            break;
+                        case "CRD":
+                            wCRC++
+                            break;
+                        case "BRD":
+                            wBRC++
+                            break;
+                        case "CTD":
+                            wCTC++
+                            break;
+                        case "BTD":
+                            wBTC++
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+        this.setState({
+            weeklyContacts: wCPC + wBPC + wCCC + wBCC + wCNC + wCSC + wBSC + wCRC + wBRC + wCTC + wBTC
+        })
+    }
+
+
+    getMonthlyDials = () => {
+        API.getMonthlyDials(this.props.protege._id)
+            .then(res => {
+                this.setState({
+                    monthlyDials: res.data
+                })
+            })
+
+        setTimeout(() => { this.parseMonthlyContacts() }, 500)
+    }
+
+    getMonthlyAppts = () => {
+        API.getMonthlyAppts(this.props.protege._id)
+            .then(res => {
+                this.setState({
+                    monthlyAppts: res.data
+                })
+            })
+    }
+
+    parseMonthlyContacts = () => {
+        // console.log("Parsing Contacts: " + this.state.weeklyDials)
+        var wCPC = 0;
+        var wBPC = 0;
+        var wCCC = 0;
+        var wBCC = 0;
+        var wCNC = 0;
+        var wBNC = 0;
+        var wCSC = 0;
+        var wBSC = 0;
+        var wCRC = 0;
+        var wBRC = 0;
+        var wCTC = 0;
+        var wBTC = 0;
+        if (this.state.monthlyDials) {
+            for (var i = 0; i < this.state.monthlyDials.length; i++) {
+
+                if (this.state.monthlyDials[i].contact === true) {
+                    switch (this.state.monthlyDials[i].type) {
+                        case "CPD":
+                            wCPC++
+                            break;
+                        case "BPD":
+                            wBPC++
+                            break;
+                        case "CCD":
+                            wCCC++
+                            break;
+                        case "BCD":
+                            wBCC++
+                            break;
+                        case "CND":
+                            wCNC++
+                            break;
+                        case "BND":
+                            wBNC++
+                            break;
+                        case "CSD":
+                            wCSC++
+                            break;
+                        case "BSD":
+                            wBSC++
+                            break;
+                        case "CRD":
+                            wCRC++
+                            break;
+                        case "BRD":
+                            wBRC++
+                            break;
+                        case "CTD":
+                            wCTC++
+                            break;
+                        case "BTD":
+                            wBTC++
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+        this.setState({
+            monthlyContacts: wCPC + wBPC + wCCC + wBCC + wCNC + wCSC + wBSC + wCRC + wBRC + wCTC + wBTC
+        })
+    }
+
+
+
 
     getContactData = () => {
         setTimeout(() => {
@@ -154,50 +377,50 @@ class ProtegeViewContainer extends Component {
         var BRC = 0;
         var CTC = 0;
         var BTC = 0;
-        if (this.state.contactData) { 
-        for (var i = 0; i < this.state.contactData.length; i++) {
-            switch (this.state.contactData[i].type) {
-                case "CPD":
-                    CPC++
-                    break;
-                case "BPD":
-                    BPC++
-                    break;
-                case "CCD":
-                    CCC++
-                    break;
-                case "BCD":
-                    BCC++
-                    break;
-                case "CND":
-                    CNC++
-                    break;
-                case "BND":
-                    BNC++
-                    break;
-                case "CSD":
-                    CSC++
-                    break;
-                case "BSD":
-                    BSC++
-                    break;
-                case "CRD":
-                    CRC++
-                    break;
-                case "BRD":
-                    BRC++
-                    break;
-                case "CTD":
-                    CTC++
-                    break;
-                case "BTD":
-                    BTC++
-                    break;
-                default:
-                    break;
+        if (this.state.contactData) {
+            for (var i = 0; i < this.state.contactData.length; i++) {
+                switch (this.state.contactData[i].type) {
+                    case "CPD":
+                        CPC++
+                        break;
+                    case "BPD":
+                        BPC++
+                        break;
+                    case "CCD":
+                        CCC++
+                        break;
+                    case "BCD":
+                        BCC++
+                        break;
+                    case "CND":
+                        CNC++
+                        break;
+                    case "BND":
+                        BNC++
+                        break;
+                    case "CSD":
+                        CSC++
+                        break;
+                    case "BSD":
+                        BSC++
+                        break;
+                    case "CRD":
+                        CRC++
+                        break;
+                    case "BRD":
+                        BRC++
+                        break;
+                    case "CTD":
+                        CTC++
+                        break;
+                    case "BTD":
+                        BTC++
+                        break;
+                    default:
+                        break;
+                }
             }
         }
-    }
         this.setState({
             CPContacts: CPC,
             BPContacts: BPC,
@@ -222,60 +445,116 @@ class ProtegeViewContainer extends Component {
     render() {
         return (
 
-            <div className="card bg-light" style={{ padding: '', borderRadius: '5px', textAlign: 'center' }}>
-                <div className="card-body">
-                    <div className="card-header">
-                        <img class="rounded-circle z-depth-2" alt="100x100" src="https://www.mountaineers.org/images/placeholder-images/placeholder-contact-profile/image_preview" style={{ width: '100px', height: '100px' }} />
-                        <br />
+            <div>
+                {this.props.protege.dials.length > 1 ?
+                    <div className="card bg-light" style={{ padding: '', borderRadius: '5px', textAlign: 'center' }}>
+                        <div className="card-body">
+                            <div className="card-header">
 
-                        <h5 style={{ color: '' }}>{this.props.protege.firstName} {this.props.protege.lastName}</h5>
+                                {this.props.protege.imageURL ? <img class="rounded-circle z-depth-2" alt="100x100" src={this.props.protege.imageURL} style={{ width: '100px', height: '100px' }} />
+                                    : <img class="rounded-circle z-depth-2" alt="100x100" src="https://www.mountaineers.org/images/placeholder-images/placeholder-contact-profile/image_preview" style={{ width: '100px', height: '100px' }} />
+                                }
+
+                                <br />
+
+                                <h5 style={{ color: '' }}>{this.props.protege.firstName} {this.props.protege.lastName}</h5>
+                            </div>
+                            <div className="card-body">
+                                <ul className="list-group list-group-flush">
+                                    {this.state.allDials ?
+                                        <>
+
+
+
+                                            <li className="list-group-item">Dials:<br /><h3>
+
+                                                {this.state.activeScope === "viewAll" ? <span> {this.state.allDials}</span> : null}
+                                                {this.state.activeScope === "viewWeekly" ? <> {this.state.weeklyDials ? <span> {this.state.weeklyDials.length}</span> : null} </> : null}
+                                                {this.state.activeScope === "viewMonthly" ? <> {this.state.monthlyDials ? <span> {this.state.monthlyDials.length}</span> : null} </> : null}
+                                            </h3></li>
+
+
+                                        </>
+                                        : null}
+                                    <li className="list-group-item">Contacts:<br /> {this.state.CPContacts ?
+                                        <div>
+                                            <h3>
+
+                                                {this.state.activeScope === "viewAll" ? <span> {this.state.totalContacts}</span> : null}
+                                                {this.state.activeScope === "viewWeekly" ? <> {this.state.weeklyContacts > 0 ? <span> {this.state.weeklyContacts}</span> : 0} </> : null}
+                                                {this.state.activeScope === "viewMonthly" ? <> {this.state.monthlyContacts > 0 ? <span> {this.state.monthlyContacts}</span> : 0} </> : null}
+                                            </h3>
+                                            <h6>Contact Ratio:  </h6>
+                                            {this.state.activescope === "viewAll" ?
+
+                                                <h5>{Math.trunc((this.state.totalContacts / this.state.allDials) * 100)}%</h5>
+
+                                                : null}
+
+                                            {this.state.activeScope === "viewWeekly" ?
+                                                <>
+                                                    {this.state.weeklyContacts ?
+                                                        <h5>{Math.trunc((this.state.weeklyContacts / this.state.weeklyDials.length) * 100)}%</h5>
+                                                        : null}
+                                                </>
+                                                : null}
+
+                                            {this.state.activeScope === "viewMonthly" ?
+                                                <>
+                                                    {this.state.monthlyContacts ?
+                                                        <h5>{Math.trunc((this.state.monthlyContacts / this.state.monthlyDials.length) * 100)}%</h5>
+                                                        : null}
+                                                </>
+                                                : null}
+
+
+                                        </div>
+
+                                        : <h3>0</h3>}
+
+                                    </li>
+                                    {this.state.allAppts ?
+                                        <li className="list-group-item">Appointments: <br /><h3>
+
+                                            {this.state.activeScope === "viewAll" ? <span> {this.state.allAppts}</span> : null}
+                                            {this.state.activeScope === "viewWeekly" ? <> {this.state.weeklyAppts ? <span> {this.state.weeklyAppts.length}</span> : null} </> : null}
+                                            {this.state.activeScope === "viewMonthly" ? <> {this.state.monthlyAppts ? <span> {this.state.monthlyAppts.length}</span> : null}  </> : null}
+                                        </h3>
+
+                                            {this.state.totalContacts ?
+                                                <div>
+                                                    <h6>Appointment per Contact:</h6>
+
+
+                                                    {this.state.activeScope === "viewAll" ? <span>
+                                                        <h5>{Math.trunc((this.state.allAppts / this.state.totalContacts) * 100)}%</h5>
+
+
+                                                    </span> : null}
+                                                    {this.state.activeScope === "viewWeekly" ? <span>
+
+                                                        {this.state.weeklyAppts ? <h5> {this.state.weeklyAppts.length > 0 ? <> {Math.trunc((this.state.weeklyAppts.length / this.state.weeklyContacts) * 100)}% </> : 0 }</h5> : null}
+
+                                                    </span> : null}
+                                                    {this.state.activeScope === "viewMonthly" ? <span>
+
+                                                        {this.state.monthlyAppts ? <h5> {this.state.monthlyAppts.length > 0 ? <> {Math.trunc((this.state.monthlyAppts.length / this.state.monthlyContacts) * 100)}% </> : 0 }</h5> : null}
+
+                                                    </span> : null}
+                                                </div>
+                                                : null}
+                                        </li>
+                                        : null}
+
+                                </ul>
+                            </div>
+
+                            {/* <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
+                        </div>
+                        {/* <p></p> */}
+
                     </div>
-                    <div className="card-body">
-                        <ul className="list-group list-group-flush">
-                            <li className="list-group-item">Dials:<br /><h3>{this.props.protege.dials.length}</h3></li>
-                            <li className="list-group-item">Contacts:<br /> {this.state.CPContacts ?
-                                <div>
-                                    <h3>
-                                        {/* {
-                                        this.state.CPContacts +
-                                        this.state.BPContacts +
-                                        this.state.CCContacts +
-                                        this.state.BCContacts +
-                                        this.state.CNContacts +
-                                        this.state.BNContacts +
-                                        this.state.CSContacts +
-                                        this.state.BSContacts +
-                                        this.state.CRContacts +
-                                        this.state.BRContacts +
-                                        this.state.CTContacts +
-                                        this.state.BTContacts
-                                    }  */}
-                                        {this.state.totalContacts}
-                                    </h3>
-                                    <h6>Contact Ratio:  </h6>
-                                    <h5>{Math.trunc(this.state.totalContacts / this.props.protege.dials.length * 100)}%</h5>
-                                </div>
-
-                                : <h3>0</h3>}
-
-                            </li>
-                            <li className="list-group-item">Appointments: <br /><h3>{this.props.protege.appointments.length}</h3>
-
-                                {this.state.totalContacts ?
-                                    <div>
-                                        <h6>Appointment per Contact:</h6>
-                                        <h5>{Math.trunc(this.props.protege.appointments.length / this.state.totalContacts * 100)}%</h5>
-                                    </div>
-                                    : 0}
-                            </li>
-
-                        </ul>
-                    </div>
-
-                    {/* <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
-                </div>
-                {/* <p></p> */}
-
+                    : null}
             </div>
 
         )

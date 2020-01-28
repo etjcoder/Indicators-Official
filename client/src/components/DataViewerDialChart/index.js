@@ -50,7 +50,14 @@ class DataViewerDialChart extends Component {
                         <div className="" style={{ textAlign: 'center' }}>
                             <h3><u>Protege: {this.props.activeProtegeData.firstName} {this.props.activeProtegeData.lastName} </u></h3>
                             <hr />
-                            <h4>Total Dials: {this.props.dialData.length}</h4>
+                            <h4>Total Dials: {
+                                this.props.CPDials + this.props.BPDials +
+                                this.props.CCDials + this.props.BCDials +
+                                this.props.CNDials + this.props.BNDials +
+                                this.props.CSDials + this.props.BSDials +
+                                this.props.CRDials + this.props.BRDials +
+                                this.props.CTDials + this.props.BTDials
+                            }</h4>
                         </div>
                     </div>
 

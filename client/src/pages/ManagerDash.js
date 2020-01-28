@@ -338,6 +338,13 @@ class ManagerDash extends Component {
                         <h3 style={{ textAlign: 'center', color: 'white' }}>You're on the Mentor Dashboard!</h3>
 
                     </div> */}
+                    <div className="row">
+                        <div className="col-12">
+                            <div className="jumbotron" style={{ height: '100px', backgroundColor: 'rgba(0,0,0,0.5)' }}>
+                                <h3 style={{ textAlign: 'center', color: 'white' }}>Welcome!</h3>
+                            </div>
+                        </div>
+                    </div>
 
                     <div className="row">
                         <div className="col-1"></div>
@@ -346,30 +353,51 @@ class ManagerDash extends Component {
 
 
                             {this.state.showProtegeActivity ?
-                                <div>
-                                    {this.state.proteges ?
-                                        <div className="row">
-                                            {this.state.proteges.map(protege => (
-                                        
-                                            
-                                                <div key={protege._id} className="col-lg-4" style={{marginTop: '25px'}}>
+                                <div className="card" style={{ padding: '5px', backgroundColor: 'rgba(0,0,0,0)' }}>
+                                    <div className="card-header">
+                                        <div style={{ width: '50%', marginLeft: 'auto', marginRight: 'auto', textAlign: 'center', backgroundColor: '' }}>
+                                            <h4 style={{ color: 'white' }}>Please Select your Scope</h4>
+                                            <select style={{}} id="protegeSelector" value={this.state.sessionScopeSelected} onChange={this.handleInputChange} type="text" name="sessionScopeSelected" className="customDropMentor" placeholder="">
+                                                <option value={"none"}>---------------</option>
+                                                <option value={"viewAll"}>All Data</option>
+                                                <option value={"viewWeekly"}>Weekly Data</option>
+                                                <option value={"viewMonthly"}>Monthly Data</option>
+                                            </select>
+                                            <br />
+                                            <button style={{}} onClick={this.handleScopeChange} className="btn btn-sm btn-outline-light">Apply</button>
 
-                                                    <ProtegeViewContainer
-                                                        key={protege._id}
-                                                        protege={protege}
-                                                        rerender={this.gatherProteges}
-                                                    />
-                                                </div>
-                                                // <div key={protege._id} className="col-md-4">
-                                                //     <p>{protege.firstName} {protege.lastName}</p>
-                                                //     <p>Dials:{protege.dials.length}</p>
-                                                //     <p>Contacts:    </p>
-                                                //     <p>Appointments:{protege.appointments.length}</p>
-                                                // </div>
-                                            ))
-                                            }
+                                            <br />
+
                                         </div>
-                                        : null}
+                                    </div>
+                                    <div>
+                                        {this.state.proteges ?
+                                            <div className="row">
+                                                {this.state.proteges.map(protege => (
+                                                    <>
+                                                        {protege.dials.length > 1 ?
+                                                            <div key={protege._id} className="col-lg-4" style={{ marginTop: '25px' }}>
+
+                                                                <ProtegeViewContainer
+                                                                    key={protege._id}
+                                                                    protege={protege}
+                                                                    rerender={this.gatherProteges}
+                                                                    scope={this.state.sessionScopeSelected}
+                                                                />
+                                                            </div>
+                                                            : null}
+                                                    </>
+                                                    // <div key={protege._id} className="col-md-4">
+                                                    //     <p>{protege.firstName} {protege.lastName}</p>
+                                                    //     <p>Dials:{protege.dials.length}</p>
+                                                    //     <p>Contacts:    </p>
+                                                    //     <p>Appointments:{protege.appointments.length}</p>
+                                                    // </div>
+                                                ))
+                                                }
+                                            </div>
+                                            : null}
+                                    </div>
                                 </div>
 
 
@@ -412,7 +440,7 @@ class ManagerDash extends Component {
 
                                                 {this.state.showCreateProtegeForm ?
                                                     <div className="card-body">
-                                                        <CreateProtegeForm mentors={this.state.mentors}/>
+                                                        <CreateProtegeForm mentors={this.state.mentors} />
                                                     </div>
                                                     : null}
 

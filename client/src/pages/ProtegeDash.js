@@ -134,6 +134,31 @@ class ProtegeDash extends Component {
             .catch(err => {
                 console.log(err);
             })
+
+
+        setTimeout(() => {
+            this.parseWeeklyDials()
+            this.parseWeeklyContacts()
+
+        }, 1500)
+    }
+
+    getWeeklyAppts = () => {
+        API.getWeeklyAppts(this.state.userData._id)
+            .then(res => {
+                console.log(res.data)
+                this.setState({
+                    weeklyAppts: res.data
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+        setTimeout(() => {
+            this.parseWeeklyAppointments()
+        }, 1000)
+
     }
 
 
@@ -148,9 +173,12 @@ class ProtegeDash extends Component {
                 }), this.getContactData(),
                 this.gatherAppointments(),
                 this.gatherSales(),
+
                 setTimeout(() => {
                     this.parseDials()
                     this.getProtegeNoteData()
+                    this.getWeeklyDials()
+                    this.getWeeklyAppts()
                 }, 500)
             )
     }
@@ -478,6 +506,228 @@ class ProtegeDash extends Component {
         })
     }
 
+    parseWeeklyAppointments = () => {
+        // console.log("Parsing appointments: " + this.state.appointments)
+        var wCPA = 0;
+        var wBPA = 0;
+        var wCCA = 0;
+        var wBCA = 0;
+        var wCNA = 0;
+        var wBNA = 0;
+        var wCSA = 0;
+        var wBSA = 0;
+        var wCRA = 0;
+        var wBRA = 0;
+        var wCTA = 0;
+        var wBTA = 0;
+        for (var i = 0; i < this.state.weeklyAppts.length; i++) {
+            // console.log(this.state.appointments[i])
+            switch (this.state.weeklyAppts[i].type) {
+                case "CPD":
+                    wCPA++
+                    break;
+                case "BPD":
+                    wBPA++
+                    break;
+                case "CCD":
+                    wCCA++
+                    break;
+                case "BCD":
+                    wBCA++
+                    break;
+                case "CND":
+                    wCNA++
+                    break;
+                case "BND":
+                    wBNA++
+                    break;
+                case "CSD":
+                    wCSA++
+                    break;
+                case "BSD":
+                    wBSA++
+                    break;
+                case "CRD":
+                    wCRA++
+                    break;
+                case "BRD":
+                    wBRA++
+                    break;
+                case "CTD":
+                    wCTA++
+                    break;
+                case "BTD":
+                    wBTA++
+                    break;
+                default:
+                    break;
+            }
+        }
+        this.setState({
+            wCPAppts: wCPA,
+            wBPAppts: wBPA,
+            wCCAppts: wCCA,
+            wBCAppts: wBCA,
+            wCNAppts: wCNA,
+            wBNAppts: wBNA,
+            wCSAppts: wCSA,
+            wBSAppts: wBSA,
+            wCRAppts: wCRA,
+            wBRAppts: wBRA,
+            wCTAppts: wCTA,
+            wBTAppts: wBTA
+        })
+    }
+
+    parseWeeklyDials = () => {
+        // console.log("Parsing Dials: " + this.state.dialData)
+        var wCPD = 0;
+        var wBPD = 0;
+        var wCCD = 0;
+        var wBCD = 0;
+        var wCND = 0;
+        var wBND = 0;
+        var wCSD = 0;
+        var wBSD = 0;
+        var wCRD = 0;
+        var wBRD = 0;
+        var wCTD = 0;
+        var wBTD = 0;
+        for (var i = 0; i < this.state.weeklyDials.length; i++) {
+            // console.log(this.state.dialData[i])
+            switch (this.state.weeklyDials[i].type) {
+                case "CPD":
+                    wCPD++
+                    break;
+                case "BPD":
+                    wBPD++
+                    break;
+                case "CCD":
+                    wCCD++
+                    break;
+                case "BCD":
+                    wBCD++
+                    break;
+                case "CND":
+                    wCND++
+                    break;
+                case "BND":
+                    wBND++
+                    break;
+                case "CSD":
+                    wCSD++
+                    break;
+                case "BSD":
+                    wBSD++
+                    break;
+                case "CRD":
+                    wCRD++
+                    break;
+                case "BRD":
+                    wBRD++
+                    break;
+                case "CTD":
+                    wCTD++
+                    break;
+                case "BTD":
+                    wBTD++
+                    break;
+                default:
+                    break;
+            }
+        }
+        this.setState({
+            wCPDials: wCPD,
+            wBPDials: wBPD,
+            wCCDials: wCCD,
+            wBCDials: wBCD,
+            wCNDials: wCND,
+            wBNDials: wBND,
+            wCSDials: wCSD,
+            wBSDials: wBSD,
+            wCRDials: wCRD,
+            wBRDials: wBRD,
+            wCTDials: wCTD,
+            wBTDials: wBTD
+        })
+    }
+
+    parseWeeklyContacts = () => {
+        // console.log("Parsing Contacts: " + this.state.contactData)
+        var wCPC = 0;
+        var wBPC = 0;
+        var wCCC = 0;
+        var wBCC = 0;
+        var wCNC = 0;
+        var wBNC = 0;
+        var wCSC = 0;
+        var wBSC = 0;
+        var wCRC = 0;
+        var wBRC = 0;
+        var wCTC = 0;
+        var wBTC = 0;
+        for (var i = 0; i < this.state.weeklyDials.length; i++) {
+
+            if (this.state.weeklyDials[i].contact === true) {
+                switch (this.state.weeklyDials[i].type) {
+                    case "CPD":
+                        wCPC++
+                        break;
+                    case "BPD":
+                        wBPC++
+                        break;
+                    case "CCD":
+                        wCCC++
+                        break;
+                    case "BCD":
+                        wBCC++
+                        break;
+                    case "CND":
+                        wCNC++
+                        break;
+                    case "BND":
+                        wBNC++
+                        break;
+                    case "CSD":
+                        wCSC++
+                        break;
+                    case "BSD":
+                        wBSC++
+                        break;
+                    case "CRD":
+                        wCRC++
+                        break;
+                    case "BRD":
+                        wBRC++
+                        break;
+                    case "CTD":
+                        wCTC++
+                        break;
+                    case "BTD":
+                        wBTC++
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        this.setState({
+            wCPContacts: wCPC,
+            wBPContacts: wBPC,
+            wCCContacts: wCCC,
+            wBCContacts: wBCC,
+            wCNContacts: wCNC,
+            wBNContacts: wBNC,
+            wCSContacts: wCSC,
+            wBSContacts: wBSC,
+            wCRContacts: wCRC,
+            wBRContacts: wBRC,
+            wCTContacts: wCTC,
+            wBTContacts: wBTC
+        })
+    }
+
+
     ///////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////// Show / Hide Modules Functions///////////////////////////////////////
@@ -618,6 +868,540 @@ class ProtegeDash extends Component {
     }
 
 
+    handleScopeChange = (e) => {
+        e.preventDefault()
+        console.log(this.state.scopeSelected)
+        if (this.state.scopeSelected === "viewAll") {
+            this.parseDials()
+            this.parseContacts()
+            this.parseAppointments()
+        } else if (this.state.scopeSelected === "viewWeekly") {
+            this.getWeeklyDials()
+            this.getWeeklyAppts()
+        } else if (this.state.scopeSelected === "viewMonthly") {
+            this.getMonthlyDials()
+            this.getMonthlyAppts()
+        }
+    }
+
+
+    getWeeklyDials = () => {
+        API.getWeeklyDials(this.state.userData._id)
+            .then(res => {
+                console.log(res.data)
+                this.setState({
+                    weeklyDials: res.data
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+        setTimeout(() => {
+            this.parseWeeklyDials()
+            this.parseWeeklyContacts()
+        }, 1000)
+    }
+
+    getMonthlyDials = () => {
+        API.getMonthlyDials(this.state.userData._id)
+            .then(res => {
+                console.log(res.data)
+                this.setState({
+                    monthlyDials: res.data
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+        setTimeout(() => {
+            this.parseMonthlyDials()
+            this.parseMonthlyContacts()
+        }, 1000)
+    }
+
+    getMonthlyAppts = () => {
+        API.getMonthlyAppts(this.state.userData._id)
+            .then(res => {
+                console.log(res.data)
+                this.setState({
+                    monthlyAppts: res.data
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+        setTimeout(() => {
+            this.parseMonthlyAppts()
+        }, 1000)
+    }
+
+
+    getWeeklyAppts = () => {
+        API.getWeeklyAppts(this.state.userData._id)
+            .then(res => {
+                this.setState({
+                    weeklyAppts: res.data
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+        setTimeout(() => {
+            this.parseWeeklyAppointments()
+        }, 1000)
+    }
+
+
+    parseWeeklyDials = () => {
+        // console.log("Parsing Dials: " + this.state.dialData)
+        var wCPD = 0;
+        var wBPD = 0;
+        var wCCD = 0;
+        var wBCD = 0;
+        var wCND = 0;
+        var wBND = 0;
+        var wCSD = 0;
+        var wBSD = 0;
+        var wCRD = 0;
+        var wBRD = 0;
+        var wCTD = 0;
+        var wBTD = 0;
+        for (var i = 0; i < this.state.weeklyDials.length; i++) {
+            // console.log(this.state.dialData[i])
+            switch (this.state.weeklyDials[i].type) {
+                case "CPD":
+                    wCPD++
+                    break;
+                case "BPD":
+                    wBPD++
+                    break;
+                case "CCD":
+                    wCCD++
+                    break;
+                case "BCD":
+                    wBCD++
+                    break;
+                case "CND":
+                    wCND++
+                    break;
+                case "BND":
+                    wBND++
+                    break;
+                case "CSD":
+                    wCSD++
+                    break;
+                case "BSD":
+                    wBSD++
+                    break;
+                case "CRD":
+                    wCRD++
+                    break;
+                case "BRD":
+                    wBRD++
+                    break;
+                case "CTD":
+                    wCTD++
+                    break;
+                case "BTD":
+                    wBTD++
+                    break;
+                default:
+                    break;
+            }
+        }
+        this.setState({
+            CPDials: wCPD,
+            BPDials: wBPD,
+            CCDials: wCCD,
+            BCDials: wBCD,
+            CNDials: wCND,
+            BNDials: wBND,
+            CSDials: wCSD,
+            BSDials: wBSD,
+            CRDials: wCRD,
+            BRDials: wBRD,
+            CTDials: wCTD,
+            BTDials: wBTD
+        })
+    }
+
+    parseMonthlyDials = () => {
+        // console.log("Parsing Dials: " + this.state.dialData)
+        var wCPD = 0;
+        var wBPD = 0;
+        var wCCD = 0;
+        var wBCD = 0;
+        var wCND = 0;
+        var wBND = 0;
+        var wCSD = 0;
+        var wBSD = 0;
+        var wCRD = 0;
+        var wBRD = 0;
+        var wCTD = 0;
+        var wBTD = 0;
+        for (var i = 0; i < this.state.monthlyDials.length; i++) {
+            // console.log(this.state.dialData[i])
+            switch (this.state.monthlyDials[i].type) {
+                case "CPD":
+                    wCPD++
+                    break;
+                case "BPD":
+                    wBPD++
+                    break;
+                case "CCD":
+                    wCCD++
+                    break;
+                case "BCD":
+                    wBCD++
+                    break;
+                case "CND":
+                    wCND++
+                    break;
+                case "BND":
+                    wBND++
+                    break;
+                case "CSD":
+                    wCSD++
+                    break;
+                case "BSD":
+                    wBSD++
+                    break;
+                case "CRD":
+                    wCRD++
+                    break;
+                case "BRD":
+                    wBRD++
+                    break;
+                case "CTD":
+                    wCTD++
+                    break;
+                case "BTD":
+                    wBTD++
+                    break;
+                default:
+                    break;
+            }
+        }
+        this.setState({
+            CPDials: wCPD,
+            BPDials: wBPD,
+            CCDials: wCCD,
+            BCDials: wBCD,
+            CNDials: wCND,
+            BNDials: wBND,
+            CSDials: wCSD,
+            BSDials: wBSD,
+            CRDials: wCRD,
+            BRDials: wBRD,
+            CTDials: wCTD,
+            BTDials: wBTD
+        })
+    }
+
+
+
+
+    parseWeeklyContacts = () => {
+        // console.log("Parsing Contacts: " + this.state.contactData)
+        var wCPC = 0;
+        var wBPC = 0;
+        var wCCC = 0;
+        var wBCC = 0;
+        var wCNC = 0;
+        var wBNC = 0;
+        var wCSC = 0;
+        var wBSC = 0;
+        var wCRC = 0;
+        var wBRC = 0;
+        var wCTC = 0;
+        var wBTC = 0;
+        for (var i = 0; i < this.state.weeklyDials.length; i++) {
+
+            if (this.state.weeklyDials[i].contact === true) {
+                switch (this.state.weeklyDials[i].type) {
+                    case "CPD":
+                        wCPC++
+                        break;
+                    case "BPD":
+                        wBPC++
+                        break;
+                    case "CCD":
+                        wCCC++
+                        break;
+                    case "BCD":
+                        wBCC++
+                        break;
+                    case "CND":
+                        wCNC++
+                        break;
+                    case "BND":
+                        wBNC++
+                        break;
+                    case "CSD":
+                        wCSC++
+                        break;
+                    case "BSD":
+                        wBSC++
+                        break;
+                    case "CRD":
+                        wCRC++
+                        break;
+                    case "BRD":
+                        wBRC++
+                        break;
+                    case "CTD":
+                        wCTC++
+                        break;
+                    case "BTD":
+                        wBTC++
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        this.setState({
+            CPContacts: wCPC,
+            BPContacts: wBPC,
+            CCContacts: wCCC,
+            BCContacts: wBCC,
+            CNContacts: wCNC,
+            BNContacts: wBNC,
+            CSContacts: wCSC,
+            BSContacts: wBSC,
+            CRContacts: wCRC,
+            BRContacts: wBRC,
+            CTContacts: wCTC,
+            BTContacts: wBTC
+        })
+    }
+
+    parseMonthlyContacts = () => {
+        // console.log("Parsing Contacts: " + this.state.contactData)
+        var wCPC = 0;
+        var wBPC = 0;
+        var wCCC = 0;
+        var wBCC = 0;
+        var wCNC = 0;
+        var wBNC = 0;
+        var wCSC = 0;
+        var wBSC = 0;
+        var wCRC = 0;
+        var wBRC = 0;
+        var wCTC = 0;
+        var wBTC = 0;
+        for (var i = 0; i < this.state.monthlyDials.length; i++) {
+
+            if (this.state.monthlyDials[i].contact === true) {
+                switch (this.state.monthlyDials[i].type) {
+                    case "CPD":
+                        wCPC++
+                        break;
+                    case "BPD":
+                        wBPC++
+                        break;
+                    case "CCD":
+                        wCCC++
+                        break;
+                    case "BCD":
+                        wBCC++
+                        break;
+                    case "CND":
+                        wCNC++
+                        break;
+                    case "BND":
+                        wBNC++
+                        break;
+                    case "CSD":
+                        wCSC++
+                        break;
+                    case "BSD":
+                        wBSC++
+                        break;
+                    case "CRD":
+                        wCRC++
+                        break;
+                    case "BRD":
+                        wBRC++
+                        break;
+                    case "CTD":
+                        wCTC++
+                        break;
+                    case "BTD":
+                        wBTC++
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        this.setState({
+            CPContacts: wCPC,
+            BPContacts: wBPC,
+            CCContacts: wCCC,
+            BCContacts: wBCC,
+            CNContacts: wCNC,
+            BNContacts: wBNC,
+            CSContacts: wCSC,
+            BSContacts: wBSC,
+            CRContacts: wCRC,
+            BRContacts: wBRC,
+            CTContacts: wCTC,
+            BTContacts: wBTC
+        })
+    }
+
+    parseWeeklyAppointments = () => {
+        // console.log("Parsing appointments: " + this.state.appointments)
+        var wCPA = 0;
+        var wBPA = 0;
+        var wCCA = 0;
+        var wBCA = 0;
+        var wCNA = 0;
+        var wBNA = 0;
+        var wCSA = 0;
+        var wBSA = 0;
+        var wCRA = 0;
+        var wBRA = 0;
+        var wCTA = 0;
+        var wBTA = 0;
+        for (var i = 0; i < this.state.weeklyAppts.length; i++) {
+            // console.log(this.state.appointments[i])
+            switch (this.state.weeklyAppts[i].type) {
+                case "CPD":
+                    wCPA++
+                    break;
+                case "BPD":
+                    wBPA++
+                    break;
+                case "CCD":
+                    wCCA++
+                    break;
+                case "BCD":
+                    wBCA++
+                    break;
+                case "CND":
+                    wCNA++
+                    break;
+                case "BND":
+                    wBNA++
+                    break;
+                case "CSD":
+                    wCSA++
+                    break;
+                case "BSD":
+                    wBSA++
+                    break;
+                case "CRD":
+                    wCRA++
+                    break;
+                case "BRD":
+                    wBRA++
+                    break;
+                case "CTD":
+                    wCTA++
+                    break;
+                case "BTD":
+                    wBTA++
+                    break;
+                default:
+                    break;
+            }
+        }
+        this.setState({
+            CPAppts: wCPA,
+            BPAppts: wBPA,
+            CCAppts: wCCA,
+            BCAppts: wBCA,
+            CNAppts: wCNA,
+            BNAppts: wBNA,
+            CSAppts: wCSA,
+            BSAppts: wBSA,
+            CRAppts: wCRA,
+            BRAppts: wBRA,
+            CTAppts: wCTA,
+            BTAppts: wBTA
+        })
+    }
+
+    parseMonthlyAppts = () => {
+        // console.log("Parsing appointments: " + this.state.appointments)
+        var wCPA = 0;
+        var wBPA = 0;
+        var wCCA = 0;
+        var wBCA = 0;
+        var wCNA = 0;
+        var wBNA = 0;
+        var wCSA = 0;
+        var wBSA = 0;
+        var wCRA = 0;
+        var wBRA = 0;
+        var wCTA = 0;
+        var wBTA = 0;
+        for (var i = 0; i < this.state.monthlyAppts.length; i++) {
+            // console.log(this.state.appointments[i])
+            switch (this.state.monthlyAppts[i].type) {
+                case "CPD":
+                    wCPA++
+                    break;
+                case "BPD":
+                    wBPA++
+                    break;
+                case "CCD":
+                    wCCA++
+                    break;
+                case "BCD":
+                    wBCA++
+                    break;
+                case "CND":
+                    wCNA++
+                    break;
+                case "BND":
+                    wBNA++
+                    break;
+                case "CSD":
+                    wCSA++
+                    break;
+                case "BSD":
+                    wBSA++
+                    break;
+                case "CRD":
+                    wCRA++
+                    break;
+                case "BRD":
+                    wBRA++
+                    break;
+                case "CTD":
+                    wCTA++
+                    break;
+                case "BTD":
+                    wBTA++
+                    break;
+                default:
+                    break;
+            }
+        }
+        this.setState({
+            CPAppts: wCPA,
+            BPAppts: wBPA,
+            CCAppts: wCCA,
+            BCAppts: wBCA,
+            CNAppts: wCNA,
+            BNAppts: wBNA,
+            CSAppts: wCSA,
+            BSAppts: wBSA,
+            CRAppts: wCRA,
+            BRAppts: wBRA,
+            CTAppts: wCTA,
+            BTAppts: wBTA
+        })
+    }
+
+
 
 
     render() {
@@ -664,7 +1448,7 @@ class ProtegeDash extends Component {
                     <div className="row">
                         <div className="col-12">
 
-                            <button onClick={this.getWeeklyDials} className="btn btn-lg btn-warning">Get Weekly Dial Data</button>
+                            {/* <button onClick={this.getWeeklyDials} className="btn btn-lg btn-warning">Get Weekly Dial Data</button> */}
                             {/* <div className="row" style={{ height: '80%' }}>
                                 <div className="col" style={{ textAlign: 'center', padding: '50px' }}>
                                     <div className="jumbotron-custom-p" style={{
@@ -761,7 +1545,29 @@ class ProtegeDash extends Component {
 
                             {
                                 this.state.showAnalytics ?
-                                    <div id="protege-data-viewer-container" style={{marginTop: '50px'}}>
+                                    <div id="protege-data-viewer-container" style={{ marginTop: '50px' }}>
+                                        <div className="row">
+                                            <div className="col-1"></div>
+                                            <div className="col-10">
+                                                <div className="jumbotron" style={{ backgroundColor: 'rgba(0,0,0,0.4)', height: '200px' }}>
+                                                    <h4 style={{ textAlign: 'center', color: 'white' }}>Please select your Scope</h4>
+                                                    <form>
+                                                        <div style={{ textAlign: 'center' }}>
+                                                            <select style={{}} id="protegeSelector" value={this.state.scopeSelected} onChange={this.handleInputChange} type="text" name="scopeSelected" className="customDropMentor" placeholder="Choose your protege">
+                                                                <option value={"none"}>---------------</option>
+                                                                <option value={"viewAll"}>All Data</option>
+                                                                <option value={"viewWeekly"}>Weekly Data</option>
+                                                                <option value={"viewMonthly"}>Monthly Data</option>
+                                                            </select>
+                                                            <br />
+                                                            <button style={{}} onClick={this.handleScopeChange} className="btn btn-sm btn-outline-light">Apply</button>
+                                                            <br />
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div className="col-1"></div>
+                                        </div>
                                         <div className="row">
                                             <div className="col-1"></div>
                                             <div className="col-10">
@@ -892,22 +1698,24 @@ class ProtegeDash extends Component {
                                                 <div className="card bg-light" style={{ marginTop: '15px' }}>
 
                                                     <div className="card-header">
-                                                        <h4 style={{ textAlign: 'center', paddingTop: '5px' }}>Your Notes</h4>
+                                                        <h4 style={{ textAlign: 'center', paddingTop: '5px', width: '100%' }}>Your Notes</h4>
+                                                        {/* <span button className="btn btn-sm btn-outline-dark" onClick={this.showNoteViewer}>Show</span> */}
+
                                                     </div>
 
-                                                    <div className="card-body bg-info" style={{ padding: '0px 10px 0px 10px', marginBottom: '20px' }}>
-                                                        {this.state.showNoteViewer ?
-                                                            <NoteViewer
-                                                                userData={this.state.userData}
-                                                                userID={this.state.userData._id}
-                                                                proteges={this.state.proteges}
-                                                                mentors={this.state.mentors}
-                                                                taggedNotes={this.state.notes}
-                                                                rerender={this.getProtegeNoteData}
-                                                                fontSize={'20px'}
-                                                                height={'800px'}
-                                                            />
-                                                            : null}
+                                                    <div className="card-body bg-dark" style={{ padding: '0px 10px 0px 10px', marginBottom: '20px' }}>
+                                                        {/* {this.state.showNoteViewer ? */}
+                                                        <NoteViewer
+                                                            userData={this.state.userData}
+                                                            userID={this.state.userData._id}
+                                                            proteges={this.state.proteges}
+                                                            mentors={this.state.mentors}
+                                                            taggedNotes={this.state.notes}
+                                                            rerender={this.getProtegeNoteData}
+                                                            fontSize={'20px'}
+                                                            height={'600px'}
+                                                        />
+                                                        {/* : null} */}
                                                     </div>
                                                     {/* <div style={{ height: '20px', color: 'black', backgroundColor: 'rgba(0,0,0,0.50)' }}>
                                                     </div> */}
@@ -972,6 +1780,7 @@ class ProtegeDash extends Component {
 
                                     {this.state.showAnalyticsMini ?
                                         <div id="protege-data-viewer-container">
+
                                             <div className="row">
                                                 <div className="col-12">
                                                     <MainDataViewer
@@ -1067,41 +1876,44 @@ class ProtegeDash extends Component {
                                                                 <h4 style={{ textAlign: 'center', padding: '10%', color: 'black', margin: '20px' }}>Appointment Manager
                                                                 <br />
 
-                                                                    <span button className="btn btn-sm btn-outline-dark" onClick={this.showApptViewer}>Show</span></h4>
+                                                                    {/* <span button className="btn btn-sm btn-outline-dark" onClick={this.showApptViewer}>Show</span> */}
+                                                                </h4>
                                                             </div>
-                                                            {this.state.showApptViewer ?
-                                                                <div className="card-body bg-info" style={{ padding: '0px 10px 0px 10px', marginBottom: '20px' }}>
-                                                                    {
-                                                                        this.state.appointments ?
-                                                                            <div style={{ height: '800px', overflow: 'auto' }}>
-                                                                                {
-                                                                                    this.state.appointments.map(appt => (
-                                                                                        <AppointmentItem
-                                                                                            key={appt._id}
-                                                                                            id={appt._id}
-                                                                                            apptname={appt.apptname}
-                                                                                            mentor={appt.mentor}
-                                                                                            type={appt.type}
-                                                                                            held={appt.held}
-                                                                                            sold={appt.sold}
-                                                                                            dialer={appt.dialer}
-                                                                                            source={appt.source}
-                                                                                            date={appt.date}
-                                                                                            notes={appt.notes}
-                                                                                            username={this.state.user}
-                                                                                            rerender={this.gatherAppointments}
-                                                                                            user={this.state.userData}
-                                                                                            targetMarket={appt.targetMarket}
-                                                                                            mentors={this.state.mentors}
-                                                                                            headerFont={'20px'}
-                                                                                            textFont={'14px'}
-                                                                                        />
-                                                                                    ))
-                                                                                }
-                                                                            </div>
-                                                                            : null
-                                                                    }
-                                                                </div> : null}
+                                                            {/* {this.state.showApptViewer ? */}
+                                                            <div className="card-body bg-dark" style={{ padding: '0px 10px 0px 10px', marginBottom: '20px' }}>
+                                                                {
+                                                                    this.state.appointments ?
+                                                                        <div style={{ height: '800px', overflow: 'auto' }}>
+                                                                            {
+                                                                                this.state.appointments.map(appt => (
+                                                                                    <AppointmentItem
+                                                                                        key={appt._id}
+                                                                                        id={appt._id}
+                                                                                        apptname={appt.apptname}
+                                                                                        mentor={appt.mentor}
+                                                                                        type={appt.type}
+                                                                                        held={appt.held}
+                                                                                        sold={appt.sold}
+                                                                                        dialer={appt.dialer}
+                                                                                        source={appt.source}
+                                                                                        date={appt.date}
+                                                                                        notes={appt.notes}
+                                                                                        username={this.state.user}
+                                                                                        rerender={this.gatherAppointments}
+                                                                                        user={this.state.userData}
+                                                                                        targetMarket={appt.targetMarket}
+                                                                                        mentors={this.state.mentors}
+                                                                                        headerFont={'20px'}
+                                                                                        textFont={'14px'}
+                                                                                        time={appt.time}
+                                                                                    />
+                                                                                ))
+                                                                            }
+                                                                        </div>
+                                                                        : null
+                                                                }
+                                                            </div>
+                                                            {/* : null} */}
 
                                                         </div>
                                                     </div>
@@ -1197,48 +2009,50 @@ class ProtegeDash extends Component {
                                                 <div className="side-date-container">
                                                     <div className="row">
                                                         <div className="col-12">
-                                                            <DialDataSide
-                                                                userID={this.state.userData._id}
-                                                                contactData={this.state.contactData}
-                                                                dialData={this.state.dialData}
-                                                                apptData={this.state.appointments}
-                                                                CPAppts={this.state.CPAppts}
-                                                                BPAppts={this.state.BPAppts}
-                                                                CCAppts={this.state.CCAppts}
-                                                                BCAppts={this.state.BCAppts}
-                                                                CNAppts={this.state.CNAppts}
-                                                                BNAppts={this.state.BNAppts}
-                                                                CPDials={this.state.CPDials}
-                                                                BPDials={this.state.BPDials}
-                                                                CCDials={this.state.CCDials}
-                                                                BCDials={this.state.BCDials}
-                                                                CNDials={this.state.CNDials}
-                                                                BNDials={this.state.BNDials}
-                                                                CPContacts={this.state.CPContacts}
-                                                                BPContacts={this.state.BPContacts}
-                                                                CCContacts={this.state.CCContacts}
-                                                                BCContacts={this.state.BCContacts}
-                                                                CNContacts={this.state.CNContacts}
-                                                                BNContacts={this.state.BNContacts}
-                                                                CSDials={this.state.CSDials}
-                                                                BSDials={this.state.BSDials}
-                                                                CSContacts={this.state.CSContacts}
-                                                                BSContacts={this.state.BSContacts}
-                                                                CSAppts={this.state.CSAppts}
-                                                                BSAppts={this.state.BSAppts}
-                                                                CRDials={this.state.CRDials}
-                                                                BRDials={this.state.BRDials}
-                                                                CRContacts={this.state.CRContacts}
-                                                                BRContacts={this.state.BRContacts}
-                                                                CRAppts={this.state.CRAppts}
-                                                                BRAppts={this.state.BRAppts}
-                                                                CTDials={this.state.CTDials}
-                                                                BTDials={this.state.BTDials}
-                                                                CTContacts={this.state.CTContacts}
-                                                                BTContacts={this.state.BTContacts}
-                                                                CTAppts={this.state.CTAppts}
-                                                                BTAppts={this.state.BTAppts}
-                                                            />
+                                                            {this.state.weeklyDials ?
+                                                                <DialDataSide
+                                                                    userID={this.state.userData._id}
+                                                                    contactData={this.state.contactData}
+                                                                    dialData={this.state.weeklyDials}
+                                                                    apptData={this.state.weeklyAppts}
+                                                                    CPAppts={this.state.wCPAppts}
+                                                                    BPAppts={this.state.wBPAppts}
+                                                                    CCAppts={this.state.wCCAppts}
+                                                                    BCAppts={this.state.wBCAppts}
+                                                                    CNAppts={this.state.wCNAppts}
+                                                                    BNAppts={this.state.wBNAppts}
+                                                                    CPDials={this.state.wCPDials}
+                                                                    BPDials={this.state.wBPDials}
+                                                                    CCDials={this.state.wCCDials}
+                                                                    BCDials={this.state.wBCDials}
+                                                                    CNDials={this.state.wCNDials}
+                                                                    BNDials={this.state.wBNDials}
+                                                                    CPContacts={this.state.wCPContacts}
+                                                                    BPContacts={this.state.wBPContacts}
+                                                                    CCContacts={this.state.wCCContacts}
+                                                                    BCContacts={this.state.wBCContacts}
+                                                                    CNContacts={this.state.wCNContacts}
+                                                                    BNContacts={this.state.wBNContacts}
+                                                                    CSDials={this.state.wCSDials}
+                                                                    BSDials={this.state.wBSDials}
+                                                                    CSContacts={this.state.wCSContacts}
+                                                                    BSContacts={this.state.wBSContacts}
+                                                                    CSAppts={this.state.wCSAppts}
+                                                                    BSAppts={this.state.wBSAppts}
+                                                                    CRDials={this.state.wCRDials}
+                                                                    BRDials={this.state.wBRDials}
+                                                                    CRContacts={this.state.wCRContacts}
+                                                                    BRContacts={this.state.wBRContacts}
+                                                                    CRAppts={this.state.wCRAppts}
+                                                                    BRAppts={this.state.wBRAppts}
+                                                                    CTDials={this.state.wCTDials}
+                                                                    BTDials={this.state.wBTDials}
+                                                                    CTContacts={this.state.wCTContacts}
+                                                                    BTContacts={this.state.wBTContacts}
+                                                                    CTAppts={this.state.wCTAppts}
+                                                                    BTAppts={this.state.wBTAppts}
+                                                                />
+                                                                : null}
                                                         </div>
                                                         <br />
                                                         <br />
@@ -1281,7 +2095,7 @@ class ProtegeDash extends Component {
                                                     <div className="row">
 
                                                         {/* <div className="col-12"> */}
-                                                        <div style={{ width: '100%', marginBottom: '' }}>
+                                                        <div style={{ width: '100%', marginBottom: '10px' }}>
                                                             <AppointmentCreator
                                                                 userID={this.state.userData._id}
                                                                 username={this.state.user}
@@ -1313,7 +2127,7 @@ class ProtegeDash extends Component {
 
                                                                 {/* <div className="card-body"> */}
                                                                 {this.state.showApptViewer ?
-                                                                    <div className="card-body bg-info" style={{ padding: '0px 5px 0px 5px' }}>
+                                                                    <div className="card-body bg-dark" style={{ padding: '0px 5px 0px 5px' }}>
                                                                         {
                                                                             this.state.appointments ?
                                                                                 <div style={{ height: '400px', overflow: 'auto', marginTop: '5px' }}>
@@ -1335,6 +2149,7 @@ class ProtegeDash extends Component {
                                                                                                 user={this.state.userData}
                                                                                                 targetMarket={appt.targetMarket}
                                                                                                 mentors={this.state.mentors}
+                                                                                                time={appt.time}
                                                                                             />
                                                                                         ))
                                                                                     }
@@ -1374,12 +2189,12 @@ class ProtegeDash extends Component {
                                                                     View Notes
                                                                     <br />
                                                                     <span button className="btn btn-sm btn-outline-dark" onClick={this.showNoteViewer}>Show</span>
-                                                                       
-                                                                    </h4>
+
+                                                                </h4>
                                                             </div>
 
                                                             {this.state.showNoteViewer ?
-                                                                <div className="card-body bg-info" style={{ padding: '0px 5px 0px 5px' }}>
+                                                                <div className="card-body bg-dark" style={{ padding: '0px 5px 0px 5px' }}>
                                                                     <div style={{ fontSize: '12px' }}>
                                                                         <NoteViewer
                                                                             userData={this.state.userData}
@@ -1393,7 +2208,7 @@ class ProtegeDash extends Component {
                                                                         />
                                                                     </div>
                                                                 </div>
-                                                                : <div style={{height: '20px'}}></div> }
+                                                                : <div style={{ height: '20px' }}></div>}
 
                                                             {/* <div style={{ height: '20px', color: 'black', backgroundColor: 'rgba(0,0,0,0)' }}> */}
                                                             {/* </div> */}

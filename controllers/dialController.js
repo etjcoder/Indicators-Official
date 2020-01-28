@@ -20,6 +20,16 @@ module.exports = {
             .then(dbDial => res.json(dbDial))
             .catch(err => res.status(422).json(err))
     },
+    findMonthlyDialsById: function(req, res) {
+        console.log("Finding monthly dials...")
+        db.Dial
+            .find({
+                dialer: req.params.id,
+                created_at: {$gt: moment().subtract(30, 'd').toISOString(), $lte: moment().toISOString() }
+            })
+            .then(dbDial => res.json(dbDial))
+            .catch(err => res.status(422).json(err))
+    },
     createDial: function(req, res) {
         console.log("Creating Dials...")
         db.Dial

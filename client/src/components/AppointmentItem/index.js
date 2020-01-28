@@ -3,6 +3,7 @@ import API from "../../utils/API";
 import cogoToast from "cogo-toast";
 import Modal from "react-modal"
 import { mergeEventStores } from "@fullcalendar/core";
+import moment from "moment"
 
 
 
@@ -142,14 +143,15 @@ class AppointmentItem extends Component {
                         // style={{ height: '', padding: '0 10% 0 10%', textAlign: 'left', backgroundColor: 'rgba(255, 255, 255,0.75)', overflow: 'auto', borderRadius: 5 }}
                         >
                             <p style={{ textAlign: 'center', fontSize: this.props.headerFont }}>{this.state.apptname}</p>
-                            <p style={{ textAlign: 'center', fontSize: this.props.headerFont }}>{this.state.apptdate}</p>
+                            <p style={{ textAlign: 'center', fontSize: '12px' }}>{moment(this.state.apptdate).format("MM-DD-YYYY")} {this.props.time ? <span> at: {moment(this.props.time, ["HH:mm"]).format("hh:mm A")}</span>: null}</p>
                         </div>
                     </div>
 
-                    <div className="card-body" style={{ padding: '5px', clear: 'both' }}>
-                        <p style={{ color: '', fontSize: this.props.textFont }}>Note: {this.state.apptnotes}</p>
-                    </div>
-                    <div className="card-body" style={{ padding: '5px' }}>
+                    <div className="card-body" style={{ padding: '', clear: 'both' }}>
+                        {this.state.apptnotes ?
+                            <p style={{ color: '', fontSize: this.props.textFont }}>Note: {this.state.apptnotes}</p>
+                            : null}
+
                         <p style={{ fontSize: this.props.textFont, width: '', float: '' }}>Mentor: {this.state.mentorTagged}</p>
                         <p style={{ fontSize: this.props.textFont, width: '', float: '' }}>Type:
                     {this.props.type === "CPD" ? <span> Cashflow Prospect</span> : null}
@@ -167,7 +169,7 @@ class AppointmentItem extends Component {
                         </p>
                     </div>
 
-                    <div className="card-footer" style={{textAlign: 'center'}}>
+                    <div className="card-footer" style={{ textAlign: 'center' }}>
                         <button value={this.props.id} onClick={this.prepEditModal} className="btn btn-info btn-sm" style={{ width: '33%' }}>Edit</button>
                         <button value={this.props.id} onClick={this.deleteAppt} className="btn btn-danger btn-sm" style={{ width: '33%' }}>X</button>
                     </div>

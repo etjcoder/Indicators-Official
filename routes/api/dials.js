@@ -11,6 +11,9 @@ router.route("/session/:id")
 router.route("/weekly/:id")
     .get(dialController.findWeeklyDialsById)
 
+router.route("/monthly/:id")
+    .get(dialController.findMonthlyDialsById)
+
 router.route("/contacts/:id")
     .get(dialController.findContacts)
 

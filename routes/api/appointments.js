@@ -5,6 +5,12 @@ router.route("/schedule")
     .post(apptController.createAppt)
     .get(apptController.findAppts)
 
+router.route("/weekly/:id")
+    .get(apptController.findWeeklyApptsById)
+
+router.route("/monthly/:id")
+    .get(apptController.findMonthlyApptsById)
+    
 router.route("/find/:id")
     .get(apptController.findUserAppts)
 

@@ -547,6 +547,538 @@ class MentorDash extends Component {
         }
     }
 
+    handleScopeChange = (e) => {
+        e.preventDefault()
+        console.log(this.state.scopeSelected)
+        if (this.state.scopeSelected === "viewAll") {
+            this.parseDials()
+            this.parseContacts()
+            this.parseAppointments()
+        } else if (this.state.scopeSelected === "viewWeekly") {
+            this.getWeeklyDials()
+            this.getWeeklyAppts()
+        } else if (this.state.scopeSelected === "viewMonthly") {
+            this.getMonthlyDials()
+            this.getMonthlyAppts()
+        }
+    }
+
+    getWeeklyDials = () => {
+        API.getWeeklyDials(this.state.protegeData._id)
+            .then(res => {
+                console.log(res.data)
+                this.setState({
+                    weeklyDials: res.data
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+        setTimeout(() => {
+            this.parseWeeklyDials()
+            this.parseWeeklyContacts()
+        }, 1000)
+    }
+
+    getMonthlyDials = () => {
+        API.getMonthlyDials(this.state.protegeData._id)
+            .then(res => {
+                console.log(res.data)
+                this.setState({
+                    monthlyDials: res.data
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+        setTimeout(() => {
+            this.parseMonthlyDials()
+            this.parseMonthlyContacts()
+        }, 1000)
+    }
+
+    getMonthlyAppts = () => {
+        API.getMonthlyAppts(this.state.protegeData._id)
+            .then(res => {
+                console.log(res.data)
+                this.setState({
+                    monthlyAppts: res.data
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+        setTimeout(() => {
+            this.parseMonthlyAppts()
+        }, 1000)
+    }
+
+
+    getWeeklyAppts = () => {
+        API.getWeeklyAppts(this.state.protegeData._id)
+            .then(res => {
+                this.setState({
+                    weeklyAppts: res.data
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+        setTimeout(() => {
+            this.parseWeeklyAppointments()
+        }, 1000)
+    }
+
+    parseWeeklyDials = () => {
+        // console.log("Parsing Dials: " + this.state.dialData)
+        var wCPD = 0;
+        var wBPD = 0;
+        var wCCD = 0;
+        var wBCD = 0;
+        var wCND = 0;
+        var wBND = 0;
+        var wCSD = 0;
+        var wBSD = 0;
+        var wCRD = 0;
+        var wBRD = 0;
+        var wCTD = 0;
+        var wBTD = 0;
+        for (var i = 0; i < this.state.weeklyDials.length; i++) {
+            // console.log(this.state.dialData[i])
+            switch (this.state.weeklyDials[i].type) {
+                case "CPD":
+                    wCPD++
+                    break;
+                case "BPD":
+                    wBPD++
+                    break;
+                case "CCD":
+                    wCCD++
+                    break;
+                case "BCD":
+                    wBCD++
+                    break;
+                case "CND":
+                    wCND++
+                    break;
+                case "BND":
+                    wBND++
+                    break;
+                case "CSD":
+                    wCSD++
+                    break;
+                case "BSD":
+                    wBSD++
+                    break;
+                case "CRD":
+                    wCRD++
+                    break;
+                case "BRD":
+                    wBRD++
+                    break;
+                case "CTD":
+                    wCTD++
+                    break;
+                case "BTD":
+                    wBTD++
+                    break;
+                default:
+                    break;
+            }
+        }
+        this.setState({
+            CPDials: wCPD,
+            BPDials: wBPD,
+            CCDials: wCCD,
+            BCDials: wBCD,
+            CNDials: wCND,
+            BNDials: wBND,
+            CSDials: wCSD,
+            BSDials: wBSD,
+            CRDials: wCRD,
+            BRDials: wBRD,
+            CTDials: wCTD,
+            BTDials: wBTD
+        })
+    }
+
+    parseMonthlyDials = () => {
+        // console.log("Parsing Dials: " + this.state.dialData)
+        var wCPD = 0;
+        var wBPD = 0;
+        var wCCD = 0;
+        var wBCD = 0;
+        var wCND = 0;
+        var wBND = 0;
+        var wCSD = 0;
+        var wBSD = 0;
+        var wCRD = 0;
+        var wBRD = 0;
+        var wCTD = 0;
+        var wBTD = 0;
+        for (var i = 0; i < this.state.monthlyDials.length; i++) {
+            // console.log(this.state.dialData[i])
+            switch (this.state.monthlyDials[i].type) {
+                case "CPD":
+                    wCPD++
+                    break;
+                case "BPD":
+                    wBPD++
+                    break;
+                case "CCD":
+                    wCCD++
+                    break;
+                case "BCD":
+                    wBCD++
+                    break;
+                case "CND":
+                    wCND++
+                    break;
+                case "BND":
+                    wBND++
+                    break;
+                case "CSD":
+                    wCSD++
+                    break;
+                case "BSD":
+                    wBSD++
+                    break;
+                case "CRD":
+                    wCRD++
+                    break;
+                case "BRD":
+                    wBRD++
+                    break;
+                case "CTD":
+                    wCTD++
+                    break;
+                case "BTD":
+                    wBTD++
+                    break;
+                default:
+                    break;
+            }
+        }
+        this.setState({
+            CPDials: wCPD,
+            BPDials: wBPD,
+            CCDials: wCCD,
+            BCDials: wBCD,
+            CNDials: wCND,
+            BNDials: wBND,
+            CSDials: wCSD,
+            BSDials: wBSD,
+            CRDials: wCRD,
+            BRDials: wBRD,
+            CTDials: wCTD,
+            BTDials: wBTD
+        })
+    }
+
+
+
+
+    parseWeeklyContacts = () => {
+        // console.log("Parsing Contacts: " + this.state.contactData)
+        var wCPC = 0;
+        var wBPC = 0;
+        var wCCC = 0;
+        var wBCC = 0;
+        var wCNC = 0;
+        var wBNC = 0;
+        var wCSC = 0;
+        var wBSC = 0;
+        var wCRC = 0;
+        var wBRC = 0;
+        var wCTC = 0;
+        var wBTC = 0;
+        for (var i = 0; i < this.state.weeklyDials.length; i++) {
+
+            if (this.state.weeklyDials[i].contact === true) {
+                switch (this.state.weeklyDials[i].type) {
+                    case "CPD":
+                        wCPC++
+                        break;
+                    case "BPD":
+                        wBPC++
+                        break;
+                    case "CCD":
+                        wCCC++
+                        break;
+                    case "BCD":
+                        wBCC++
+                        break;
+                    case "CND":
+                        wCNC++
+                        break;
+                    case "BND":
+                        wBNC++
+                        break;
+                    case "CSD":
+                        wCSC++
+                        break;
+                    case "BSD":
+                        wBSC++
+                        break;
+                    case "CRD":
+                        wCRC++
+                        break;
+                    case "BRD":
+                        wBRC++
+                        break;
+                    case "CTD":
+                        wCTC++
+                        break;
+                    case "BTD":
+                        wBTC++
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        this.setState({
+            CPContacts: wCPC,
+            BPContacts: wBPC,
+            CCContacts: wCCC,
+            BCContacts: wBCC,
+            CNContacts: wCNC,
+            BNContacts: wBNC,
+            CSContacts: wCSC,
+            BSContacts: wBSC,
+            CRContacts: wCRC,
+            BRContacts: wBRC,
+            CTContacts: wCTC,
+            BTContacts: wBTC
+        })
+    }
+
+    parseMonthlyContacts = () => {
+        // console.log("Parsing Contacts: " + this.state.contactData)
+        var wCPC = 0;
+        var wBPC = 0;
+        var wCCC = 0;
+        var wBCC = 0;
+        var wCNC = 0;
+        var wBNC = 0;
+        var wCSC = 0;
+        var wBSC = 0;
+        var wCRC = 0;
+        var wBRC = 0;
+        var wCTC = 0;
+        var wBTC = 0;
+        for (var i = 0; i < this.state.monthlyDials.length; i++) {
+
+            if (this.state.monthlyDials[i].contact === true) {
+                switch (this.state.monthlyDials[i].type) {
+                    case "CPD":
+                        wCPC++
+                        break;
+                    case "BPD":
+                        wBPC++
+                        break;
+                    case "CCD":
+                        wCCC++
+                        break;
+                    case "BCD":
+                        wBCC++
+                        break;
+                    case "CND":
+                        wCNC++
+                        break;
+                    case "BND":
+                        wBNC++
+                        break;
+                    case "CSD":
+                        wCSC++
+                        break;
+                    case "BSD":
+                        wBSC++
+                        break;
+                    case "CRD":
+                        wCRC++
+                        break;
+                    case "BRD":
+                        wBRC++
+                        break;
+                    case "CTD":
+                        wCTC++
+                        break;
+                    case "BTD":
+                        wBTC++
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        this.setState({
+            CPContacts: wCPC,
+            BPContacts: wBPC,
+            CCContacts: wCCC,
+            BCContacts: wBCC,
+            CNContacts: wCNC,
+            BNContacts: wBNC,
+            CSContacts: wCSC,
+            BSContacts: wBSC,
+            CRContacts: wCRC,
+            BRContacts: wBRC,
+            CTContacts: wCTC,
+            BTContacts: wBTC
+        })
+    }
+
+    parseWeeklyAppointments = () => {
+        // console.log("Parsing appointments: " + this.state.appointments)
+        var wCPA = 0;
+        var wBPA = 0;
+        var wCCA = 0;
+        var wBCA = 0;
+        var wCNA = 0;
+        var wBNA = 0;
+        var wCSA = 0;
+        var wBSA = 0;
+        var wCRA = 0;
+        var wBRA = 0;
+        var wCTA = 0;
+        var wBTA = 0;
+        for (var i = 0; i < this.state.weeklyAppts.length; i++) {
+            // console.log(this.state.appointments[i])
+            switch (this.state.weeklyAppts[i].type) {
+                case "CPD":
+                    wCPA++
+                    break;
+                case "BPD":
+                    wBPA++
+                    break;
+                case "CCD":
+                    wCCA++
+                    break;
+                case "BCD":
+                    wBCA++
+                    break;
+                case "CND":
+                    wCNA++
+                    break;
+                case "BND":
+                    wBNA++
+                    break;
+                case "CSD":
+                    wCSA++
+                    break;
+                case "BSD":
+                    wBSA++
+                    break;
+                case "CRD":
+                    wCRA++
+                    break;
+                case "BRD":
+                    wBRA++
+                    break;
+                case "CTD":
+                    wCTA++
+                    break;
+                case "BTD":
+                    wBTA++
+                    break;
+                default:
+                    break;
+            }
+        }
+        this.setState({
+            CPAppts: wCPA,
+            BPAppts: wBPA,
+            CCAppts: wCCA,
+            BCAppts: wBCA,
+            CNAppts: wCNA,
+            BNAppts: wBNA,
+            CSAppts: wCSA,
+            BSAppts: wBSA,
+            CRAppts: wCRA,
+            BRAppts: wBRA,
+            CTAppts: wCTA,
+            BTAppts: wBTA
+        })
+    }
+
+    parseMonthlyAppts = () => {
+        // console.log("Parsing appointments: " + this.state.appointments)
+        var wCPA = 0;
+        var wBPA = 0;
+        var wCCA = 0;
+        var wBCA = 0;
+        var wCNA = 0;
+        var wBNA = 0;
+        var wCSA = 0;
+        var wBSA = 0;
+        var wCRA = 0;
+        var wBRA = 0;
+        var wCTA = 0;
+        var wBTA = 0;
+        for (var i = 0; i < this.state.monthlyAppts.length; i++) {
+            // console.log(this.state.appointments[i])
+            switch (this.state.monthlyAppts[i].type) {
+                case "CPD":
+                    wCPA++
+                    break;
+                case "BPD":
+                    wBPA++
+                    break;
+                case "CCD":
+                    wCCA++
+                    break;
+                case "BCD":
+                    wBCA++
+                    break;
+                case "CND":
+                    wCNA++
+                    break;
+                case "BND":
+                    wBNA++
+                    break;
+                case "CSD":
+                    wCSA++
+                    break;
+                case "BSD":
+                    wBSA++
+                    break;
+                case "CRD":
+                    wCRA++
+                    break;
+                case "BRD":
+                    wBRA++
+                    break;
+                case "CTD":
+                    wCTA++
+                    break;
+                case "BTD":
+                    wBTA++
+                    break;
+                default:
+                    break;
+            }
+        }
+        this.setState({
+            CPAppts: wCPA,
+            BPAppts: wBPA,
+            CCAppts: wCCA,
+            BCAppts: wBCA,
+            CNAppts: wCNA,
+            BNAppts: wBNA,
+            CSAppts: wCSA,
+            BSAppts: wBSA,
+            CRAppts: wCRA,
+            BRAppts: wBRA,
+            CTAppts: wCTA,
+            BTAppts: wBTA
+        })
+    }
+
+
 
 
     render() {
@@ -592,37 +1124,68 @@ class MentorDash extends Component {
                 <div className="container">
                     {/* <Nav /> */}
                     <div className="row">
-                        <div className="col">
+                        <div className="col-12">
 
                             <div className="jumbotron" style={{ height: '300px', backgroundColor: 'rgba(0,0,0,0.5)' }}>
                                 <h3 style={{ textAlign: 'center', color: 'white' }}>Welcome {this.state.mentor.firstName}!</h3>
-                                <h4 style={{ textAlign: 'center', color: 'white' }}> Please select your Protege</h4>
-                                {/* Mentor Header Here */}
-                                {/* Top Reader 8/12 Left (Sortable by Proteges, including Past)
+                                <div className="row">
+                                    <div className="col-lg-6">
+                                        <h4 style={{ textAlign: 'center', color: 'white' }}> Please select your Protege</h4>
+                                        {/* Mentor Header Here */}
+                                        {/* Top Reader 8/12 Left (Sortable by Proteges, including Past)
                         --Contacts / Dials
                         --Appointments / Sales
                         --Sales / Appointment  
                     */}
-                                <form>
-                                    {this.state.mentor ?
+                                        <form>
+                                            {this.state.mentor ?
 
-                                        <div style={{ width: '50%', marginLeft: 'auto', marginRight: 'auto', textAlign: 'center' }}>
-                                            <span>
-                                                <select style={{ }} id="protegeSelector" value={this.state.protegeSelected} onChange={this.handleInputChange} type="text" name="protegeSelected" className="customDropMentor" placeholder="Choose your protege">
-                                                    {this.state.mentor.proteges.map(protege => (
-                                                        <option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>
-                                                    ))} </select>
+                                                <div style={{ textAlign: 'center' }}>
+                                                    <span>
+                                                        <select style={{}} id="protegeSelector" value={this.state.protegeSelected} onChange={this.handleInputChange} type="text" name="protegeSelected" className="customDropMentor" placeholder="Choose your protege">
+                                                            {this.state.mentor.proteges.map(protege => (
+                                                                <option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>
+                                                            ))} </select>
+                                                        <br />
+                                                        <button style={{}} onClick={this.handleProtegeChange} className="btn btn-sm btn-outline-light">Search</button>
+                                                    </span>
                                                     <br />
-                                                <button style={{ }} onClick={this.handleProtegeChange} className="btn btn-sm btn-outline-light">Search</button>
-                                            </span>
-                                            <br />
 
-                                        </div> : null}
-                                </form>
+                                                </div> : null}
+                                        </form>
+                                    </div>
+                                    <br />
+                                    <div className="col-lg-6">
+                                        <h4 style={{ textAlign: 'center', color: 'white' }}>Please select your Scope</h4>
+
+                                        <form>
+
+
+                                            <div style={{ textAlign: 'center' }}>
+
+                                                <select style={{}} id="protegeSelector" value={this.state.scopeSelected} onChange={this.handleInputChange} type="text" name="scopeSelected" className="customDropMentor" placeholder="Choose your protege">
+                                                    <option value={"none"}>---------------</option>
+                                                    <option value={"viewAll"}>All Data</option>
+                                                    <option value={"viewWeekly"}>Weekly Data</option>
+                                                    <option value={"viewMonthly"}>Monthly Data</option>
+                                                </select>
+                                                <br />
+                                                <button style={{}} onClick={this.handleScopeChange} className="btn btn-sm btn-outline-light">Apply</button>
+
+                                                <br />
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
+
+
+
                     </div>
+
 
 
 
@@ -644,7 +1207,7 @@ class MentorDash extends Component {
 
 
                             {this.state.viewMainData ?
-                                <div className="mentor-data-viewer-container" style={{ height: '1000px', overflow: 'auto' }} style={{marginBottom: '100px'}}>
+                                <div className="mentor-data-viewer-container" style={{ height: '1000px', overflow: 'auto' }} style={{ marginBottom: '100px' }}>
                                     <div className="row">
                                         <div className="col-lg-12">
                                             <MentorDataViewer
@@ -732,7 +1295,7 @@ class MentorDash extends Component {
                                             {this.state.mentorViewAppts ?
 
 
-                                                <div className="card-body bg-info" style={{ padding: '0px 25px 0px 25px', height: '' }}>
+                                                <div className="card-body bg-dark" style={{ padding: '0px 25px 0px 25px', height: '' }}>
                                                     <div style={{ height: '600px', overflow: 'auto' }}>
                                                         {this.state.mentorViewAppts.map(appt => (
                                                             <AppointmentItem
@@ -798,7 +1361,7 @@ class MentorDash extends Component {
                                                     <p style={{ textAlign: 'center', paddingTop: '5px' }}>Your Notes</p>
                                                 </div>
 
-                                                <div className="card-body bg-info" style={{ padding: '0px 10px 0px 10px', marginBottom: '20px' }}>
+                                                <div className="card-body bg-dark" style={{ padding: '0px 10px 0px 10px', marginBottom: '20px' }}>
                                                     <NoteViewerMentor
                                                         fontSize={'20px'}
                                                         notes={this.state.notes}
@@ -826,7 +1389,7 @@ class MentorDash extends Component {
 
                             {this.state.viewSales ?
                                 <>
-                                    <div className="row" style={{marginBottom: '20px'}}>
+                                    <div className="row" style={{ marginBottom: '20px' }}>
                                         <div className="col-12">
                                             <SalesCreatorMentor
                                                 userID={this.state.mentor._id}
@@ -848,7 +1411,7 @@ class MentorDash extends Component {
                                                 {this.state.showSalesViewer ?
                                                     <div>
                                                         {this.state.salesData ?
-                                                            <div className="card-body bg-info" style={{ padding: '0px 25px 0px 25px' }}>
+                                                            <div className="card-body bg-dark" style={{ padding: '0px 25px 0px 25px' }}>
                                                                 <div style={{ height: '400px', overflow: 'auto' }}>
                                                                     {
                                                                         this.state.salesData.map(sale => (
@@ -925,7 +1488,7 @@ class MentorDash extends Component {
 
 
                                             {this.state.showApptViewer ?
-                                                <div className="card-body bg-info" style={{ padding: '0px 5px 0px 5px' }}>
+                                                <div className="card-body bg-dark" style={{ padding: '0px 5px 0px 5px' }}>
                                                     {
                                                         this.state.mentorViewAppts ?
                                                             <div style={{ height: '400px', overflow: 'auto' }}>
@@ -981,7 +1544,7 @@ class MentorDash extends Component {
                                         </div>
 
                                         {this.state.showNoteViewer ?
-                                            <div className="card-body bg-info" style={{ padding: '0px 5px 0px 5px' }}>
+                                            <div className="card-body bg-dark" style={{ padding: '0px 5px 0px 5px' }}>
                                                 <NoteViewerMentor
                                                     fontSize={'20px'}
                                                     notes={this.state.notes}

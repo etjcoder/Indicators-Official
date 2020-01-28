@@ -1356,7 +1356,15 @@ class MainDataViewer extends Component {
                 {
                     this.state.showDialChart ?
                         <div style={{ textAlign: 'center', color: 'black' }}>
-                            <p style={{ textAlign: 'center' }}>Total Dials: {this.props.dialData.length}</p>
+                            <h3><u>Dial Data</u></h3>
+                            <p style={{ textAlign: 'center' }}>Total Dials: {
+                                this.props.CPDials + this.props.BPDials +
+                                this.props.CCDials + this.props.BCDials +
+                                this.props.CNDials + this.props.BNDials +
+                                this.props.CSDials + this.props.BSDials +
+                                this.props.CRDials + this.props.BRDials +
+                                this.props.CTDials + this.props.BTDials
+                            }</p>
                             <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(0,0,0,0.1)', padding: '5%', margin: 0 }}>
                                 <Bar data={{
                                     labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
@@ -1438,7 +1446,14 @@ class MainDataViewer extends Component {
                     this.state.showContactChart ?
                         <div style={{ textAlign: 'center', color: 'black' }}>
                             <h3><u>Contact Data: </u></h3>
-                            <p style={{ textAlign: 'center' }}>Total Contacts: {this.props.contactData.length}</p>
+                            <p style={{ textAlign: 'center' }}>Total Contacts: {
+                                 this.props.CPContacts + this.props.BPContacts +
+                                 this.props.CCContacts + this.props.BCContacts +
+                                 this.props.CNContacts + this.props.BNContacts +
+                                 this.props.CSContacts + this.props.BSContacts +
+                                 this.props.CRContacts + this.props.BRContacts +
+                                 this.props.CTContacts + this.props.BTContacts
+                            }</p>
                             <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(0,0,0,0.1)', padding: '5%' }}>
                                 <Bar data={{
                                     labels: ["Prospects", "Delegated Clients", "Natural Market", "Suspects", "Referrals", "Target Market"],
@@ -1518,7 +1533,12 @@ class MainDataViewer extends Component {
                     this.state.showApptChart ?
                         <div style={{ textAlign: 'center', color: 'black' }}>
                             <h3><u>Appointment Data:</u></h3>
-                            <p>Total Appointments: {this.props.apptData.length}</p>
+                            <p style={{textAlign: 'center'}}>Total Appointments: {this.props.CPAppts + this.props.BPAppts +
+                                            this.props.CCAppts + this.props.BCAppts +
+                                            this.props.CNAppts + this.props.BNAppts +
+                                            this.props.CSAppts + this.props.BSAppts +
+                                            this.props.CRAppts + this.props.BRAppts +
+                                            this.props.CTAppts + this.props.BTAppts}</p>
 
                             <div style={{ width: '80%', marginLeft: '10%', backgroundColor: 'rgba(0,0,0,0.1)', padding: '5%' }}>
                                 <Bar data={{

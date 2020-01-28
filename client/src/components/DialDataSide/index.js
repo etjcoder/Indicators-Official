@@ -199,7 +199,13 @@ class DialDataSide extends Component {
 
                 {this.state.showContactChart ?
                     <div>
-                        <p style={{width: '100%', fontSize: '16px'}}>Weekly Contacts: {this.props.contactData.length}</p>
+                        <p style={{width: '100%', fontSize: '16px'}}>Weekly Contacts: 
+                        {this.props.CPContacts + this.props.BPContacts +
+                                    this.props.CCContacts + this.props.BCContacts +
+                                    this.props.CNContacts + this.props.BNContacts +
+                                    this.props.CSContacts + this.props.BSContacts +
+                                    this.props.CRContacts + this.props.BRContacts +
+                                    this.props.CTContacts + this.props.BTContacts}</p>
                        
                         <Pie data={{
                             labels: [
@@ -241,7 +247,13 @@ class DialDataSide extends Component {
                 <br />
                 {this.state.showApptChart ?
                     <div>
-                        <p style={{width: '100%', fontSize: '16px'}}>Weekly Appointments: {this.props.apptData.length}</p>
+                        <p style={{width: '100%', fontSize: '16px'}}>Weekly Appointments: 
+                        {this.props.CPAppts + this.props.BPAppts +
+                                    this.props.CCAppts + this.props.BCAppts +
+                                    this.props.CNAppts + this.props.BNAppts +
+                                    this.props.CSAppts + this.props.BSAppts +
+                                    this.props.CRAppts + this.props.BRAppts +
+                                    this.props.CTAppts + this.props.BTAppts}</p>
 
                       
                         <Pie data={{

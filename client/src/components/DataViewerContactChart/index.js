@@ -49,7 +49,14 @@ class DataViewerContactChart extends Component {
                     <div className="row">
                     <div className="col-12 card" style={{ padding: '50px', backgroundColor: 'rgba(255,255,255,0.9)', color: 'black', textAlign: 'left' }}>
                                      <hr />
-                            <h4 style={{ color: '' }}>Total Contacts: {this.props.contactData.length}</h4>
+                            <h4 style={{ color: '' }}>Total Contacts: {
+                                this.props.CPContacts + this.props.BPContacts +
+                                this.props.CCContacts + this.props.BCContacts +
+                                this.props.CNContacts + this.props.BNContacts +
+                                this.props.CSContacts + this.props.BSContacts +
+                                this.props.CRContacts + this.props.BRContacts +
+                                this.props.CTContacts + this.props.BTContacts
+                            }</h4>
                         </div>
                     </div>
 
