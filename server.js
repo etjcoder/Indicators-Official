@@ -22,7 +22,7 @@ app.use(routes);
 
 // Send every other request to the React app
 // Define any API routes before this runs
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/indicators")
+mongoose.connect(process.env.MONGODB_URI || "mongodb://creativedb:cqdp2f;u@ds211440.mlab.com:11440/heroku_mp3sklz7")
 
 
 
