@@ -109,7 +109,6 @@ class AppointmentItem extends Component {
         }).then(res =>
             cogoToast.info("Updated Appt!")
         ).catch(err => console.log(err))
-
     }
 
     prepEditModal = () => {

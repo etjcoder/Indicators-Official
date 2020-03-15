@@ -169,6 +169,30 @@ class MentorDash extends Component {
             )
     }
 
+    getNextProtegeData = () => {
+      
+
+        console.log("Looking for: " + this.state.protegeSelected._id)
+        API.getUserDataById(this.state.protegeSelected._id)
+            .then(res => {
+                console.log(res)
+                this.setState({
+                    protegeData: res.data[0],
+                    dialData: res.data[0].dials,
+                    protegeSelected: res.data[0]._id,
+                    appointments: res.data[0].appointments
+                })
+            }
+                , this.getContactData(),
+                // this.gatherAppointments(),
+                setTimeout(() => {
+                    this.parseDials()
+                    this.parseAppointments()
+                }, 2000)
+            )
+
+    }
+
     getContactData = () => {
         setTimeout(() => {
             console.log("Searching for contacts using: " + this.state.protegeData._id)
@@ -551,9 +575,7 @@ class MentorDash extends Component {
         e.preventDefault()
         console.log(this.state.scopeSelected)
         if (this.state.scopeSelected === "viewAll") {
-            this.parseDials()
-            this.parseContacts()
-            this.parseAppointments()
+            this.getNextProtegeData()
         } else if (this.state.scopeSelected === "viewWeekly") {
             this.getWeeklyDials()
             this.getWeeklyAppts()
@@ -568,7 +590,7 @@ class MentorDash extends Component {
             .then(res => {
                 console.log(res.data)
                 this.setState({
-                    weeklyDials: res.data
+                    dialData: res.data
                 })
             })
             .catch(err => {
@@ -586,7 +608,7 @@ class MentorDash extends Component {
             .then(res => {
                 console.log(res.data)
                 this.setState({
-                    monthlyDials: res.data
+                    dialData: res.data
                 })
             })
             .catch(err => {
@@ -604,7 +626,7 @@ class MentorDash extends Component {
             .then(res => {
                 console.log(res.data)
                 this.setState({
-                    monthlyAppts: res.data
+                    apptData: res.data
                 })
             })
             .catch(err => {
@@ -621,7 +643,7 @@ class MentorDash extends Component {
         API.getWeeklyAppts(this.state.protegeData._id)
             .then(res => {
                 this.setState({
-                    weeklyAppts: res.data
+                    apptData: res.data
                 })
             })
             .catch(err => {
@@ -647,9 +669,9 @@ class MentorDash extends Component {
         var wBRD = 0;
         var wCTD = 0;
         var wBTD = 0;
-        for (var i = 0; i < this.state.weeklyDials.length; i++) {
+        for (var i = 0; i < this.state.dialData.length; i++) {
             // console.log(this.state.dialData[i])
-            switch (this.state.weeklyDials[i].type) {
+            switch (this.state.dialData[i].type) {
                 case "CPD":
                     wCPD++
                     break;
@@ -720,9 +742,9 @@ class MentorDash extends Component {
         var wBRD = 0;
         var wCTD = 0;
         var wBTD = 0;
-        for (var i = 0; i < this.state.monthlyDials.length; i++) {
+        for (var i = 0; i < this.state.dialData.length; i++) {
             // console.log(this.state.dialData[i])
-            switch (this.state.monthlyDials[i].type) {
+            switch (this.state.dialData[i].type) {
                 case "CPD":
                     wCPD++
                     break;
@@ -796,10 +818,10 @@ class MentorDash extends Component {
         var wBRC = 0;
         var wCTC = 0;
         var wBTC = 0;
-        for (var i = 0; i < this.state.weeklyDials.length; i++) {
+        for (var i = 0; i < this.state.dialData.length; i++) {
 
-            if (this.state.weeklyDials[i].contact === true) {
-                switch (this.state.weeklyDials[i].type) {
+            if (this.state.dialData[i].contact === true) {
+                switch (this.state.dialData[i].type) {
                     case "CPD":
                         wCPC++
                         break;
@@ -871,10 +893,10 @@ class MentorDash extends Component {
         var wBRC = 0;
         var wCTC = 0;
         var wBTC = 0;
-        for (var i = 0; i < this.state.monthlyDials.length; i++) {
+        for (var i = 0; i < this.state.dialData.length; i++) {
 
-            if (this.state.monthlyDials[i].contact === true) {
-                switch (this.state.monthlyDials[i].type) {
+            if (this.state.dialData[i].contact === true) {
+                switch (this.state.dialData[i].type) {
                     case "CPD":
                         wCPC++
                         break;
@@ -946,9 +968,9 @@ class MentorDash extends Component {
         var wBRA = 0;
         var wCTA = 0;
         var wBTA = 0;
-        for (var i = 0; i < this.state.weeklyAppts.length; i++) {
+        for (var i = 0; i < this.state.apptData.length; i++) {
             // console.log(this.state.appointments[i])
-            switch (this.state.weeklyAppts[i].type) {
+            switch (this.state.apptData[i].type) {
                 case "CPD":
                     wCPA++
                     break;
@@ -1019,9 +1041,9 @@ class MentorDash extends Component {
         var wBRA = 0;
         var wCTA = 0;
         var wBTA = 0;
-        for (var i = 0; i < this.state.monthlyAppts.length; i++) {
+        for (var i = 0; i < this.state.apptData.length; i++) {
             // console.log(this.state.appointments[i])
-            switch (this.state.monthlyAppts[i].type) {
+            switch (this.state.apptData[i].type) {
                 case "CPD":
                     wCPA++
                     break;

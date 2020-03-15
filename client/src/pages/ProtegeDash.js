@@ -161,7 +161,7 @@ class ProtegeDash extends Component {
 
     }
 
-
+ 
     getUserData = () => {
         // console.log(this.props.user.uid)
         var userID = this.props.user.uid
@@ -1448,91 +1448,9 @@ class ProtegeDash extends Component {
                     <div className="row">
                         <div className="col-12">
 
-                            {/* <button onClick={this.getWeeklyDials} className="btn btn-lg btn-warning">Get Weekly Dial Data</button> */}
-                            {/* <div className="row" style={{ height: '80%' }}>
-                                <div className="col" style={{ textAlign: 'center', padding: '50px' }}>
-                                    <div className="jumbotron-custom-p" style={{
-                                        margin: '0', backgroundColor: 'rgba(25,25,25,0)', color: 'black'
-                                        // fontStyle: 'Roboto, sans-serif' 
-                                    }}>
-                                        <h2 className="display-2">{this.state.userData.firstName} {this.state.userData.lastName}</h2>
-                                        <h4 className="display-4"> Indicators Dashboard</h4>
-                                    </div>
-                                </div>
-                            </div> */}
-
-                            {/* <div className="row" style={{ height: '20%', marginLeft: '-15px', marginLeft: '-15px' }}>
-                                <div className="col" style={{ textAlign: 'center', padding: 0, margin: 0, backgroundColor: 'whitesmoke', height: '100%' }}>
-                                    <div className="nav-btn-custom" style={{ height: '100%' }}>
-                                        Home
-                                        </div>
-                                </div>
-                                <div className="col" style={{ textAlign: 'center', padding: 0, margin: 0, backgroundColor: 'whitesmoke', height: '100%' }}>
-                                    <div className="nav-btn-custom" style={{ height: '100%' }}>
-                                        Dial
-                                        </div>
-                                </div>
-                                <div className="col" style={{ textAlign: 'center', padding: 0, margin: 0, backgroundColor: 'whitesmoke', height: '100%' }}>
-                                    <div className="nav-btn-custom" style={{ height: '100%' }}>
-                                        Analytics
-                                        </div>
-                                </div>
-                                <div className="col" style={{ textAlign: 'center', padding: 0, margin: 0, backgroundColor: 'whitesmoke' }}>
-                                    <div className="nav-btn-custom" style={{ height: '100%' }}>
-                                        Notes
-                                        </div>
-                                </div>
-                                <div className="col" style={{ textAlign: 'center', padding: 0, margin: 0, backgroundColor: 'whitesmoke' }}>
-                                    <div className="nav-btn-custom" style={{ height: '100%' }}>
-                                        Schedule
-                                        </div>
-                                </div>
-                                <div className="col" style={{ textAlign: 'center', padding: 0, margin: 0, backgroundColor: 'whitesmoke' }}>
-                                    <div className="nav-btn-custom" style={{ height: '100%' }}>
-                                        Sales
-                                        </div>
-                                </div>
-                            </div> */}
-
-
                         </div>
                     </div>
-                    {/*  ////////////////////////////////////////////////////////////////////////////////// */}
-                    {/*  ////////////////////////////////////////////////////////////////////////////////// */}
-                    {/*  /////////////////////////    Jumbotron Navig       /////////////////////////////// */}
-                    {/*  ////////////////////////////////////////////////////////////////////////////////// */}
-                    {/*  ////////////////////////////////////////////////////////////////////////////////// */}
-                    {/* 
-                            <div className="jumbotron" style={{ backgroundColor: 'rgba(0,0,0,0.5)', color: 'white', textAlign: 'center', fontStyle: 'Roboto, sans-serif' }}>
-                                <div className="row">
-                                    <div className="col" style={{ textAlign: 'center' }}>
-                                        <h1>Welcome {this.state.userData.firstName} {this.state.userData.lastName}!</h1>
-                                    </div>
-                                </div>
-
-                                <div className="row">
-                                    <div className="col">
-                                        <button onClick={() => this.showDials()} className="nav-button bttn-slant bttn-md">Dials</button>
-                                    </div>
-                                    <div className="col">
-                                        <button onClick={() => this.showNotes()} className="nav-button bttn-slant bttn-md">Notes</button>
-                                    </div>
-                                    <div className="col">
-                                        <button onClick={() => this.showCreate()} className="nav-button bttn-slant bttn-md">Create</button>
-                                    </div>
-                                    <div className="col">
-                                        <button onClick={() => this.showAnalytics()} className="nav-button bttn-slant bttn-md">Analyze</button>
-                                    </div>
-                                    <div className="col">
-                                        <button onClick={() => this.showAppts()} className="nav-button bttn-slant bttn-md">Schedule</button>
-                                    </div>
-                                    <div className="col">
-                                        <button onClick={() => this.showSales()} className="nav-button bttn-slant bttn-md">Sales</button>
-                                    </div>
-                                </div>
-                            </div> */}
-                    {/* </div>
-            </div> */}
+                   
 
                     {/*  ////////////////////////////////////////////////////////////////////////////////// */}
                     {/*  ////////////////////////////////////////////////////////////////////////////////// */}
@@ -2012,45 +1930,7 @@ class ProtegeDash extends Component {
                                                             {this.state.weeklyDials ?
                                                                 <DialDataSide
                                                                     userID={this.state.userData._id}
-                                                                    contactData={this.state.contactData}
                                                                     dialData={this.state.weeklyDials}
-                                                                    apptData={this.state.weeklyAppts}
-                                                                    CPAppts={this.state.wCPAppts}
-                                                                    BPAppts={this.state.wBPAppts}
-                                                                    CCAppts={this.state.wCCAppts}
-                                                                    BCAppts={this.state.wBCAppts}
-                                                                    CNAppts={this.state.wCNAppts}
-                                                                    BNAppts={this.state.wBNAppts}
-                                                                    CPDials={this.state.wCPDials}
-                                                                    BPDials={this.state.wBPDials}
-                                                                    CCDials={this.state.wCCDials}
-                                                                    BCDials={this.state.wBCDials}
-                                                                    CNDials={this.state.wCNDials}
-                                                                    BNDials={this.state.wBNDials}
-                                                                    CPContacts={this.state.wCPContacts}
-                                                                    BPContacts={this.state.wBPContacts}
-                                                                    CCContacts={this.state.wCCContacts}
-                                                                    BCContacts={this.state.wBCContacts}
-                                                                    CNContacts={this.state.wCNContacts}
-                                                                    BNContacts={this.state.wBNContacts}
-                                                                    CSDials={this.state.wCSDials}
-                                                                    BSDials={this.state.wBSDials}
-                                                                    CSContacts={this.state.wCSContacts}
-                                                                    BSContacts={this.state.wBSContacts}
-                                                                    CSAppts={this.state.wCSAppts}
-                                                                    BSAppts={this.state.wBSAppts}
-                                                                    CRDials={this.state.wCRDials}
-                                                                    BRDials={this.state.wBRDials}
-                                                                    CRContacts={this.state.wCRContacts}
-                                                                    BRContacts={this.state.wBRContacts}
-                                                                    CRAppts={this.state.wCRAppts}
-                                                                    BRAppts={this.state.wBRAppts}
-                                                                    CTDials={this.state.wCTDials}
-                                                                    BTDials={this.state.wBTDials}
-                                                                    CTContacts={this.state.wCTContacts}
-                                                                    BTContacts={this.state.wBTContacts}
-                                                                    CTAppts={this.state.wCTAppts}
-                                                                    BTAppts={this.state.wBTAppts}
                                                                 />
                                                                 : null}
                                                         </div>
