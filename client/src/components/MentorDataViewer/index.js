@@ -1289,7 +1289,7 @@ class MentorDataViewer extends Component {
                                         <select id="sourceDropMenu" className="" value={this.state.leadSource} onChange={this.handleInputChange} name="leadSource">
                                             <option value={"none"}>----------------------------------</option>
                                             {this.props.protegeData.sources.map(source => (
-                                                <option value={source}>{source}</option>
+                                                <option key={source} value={source}>{source}</option>
                                             ))}
                                         </select>
                                         <br />
@@ -1307,7 +1307,7 @@ class MentorDataViewer extends Component {
                                         <select id="sourceDropMenu" value={this.state.targetMarket} className="" onChange={this.handleInputChange} name="targetMarket">
                                             <option value={"none"}>---------------------------------</option>
                                             {this.props.protegeData.targetMarkets.map(target => (
-                                                <option value={target}>{target}</option>
+                                                <option key={target} value={target}>{target}</option>
                                             ))}
                                         </select>
                                         <br />

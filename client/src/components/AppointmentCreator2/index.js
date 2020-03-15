@@ -157,7 +157,8 @@ class AppointmentCreator extends Component {
                         <hr />
                         <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px' }}>
                             <label><p style={{ color: 'black' }}>Mentor Tagged: </p></label>
-                            {this.props.mentors ? <select id="mentorDropMenu" className="" value={this.props.apptTagged} onChange={this.handleInputChange} name="apptTagged">
+                            {this.props.mentors ? 
+                            <select value={this.props.apptTagged} onChange={this.handleInputChange} name="apptTagged">
                                 <option value={"none"}>--Tag Mentor--</option>
                                 {this.props.mentors.map(mentor => (
                                     <option key={mentor._id} value={mentor._id}>{mentor.firstName} {mentor.lastName}</option>
@@ -169,7 +170,7 @@ class AppointmentCreator extends Component {
 
                             <label><p style={{ color: 'black' }}>Lead Source: </p></label>
                             {/* <input id="source-input" className="form-control" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource" type="text" placeholder="Source of Lead" /> */}
-                            {this.props.userData.sources ? <select id="sourceDropMenu" className="" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource">
+                            {this.props.userData.sources ? <select value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource">
                                 <option value={"none"}>No Lead Source Selected</option>
                                 {this.props.userData.sources.map(source => (
                                     <option key={source} value={source}>{source}</option>
@@ -181,7 +182,7 @@ class AppointmentCreator extends Component {
 
                             <label><p style={{ color: 'black' }}>Target Market: </p></label>
                             {/* <input id="targetmkt-input" className="form-control" value={this.state.apptTargetMkt} onChange={this.handleInputChange} name="appttargetmkt" type="text" placeholder="Target Market goes here" /> */}
-                            {this.props.userData.targetMarkets ? <select id="sourceDropMenu" className="" value={this.state.appttargetmkt} onChange={this.handleInputChange} name="appttargetmkt">
+                            {this.props.userData.targetMarkets ? <select className="" value={this.state.appttargetmkt} onChange={this.handleInputChange} name="appttargetmkt">
                                 <option value={"none"}>No Target Market Selected</option>
                                 {this.props.userData.targetMarkets.map(target => (
                                     <option key={target} value={target}>{target}</option>

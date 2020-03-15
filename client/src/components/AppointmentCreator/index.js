@@ -141,7 +141,7 @@ class AppointmentCreator extends Component {
 
 
                                     <label>Type : </label>
-                                    <select id="mentorDropMenu" className="" value={this.state.type} onChange={this.handleInputChange} name="type" type="text">
+                                    <select className="" value={this.state.type} onChange={this.handleInputChange} name="type" type="text">
                                         <option value="CPD">Personal Prospect</option>
                                         <option value="CCD">Personal Delegated Client</option>
                                         <option value="CND">Personal Natural</option>
@@ -178,7 +178,7 @@ class AppointmentCreator extends Component {
                                     <label>Mentor : </label>
 
                                     {this.props.mentors ?
-                                        <select id="mentorDropMenu" className="" value={this.props.apptTagged} onChange={this.handleInputChange} name="apptTagged">
+                                        <select className="" value={this.props.apptTagged} onChange={this.handleInputChange} name="apptTagged">
                                             <option value={"none"}>None Selected</option>
                                             {this.props.mentors.map(mentor => (
                                                 <option key={mentor._id} value={mentor._id}>{mentor.firstName} {mentor.lastName}</option>
@@ -192,7 +192,7 @@ class AppointmentCreator extends Component {
 
                                     <label>Referrer : </label>
                                     {/* <input id="source-input" className="form-control" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource" type="text" placeholder="Source of Lead" /> */}
-                                    {this.props.userData.sources ? <select id="sourceDropMenu" className="" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource">
+                                    {this.props.userData.sources ? <select className="" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource">
                                         <option value={"none"}>None Selected</option>
                                         {this.props.userData.sources.map(source => (
                                             <option key={source} value={source}>{source}</option>
@@ -204,7 +204,7 @@ class AppointmentCreator extends Component {
 
                                     <label>Industry : </label>
                                     {/* <input id="targetmkt-input" className="form-control" value={this.state.apptTargetMkt} onChange={this.handleInputChange} name="appttargetmkt" type="text" placeholder="Target Market goes here" /> */}
-                                    {this.props.userData.targetMarkets ? <select id="sourceDropMenu" className="" value={this.state.appttargetmkt} onChange={this.handleInputChange} name="appttargetmkt">
+                                    {this.props.userData.targetMarkets ? <select className="" value={this.state.appttargetmkt} onChange={this.handleInputChange} name="appttargetmkt">
                                         <option value={"none"}>None Selected</option>
                                         {this.props.userData.targetMarkets.map(target => (
                                             <option key={target} value={target}>{target}</option>

@@ -109,17 +109,17 @@ class NoteViewerMentor extends Component {
 
                             this.props.notes.map(note => (
 
-                                <div className="card bg-light"
+                                <div className="card bg-light" key={note._id}
                                     style={{ padding: '0px 0px 0px 0px', color: 'black', borderRadius: '5px', margin: 10 }}>
 
                                     <div className="card-header" style={{ padding: '5px 5px 0px 5px' }}>
-                                        <p><>
+                                        <>
                                             <div value={this.props.id} onClick={() => this.deleteNote(note._id)} style={{ float: 'right', height: '5px', width: '20px', color: 'red' }} className="">X</div>
                                             {note.completed ?
                                                 <div value={this.props.id} onClick={() => this.uncompleteNote(note._id)} style={{ float: 'right', height: '5px', width: '20px', padding: '0' }} className="">√</div>
-                                                : <div value={this.props.id} onClick={() => this.completeNote(note._id)} style={{ float: 'right', height: '5px', width: '20px', padding: '0' }} className=""><i class="far fa-square"></i></div>
+                                                : <div value={this.props.id} onClick={() => this.completeNote(note._id)} style={{ float: 'right', height: '5px', width: '20px', padding: '0' }} className=""><i className="far fa-square"></i></div>
                                             }
-                                        </></p>
+                                        </>
 
                                         <p style={{ fontSize: '10px' }}>By: {note.noteAuthorName}</p>
                                     </div>

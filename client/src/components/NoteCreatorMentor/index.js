@@ -79,7 +79,7 @@ class NoteCreatorMentor extends Component {
                             style={{ textAlign: 'center', padding: '10% 10% 0 10%', color: 'black', margin: '' }}
                         >Create Note
                         <br />
-                            <span button className="btn btn-sm btn-outline-dark" onClick={this.showNoteForm}>Show</span>
+                            <span>< button className="btn btn-sm btn-outline-dark" onClick={this.showNoteForm}>Show</button></span>
 
                         </h4>
                     </div>
@@ -99,7 +99,7 @@ class NoteCreatorMentor extends Component {
                                     <br />
 
                                     <FormTextarea 
-                                    id="noteTextArea" 
+                                    // id="noteTextArea" 
                                     value={this.state.noteText} 
                                     onChange={this.handleInputChange} 
                                     type="text" 
@@ -110,7 +110,7 @@ class NoteCreatorMentor extends Component {
                                     placeholder="Enter note here" 
                                     />
 
-                                    <button outline onClick={this.handleNoteSubmit} style={{ float: 'right' }} className="btn btn-outline-dark">Create Note</button>
+                                    <button onClick={this.handleNoteSubmit} style={{ float: 'right' }} className="btn btn-outline-dark">Create Note</button>
                                 </div>
                             </form>
 

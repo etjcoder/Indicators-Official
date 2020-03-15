@@ -1114,7 +1114,7 @@ class MentorDash extends Component {
                 /> */}
                 <div style={{ color: 'black' }}>
                     <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{ padding: '30px' }}>
-                        <div className="navbar-brand" style={{color: 'whitesmoke'}} >{this.state.mentor.firstName} {this.state.mentor.lastName} Dashboard</div>
+                        <div className="navbar-brand" style={{color: 'black'}} >{this.state.mentor.firstName} {this.state.mentor.lastName} Dashboard</div>
                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
@@ -1502,7 +1502,7 @@ class MentorDash extends Component {
                                         <div className="card bg-light">
                                             <div className="card-header">
                                                 <h4 style={{ textAlign: 'center', padding: '10% 10% 0 10%', color: 'black', margin: '0px' }}>View/Edit Appointments
-                                            <span button className="btn btn-sm btn-outline-dark" onClick={this.showApptViewer}>Show</span>
+                                            <span>< button className="btn btn-sm btn-outline-dark" onClick={this.showApptViewer}>Show</button></span>
                                                 </h4>
                                             </div>
 

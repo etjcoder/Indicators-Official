@@ -20,8 +20,8 @@ class Nav extends Component {
           Indicators App
       </a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
         </button>
 
 {/* 
@@ -32,15 +32,15 @@ class Nav extends Component {
         <a href="/manager" className="navbar-text">  Manager </a> */}
 
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/protege">Protege Dashboard</a>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item">
+              <a className="nav-link" href="/protege">Protege Dashboard</a>
             </li>
-            <li class="nav-item">
+            <li className="nav-item">
               <a href="/mentor" className="navbar-text">  Mentor Dashboard</a>
             </li>
-            <li class="nav-item">
+            <li className="nav-item">
               <a href="/manager" className="navbar-text">  Manager Dashboard</a>
             </li>
           </ul>

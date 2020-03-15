@@ -107,7 +107,7 @@ class NoteCreator extends Component {
                                         placeholder="Enter note here"
                                     />
 
-                                    <button outline onClick={this.handleNoteSubmit} style={{ float: ' right' }} className="btn btn-outline-dark">Create Note</button>
+                                    <button onClick={this.handleNoteSubmit} style={{ float: ' right' }} className="btn btn-outline-dark">Create Note</button>
                                 </div>
                             </form>
                         </div>

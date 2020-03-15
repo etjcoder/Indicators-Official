@@ -123,7 +123,7 @@ class AppointmentCreatorMentor extends Component {
                     <div className="card-header">
                         <h4 style={{ textAlign: 'center', padding: '10%', color: 'black', margin: '' }}>Create appointment
                         <br />
-                            <span button className="btn btn-sm btn-outline-dark" onClick={this.showApptForm}>Show</span></h4>
+                            <span>< button className="btn btn-sm btn-outline-dark" onClick={this.showApptForm}>Show</button></span></h4>
 
                     </div>
 
@@ -160,7 +160,7 @@ class AppointmentCreatorMentor extends Component {
                                     <input id="date-input" className="form-control" value={this.state.apptdate} onChange={this.handleInputChange} name="apptdate" type="date" placeholder="Enter date for your appointment" />
                                     <br />
                                     <label>Protege:</label>
-                                    {this.props.userData.proteges ? <select id="mentorDropMenu" className="" value={this.props.apptTagged} onChange={this.handleInputChange} name="apptTagged">
+                                    {this.props.userData.proteges ? <select className="" value={this.props.apptTagged} onChange={this.handleInputChange} name="apptTagged">
                                         <option value={"none"}>--Tag Mentor--</option>
                                         {this.props.userData.proteges.map(protege => (
                                             <option key={protege._id} value={protege._id}>{protege.firstName} {protege.lastName}</option>
@@ -170,17 +170,17 @@ class AppointmentCreatorMentor extends Component {
 
                                     <label>Lead Source:</label>
                                     {/* <input id="source-input" className="form-control" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource" type="text" placeholder="Source of Lead" /> */}
-                                    {this.props.protegeData.sources ? <select className="" id="sourceDropMenu" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource">
+                                    {this.props.protegeData.sources ? <select className="" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource">
                                         <option value={"none"}>No Lead Source Selected</option>
                                         {this.props.protegeData.sources.map(source => (
-                                            <option value={source}>{source}</option>
+                                            <option key={source} value={source}>{source}</option>
                                         ))}
                                     </select> : <p style={{ color: '' }}>"No lead sources created yet"</p>}
                                     <br />
 
                                     <label>Industry :</label>
                                     {/* <input id="targetmkt-input" className="form-control" value={this.state.apptTargetMkt} onChange={this.handleInputChange} name="appttargetmkt" type="text" placeholder="Target Market goes here" /> */}
-                                    {this.props.protegeData.targetMarkets ? <select className="" id="sourceDropMenu" value={this.state.appttargetmkt} onChange={this.handleInputChange} name="appttargetmkt">
+                                    {this.props.protegeData.targetMarkets ? <select className="" value={this.state.appttargetmkt} onChange={this.handleInputChange} name="appttargetmkt">
                                         <option value={"none"}>No Target Market Selected</option>
                                         {this.props.protegeData.targetMarkets.map(target => (
                                             <option value={target}>{target}</option>

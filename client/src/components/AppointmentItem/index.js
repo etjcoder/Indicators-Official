@@ -177,20 +177,40 @@ class AppointmentItem extends Component {
 
 
                 <div className="form-group" id="appt-holder ">
-                    <Modal isOpen={this.state.editModalIsOpen} onAfterOpen={this.afterOpenEditModal} onRequestClose={this.closeEditModal} style={this.customStyles} contentLabel="Your Request Viewer">
+                    <Modal 
+                        isOpen={this.state.editModalIsOpen} 
+                        onAfterOpen={this.afterOpenEditModal} 
+                        onRequestClose={this.closeEditModal} 
+                        style={this.customStyles} 
+                        contentLabel="Your Request Viewer"
+                        ariaHideApp={false}
+                        >
                         {/* <div className="card"> */}
                         <h3>Appointment Logger</h3>
                         <form className="form-group">
                             <label>Appointment Name:</label>
-                            <input id="apptname-input" className="form-control" value={this.state.apptname} onChange={this.handleInputChange} name="apptname" type="text" placeholder="Give your appointment a name!" />
+                            <input id="apptname-input" 
+                                className="form-control" 
+                                value={this.state.apptname} 
+                                onChange={this.handleInputChange} 
+                                name="apptname" 
+                                type="text" 
+                                placeholder="Give your appointment a name!" />
 
                             <label>Date of Appointment:</label>
                             <input id="date-input" className="form-control" value={this.state.apptdate} onChange={this.handleInputChange} name="apptdate" type="date" placeholder="Enter date for your appointment" />
 
                             <label>Lead Source:</label>
                             {/* <input id="source-input" className="form-control" value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource" type="text" placeholder="Source of Lead" /> */}
-                            {this.props.user.sources ? <select id="sourceDropMenu" defaultValue={this.props.source} value={this.state.apptsource} onChange={this.handleInputChange} name="apptsource">
-                                {/* <option value={"none"}>No Lead Source Selected</option> */}
+                            {this.props.user.sources ? 
+                                <select 
+                                // defaultValue={this.props.source} 
+                                value={this.state.apptsource} 
+                                onChange={this.handleInputChange} 
+                                name="apptsource"
+                                className="form-control"
+                                >
+                                <option value={"none"}>No Lead Source Selected</option>
                                 {this.props.user.sources.map(source => (
                                     <option key={source} value={source}>{source}</option>
                                 ))}
@@ -199,7 +219,7 @@ class AppointmentItem extends Component {
                             <br />
                             <label>Target Market:</label>
                             {/* <input id="targetmkt-input" className="form-control" value={this.state.apptTargetMkt} onChange={this.handleInputChange} name="appttargetmkt" type="text" placeholder="Target Market goes here" /> */}
-                            {this.props.user.targetMarkets ? <select id="sourceDropMenu" value={this.state.appttargetmkt} onChange={this.handleInputChange} name="appttargetmkt">
+                            {this.props.user.targetMarkets ? <select value={this.state.appttargetmkt} onChange={this.handleInputChange} name="appttargetmkt">
                                 {/* <option value={"none"}>No Target Market Selected</option> */}
                                 {this.props.user.targetMarkets.map(target => (
                                     <option key={target} value={target}>{target}</option>
