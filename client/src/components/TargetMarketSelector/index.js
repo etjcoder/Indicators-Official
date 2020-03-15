@@ -31,7 +31,7 @@ class TargetMarketSelector extends Component {
     render() {
         return (
             <div>
-                <form>
+                <div>
                     <label style={{float: 'left', textAlign: 'left', marginRight: '15px', width: '200px', border: 'none' }}>Target Industry: <span style={{fontSize: 10}}>(optional)</span></label>
                     {this.props.userData.targetMarkets ? <select id="sourceDropMenu" className="" value={this.state.targetMarket} onChange={this.handleInputChange} name="targetMarket">
                         <option value={"none"}>----------------------</option>
@@ -39,7 +39,7 @@ class TargetMarketSelector extends Component {
                             <option key={target} className="chosen-targetmkt" value={target}>{target}</option>
                         ))}
                     </select> : null}
-                </form>
+                </div>
             </div>
         )
     }

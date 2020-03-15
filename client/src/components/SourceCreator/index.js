@@ -72,11 +72,11 @@ class SourceCreator extends Component {
                             <p style={{}}><>Create Lead Source:</></p>
                         </div>
                         <div className="card-body">
-                            <form style={{ width: '', margin: '0' }}>
+                            <div style={{ width: '', margin: '0' }}>
                                 <label>Enter Source:</label>
                                 <input value={this.state.source} onChange={this.handleInputChange} className="input-group" name="source" placeholder="" />
                                 <button style={{}} id="admin-createCategoryBtn" className="btn-outline-dark btn btn-sm" onClick={this.handleFormSubmit}>Save</button>
-                            </form>
+                            </div>
                         </div>
                     {/* </div> */}
 

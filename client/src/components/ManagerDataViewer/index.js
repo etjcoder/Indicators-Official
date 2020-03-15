@@ -4,7 +4,7 @@ import "./style.css"
 import API from "../../utils/API";
 import MainCalendar from "../../components/MainCalendar"
 import AppointmentItem from "../../components/AppointmentItem"
-import SalesItem from "../../components/SalesItem"
+// import SalesItem from "../../components/SalesItem"
 import SalesItemMentor from "../../components/SalesItemMentor"
 import NoteCreator from "../../components/NoteCreator"
 import NoteViewer from "../../components/NoteViewer"
@@ -67,7 +67,6 @@ class ManagerDataViewer extends Component {
             showSuspectPerformance: false,
             showReferralPerformance: false,
             showTargetPerformance: false,
-            showSourcePerformance: false,
             showSelectedTargetPerformance: false,
             updatedProtegeFirstName: "",
             updateProtegeLastName: ""
@@ -1845,6 +1844,7 @@ class ManagerDataViewer extends Component {
                 break;
             case "sData":
                 this.viewSuspectPerformance()
+                break;
             case "nData":
                 this.viewNaturalPerformance()
                 break;

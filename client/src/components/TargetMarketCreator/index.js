@@ -74,11 +74,11 @@ class TargetMarketCreator extends Component {
                 </div>
 
                 <div className="card-body">
-                        <form style={{margin: 0}}>
+                        <div style={{margin: 0}}>
                             <label>Enter Industry:</label>
                             <input value={this.state.targetMarket} onChange={this.handleInputChange} className="input-group" name="targetMarket" placeholder="" />
                             <button id="admin-createCategoryBtn" className="btn btn-sm btn-outline-dark" onClick={this.handleFormSubmit}>Save</button>
-                        </form>
+                        </div>
        
                 </div>
             </div>

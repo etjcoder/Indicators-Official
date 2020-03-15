@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import API from "../../utils/API";
 import cogoToast from "cogo-toast";
-import { FormSelect, FormTextarea, Button } from 'shards-react';
+import { FormTextarea } from 'shards-react';
 // import "./style.css"
 
 class NoteCreator extends Component {
@@ -59,7 +59,7 @@ class NoteCreator extends Component {
     }
 
     showNoteForm = () => {
-        if (this.state.showNoteForm != true) {
+        if (this.state.showNoteForm !== true) {
             this.setState({
                 showNoteForm: true
             })
@@ -81,7 +81,7 @@ class NoteCreator extends Component {
                         >
                             Create Note
                             <br />
-                            <span button className="btn btn-sm btn-outline-dark" onClick={this.showNoteForm}>Show</span>
+                            <span>< button className="btn btn-sm btn-outline-dark" onClick={this.showNoteForm}>Show</button></span>
                         </h4>
                     </div>
 
@@ -96,13 +96,22 @@ class NoteCreator extends Component {
                                         ))}
                                     </select> : null}
                                     <br />
-                                    <FormTextarea id="noteTextArea" value={this.state.noteText} onChange={this.handleInputChange} type="text" name="noteText" className="form-control" id="noteTextInput" aria-describedby="" placeholder="Enter note here" />
+                                    <FormTextarea
+                                        value={this.state.noteText}
+                                        onChange={this.handleInputChange}
+                                        type="text"
+                                        name="noteText"
+                                        className="form-control"
+                                        id="noteTextInput"
+                                        aria-describedby=""
+                                        placeholder="Enter note here"
+                                    />
 
                                     <button outline onClick={this.handleNoteSubmit} style={{ float: ' right' }} className="btn btn-outline-dark">Create Note</button>
                                 </div>
                             </form>
                         </div>
-                         : null} 
+                        : null}
                 </div>
             </div>
         )

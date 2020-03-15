@@ -514,12 +514,12 @@ class ProtegeCallBtnContainer extends Component {
                             >
                                 <label style={{ float: 'left', textAlign: '', marginRight: '15px', width: '200px' }}>Type of Call <span style={{ fontSize: 10 }}>(required)  </span>  </label>
                                 {/* <br /> */}
-                                <select style={{ marginLeft: 'auto' }} id="" className="" value={this.state.levelofDial} onChange={this.handleInputChange} name="levelOfDial">
+                                <select style={{ marginLeft: 'auto' }} value={this.state.levelofDial} onChange={this.handleInputChange} name="levelOfDial">
                                     <option value="none">Select Type 1</option>
                                     <option value="cashflow">Standard / Cashflow</option>
                                     <option value="business">Tier-1/Business</option>
                                 </select>
-                                <select style={{ marginLeft: 'auto' }} id="" className="" value={this.state.typeOfCall} onChange={this.handleInputChange} name="typeOfCall">
+                                <select style={{ marginLeft: 'auto' }} value={this.state.typeOfCall} onChange={this.handleInputChange} name="typeOfCall">
                                     <option value="none">Select Type 2</option>
                                     <option value="prospect">Warm Lead/Prospect</option>
                                     <option value="client">Delegated Client</option>
@@ -538,7 +538,7 @@ class ProtegeCallBtnContainer extends Component {
                                 <hr />
                                 {/* <div style={{ backgroundColor: 'rgba(255,255,255,0.75)', color: 'black', padding: '20px', borderRadius: '30px', height: '100px' }}> */}
                                 <label style={{ float: 'left', textAlign: 'left', marginRight: '15px', width: '200px', border: 'none' }}>Tag a Mentor <span style={{ fontSize: 10 }}>(optional)</span></label>
-                                {this.props.userData.allMentors ? <select id="" className="" value={this.state.mentorTagged} onChange={this.handleInputChange} name="mentorTagged">
+                                {this.props.userData.allMentors ? <select value={this.state.mentorTagged} onChange={this.handleInputChange} name="mentorTagged">
                                     <option value="none">--------------------</option>
                                     {this.props.userData.allMentors.map(mentor => (
                                         <option key={mentor._id} value={mentor._id}>{mentor.firstName} {mentor.lastName}</option>

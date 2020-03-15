@@ -183,7 +183,7 @@ class ProtegeViewContainer extends Component {
             }
         }
         this.setState({
-            weeklyContacts: wCPC + wBPC + wCCC + wBCC + wCNC + wCSC + wBSC + wCRC + wBRC + wCTC + wBTC
+            weeklyContacts: wCPC + wBPC + wCCC + wBCC + wCNC + wBNC + wCSC + wBSC + wCRC + wBRC + wCTC + wBTC
         })
     }
 
@@ -270,7 +270,7 @@ class ProtegeViewContainer extends Component {
             }
         }
         this.setState({
-            monthlyContacts: wCPC + wBPC + wCCC + wBCC + wCNC + wCSC + wBSC + wCRC + wBRC + wCTC + wBTC
+            monthlyContacts: wCPC + wBPC + wCCC + wBCC + wCNC + wBNC + wCSC + wBSC + wCRC + wBRC + wCTC + wBTC
         })
     }
 

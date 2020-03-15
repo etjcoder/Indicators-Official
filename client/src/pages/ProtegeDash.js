@@ -1416,7 +1416,7 @@ class ProtegeDash extends Component {
                     salesOption={this.showSales}
                 /> */}
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark" style={{ padding: '30px' }}>
-                    <a className="navbar-brand" href="#">{this.state.userData.firstName} {this.state.userData.lastName} Dashboard</a>
+                    <div className="navbar-brand" style={{color: 'whitesmoke'}}>{this.state.userData.firstName} {this.state.userData.lastName} Dashboard</div>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -1424,22 +1424,22 @@ class ProtegeDash extends Component {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item">
-                                <a className="nav-link" onClick={this.showDials}>Home</a>
+                                <div className="nav-link" onClick={this.showDials}>Home</div>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" onClick={this.showDials}>Dialing Tool</a>
+                                <div className="nav-link" onClick={this.showDials}>Dialing Tool</div>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" onClick={this.showAnalytics}>Analytics</a>
+                                <div className="nav-link" onClick={this.showAnalytics}>Analytics</div>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" onClick={this.showNotes}>Notes</a>
+                                <div className="nav-link" onClick={this.showNotes}>Notes</div>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" onClick={this.showAppts}>Schedule</a>
+                                <div className="nav-link" onClick={this.showAppts}>Schedule</div>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" onClick={this.showSales}>Sales</a>
+                                <div className="nav-link" onClick={this.showSales}>Sales</div>
                             </li>
                         </ul>
                     </div>
@@ -1567,8 +1567,7 @@ class ProtegeDash extends Component {
                                                                 setParentState={this.setParentState}
                                                                 setParentStateTargetMkt={this.setParentStateTargetMkt}
                                                                 username={this.state.user}
-                                                                rerender={this.getUserData}
-                                                                userID={this.props.user.uid}
+                                                                // userID={this.props.user.uid}
                                                                 mentors={this.state.mentors}
                                                             />
 
@@ -2000,7 +1999,7 @@ class ProtegeDash extends Component {
                                                                 <div className="card-header">
                                                                     <h4 style={{ textAlign: 'center', padding: '10% 10% 0 10%', color: 'black', margin: '0px' }}>View Appointments
                                                                     <br />
-                                                                        <span button className="btn btn-sm btn-outline-dark" onClick={this.showApptViewer}>Show</span>
+                                                                        <span>< button className="btn btn-sm btn-outline-dark" onClick={this.showApptViewer}>Show</button></span>
                                                                         {/* <span button className="btn btn-sm btn-outline-dark" onClick={this.showAppts}>Show Full</span> */}
                                                                     </h4>
                                                                 </div>
@@ -2068,7 +2067,7 @@ class ProtegeDash extends Component {
 
                                                                     View Notes
                                                                     <br />
-                                                                    <span button className="btn btn-sm btn-outline-dark" onClick={this.showNoteViewer}>Show</span>
+                                                                    <span>< button className="btn btn-sm btn-outline-dark" onClick={this.showNoteViewer}>Show</button></span>
 
                                                                 </h4>
                                                             </div>

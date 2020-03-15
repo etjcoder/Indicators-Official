@@ -57,7 +57,7 @@ class NoteCreatorMentor extends Component {
 
     }
     showNoteForm = () => {
-        if (this.state.showNoteForm != true) {
+        if (this.state.showNoteForm !== true) {
             this.setState({
                 showNoteForm: true
             })
@@ -98,7 +98,17 @@ class NoteCreatorMentor extends Component {
                                     </select> : null}
                                     <br />
 
-                                    <FormTextarea id="noteTextArea" value={this.state.noteText} onChange={this.handleInputChange} type="text" name="noteText" className="form-control" id="noteTextInput" aria-describedby="" placeholder="Enter note here" />
+                                    <FormTextarea 
+                                    id="noteTextArea" 
+                                    value={this.state.noteText} 
+                                    onChange={this.handleInputChange} 
+                                    type="text" 
+                                    name="noteText"
+                                    className="form-control" 
+                                    // id="noteTextInput" 
+                                    aria-describedby="" 
+                                    placeholder="Enter note here" 
+                                    />
 
                                     <button outline onClick={this.handleNoteSubmit} style={{ float: 'right' }} className="btn btn-outline-dark">Create Note</button>
                                 </div>

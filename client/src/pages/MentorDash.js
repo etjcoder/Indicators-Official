@@ -20,7 +20,7 @@ import SalesItemMentor from "../components/SalesItemMentor"
 import AppointmentItem from "../components/AppointmentItem";
 import AppointmentCreatorMentor from "../components/AppointmentCreatorMentor"
 import './Mentor.css'
-import SideNavPageMentor from "../components/SideNavPageMentor";
+// import SideNavPageMentor from "../components/SideNavPageMentor";
 import MainCalendar from "../components/MainCalendar"
 // import AppointmentCreator from "../components/AppointmentCreator";
 
@@ -1114,7 +1114,7 @@ class MentorDash extends Component {
                 /> */}
                 <div style={{ color: 'black' }}>
                     <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{ padding: '30px' }}>
-                        <a className="navbar-brand" href="#">{this.state.mentor.firstName} {this.state.mentor.lastName} Dashboard</a>
+                        <div className="navbar-brand" style={{color: 'whitesmoke'}} >{this.state.mentor.firstName} {this.state.mentor.lastName} Dashboard</div>
                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
@@ -1122,22 +1122,22 @@ class MentorDash extends Component {
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav mr-auto">
                                 <li className="nav-item">
-                                    <a className="nav-link" onClick={this.showDials}>Home</a>
+                                    <div className="nav-link" onClick={this.showDials}>Home</div>
                                 </li>
                                 {/* <li className="nav-item">
                                 <a className="nav-link" onClick={this.showDials}>Dialing Tool</a>
                             </li> */}
                                 <li className="nav-item">
-                                    <a className="nav-link" onClick={this.viewMainData}>Analytics</a>
+                                    <div className="nav-link" onClick={this.viewMainData}>Analytics</div>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" onClick={this.viewNotes}>Notes</a>
+                                    <div className="nav-link" onClick={this.viewNotes}>Notes</div>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" onClick={this.viewAppointments}>Appointments</a>
+                                    <div className="nav-link" onClick={this.viewAppointments}>Appointments</div>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" onClick={this.viewSales}>Sales</a>
+                                    <div className="nav-link" onClick={this.viewSales}>Sales</div>
                                 </li>
                             </ul>
                         </div>
@@ -1229,7 +1229,7 @@ class MentorDash extends Component {
 
 
                             {this.state.viewMainData ?
-                                <div className="mentor-data-viewer-container" style={{ height: '1000px', overflow: 'auto' }} style={{ marginBottom: '100px' }}>
+                                <div className="mentor-data-viewer-container" style={{ height: '1000px', overflow: 'auto',  marginBottom: '100px' }}>
                                     <div className="row">
                                         <div className="col-lg-12">
                                             <MentorDataViewer
@@ -1288,7 +1288,7 @@ class MentorDash extends Component {
                             {this.state.viewAppointments ?
                                 <div className="row">
                                     <div className="col-8">
-                                        <div className="card" style={{ zIndex: 0 }} style={{ padding: '20px' }}>
+                                        <div className="card" style={{ zIndex: 0, padding: '20px' }}>
 
                                             <h4 style={{ textAlign: 'center' }}>Quickview Calendar</h4>
                                             <MainCalendar
@@ -1331,7 +1331,7 @@ class MentorDash extends Component {
                                                                 dialer={appt.protege}
                                                                 date={appt.date}
                                                                 source={appt.source}
-                                                                date={appt.date}
+                                                                // date={appt.date}
                                                                 notes={appt.notes}
                                                                 username={this.state.mentor.firstName + this.state.mentor.lastName}
                                                                 rerender={this.gatherMentorAppts}
@@ -1527,7 +1527,7 @@ class MentorDash extends Component {
                                                                             dialer={appt.protege}
                                                                             date={appt.date}
                                                                             source={appt.source}
-                                                                            date={appt.date}
+                                                                            // date={appt.date}
                                                                             notes={appt.notes}
                                                                             username={this.state.mentor.firstName + this.state.mentor.lastName}
                                                                             rerender={this.gatherMentorAppts}

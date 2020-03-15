@@ -3,8 +3,6 @@ import API from "../../utils/API";
 import cogoToast from "cogo-toast";
 import "./style.css"
 
-
-
 class AppointmentCreator extends Component {
 
     state = {
@@ -131,7 +129,7 @@ class AppointmentCreator extends Component {
                         style={{ textAlign: 'center', padding: '10% 10% 0 10%', color: 'black', margin: '' }}
                         >Create Appointment
                         <br />
-                        <span button className="btn btn-sm btn-outline-dark" onClick={this.showApptForm}>Show</span></h4>
+                        <span><button className="btn btn-sm btn-outline-dark" onClick={this.showApptForm}>Show</button></span></h4>
                     </div>
 
                

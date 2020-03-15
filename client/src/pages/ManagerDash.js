@@ -17,7 +17,7 @@ class ManagerDash extends Component {
         user: "",
         proteges: "",
         mentors: "",
-        mentorSelected: "",
+        mentorSelected: "none",
         mentorSelectedData: "",
         editMentorDataFirstName: "",
         editMentorDataLastName: "",
@@ -30,7 +30,6 @@ class ManagerDash extends Component {
         showReportsTool: false,
         showSalesTool: false,
         showProtegeActivity: false,
-        mentorSelected: "none",
         mentorToAdd: "none",
         protegeToAdd: 'none',
 
@@ -302,7 +301,7 @@ class ManagerDash extends Component {
                     
                 /> */}
                 <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{ padding: '30px', marginBottom: '50px' }}>
-                    <a className="navbar-brand" href="#">Manager Dashboard</a>
+                    <div className="navbar-brand" style={{color: 'whitesmoke'}}>Manager Dashboard</div>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -310,22 +309,22 @@ class ManagerDash extends Component {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item">
-                                <a className="nav-link" href="/">Home</a>
+                                <div className="nav-link" href="/">Home</div>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" onClick={this.showCreate}>Create User</a>
+                                <div className="nav-link" onClick={this.showCreate}>Create User</div>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" onClick={this.showActivityTracker}>Session Tracker</a>
+                                <div className="nav-link" onClick={this.showActivityTracker}>Session Tracker</div>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" onClick={this.showAnalytics}>View Analytics</a>
+                                <div className="nav-link" onClick={this.showAnalytics}>View Analytics</div>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" onClick={this.showSales}>View Sales</a>
+                                <div className="nav-link" onClick={this.showSales}>View Sales</div>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" onClick={this.showReports}>View Reports</a>
+                                <div className="nav-link" onClick={this.showReports}>View Reports</div>
                             </li>
                         </ul>
                     </div>
